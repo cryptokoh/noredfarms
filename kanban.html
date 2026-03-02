@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board | Nored Farms</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="kanban-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Nav -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Nored Farms</a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="blog.html">Learn</a>
+                <a href="products/all-products.html">Shop</a>
+                <a href="/kanban" class="active">Kanban</a>
+            </div>
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Login Gate -->
+    <div class="kanban-login-overlay" id="loginGate">
+        <div class="kanban-login">
+            <h2>Nored Farms Kanban</h2>
+            <p>Sign in to continue</p>
+            <div class="login-form-row">
+                <input type="text" id="loginUsername" placeholder="Name" autocomplete="off">
+                <input type="password" id="loginPassword" placeholder="Password" autocomplete="off">
+                <button type="button" class="modal-btn primary" id="loginSubmit">Sign In</button>
+            </div>
+            <p class="login-error" id="loginError" style="display:none">Invalid name or password</p>
+        </div>
+    </div>
+
+    <div class="kanban-app" id="kanbanApp" style="display:none">
+        <!-- Header with board tabs -->
+        <div class="kanban-header">
+            <div class="kanban-header-inner">
+                <h1 class="kanban-title">Kanban <span>/ Nored Farms</span></h1>
+                <div class="kanban-header-right">
+                    <div class="board-tabs" id="boardTabs">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="kanban-header-actions">
+                        <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        </button>
+                        <div class="kanban-user-badge" id="userBadge">
+                            <span class="user-avatar" id="userAvatar"></span>
+                            <button class="user-logout" onclick="window._kanban.logout()" title="Sign out">Sign out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Toolbar -->
+        <div class="kanban-toolbar" id="kanbanToolbar">
+            <div class="kanban-toolbar-inner">
+                <div class="toolbar-filters">
+                    <div class="toolbar-search">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" id="filterSearch" placeholder="Search tasks..." aria-label="Search tasks">
+                    </div>
+                    <select id="filterAssignee" aria-label="Filter by assignee">
+                        <option value="">All people</option>
+                        <option value="steph">Steph</option>
+                        <option value="koh">Koh</option>
+                        <option value="c">C</option>
+                        <option value="unassigned">Unassigned</option>
+                    </select>
+                    <select id="filterPriority" aria-label="Filter by priority">
+                        <option value="">All priorities</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                    <select id="filterDue" aria-label="Filter by due date">
+                        <option value="">Any date</option>
+                        <option value="overdue">Overdue</option>
+                        <option value="today">Today</option>
+                        <option value="week">This week</option>
+                        <option value="none">No date</option>
+                    </select>
+                    <button class="toolbar-clear" id="filterClear" style="display:none">Clear filters</button>
+                </div>
+                <div class="toolbar-stats" id="toolbarStats">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Kanban columns -->
+        <div class="kanban-body">
+            <div class="kanban-loading" id="kanbanLoading">
+                <div class="spinner"></div>
+                Loading board...
+            </div>
+            <div class="kanban-columns" id="kanbanColumns" style="display:none;">
+                <!-- Backlog -->
+                <div class="kanban-column" data-column="backlog">
+                    <div class="column-header">
+                        <div class="column-title">
+                            <span class="column-dot backlog"></span>
+                            Backlog
+                            <span class="column-count" data-count="backlog">0</span>
+                        </div>
+                    </div>
+                    <div class="task-list" id="list-backlog"></div>
+                    <button class="add-task-btn" data-column="backlog" onclick="startQuickAdd('backlog')">+ Add task</button>
+                </div>
+                <!-- To Do -->
+                <div class="kanban-column" data-column="todo">
+                    <div class="column-header">
+                        <div class="column-title">
+                            <span class="column-dot todo"></span>
+                            To Do
+                            <span class="column-count" data-count="todo">0</span>
+                        </div>
+                    </div>
+                    <div class="task-list" id="list-todo"></div>
+                    <button class="add-task-btn" data-column="todo" onclick="startQuickAdd('todo')">+ Add task</button>
+                </div>
+                <!-- In Progress -->
+                <div class="kanban-column" data-column="in-progress">
+                    <div class="column-header">
+                        <div class="column-title">
+                            <span class="column-dot in-progress"></span>
+                            In Progress
+                            <span class="column-count" data-count="in-progress">0</span>
+                        </div>
+                    </div>
+                    <div class="task-list" id="list-in-progress"></div>
+                    <button class="add-task-btn" data-column="in-progress" onclick="startQuickAdd('in-progress')">+ Add task</button>
+                </div>
+                <!-- Done -->
+                <div class="kanban-column" data-column="done">
+                    <div class="column-header">
+                        <div class="column-title">
+                            <span class="column-dot done"></span>
+                            Done
+                            <span class="column-count" data-count="done">0</span>
+                        </div>
+                    </div>
+                    <div class="task-list" id="list-done"></div>
+                    <button class="add-task-btn" data-column="done" onclick="startQuickAdd('done')">+ Add task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit/Create Modal (enhanced split layout) -->
+    <div class="kanban-modal-overlay" id="taskModal">
+        <div class="kanban-modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">New Task</h3>
+                <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Left: form -->
+                <div class="modal-form-panel">
+                    <form id="taskForm" onsubmit="return saveTask(event)">
+                        <input type="hidden" id="taskId">
+                        <div class="modal-field">
+                            <label for="taskTitleInput">Title</label>
+                            <input type="text" id="taskTitleInput" required placeholder="What needs to be done?">
+                        </div>
+                        <div class="modal-field">
+                            <label for="taskDesc">Description</label>
+                            <textarea id="taskDesc" placeholder="Details, links, notes..."></textarea>
+                        </div>
+                        <div class="modal-row modal-row-3">
+                            <div class="modal-field">
+                                <label for="taskPriority">Priority</label>
+                                <select id="taskPriority">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+                            <div class="modal-field">
+                                <label for="taskColumn">Column</label>
+                                <select id="taskColumn">
+                                    <option value="backlog">Backlog</option>
+                                    <option value="todo">To Do</option>
+                                    <option value="in-progress">In Progress</option>
+                                    <option value="done">Done</option>
+                                </select>
+                            </div>
+                            <div class="modal-field">
+                                <label for="taskAssignee">Assignee</label>
+                                <select id="taskAssignee">
+                                    <option value="">Unassigned</option>
+                                    <option value="steph">Steph</option>
+                                    <option value="koh">Koh</option>
+                                    <option value="c">C</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-field">
+                            <label for="taskDue">Due Date</label>
+                            <input type="date" id="taskDue">
+                        </div>
+                        <!-- Label picker -->
+                        <div class="modal-field">
+                            <label>Labels</label>
+                            <div class="label-picker" id="labelPicker">
+                                <button type="button" class="label-chip" data-color="red" style="--chip-bg:#ef4444;--chip-fg:#fff">Red</button>
+                                <button type="button" class="label-chip" data-color="orange" style="--chip-bg:#f97316;--chip-fg:#fff">Orange</button>
+                                <button type="button" class="label-chip" data-color="yellow" style="--chip-bg:#eab308;--chip-fg:#1a1a1a">Yellow</button>
+                                <button type="button" class="label-chip" data-color="green" style="--chip-bg:#22c55e;--chip-fg:#fff">Green</button>
+                                <button type="button" class="label-chip" data-color="blue" style="--chip-bg:#3b82f6;--chip-fg:#fff">Blue</button>
+                                <button type="button" class="label-chip" data-color="purple" style="--chip-bg:#8b5cf6;--chip-fg:#fff">Purple</button>
+                                <button type="button" class="label-chip" data-color="pink" style="--chip-bg:#ec4899;--chip-fg:#fff">Pink</button>
+                                <button type="button" class="label-chip" data-color="gray" style="--chip-bg:#6b7280;--chip-fg:#fff">Gray</button>
+                            </div>
+                        </div>
+                        <!-- Subtask / checklist -->
+                        <div class="modal-field">
+                            <label>Subtasks</label>
+                            <div class="subtask-list" id="subtaskList">
+                                <!-- Populated by JS -->
+                            </div>
+                            <div class="subtask-add">
+                                <input type="text" id="subtaskInput" placeholder="Add a subtask...">
+                                <button type="button" class="modal-btn" onclick="window._kanban.addSubtask()">Add</button>
+                            </div>
+                        </div>
+                        <!-- Metadata (edit mode) -->
+                        <div class="modal-metadata" id="modalMetadata" style="display:none">
+                            <span id="metaCreatedBy"></span>
+                            <span id="metaCreatedAt"></span>
+                            <span id="metaUpdatedAt"></span>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" class="modal-btn danger" id="deleteTaskBtn" onclick="deleteTask()" style="display:none">Delete</button>
+                            <button type="button" class="modal-btn" onclick="closeModal()">Cancel</button>
+                            <button type="submit" class="modal-btn primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Right: activity feed (edit mode only) -->
+                <div class="modal-activity-panel" id="activityPanel" style="display:none">
+                    <h4>Activity</h4>
+                    <div class="activity-feed" id="activityFeed">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="activity-comment-box">
+                        <input type="text" id="commentInput" placeholder="Write a comment...">
+                        <button type="button" class="modal-btn primary" onclick="window._kanban.addComment()">Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Keyboard shortcuts help -->
+    <div class="kanban-modal-overlay" id="shortcutsModal">
+        <div class="kanban-modal shortcuts-modal">
+            <div class="modal-header">
+                <h3>Keyboard Shortcuts</h3>
+                <button type="button" class="modal-close" onclick="document.getElementById('shortcutsModal').classList.remove('open')" aria-label="Close">&times;</button>
+            </div>
+            <div class="shortcuts-list">
+                <div class="shortcut-row"><kbd>n</kbd><span>New task</span></div>
+                <div class="shortcut-row"><kbd>/</kbd><span>Focus search</span></div>
+                <div class="shortcut-row"><kbd>?</kbd><span>Show shortcuts</span></div>
+                <div class="shortcut-row"><kbd>Esc</kbd><span>Close modal</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="kanban-app.js"></script>
+</body>
+</html>
