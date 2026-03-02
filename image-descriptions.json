@@ -1,0 +1,252 @@
+{
+  "images/64383264671__35ACDE3A-B6EB-43E8-AF65-758586040E3F.jpg": {
+    "description": "Hand holding a large freshly harvested black radish with leafy greens, tattoo visible on forearm",
+    "category": "harvest",
+    "suggested_placement": ["Blog", "Products", "About/Story"]
+  },
+  "images/71461679852__972CBE57-ABC2-4E41-AC80-00C11D511555.jpg": {
+    "description": "Lush basil plants growing in containers on a wooden porch/deck",
+    "category": "garden",
+    "suggested_placement": ["Blog", "Homepage", "About/Story"]
+  },
+  "images/71461732811__A63FA18B-0AE8-4980-8834-4FEAD19B59FC.jpg": {
+    "description": "San Pedro / Trichocereus cactus seedlings in small nursery pots under grow lights",
+    "category": "nursery",
+    "suggested_placement": ["Products", "Research", "Classroom"]
+  },
+  "images/71857742523__5BDB8733-9CD2-4396-A09C-EAB856180C0C.jpg": {
+    "description": "Indoor grow shelf with cannabis/hemp seedling trays (top) and smaller seedling trays in humidity domes (bottom) under fluorescent lights",
+    "category": "cultivation",
+    "suggested_placement": ["Classroom", "Research", "Blog"]
+  },
+  "images/72147166722__327AB19B-59DD-4064-B0DA-0851706BAE63.jpg": {
+    "description": "Indoor grow tent with San Pedro cacti, tropical plants, and various botanical specimens under LED grow lights on metal shelving",
+    "category": "nursery",
+    "suggested_placement": ["About/Story", "Research", "Lab"]
+  },
+  "images/DSC_6805.jpg": {
+    "description": "Stunning sunset landscape photo - lone yucca/Joshua tree silhouetted against orange-pink Texas desert sky, wide open scrubland",
+    "category": "landscape",
+    "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]
+  },
+  "images/IMG_0142.jpg": {
+    "description": "Young plant growing in dry Texas soil, broad palmate leaves - possibly comfrey or similar medicinal herb",
+    "category": "wild_plants",
+    "suggested_placement": ["Research", "Blog", "Article Header"]
+  },
+  "images/IMG_0148.jpg": {
+    "description": "Purple/red kale (Redbor variety) growing densely with bamboo stakes for support, close-up showing vibrant purple stems",
+    "category": "garden",
+    "suggested_placement": ["Blog", "Products", "Homepage"]
+  },
+  "images/IMG_0289.jpg": {
+    "description": "Kanna (Sceletium tortuosum) or similar succulent cuttings/plants in pots on a wire shelf under grow lights",
+    "category": "nursery",
+    "suggested_placement": ["Products", "Research", "Classroom"]
+  },
+  "images/IMG_0292.jpg": {
+    "description": "Rosemary or similar narrow-leaf herb seedlings in nursery trays, dense propagation setup",
+    "category": "nursery",
+    "suggested_placement": ["Products", "Classroom", "Blog"]
+  },
+  "images/IMG_0293.jpg": {
+    "description": "Indoor seedling nursery under grow lights - multiple small pots with young tobacco or similar broad-leaf seedlings at various stages",
+    "category": "nursery",
+    "suggested_placement": ["Classroom", "Research", "About/Story"]
+  },
+  "images/IMG_0326.jpg": {
+    "description": "Raised herb garden bed with brick edging against a brick building - mixed herbs and flowers, wire cages for support",
+    "category": "garden",
+    "suggested_placement": ["Homepage", "About/Story", "Blog"]
+  },
+  "images/IMG_0346.jpg": {
+    "description": "Iridescent green June beetle / fig beetle on decaying wood with shelf fungi - beautiful macro nature shot",
+    "category": "nature",
+    "suggested_placement": ["Blog", "Research", "Article Header"]
+  },
+  "images/IMG_0349.jpg": {
+    "description": "Wild barrel cactus cluster growing in rocky terrain with long dark spines, close-up detail shot",
+    "category": "wild_plants",
+    "suggested_placement": ["Research", "Blog", "Article Header"]
+  },
+  "images/IMG_0357.jpg": {
+    "description": "Peach or similar fruit tree with ripening/split fruit showing red-pink flesh among colorful variegated leaves",
+    "category": "garden",
+    "suggested_placement": ["Products", "Blog", "Research"]
+  },
+  "images/IMG_0479.jpg": {
+    "description": "Screenshot of Facebook post (Josh's post) - massive mature San Pedro cactus colony growing outdoors, towering cluster",
+    "category": "reference",
+    "suggested_placement": ["Research", "Blog"]
+  },
+  "images/IMG_0484.jpg": {
+    "description": "Screenshot of Facebook post (Josh's post) - large Trichocereus pachanoi 'Powerline' clone, hand for scale showing massive girth",
+    "category": "reference",
+    "suggested_placement": ["Research", "Blog"]
+  },
+  "images/IMG_0485.jpg": {
+    "description": "Screenshot of Facebook post - Trichocereus 'Ear Grabber' clone with flower bud, and close-up of Lophophora (peyote) cactus below",
+    "category": "reference",
+    "suggested_placement": ["Research"]
+  },
+  "images/IMG_0486.jpg": {
+    "description": "Screenshot of Facebook post (Josh's post) - tall San Pedro cacti growing in mountainous landscape, dramatic misty mountains backdrop",
+    "category": "reference",
+    "suggested_placement": ["Research", "Blog", "Hero Banner"]
+  },
+  "images/IMG_0489.jpg": {
+    "description": "Large mature San Pedro / Trichocereus colony outside a house, massive spreading growth - reference photo",
+    "category": "reference",
+    "suggested_placement": ["Research", "Blog"]
+  },
+  "images/IMG_0573.jpg": {
+    "description": "Potted San Pedro cactus seedling with spines, surrounded by other cacti varieties at night under artificial light",
+    "category": "nursery",
+    "suggested_placement": ["Products", "Research"]
+  },
+  "images/IMG_0574.jpg": {
+    "description": "San Pedro cactus with multiple pups/offsets growing from base, showing flower bud, in black nursery pot at night",
+    "category": "nursery",
+    "suggested_placement": ["Products", "Research", "Blog"]
+  },
+  "images/IMG_0629.jpg": {
+    "description": "Trays of San Pedro cactus seedlings under grow lights, dozens of young columnar cacti in individual cells with blue labels",
+    "category": "nursery",
+    "suggested_placement": ["Products", "Classroom", "About/Story"]
+  },
+  "images/IMG_0642.jpg": {
+    "description": "Stainless steel extraction equipment - closed-loop BHO/hydrocarbon extraction manifold with braided hoses and yellow ball valves, outdoor setup",
+    "category": "extraction_equipment",
+    "suggested_placement": ["Consulting", "Classroom", "Research"]
+  },
+  "images/IMG_0659.jpg": {
+    "description": "Black dog wading in clear lake water on a sunny day - Texas lakeside nature scene",
+    "category": "lifestyle",
+    "suggested_placement": ["About/Story", "Blog"]
+  },
+  "images/IMG_0660.jpg": {
+    "description": "Large indoor cannabis cultivation room under HPS lights - rows of mature flowering plants in black pots with trellis netting, commercial scale",
+    "category": "cultivation",
+    "suggested_placement": ["Consulting", "Classroom", "Blog"]
+  },
+  "images/IMG_0673.jpg": {
+    "description": "Screenshot from future4200.com - closed-loop BHO extraction setup in a tent with pressure gauge, stainless steel column, insulated lines",
+    "category": "extraction_equipment",
+    "suggested_placement": ["Classroom", "Consulting", "Research"]
+  },
+  "images/IMG_0726.jpg": {
+    "description": "Beautiful ocean/Gulf Coast sunset - sandbar stretching into calm water, dramatic clouds with golden light",
+    "category": "landscape",
+    "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]
+  },
+  "images/IMG_0728.jpg": {
+    "description": "Large extraction vessel in workshop - insulated tank wrapped in foil tape, stainless steel column beside it, OSB-walled workspace",
+    "category": "extraction_equipment",
+    "suggested_placement": ["Consulting", "Classroom", "About/Story"]
+  },
+  "images/IMG_0729.jpg": {
+    "description": "Multi-column stainless steel extraction rack system - 5 parallel columns with pressure gauges, professional setup in workshop",
+    "category": "extraction_equipment",
+    "suggested_placement": ["Consulting", "Classroom", "Homepage"]
+  },
+  "images/IMG_0730.jpg": {
+    "description": "Professional extraction lab interior - insulated lines, stainless vessels, explosion-proof lighting, pumps, gas cylinders - commercial scale C1D1 room",
+    "category": "extraction_equipment",
+    "suggested_placement": ["Homepage", "Consulting", "Classroom"]
+  },
+  "images/IMG_0731.jpg": {
+    "description": "Another angle of commercial extraction lab - insulated column array, stainless vessels, pressure gauges, yellow ball valves, professional setup",
+    "category": "extraction_equipment",
+    "suggested_placement": ["Homepage", "Consulting", "Classroom"]
+  },
+  "images/IMG_0732.jpg": {
+    "description": "Commercial extraction lab - multiple stainless columns, recovery pump, CO2/solvent tank, red hoses, professional C1D1 rated room",
+    "category": "extraction_equipment",
+    "suggested_placement": ["Homepage", "Consulting", "Classroom"]
+  },
+  "images/IMG_0733.jpg": {
+    "description": "Extraction equipment close-up - frosted recovery vessel on stand with scale readout, pump, insulated lines, professional lab",
+    "category": "extraction_equipment",
+    "suggested_placement": ["Consulting", "Classroom", "Research"]
+  },
+  "images/IMG_0749.jpg": {
+    "description": "Small succulent-like plant cuttings with red stems in a white pot with perlite - propagation",
+    "category": "nursery",
+    "suggested_placement": ["Products", "Blog"]
+  },
+  "images/IMG_0750.jpg": {
+    "description": "Polished resin or extract domes/half-spheres on kitchen counter - dark amber/brown, multiple sizes, glossy finish",
+    "category": "finished_product",
+    "suggested_placement": ["Products", "Homepage", "Blog"]
+  },
+  "images/IMG_0751.jpg": {
+    "description": "Same extract domes from above angle - approximately 10 polished dome shapes in various amber/dark brown shades on speckled counter",
+    "category": "finished_product",
+    "suggested_placement": ["Products", "Homepage", "Blog"]
+  },
+  "images/IMG_0753.jpg": {
+    "description": "Two large dark purple/maroon extract pucks - polished, glossy, kidney-shaped on kitchen counter",
+    "category": "finished_product",
+    "suggested_placement": ["Products", "Homepage"]
+  },
+  "images/IMG_0756.jpg": {
+    "description": "Single extract dome/puck side view - shows layered coloring (amber top, dark bottom), macro detail on speckled counter",
+    "category": "finished_product",
+    "suggested_placement": ["Products", "Blog"]
+  },
+  "images/IMG_0892.jpg": {
+    "description": "Dense carpet of Kanna (Sceletium tortuosum) or similar succulent ground cover with white/yellow daisy-like flowers, growing in red soil",
+    "category": "wild_plants",
+    "suggested_placement": ["Research", "Blog", "Products"]
+  },
+  "images/IMG_0893.jpg": {
+    "description": "Close-up of same succulent ground cover with white feathery flowers - Sceletium/Kanna species in bloom",
+    "category": "wild_plants",
+    "suggested_placement": ["Research", "Blog", "Products"]
+  },
+  "images/IMG_0923.jpg": {
+    "description": "Outdoor hillside cannabis farm - plants among dry grass with hoop houses visible, California-style guerrilla/sun-grown operation",
+    "category": "cultivation",
+    "suggested_placement": ["Blog", "Research", "Consulting"]
+  },
+  "images/IMG_0928.jpg": {
+    "description": "Large commercial indoor cultivation facility - rows of raised flood tables under HPS lights, clone/veg stage, industrial scale",
+    "category": "cultivation",
+    "suggested_placement": ["Consulting", "Classroom", "Blog"]
+  },
+  "images/IMG_0929.jpg": {
+    "description": "Wild mushrooms growing in grass - small tan/white parasol-type mushrooms in a lawn, foraging subject",
+    "category": "nature",
+    "suggested_placement": ["Research", "Blog", "Article Header"]
+  },
+  "images/IMG_0949.jpg": {
+    "description": "Beautiful wild bolete mushroom - golden yellow stem with red/orange cap, macro photo on forest floor with rocks and leaves",
+    "category": "nature",
+    "suggested_placement": ["Research", "Blog", "Article Header", "Homepage"]
+  },
+  "images/IMG_0957.jpg": {
+    "description": "Texas Hill Country pond/creek - green rolling hills, calm water with reeds, overcast sky, peaceful rural landscape",
+    "category": "landscape",
+    "suggested_placement": ["Homepage", "About/Story", "Hero Banner"]
+  },
+  "images/IMG_0963.jpg": {
+    "description": "Stunning moonlit night landscape - full moon reflecting on still pond/lake, stars visible, Texas Hill Country silhouette",
+    "category": "landscape",
+    "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]
+  },
+  "images/IMG_0964.jpg": {
+    "description": "Same moonlit scene, different angle - moon reflecting on winding creek/river, wispy clouds, Hill Country horizon",
+    "category": "landscape",
+    "suggested_placement": ["Homepage", "Hero Banner", "About/Story"]
+  },
+  "images/IMG_1018.jpg": {
+    "description": "Cannabis flower close-up - dense trichome-covered bud under HPS grow lights, purple and orange hues, professional macro",
+    "category": "cultivation",
+    "suggested_placement": ["Products", "Blog", "Research"]
+  },
+  "images/IMG_1019.jpg": {
+    "description": "Cannabis flower close-up - frosty trichome-laden cola, professional macro photography showing crystal structure",
+    "category": "cultivation",
+    "suggested_placement": ["Products", "Blog", "Research"]
+  }
+}

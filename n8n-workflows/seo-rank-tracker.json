@@ -1,0 +1,286 @@
+{
+  "name": "SEO Rank Tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7,
+              "triggerAtDay": 1
+            }
+          ]
+        }
+      },
+      "id": "weekly-trigger",
+      "name": "Weekly Monday 7am",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Target keywords for Nored Farms\nconst keywords = [\n  // Informational\n  { keyword: 'what is THCA', category: 'informational', priority: 'high' },\n  { keyword: 'THCA vs THC difference', category: 'informational', priority: 'high' },\n  { keyword: 'is THCA legal in Texas', category: 'informational', priority: 'high' },\n  { keyword: 'THCA benefits', category: 'informational', priority: 'medium' },\n  { keyword: 'hemp extraction methods', category: 'informational', priority: 'medium' },\n  \n  // Commercial\n  { keyword: 'THCA distillate wholesale', category: 'commercial', priority: 'high' },\n  { keyword: 'bulk hemp extract Texas', category: 'commercial', priority: 'high' },\n  { keyword: 'white label THCA products', category: 'commercial', priority: 'medium' },\n  { keyword: 'hemp extraction services Texas', category: 'commercial', priority: 'high' },\n  \n  // Transactional\n  { keyword: 'buy THCA Texas', category: 'transactional', priority: 'high' },\n  { keyword: 'THCA flower near me', category: 'transactional', priority: 'medium' },\n  \n  // Local\n  { keyword: 'hemp products Fredericksburg TX', category: 'local', priority: 'high' },\n  { keyword: 'CBD store Texas Hill Country', category: 'local', priority: 'medium' },\n  { keyword: 'hemp extract lab Texas', category: 'local', priority: 'high' },\n  \n  // Brand\n  { keyword: 'Nored Farms', category: 'brand', priority: 'critical' },\n  { keyword: 'Nored Farms Texas', category: 'brand', priority: 'critical' }\n];\n\nreturn keywords.map(k => ({ json: k }));"
+      },
+      "id": "get-keywords",
+      "name": "Get Target Keywords",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {}
+      },
+      "id": "batch-keywords",
+      "name": "Batch Keywords",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://serpapi.com/search.json?q={{ encodeURIComponent($json.keyword) }}&location=Texas,United+States&gl=us&hl=en&api_key={{ $env.SERPAPI_KEY }}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "serp-api-call",
+      "name": "SERP API Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse SERP results and find our ranking\nconst results = $input.all();\nconst keyword = $node['Batch Keywords'].json;\nconst serpData = results[0].json;\n\nconst targetDomain = 'noredfarms.netlify.app';\nlet ranking = null;\nlet url = null;\nlet snippet = null;\n\n// Check organic results\nif (serpData.organic_results) {\n  for (let i = 0; i < serpData.organic_results.length; i++) {\n    const result = serpData.organic_results[i];\n    if (result.link && result.link.includes(targetDomain)) {\n      ranking = i + 1;\n      url = result.link;\n      snippet = result.snippet;\n      break;\n    }\n  }\n}\n\n// Check local pack\nlet localRanking = null;\nif (serpData.local_results && serpData.local_results.places) {\n  for (let i = 0; i < serpData.local_results.places.length; i++) {\n    const place = serpData.local_results.places[i];\n    if (place.title && place.title.toLowerCase().includes('pure extracts')) {\n      localRanking = i + 1;\n      break;\n    }\n  }\n}\n\nreturn {\n  json: {\n    keyword: keyword.keyword,\n    category: keyword.category,\n    priority: keyword.priority,\n    organicRanking: ranking,\n    localRanking: localRanking,\n    url: url,\n    snippet: snippet,\n    searchVolume: serpData.search_information?.total_results || 0,\n    trackedAt: new Date().toISOString(),\n    topCompetitors: serpData.organic_results?.slice(0, 5).map(r => ({\n      position: serpData.organic_results.indexOf(r) + 1,\n      domain: new URL(r.link).hostname,\n      title: r.title\n    })) || []\n  }\n};"
+      },
+      "id": "parse-serp-results",
+      "name": "Parse SERP Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "loop-back",
+      "name": "Loop Back",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/seo_rankings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "save-to-supabase",
+      "name": "Save Rankings to Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1250, 500]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Aggregate all results for report\nconst allResults = $input.all().map(item => item.json);\n\n// Calculate summary stats\nconst totalKeywords = allResults.length;\nconst ranking = allResults.filter(r => r.organicRanking !== null);\nconst top10 = ranking.filter(r => r.organicRanking <= 10);\nconst top3 = ranking.filter(r => r.organicRanking <= 3);\nconst notRanking = allResults.filter(r => r.organicRanking === null);\n\n// Group by category\nconst byCategory = {};\nallResults.forEach(r => {\n  if (!byCategory[r.category]) byCategory[r.category] = [];\n  byCategory[r.category].push(r);\n});\n\n// Find improvements and declines (would need previous data)\nconst summary = {\n  totalKeywords,\n  rankingCount: ranking.length,\n  top3Count: top3.length,\n  top10Count: top10.length,\n  notRankingCount: notRanking.length,\n  byCategory: Object.entries(byCategory).map(([cat, items]) => ({\n    category: cat,\n    total: items.length,\n    ranking: items.filter(i => i.organicRanking !== null).length,\n    avgPosition: items.filter(i => i.organicRanking !== null)\n      .reduce((sum, i) => sum + i.organicRanking, 0) / \n      items.filter(i => i.organicRanking !== null).length || 0\n  })),\n  topPerformers: ranking.sort((a, b) => a.organicRanking - b.organicRanking).slice(0, 5),\n  needsWork: notRanking.filter(r => r.priority === 'high' || r.priority === 'critical'),\n  generatedAt: new Date().toISOString()\n};\n\nreturn { json: { summary, allResults } };"
+      },
+      "id": "aggregate-results",
+      "name": "Aggregate Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1450, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.DISCORD_WEBHOOK_URL }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"embeds\": [{\n    \"title\": \"Weekly SEO Report - Nored Farms\",\n    \"description\": \"Keyword ranking summary for the week\",\n    \"color\": 3447003,\n    \"fields\": [\n      {\n        \"name\": \"Total Keywords Tracked\",\n        \"value\": \"{{ $json.summary.totalKeywords }}\",\n        \"inline\": true\n      },\n      {\n        \"name\": \"Currently Ranking\",\n        \"value\": \"{{ $json.summary.rankingCount }}\",\n        \"inline\": true\n      },\n      {\n        \"name\": \"Top 10 Positions\",\n        \"value\": \"{{ $json.summary.top10Count }}\",\n        \"inline\": true\n      },\n      {\n        \"name\": \"Top 3 Positions\",\n        \"value\": \"{{ $json.summary.top3Count }}\",\n        \"inline\": true\n      },\n      {\n        \"name\": \"Not Ranking\",\n        \"value\": \"{{ $json.summary.notRankingCount }}\",\n        \"inline\": true\n      },\n      {\n        \"name\": \"Top Performers\",\n        \"value\": \"{{ $json.summary.topPerformers.map(p => `#${p.organicRanking}: ${p.keyword}`).join('\\\\n') || 'None' }}\"\n      },\n      {\n        \"name\": \"Priority Keywords Needing Work\",\n        \"value\": \"{{ $json.summary.needsWork.map(p => p.keyword).join(', ') || 'All priority keywords ranking!' }}\"\n      }\n    ],\n    \"footer\": {\n      \"text\": \"SEO Rank Tracker | Nored Farms\"\n    },\n    \"timestamp\": \"{{ $json.summary.generatedAt }}\"\n  }]\n}",
+        "options": {}
+      },
+      "id": "send-report",
+      "name": "Send Weekly Report",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1650, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/seo_reports",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"report_data\": {{ JSON.stringify($json) }},\n  \"report_type\": \"weekly\",\n  \"created_at\": \"{{ new Date().toISOString() }}\"\n}",
+        "options": {}
+      },
+      "id": "save-report",
+      "name": "Save Report to Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1850, 300]
+    }
+  ],
+  "connections": {
+    "Weekly Monday 7am": {
+      "main": [
+        [
+          {
+            "node": "Get Target Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Target Keywords": {
+      "main": [
+        [
+          {
+            "node": "Batch Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Batch Keywords": {
+      "main": [
+        [
+          {
+            "node": "SERP API Call",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SERP API Call": {
+      "main": [
+        [
+          {
+            "node": "Parse SERP Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse SERP Results": {
+      "main": [
+        [
+          {
+            "node": "Loop Back",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save Rankings to Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Back": {
+      "main": [
+        [
+          {
+            "node": "Batch Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Results": {
+      "main": [
+        [
+          {
+            "node": "Send Weekly Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Weekly Report": {
+      "main": [
+        [
+          {
+            "node": "Save Report to Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {
+      "name": "seo"
+    },
+    {
+      "name": "reporting"
+    },
+    {
+      "name": "automation"
+    }
+  ]
+}

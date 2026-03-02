@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#3B82F6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Nored Farms | Laboratory-Grade Botanical Science</title>
+    <meta name="description" content="Experience botanical science in our virtual laboratory. Premium kratom, kava, and blue lotus extracts crafted with scientific precision.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lab-styles.css">
+    <link rel="stylesheet" href="chat-widget.css">
+    <link rel="stylesheet" href="shipping-estimator.css">
+    <link rel="stylesheet" href="site-enhancements.css">
+    <link rel="stylesheet" href="site-search.css">
+    <link rel="stylesheet" href="visual-enhancements.css">
+</head>
+<body>
+    <!-- Floating Molecules Background -->
+    <div class="molecules-container" id="moleculesContainer">
+        <div class="molecule"></div>
+        <div class="molecule"></div>
+        <div class="molecule"></div>
+        <div class="molecule"></div>
+        <div class="molecule"></div>
+        <div class="molecule"></div>
+        <div class="molecule"></div>
+        <div class="molecule"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-flask">
+                    <svg viewBox="0 0 40 50" fill="none">
+                        <path d="M15 8V20L5 40C4 42 5.5 45 8 45H32C34.5 45 36 42 35 40L25 20V8" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="13" y="3" width="14" height="6" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <ellipse cx="20" cy="35" rx="10" ry="5" fill="currentColor" opacity="0.3"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Nored Farms<span class="logo-suffix">TX</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link nav-link-back">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
+                    </svg>
+                    Home
+                </a>
+                <a href="#lab" class="nav-link">The Lab</a>
+                <a href="#products" class="nav-link">Extracts</a>
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#contact" class="nav-link nav-link-cta">Request Formulation</a>
+            </div>
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero: Interactive Lab Workbench -->
+    <header class="hero-lab" id="lab">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-pulse"></span>
+                <span>Laboratory-Grade Extraction</span>
+            </div>
+            <h1 class="hero-title">
+                Botanical Science<br>
+                <span class="text-gradient">In Your Browser</span>
+            </h1>
+            <p class="hero-subtitle">
+                Click on the lab equipment below to explore our premium botanical extracts.
+                Each beaker contains science-backed formulations for wellness and vitality.
+            </p>
+            <div class="hero-actions">
+                <a href="#products" class="btn btn-primary">
+                    <span>Explore Extracts</span>
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                <a href="#process" class="btn btn-secondary">
+                    <span>Our Process</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Lab Workbench Scene -->
+        <div class="lab-workbench">
+            <div class="workbench-glow"></div>
+
+            <!-- Onboarding Hint Overlay -->
+            <div class="onboarding-overlay" id="onboardingOverlay">
+                <div class="onboarding-hint hint-left">
+                    <div class="hint-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                    <div class="hint-text">
+                        <strong>Click plants</strong>
+                        <span>to learn about botanicals</span>
+                    </div>
+                </div>
+                <div class="onboarding-hint hint-center">
+                    <div class="hint-arrow down">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12l7 7 7-7"/>
+                        </svg>
+                    </div>
+                    <div class="hint-text">
+                        <strong>Click beakers</strong>
+                        <span>to view extract details</span>
+                    </div>
+                </div>
+                <div class="onboarding-hint hint-right">
+                    <div class="hint-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </div>
+                    <div class="hint-text">
+                        <strong>View research</strong>
+                        <span>via the microscope</span>
+                    </div>
+                </div>
+                <button class="onboarding-dismiss" onclick="dismissOnboarding()">Got it!</button>
+            </div>
+
+            <!-- Lab Items -->
+            <div class="lab-items">
+                <!-- Plant Specimen 1: Kratom -->
+                <div class="lab-item plant-specimen" data-product="kratom" tabindex="0" role="button" aria-label="Explore Kratom plant - Mitragyna speciosa. Click to learn more.">
+                    <div class="terrarium">
+                        <div class="terrarium-glass"></div>
+                        <div class="plant-leaves kratom-plant">
+                            <div class="leaf"></div>
+                            <div class="leaf"></div>
+                            <div class="leaf"></div>
+                            <div class="leaf"></div>
+                            <div class="leaf"></div>
+                            <div class="stem"></div>
+                        </div>
+                        <div class="terrarium-soil"></div>
+                    </div>
+                    <span class="plant-label">Mitragyna speciosa</span>
+                    <div class="item-tooltip">Click to explore Kratom</div>
+                </div>
+
+                <!-- Beaker 1: Kratom Extract -->
+                <div class="lab-item beaker-item" data-product="kratom-extract" tabindex="0" role="button" aria-label="View Kratom Extract details and pricing. Click to open product information.">
+                    <svg class="beaker-svg" viewBox="0 0 80 140">
+                        <defs>
+                            <linearGradient id="kratom-liquid" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#D4A574"/>
+                                <stop offset="50%" stop-color="#B8956A"/>
+                                <stop offset="100%" stop-color="#9A7B55"/>
+                            </linearGradient>
+                            <clipPath id="beaker-clip-1">
+                                <path d="M8 30 L8 115 Q8 125 18 125 L62 125 Q72 125 72 115 L72 30 Z"/>
+                            </clipPath>
+                        </defs>
+                        <!-- Beaker outline -->
+                        <path class="beaker-glass" d="M8 20 L8 115 Q8 130 20 130 L60 130 Q72 130 72 115 L72 20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                        <rect class="beaker-neck" x="5" y="10" width="70" height="15" rx="2" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+
+                        <!-- Liquid -->
+                        <g clip-path="url(#beaker-clip-1)">
+                            <rect class="beaker-liquid" x="10" y="50" width="60" height="75" fill="url(#kratom-liquid)"/>
+                            <path class="liquid-wave" d="M10 50 Q25 45 40 50 T70 50 V130 H10 Z" fill="url(#kratom-liquid)" opacity="0.8">
+                                <animate attributeName="d" dur="2s" repeatCount="indefinite" values="M10 50 Q25 45 40 50 T70 50 V130 H10 Z;M10 50 Q25 55 40 50 T70 50 V130 H10 Z;M10 50 Q25 45 40 50 T70 50 V130 H10 Z"/>
+                            </path>
+                            <!-- Bubbles -->
+                            <circle class="bubble" cx="25" cy="110" r="3" fill="rgba(255,255,255,0.5)">
+                                <animate attributeName="cy" from="110" to="55" dur="1.8s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" from="0.6" to="0" dur="1.8s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle class="bubble" cx="45" cy="100" r="2" fill="rgba(255,255,255,0.4)">
+                                <animate attributeName="cy" from="100" to="55" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+                                <animate attributeName="opacity" from="0.5" to="0" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+                            </circle>
+                            <circle class="bubble" cx="55" cy="105" r="4" fill="rgba(255,255,255,0.5)">
+                                <animate attributeName="cy" from="105" to="55" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                                <animate attributeName="opacity" from="0.6" to="0" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                            </circle>
+                        </g>
+
+                        <!-- Glass highlight -->
+                        <path d="M12 25 L12 110" stroke="rgba(255,255,255,0.2)" stroke-width="3" stroke-linecap="round"/>
+
+                        <!-- Measurement marks -->
+                        <g stroke="rgba(100,116,139,0.4)" stroke-width="1">
+                            <line x1="68" y1="45" x2="72" y2="45"/>
+                            <line x1="68" y1="65" x2="72" y2="65"/>
+                            <line x1="68" y1="85" x2="72" y2="85"/>
+                            <line x1="68" y1="105" x2="72" y2="105"/>
+                        </g>
+                    </svg>
+                    <span class="beaker-label">Kratom Extract</span>
+                    <div class="item-tooltip">Click to view details</div>
+                </div>
+
+                <!-- Microscope -->
+                <div class="lab-item microscope-item" data-section="research" tabindex="0" role="button" aria-label="Quality Analysis microscope. Click to view our research and testing methodology.">
+                    <div class="microscope">
+                        <div class="microscope-eyepiece"></div>
+                        <div class="microscope-body">
+                            <div class="microscope-arm"></div>
+                        </div>
+                        <div class="microscope-stage">
+                            <div class="specimen-slide">
+                                <div class="specimen-sample"></div>
+                            </div>
+                        </div>
+                        <div class="microscope-lens">
+                            <div class="lens-glow"></div>
+                        </div>
+                        <div class="microscope-base"></div>
+                    </div>
+                    <span class="microscope-label">Quality Analysis</span>
+                    <div class="item-tooltip">View our research</div>
+                </div>
+
+                <!-- Beaker 2: Kava Extract -->
+                <div class="lab-item beaker-item" data-product="kava-extract" tabindex="0" role="button" aria-label="View Kava Extract details and pricing. Click to open product information.">
+                    <svg class="beaker-svg" viewBox="0 0 80 140">
+                        <defs>
+                            <linearGradient id="kava-liquid" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#10B981"/>
+                                <stop offset="50%" stop-color="#059669"/>
+                                <stop offset="100%" stop-color="#047857"/>
+                            </linearGradient>
+                        </defs>
+                        <path class="beaker-glass" d="M8 20 L8 115 Q8 130 20 130 L60 130 Q72 130 72 115 L72 20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                        <rect class="beaker-neck" x="5" y="10" width="70" height="15" rx="2" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+
+                        <g clip-path="url(#beaker-clip-1)">
+                            <rect class="beaker-liquid" x="10" y="60" width="60" height="65" fill="url(#kava-liquid)"/>
+                            <path class="liquid-wave" d="M10 60 Q25 55 40 60 T70 60 V130 H10 Z" fill="url(#kava-liquid)" opacity="0.8">
+                                <animate attributeName="d" dur="2.3s" repeatCount="indefinite" values="M10 60 Q25 55 40 60 T70 60 V130 H10 Z;M10 60 Q25 65 40 60 T70 60 V130 H10 Z;M10 60 Q25 55 40 60 T70 60 V130 H10 Z"/>
+                            </path>
+                            <circle class="bubble" cx="30" cy="115" r="2.5" fill="rgba(255,255,255,0.5)">
+                                <animate attributeName="cy" from="115" to="65" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" from="0.6" to="0" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle class="bubble" cx="50" cy="108" r="3.5" fill="rgba(255,255,255,0.4)">
+                                <animate attributeName="cy" from="108" to="65" dur="2.4s" repeatCount="indefinite" begin="0.7s"/>
+                                <animate attributeName="opacity" from="0.5" to="0" dur="2.4s" repeatCount="indefinite" begin="0.7s"/>
+                            </circle>
+                        </g>
+
+                        <path d="M12 25 L12 110" stroke="rgba(255,255,255,0.2)" stroke-width="3" stroke-linecap="round"/>
+                        <g stroke="rgba(100,116,139,0.4)" stroke-width="1">
+                            <line x1="68" y1="45" x2="72" y2="45"/>
+                            <line x1="68" y1="65" x2="72" y2="65"/>
+                            <line x1="68" y1="85" x2="72" y2="85"/>
+                            <line x1="68" y1="105" x2="72" y2="105"/>
+                        </g>
+                    </svg>
+                    <span class="beaker-label">Kava Extract</span>
+                    <div class="item-tooltip">Click to view details</div>
+                </div>
+
+                <!-- Plant Specimen 2: Blue Lotus -->
+                <div class="lab-item plant-specimen" data-product="lotus" tabindex="0" role="button" aria-label="Explore Blue Lotus plant - Nymphaea caerulea. Click to learn more.">
+                    <div class="terrarium terrarium-wide">
+                        <div class="terrarium-glass"></div>
+                        <div class="lotus-flower">
+                            <div class="lotus-petal"></div>
+                            <div class="lotus-petal"></div>
+                            <div class="lotus-petal"></div>
+                            <div class="lotus-petal"></div>
+                            <div class="lotus-petal"></div>
+                            <div class="lotus-petal"></div>
+                            <div class="lotus-center"></div>
+                            <div class="lotus-pad"></div>
+                        </div>
+                        <div class="terrarium-water"></div>
+                    </div>
+                    <span class="plant-label">Nymphaea caerulea</span>
+                    <div class="item-tooltip">Click to explore Blue Lotus</div>
+                </div>
+
+                <!-- Test Tube Rack -->
+                <div class="lab-item test-tubes" data-section="products" tabindex="0" role="button" aria-label="Product test tubes display. Click to view all product offerings.">
+                    <div class="tube-rack">
+                        <div class="test-tube" style="--tube-color: #D4A574; --tube-height: 70%;">
+                            <div class="tube-liquid"></div>
+                            <div class="tube-glass"></div>
+                        </div>
+                        <div class="test-tube" style="--tube-color: #10B981; --tube-height: 55%;">
+                            <div class="tube-liquid"></div>
+                            <div class="tube-glass"></div>
+                        </div>
+                        <div class="test-tube" style="--tube-color: #8B5CF6; --tube-height: 80%;">
+                            <div class="tube-liquid"></div>
+                            <div class="tube-glass"></div>
+                        </div>
+                        <div class="test-tube" style="--tube-color: #06B6D4; --tube-height: 45%;">
+                            <div class="tube-liquid"></div>
+                            <div class="tube-glass"></div>
+                        </div>
+                        <div class="rack-base"></div>
+                    </div>
+                    <span class="tubes-label">Sample Collection</span>
+                    <div class="item-tooltip">View all extracts</div>
+                </div>
+            </div>
+
+            <!-- Workbench Surface -->
+            <div class="bench-surface">
+                <div class="bench-edge"></div>
+                <div class="bench-reflection"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Section: Beaker Grid -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Extract Collection</span>
+                <h2 class="section-title">Laboratory-Grade Botanicals</h2>
+                <p class="section-subtitle">
+                    Each extract is precision-crafted using proprietary cold extraction methods,
+                    preserving the full spectrum of beneficial compounds.
+                </p>
+            </div>
+
+            <div class="products-grid">
+                <!-- Kratom Extract -->
+                <article class="product-card" data-product="kratom-extract">
+                    <div class="product-color-bar" style="--product-color: #D4A574;"></div>
+                    <div class="product-beaker">
+                        <svg viewBox="0 0 100 160" class="product-flask">
+                            <defs>
+                                <linearGradient id="prod-kratom" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#D4A574"/>
+                                    <stop offset="100%" stop-color="#9A7B55"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M30 20V50L15 130C13 140 20 150 30 150H70C80 150 87 140 85 130L70 50V20" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <rect x="25" y="10" width="50" height="15" rx="2" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                            <path class="product-liquid" d="M20 80L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L80 80Z" fill="url(#prod-kratom)">
+                                <animate attributeName="d" dur="3s" repeatCount="indefinite" values="M20 80L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L80 80Z;M20 75L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L80 75Z;M20 80L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L80 80Z"/>
+                            </path>
+                            <circle cx="35" cy="120" r="3" fill="rgba(255,255,255,0.4)">
+                                <animate attributeName="cy" from="130" to="85" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <span class="compound-badge">
+                            <span class="compound-dot" style="background: #D4A574;"></span>
+                            Mitragynine Complex
+                        </span>
+                        <h3 class="product-name">Kratom Extract</h3>
+                        <p class="product-description">
+                            Premium Mitragyna speciosa extract, standardized for consistent alkaloid content.
+                            Supports natural energy and focus.
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price">From $29.99</span>
+                            <button class="product-cta" data-modal="kratom">
+                                <span>Details</span>
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-glow" style="--glow-color: rgba(212,165,116,0.3);"></div>
+                </article>
+
+                <!-- Kava Extract -->
+                <article class="product-card" data-product="kava-extract">
+                    <div class="product-color-bar" style="--product-color: #10B981;"></div>
+                    <div class="product-beaker">
+                        <svg viewBox="0 0 100 160" class="product-flask">
+                            <defs>
+                                <linearGradient id="prod-kava" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#10B981"/>
+                                    <stop offset="100%" stop-color="#047857"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M30 20V50L15 130C13 140 20 150 30 150H70C80 150 87 140 85 130L70 50V20" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <rect x="25" y="10" width="50" height="15" rx="2" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                            <path class="product-liquid" d="M22 90L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L78 90Z" fill="url(#prod-kava)">
+                                <animate attributeName="d" dur="2.8s" repeatCount="indefinite" values="M22 90L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L78 90Z;M22 85L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L78 85Z;M22 90L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L78 90Z"/>
+                            </path>
+                            <circle cx="55" cy="125" r="2.5" fill="rgba(255,255,255,0.4)">
+                                <animate attributeName="cy" from="130" to="95" dur="2.2s" repeatCount="indefinite" begin="0.3s"/>
+                                <animate attributeName="opacity" from="0.5" to="0" dur="2.2s" repeatCount="indefinite" begin="0.3s"/>
+                            </circle>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <span class="compound-badge">
+                            <span class="compound-dot" style="background: #10B981;"></span>
+                            Kavalactones
+                        </span>
+                        <h3 class="product-name">Kava Extract</h3>
+                        <p class="product-description">
+                            Noble kava root extract with high kavalactone concentration.
+                            Traditional Pacific Island relaxation support.
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price">From $34.99</span>
+                            <button class="product-cta" data-modal="kava">
+                                <span>Details</span>
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-glow" style="--glow-color: rgba(16,185,129,0.3);"></div>
+                </article>
+
+                <!-- Blue Lotus Extract -->
+                <article class="product-card" data-product="lotus-extract">
+                    <div class="product-color-bar" style="--product-color: #8B5CF6;"></div>
+                    <div class="product-beaker">
+                        <svg viewBox="0 0 100 160" class="product-flask">
+                            <defs>
+                                <linearGradient id="prod-lotus" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#8B5CF6"/>
+                                    <stop offset="100%" stop-color="#6D28D9"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M30 20V50L15 130C13 140 20 150 30 150H70C80 150 87 140 85 130L70 50V20" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <rect x="25" y="10" width="50" height="15" rx="2" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                            <path class="product-liquid" d="M19 70L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L81 70Z" fill="url(#prod-lotus)">
+                                <animate attributeName="d" dur="3.2s" repeatCount="indefinite" values="M19 70L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L81 70Z;M19 65L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L81 65Z;M19 70L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L81 70Z"/>
+                            </path>
+                            <circle cx="40" cy="118" r="3" fill="rgba(255,255,255,0.4)">
+                                <animate attributeName="cy" from="125" to="75" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+                                <animate attributeName="opacity" from="0.5" to="0" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+                            </circle>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <span class="compound-badge">
+                            <span class="compound-dot" style="background: #8B5CF6;"></span>
+                            Aporphine Alkaloids
+                        </span>
+                        <h3 class="product-name">Blue Lotus Tincture</h3>
+                        <p class="product-description">
+                            Sacred Nymphaea caerulea flower extract using cold ethanol extraction.
+                            Ancient Egyptian botanical for relaxation and dreams.
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price">From $39.99</span>
+                            <button class="product-cta" data-modal="lotus">
+                                <span>Details</span>
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-glow" style="--glow-color: rgba(139,92,246,0.3);"></div>
+                </article>
+
+                <!-- Nootropic Blend -->
+                <article class="product-card" data-product="nootropic-blend">
+                    <div class="product-color-bar" style="--product-color: #06B6D4;"></div>
+                    <div class="product-beaker">
+                        <svg viewBox="0 0 100 160" class="product-flask">
+                            <defs>
+                                <linearGradient id="prod-noo" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#06B6D4"/>
+                                    <stop offset="100%" stop-color="#0E7490"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M30 20V50L15 130C13 140 20 150 30 150H70C80 150 87 140 85 130L70 50V20" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <rect x="25" y="10" width="50" height="15" rx="2" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                            <path class="product-liquid" d="M21 85L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L79 85Z" fill="url(#prod-noo)">
+                                <animate attributeName="d" dur="2.6s" repeatCount="indefinite" values="M21 85L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L79 85Z;M21 80L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L79 80Z;M21 85L18 125C17 135 22 142 30 142H70C78 142 83 135 82 125L79 85Z"/>
+                            </path>
+                            <circle cx="60" cy="122" r="2" fill="rgba(255,255,255,0.4)">
+                                <animate attributeName="cy" from="128" to="90" dur="1.8s" repeatCount="indefinite" begin="0.2s"/>
+                                <animate attributeName="opacity" from="0.5" to="0" dur="1.8s" repeatCount="indefinite" begin="0.2s"/>
+                            </circle>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <span class="compound-badge">
+                            <span class="compound-dot" style="background: #06B6D4;"></span>
+                            Multi-Compound Stack
+                        </span>
+                        <h3 class="product-name">Nootropic Energy</h3>
+                        <p class="product-description">
+                            Synergistic blend of Lion's Mane, Cordyceps, and natural caffeine.
+                            Clean, sustained focus without the crash.
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price">From $44.99</span>
+                            <button class="product-cta" data-modal="nootropic">
+                                <span>Details</span>
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-glow" style="--glow-color: rgba(6,182,212,0.3);"></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section: Extraction Journey -->
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Method</span>
+                <h2 class="section-title">The Extraction Process</h2>
+                <p class="section-subtitle">
+                    From raw botanicals to refined extracts, every step is precision-controlled
+                    for maximum potency and purity.
+                </p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="timeline-line">
+                    <div class="timeline-progress" id="timelineProgress"></div>
+                </div>
+
+                <!-- Step 1: Sourcing -->
+                <div class="process-step" data-step="1">
+                    <div class="step-node">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L12 6M12 18L12 22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12L6 12M18 12L22 12M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"/>
+                            <circle cx="12" cy="12" r="4"/>
+                        </svg>
+                    </div>
+                    <div class="step-content">
+                        <span class="step-number">Step 01</span>
+                        <h3 class="step-title">Ethical Sourcing</h3>
+                        <p class="step-description">
+                            We partner directly with sustainable farms in Southeast Asia and the Pacific Islands,
+                            ensuring premium raw materials while supporting local communities.
+                        </p>
+                    </div>
+                    <div class="step-illustration sourcing-animation">
+                        <svg viewBox="0 0 200 150" class="step-svg">
+                            <!-- Sun -->
+                            <circle cx="160" cy="30" r="20" fill="#FCD34D" opacity="0.8">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+                            </circle>
+                            <!-- Ground -->
+                            <path d="M0 130 Q50 120 100 130 T200 130 V150 H0 Z" fill="#8B7355"/>
+                            <!-- Plant stems growing -->
+                            <g class="growing-plant">
+                                <path d="M60 130 L60 80" stroke="#10B981" stroke-width="3" stroke-linecap="round">
+                                    <animate attributeName="d" from="M60 130 L60 130" to="M60 130 L60 80" dur="1s" fill="freeze"/>
+                                </path>
+                                <ellipse cx="50" cy="75" rx="15" ry="8" fill="#10B981" transform="rotate(-30 50 75)"/>
+                                <ellipse cx="70" cy="70" rx="15" ry="8" fill="#059669" transform="rotate(30 70 70)"/>
+                                <ellipse cx="55" cy="60" rx="12" ry="6" fill="#10B981" transform="rotate(-20 55 60)"/>
+                            </g>
+                            <g class="growing-plant" style="transform: translateX(80px)">
+                                <path d="M60 130 L60 90" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+                                <ellipse cx="50" cy="85" rx="12" ry="6" fill="#10B981" transform="rotate(-25 50 85)"/>
+                                <ellipse cx="70" cy="82" rx="12" ry="6" fill="#059669" transform="rotate(25 70 82)"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 2: Extraction -->
+                <div class="process-step" data-step="2">
+                    <div class="step-node">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                        </svg>
+                    </div>
+                    <div class="step-content">
+                        <span class="step-number">Step 02</span>
+                        <h3 class="step-title">Cold Extraction</h3>
+                        <p class="step-description">
+                            Our proprietary cold ethanol extraction preserves delicate alkaloids and compounds
+                            that heat-based methods destroy. Temperature never exceeds 40F.
+                        </p>
+                    </div>
+                    <div class="step-illustration extraction-animation">
+                        <svg viewBox="0 0 200 150" class="step-svg">
+                            <!-- Flask -->
+                            <path d="M70 30 L70 60 L50 120 Q45 135 60 140 L140 140 Q155 135 150 120 L130 60 L130 30" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                            <rect x="65" y="20" width="70" height="15" rx="3" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <!-- Liquid -->
+                            <path d="M55 90 L52 115 Q48 130 62 135 L138 135 Q152 130 148 115 L145 90 Z" fill="#10B981" opacity="0.6"/>
+                            <!-- Dripping drops -->
+                            <ellipse class="droplet" cx="100" cy="50" rx="4" ry="6" fill="#10B981">
+                                <animate attributeName="cy" from="50" to="90" dur="1.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" from="1" to="0" dur="1.5s" repeatCount="indefinite"/>
+                            </ellipse>
+                            <ellipse class="droplet" cx="100" cy="50" rx="4" ry="6" fill="#10B981">
+                                <animate attributeName="cy" from="50" to="90" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+                                <animate attributeName="opacity" from="1" to="0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+                            </ellipse>
+                            <ellipse class="droplet" cx="100" cy="50" rx="4" ry="6" fill="#10B981">
+                                <animate attributeName="cy" from="50" to="90" dur="1.5s" repeatCount="indefinite" begin="1s"/>
+                                <animate attributeName="opacity" from="1" to="0" dur="1.5s" repeatCount="indefinite" begin="1s"/>
+                            </ellipse>
+                            <!-- Temperature indicator -->
+                            <text x="170" y="80" font-family="JetBrains Mono" font-size="10" fill="#64748B">38F</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 3: Purification -->
+                <div class="process-step" data-step="3">
+                    <div class="step-node">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 4h18M3 4v16l9-4 9 4V4M3 4l9 4 9-4"/>
+                        </svg>
+                    </div>
+                    <div class="step-content">
+                        <span class="step-number">Step 03</span>
+                        <h3 class="step-title">Multi-Stage Purification</h3>
+                        <p class="step-description">
+                            Advanced filtration removes plant matter while retaining beneficial compounds.
+                            Each batch undergoes 5 purification cycles for optimal clarity.
+                        </p>
+                    </div>
+                    <div class="step-illustration purification-animation">
+                        <svg viewBox="0 0 200 150" class="step-svg">
+                            <!-- Centrifuge/filter representation -->
+                            <circle cx="100" cy="75" r="50" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <circle cx="100" cy="75" r="35" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                            <!-- Swirling liquid -->
+                            <g class="swirl-group">
+                                <path d="M100 40 Q130 55 115 75 T100 110 Q70 95 85 75 T100 40" fill="none" stroke="#8B5CF6" stroke-width="3" opacity="0.6">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 100 75" to="360 100 75" dur="3s" repeatCount="indefinite"/>
+                                </path>
+                                <path d="M100 50 Q120 60 110 75 T100 100 Q80 90 90 75 T100 50" fill="none" stroke="#06B6D4" stroke-width="2" opacity="0.4">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 100 75" to="-360 100 75" dur="4s" repeatCount="indefinite"/>
+                                </path>
+                            </g>
+                            <!-- Pure output -->
+                            <text x="160" y="130" font-family="JetBrains Mono" font-size="9" fill="#64748B">99.2% Pure</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 4: Testing -->
+                <div class="process-step" data-step="4">
+                    <div class="step-node">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <div class="step-content">
+                        <span class="step-number">Step 04</span>
+                        <h3 class="step-title">Lab Testing & Verification</h3>
+                        <p class="step-description">
+                            Third-party lab testing verifies potency, purity, and safety.
+                            Every batch comes with a Certificate of Analysis.
+                        </p>
+                    </div>
+                    <div class="step-illustration testing-animation">
+                        <svg viewBox="0 0 200 150" class="step-svg">
+                            <!-- Test display -->
+                            <rect x="40" y="30" width="120" height="90" rx="8" fill="#1F2937" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                            <!-- Scan line -->
+                            <line class="scan-line" x1="50" x2="150" y1="50" y2="50" stroke="#3B82F6" stroke-width="2">
+                                <animate attributeName="y1" from="40" to="110" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="y2" from="40" to="110" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite"/>
+                            </line>
+                            <!-- Data readout -->
+                            <text x="55" y="55" font-family="JetBrains Mono" font-size="8" fill="#10B981">ALKALOID: 45.2mg/mL</text>
+                            <text x="55" y="70" font-family="JetBrains Mono" font-size="8" fill="#10B981">PURITY: 99.2%</text>
+                            <text x="55" y="85" font-family="JetBrains Mono" font-size="8" fill="#10B981">CONTAMINANTS: ND</text>
+                            <text x="55" y="100" font-family="JetBrains Mono" font-size="8" fill="#10B981">STATUS: PASSED</text>
+                            <!-- Checkmark -->
+                            <circle cx="140" cy="75" r="15" fill="none" stroke="#10B981" stroke-width="2">
+                                <animate attributeName="stroke-dasharray" from="0 100" to="100 0" dur="1s" fill="freeze"/>
+                            </circle>
+                            <path d="M132 75 L138 81 L150 69" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <animate attributeName="stroke-dasharray" from="0 50" to="50 0" dur="0.5s" begin="0.5s" fill="freeze"/>
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section: Microscope Cards -->
+    <section class="research-section" id="research">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Scientific Foundation</span>
+                <h2 class="section-title">Compound Research</h2>
+                <p class="section-subtitle">
+                    Explore the science behind our extracts. Each compound is backed by
+                    peer-reviewed research and traditional use.
+                </p>
+            </div>
+
+            <div class="research-grid">
+                <!-- Mitragynine Research -->
+                <article class="research-card">
+                    <div class="research-view">
+                        <div class="lens-frame">
+                            <div class="compound-visual" style="--compound-color: #D4A574; --compound-color-light: #E8C9A4; --compound-color-dark: #9A7B55;"></div>
+                            <div class="molecular-structure">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="30" r="6" fill="rgba(255,255,255,0.5)"/>
+                                    <circle cx="30" cy="50" r="5" fill="rgba(255,255,255,0.4)"/>
+                                    <circle cx="70" cy="50" r="5" fill="rgba(255,255,255,0.4)"/>
+                                    <circle cx="40" cy="70" r="4" fill="rgba(255,255,255,0.3)"/>
+                                    <circle cx="60" cy="70" r="4" fill="rgba(255,255,255,0.3)"/>
+                                    <line x1="50" y1="30" x2="30" y2="50" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="50" y1="30" x2="70" y2="50" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="30" y1="50" x2="40" y2="70" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="70" y1="50" x2="60" y2="70" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="lens-crosshair"></div>
+                        <span class="measurement">x400</span>
+                    </div>
+                    <div class="research-content">
+                        <span class="research-compound">C23H30N2O4</span>
+                        <h3 class="research-title">Mitragynine</h3>
+                        <p class="research-excerpt">
+                            The primary alkaloid in kratom, studied for its interaction with
+                            opioid receptors and potential for supporting natural energy and focus.
+                        </p>
+                        <a href="blog.html" class="research-link">
+                            <span>Read Research</span>
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Kavalactones Research -->
+                <article class="research-card">
+                    <div class="research-view">
+                        <div class="lens-frame">
+                            <div class="compound-visual" style="--compound-color: #10B981; --compound-color-light: #34D399; --compound-color-dark: #047857;"></div>
+                            <div class="molecular-structure">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="25" r="5" fill="rgba(255,255,255,0.5)"/>
+                                    <circle cx="25" cy="45" r="4" fill="rgba(255,255,255,0.4)"/>
+                                    <circle cx="75" cy="45" r="4" fill="rgba(255,255,255,0.4)"/>
+                                    <circle cx="50" cy="65" r="5" fill="rgba(255,255,255,0.5)"/>
+                                    <circle cx="35" cy="80" r="3" fill="rgba(255,255,255,0.3)"/>
+                                    <circle cx="65" cy="80" r="3" fill="rgba(255,255,255,0.3)"/>
+                                    <line x1="50" y1="25" x2="25" y2="45" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="50" y1="25" x2="75" y2="45" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="25" y1="45" x2="50" y2="65" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="75" y1="45" x2="50" y2="65" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="lens-crosshair"></div>
+                        <span class="measurement">x400</span>
+                    </div>
+                    <div class="research-content">
+                        <span class="research-compound">C14H14O3</span>
+                        <h3 class="research-title">Kavalactones</h3>
+                        <p class="research-excerpt">
+                            Six primary kavalactones work synergistically to promote relaxation
+                            and calm without sedation. Traditional Pacific Island medicine.
+                        </p>
+                        <a href="blog.html" class="research-link">
+                            <span>Read Research</span>
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Aporphine Research -->
+                <article class="research-card">
+                    <div class="research-view">
+                        <div class="lens-frame">
+                            <div class="compound-visual" style="--compound-color: #8B5CF6; --compound-color-light: #A78BFA; --compound-color-dark: #6D28D9;"></div>
+                            <div class="molecular-structure">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="20" r="5" fill="rgba(255,255,255,0.5)"/>
+                                    <circle cx="30" cy="40" r="4" fill="rgba(255,255,255,0.4)"/>
+                                    <circle cx="70" cy="40" r="4" fill="rgba(255,255,255,0.4)"/>
+                                    <circle cx="30" cy="60" r="4" fill="rgba(255,255,255,0.4)"/>
+                                    <circle cx="70" cy="60" r="4" fill="rgba(255,255,255,0.4)"/>
+                                    <circle cx="50" cy="80" r="5" fill="rgba(255,255,255,0.5)"/>
+                                    <line x1="50" y1="20" x2="30" y2="40" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="50" y1="20" x2="70" y2="40" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="30" y1="40" x2="30" y2="60" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="70" y1="40" x2="70" y2="60" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="30" y1="60" x2="50" y2="80" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                    <line x1="70" y1="60" x2="50" y2="80" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="lens-crosshair"></div>
+                        <span class="measurement">x400</span>
+                    </div>
+                    <div class="research-content">
+                        <span class="research-compound">C17H17NO2</span>
+                        <h3 class="research-title">Aporphine</h3>
+                        <p class="research-excerpt">
+                            The primary psychoactive compound in Blue Lotus, historically used
+                            in ancient Egypt for meditation and lucid dreaming practices.
+                        </p>
+                        <a href="blog.html" class="research-link">
+                            <span>Read Research</span>
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section: Formulation Request -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-label">Get in Touch</span>
+                    <h2 class="section-title">Request a<br>Custom Formulation</h2>
+                    <p>
+                        Looking for a specific concentration or blend? Our team of botanical
+                        scientists can create custom formulations for your needs.
+                    </p>
+                    <div class="lab-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">30+</span>
+                            <span class="stat-label">Years R&D</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">99.2%</span>
+                            <span class="stat-label">Purity Rating</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">500+</span>
+                            <span class="stat-label">Batches Processed</span>
+                        </div>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Lab Location</h4>
+                                <p>Fredericksburg, Texas 78624</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:lab@noredfarms.netlify.app">lab@noredfarms.netlify.app</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form class="formulation-form" id="formulationForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Your Name</label>
+                            <div class="form-input-wrapper">
+                                <input type="text" id="name" name="name" class="form-input" required>
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <div class="form-input-wrapper">
+                                <input type="email" id="email" name="email" class="form-input" required>
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Interested In</label>
+                            <div class="product-interests">
+                                <label class="interest-option">
+                                    <input type="checkbox" name="interest" value="kratom" class="interest-checkbox">
+                                    <span class="interest-label">
+                                        <span class="interest-indicator" style="--interest-color: #D4A574;">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span class="interest-text">Kratom</span>
+                                    </span>
+                                </label>
+                                <label class="interest-option">
+                                    <input type="checkbox" name="interest" value="kava" class="interest-checkbox">
+                                    <span class="interest-label">
+                                        <span class="interest-indicator" style="--interest-color: #10B981;">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span class="interest-text">Kava</span>
+                                    </span>
+                                </label>
+                                <label class="interest-option">
+                                    <input type="checkbox" name="interest" value="lotus" class="interest-checkbox">
+                                    <span class="interest-label">
+                                        <span class="interest-indicator" style="--interest-color: #8B5CF6;">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span class="interest-text">Blue Lotus</span>
+                                    </span>
+                                </label>
+                                <label class="interest-option">
+                                    <input type="checkbox" name="interest" value="nootropic" class="interest-checkbox">
+                                    <span class="interest-label">
+                                        <span class="interest-indicator" style="--interest-color: #06B6D4;">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span class="interest-text">Nootropics</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">Formulation Details</label>
+                            <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Describe your ideal formulation, concentration, or any specific requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">
+                            <span>Submit Request</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                            <div class="button-bubbles">
+                                <span class="btn-bubble"></span>
+                                <span class="btn-bubble"></span>
+                                <span class="btn-bubble"></span>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-flask">
+                            <svg viewBox="0 0 40 50" fill="none">
+                                <path d="M15 8V20L5 40C4 42 5.5 45 8 45H32C34.5 45 36 42 35 40L25 20V8" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <rect x="13" y="3" width="14" height="6" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <span>Nored Farms<span class="logo-suffix">TX</span></span>
+                    </a>
+                    <p class="footer-tagline">
+                        Laboratory-grade botanical extracts from Texas Hill Country.
+                        Science-backed formulations for natural wellness.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="index.html#products">Kratom Extract</a></li>
+                        <li><a href="index.html#products">Kava Extract</a></li>
+                        <li><a href="index.html#products">Blue Lotus</a></li>
+                        <li><a href="index.html#products">Nootropics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#process">Our Process</a></li>
+                        <li><a href="#research">Research</a></li>
+                        <li><a href="lab-2d.html">Lab Reports</a></li>
+                        <li><a href="mailto:hello@noredfarms.netlify.app">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="index.html#about">Privacy Policy</a></li>
+                        <li><a href="index.html#about">Terms of Service</a></li>
+                        <li><a href="index.html#about">Disclaimer</a></li>
+                        <li><a href="index.html#about">Shipping</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nored Farms. All rights reserved.</p>
+                <p class="footer-disclaimer">
+                    These products are not intended to diagnose, treat, cure, or prevent any disease.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Modals -->
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <!-- Kratom Modal -->
+    <div class="modal" id="kratom-modal" data-product="kratom">
+        <div class="modal-header" style="--product-color-light: rgba(212,165,116,0.2);">
+            <button class="modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-product-hero">
+                <div class="modal-beaker">
+                    <svg viewBox="0 0 120 200" class="modal-flask">
+                        <defs>
+                            <linearGradient id="modal-kratom-liq" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#D4A574"/>
+                                <stop offset="100%" stop-color="#9A7B55"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M35 25V60L15 160C12 175 25 185 40 185H80C95 185 108 175 105 160L85 60V25" fill="none" stroke="rgba(212,165,116,0.4)" stroke-width="2"/>
+                        <rect x="30" y="12" width="60" height="18" rx="3" fill="none" stroke="rgba(212,165,116,0.3)" stroke-width="2"/>
+                        <path d="M20 100L17 155C15 168 25 177 38 177H82C95 177 105 168 103 155L100 100Z" fill="url(#modal-kratom-liq)"/>
+                        <circle cx="45" cy="155" r="4" fill="rgba(255,255,255,0.4)">
+                            <animate attributeName="cy" from="165" to="105" dur="2s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="70" cy="150" r="3" fill="rgba(255,255,255,0.3)">
+                            <animate attributeName="cy" from="160" to="105" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+                            <animate attributeName="opacity" from="0.4" to="0" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+                        </circle>
+                    </svg>
+                </div>
+                <div class="modal-info">
+                    <h2 class="modal-product-name">Kratom Extract</h2>
+                    <p class="modal-product-tagline">Premium Mitragyna speciosa leaf extract</p>
+                    <div class="compound-breakdown">
+                        <h4 class="compound-breakdown-title">Active Compounds</h4>
+                        <div class="compound-list">
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #D4A574;"></span>
+                                Mitragynine (45%)
+                            </span>
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #B8956A;"></span>
+                                7-Hydroxymitragynine (2%)
+                            </span>
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #9A7B55;"></span>
+                                Paynantheine (8%)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4>Benefits</h4>
+                <ul class="benefits-list">
+                    <li>Natural energy support without jitters</li>
+                    <li>Enhanced focus and mental clarity</li>
+                    <li>Mood elevation and motivation</li>
+                    <li>Discomfort relief and relaxation</li>
+                </ul>
+            </div>
+            <div class="purchase-options">
+                <label class="size-option">
+                    <input type="radio" name="kratom-size" value="15ml" checked>
+                    <span class="size-label">15ml</span>
+                    <span class="size-value">Trial</span>
+                    <span class="size-price">$29.99</span>
+                </label>
+                <label class="size-option">
+                    <input type="radio" name="kratom-size" value="30ml">
+                    <span class="size-label">30ml</span>
+                    <span class="size-value">Standard</span>
+                    <span class="size-price">$49.99</span>
+                </label>
+                <label class="size-option">
+                    <input type="radio" name="kratom-size" value="60ml">
+                    <span class="size-label">60ml</span>
+                    <span class="size-value">Value</span>
+                    <span class="size-price">$79.99</span>
+                </label>
+            </div>
+            <button class="request-quote" onclick="scrollToContact('kratom')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Request Quote</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Kava Modal -->
+    <div class="modal" id="kava-modal" data-product="kava">
+        <div class="modal-header" style="--product-color-light: rgba(16,185,129,0.2);">
+            <button class="modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-product-hero">
+                <div class="modal-beaker">
+                    <svg viewBox="0 0 120 200" class="modal-flask">
+                        <defs>
+                            <linearGradient id="modal-kava-liq" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#10B981"/>
+                                <stop offset="100%" stop-color="#047857"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M35 25V60L15 160C12 175 25 185 40 185H80C95 185 108 175 105 160L85 60V25" fill="none" stroke="rgba(16,185,129,0.4)" stroke-width="2"/>
+                        <rect x="30" y="12" width="60" height="18" rx="3" fill="none" stroke="rgba(16,185,129,0.3)" stroke-width="2"/>
+                        <path d="M22 110L17 155C15 168 25 177 38 177H82C95 177 105 168 103 155L98 110Z" fill="url(#modal-kava-liq)"/>
+                        <circle cx="55" cy="155" r="3.5" fill="rgba(255,255,255,0.4)">
+                            <animate attributeName="cy" from="165" to="115" dur="2.3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" from="0.5" to="0" dur="2.3s" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+                </div>
+                <div class="modal-info">
+                    <h2 class="modal-product-name">Kava Extract</h2>
+                    <p class="modal-product-tagline">Noble kava root full-spectrum extract</p>
+                    <div class="compound-breakdown">
+                        <h4 class="compound-breakdown-title">Active Compounds</h4>
+                        <div class="compound-list">
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #10B981;"></span>
+                                Kavain (35%)
+                            </span>
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #059669;"></span>
+                                Dihydrokavain (20%)
+                            </span>
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #047857;"></span>
+                                Methysticin (15%)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4>Benefits</h4>
+                <ul class="benefits-list">
+                    <li>Promotes calm and relaxation</li>
+                    <li>Supports social ease and connection</li>
+                    <li>Eases tension without drowsiness</li>
+                    <li>Traditional Pacific Island wellness</li>
+                </ul>
+            </div>
+            <div class="purchase-options">
+                <label class="size-option">
+                    <input type="radio" name="kava-size" value="15ml" checked>
+                    <span class="size-label">15ml</span>
+                    <span class="size-value">Trial</span>
+                    <span class="size-price">$34.99</span>
+                </label>
+                <label class="size-option">
+                    <input type="radio" name="kava-size" value="30ml">
+                    <span class="size-label">30ml</span>
+                    <span class="size-value">Standard</span>
+                    <span class="size-price">$59.99</span>
+                </label>
+                <label class="size-option">
+                    <input type="radio" name="kava-size" value="60ml">
+                    <span class="size-label">60ml</span>
+                    <span class="size-value">Value</span>
+                    <span class="size-price">$99.99</span>
+                </label>
+            </div>
+            <button class="request-quote" onclick="scrollToContact('kava')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Request Quote</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Lotus Modal -->
+    <div class="modal" id="lotus-modal" data-product="lotus">
+        <div class="modal-header" style="--product-color-light: rgba(139,92,246,0.2);">
+            <button class="modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-product-hero">
+                <div class="modal-beaker">
+                    <svg viewBox="0 0 120 200" class="modal-flask">
+                        <defs>
+                            <linearGradient id="modal-lotus-liq" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#8B5CF6"/>
+                                <stop offset="100%" stop-color="#6D28D9"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M35 25V60L15 160C12 175 25 185 40 185H80C95 185 108 175 105 160L85 60V25" fill="none" stroke="rgba(139,92,246,0.4)" stroke-width="2"/>
+                        <rect x="30" y="12" width="60" height="18" rx="3" fill="none" stroke="rgba(139,92,246,0.3)" stroke-width="2"/>
+                        <path d="M19 90L17 155C15 168 25 177 38 177H82C95 177 105 168 103 155L101 90Z" fill="url(#modal-lotus-liq)"/>
+                        <circle cx="50" cy="150" r="4" fill="rgba(255,255,255,0.4)">
+                            <animate attributeName="cy" from="165" to="95" dur="2.8s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" from="0.5" to="0" dur="2.8s" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+                </div>
+                <div class="modal-info">
+                    <h2 class="modal-product-name">Blue Lotus Tincture</h2>
+                    <p class="modal-product-tagline">Sacred Nymphaea caerulea flower extract</p>
+                    <div class="compound-breakdown">
+                        <h4 class="compound-breakdown-title">Active Compounds</h4>
+                        <div class="compound-list">
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #8B5CF6;"></span>
+                                Aporphine (25%)
+                            </span>
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #7C3AED;"></span>
+                                Nuciferine (18%)
+                            </span>
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #6D28D9;"></span>
+                                Nupharidine (8%)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4>Benefits</h4>
+                <ul class="benefits-list">
+                    <li>Enhances lucid dreaming experiences</li>
+                    <li>Promotes deep relaxation and calm</li>
+                    <li>Supports meditation practices</li>
+                    <li>Ancient Egyptian ceremonial use</li>
+                </ul>
+            </div>
+            <div class="purchase-options">
+                <label class="size-option">
+                    <input type="radio" name="lotus-size" value="15ml" checked>
+                    <span class="size-label">15ml</span>
+                    <span class="size-value">Trial</span>
+                    <span class="size-price">$39.99</span>
+                </label>
+                <label class="size-option">
+                    <input type="radio" name="lotus-size" value="30ml">
+                    <span class="size-label">30ml</span>
+                    <span class="size-value">Standard</span>
+                    <span class="size-price">$69.99</span>
+                </label>
+                <label class="size-option">
+                    <input type="radio" name="lotus-size" value="60ml">
+                    <span class="size-label">60ml</span>
+                    <span class="size-value">Value</span>
+                    <span class="size-price">$119.99</span>
+                </label>
+            </div>
+            <button class="request-quote" onclick="scrollToContact('lotus')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Request Quote</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Nootropic Modal -->
+    <div class="modal" id="nootropic-modal" data-product="nootropic">
+        <div class="modal-header" style="--product-color-light: rgba(6,182,212,0.2);">
+            <button class="modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-product-hero">
+                <div class="modal-beaker">
+                    <svg viewBox="0 0 120 200" class="modal-flask">
+                        <defs>
+                            <linearGradient id="modal-noo-liq" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#06B6D4"/>
+                                <stop offset="100%" stop-color="#0E7490"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M35 25V60L15 160C12 175 25 185 40 185H80C95 185 108 175 105 160L85 60V25" fill="none" stroke="rgba(6,182,212,0.4)" stroke-width="2"/>
+                        <rect x="30" y="12" width="60" height="18" rx="3" fill="none" stroke="rgba(6,182,212,0.3)" stroke-width="2"/>
+                        <path d="M21 105L17 155C15 168 25 177 38 177H82C95 177 105 168 103 155L99 105Z" fill="url(#modal-noo-liq)"/>
+                        <circle cx="60" cy="155" r="3" fill="rgba(255,255,255,0.4)">
+                            <animate attributeName="cy" from="165" to="110" dur="2s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+                </div>
+                <div class="modal-info">
+                    <h2 class="modal-product-name">Nootropic Energy</h2>
+                    <p class="modal-product-tagline">Synergistic mushroom and botanical stack</p>
+                    <div class="compound-breakdown">
+                        <h4 class="compound-breakdown-title">Active Compounds</h4>
+                        <div class="compound-list">
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #06B6D4;"></span>
+                                Hericenones (Lion's Mane)
+                            </span>
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #0891B2;"></span>
+                                Cordycepin (Cordyceps)
+                            </span>
+                            <span class="compound-item">
+                                <span class="compound-dot" style="background: #0E7490;"></span>
+                                L-Theanine + Caffeine
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h4>Benefits</h4>
+                <ul class="benefits-list">
+                    <li>Clean, sustained mental energy</li>
+                    <li>Enhanced focus and concentration</li>
+                    <li>Supports neuroplasticity and memory</li>
+                    <li>No crash or jitters</li>
+                </ul>
+            </div>
+            <div class="purchase-options">
+                <label class="size-option">
+                    <input type="radio" name="noo-size" value="15ml" checked>
+                    <span class="size-label">15ml</span>
+                    <span class="size-value">Trial</span>
+                    <span class="size-price">$44.99</span>
+                </label>
+                <label class="size-option">
+                    <input type="radio" name="noo-size" value="30ml">
+                    <span class="size-label">30ml</span>
+                    <span class="size-value">Standard</span>
+                    <span class="size-price">$79.99</span>
+                </label>
+                <label class="size-option">
+                    <input type="radio" name="noo-size" value="60ml">
+                    <span class="size-label">60ml</span>
+                    <span class="size-value">Value</span>
+                    <span class="size-price">$139.99</span>
+                </label>
+            </div>
+            <button class="request-quote" onclick="scrollToContact('nootropic')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Request Quote</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Sticky Contact CTA -->
+    <button class="sticky-cta" onclick="scrollToContact()" aria-label="Contact us">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span class="sticky-cta-text">Get a Quote</span>
+    </button>
+
+    <!-- Back Navigation Drawer -->
+    <div class="back-drawer" id="backDrawer">
+        <button class="back-drawer-toggle" id="backDrawerToggle" aria-label="Navigation menu">
+            <svg class="drawer-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <nav class="back-drawer-menu">
+            <a href="classroom.html#labs" class="drawer-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                </svg>
+                <span>Classroom</span>
+            </a>
+            <a href="index.html" class="drawer-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span>Home</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="lab-script.js"></script>
+    <script src="chat-widget.js"></script>
+    <script src="shipping-estimator.js"></script>
+    <script src="site-enhancements.js"></script>
+    <script src="site-search.js"></script>
+    <script src="visual-enhancements.js"></script>
+</body>
+</html>

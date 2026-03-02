@@ -1,0 +1,27 @@
+{
+    "name": "Nored Farms",
+    "short_name": "Nored Farms",
+    "description": "Premium kratom, kava, blue lotus & ethnobotanical extracts crafted in Texas Hill Country",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fafafa",
+    "theme_color": "#0d9488",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["health", "shopping", "education"],
+    "lang": "en-US",
+    "dir": "ltr"
+}

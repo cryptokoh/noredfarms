@@ -1,0 +1,206 @@
+/* ============================================
+   Age Verification Modal
+   ============================================ */
+
+.age-gate-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 10000;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.age-gate-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.age-gate-modal {
+    width: 100%;
+    max-width: 420px;
+    background: var(--color-surface, #ffffff);
+    border-radius: 24px;
+    padding: 48px 32px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.age-gate-overlay.hidden .age-gate-modal {
+    transform: scale(0.95);
+}
+
+/* Logo Section */
+.age-gate-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.age-gate-logo-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--color-primary, #1c3a13);
+}
+
+.age-gate-logo-text {
+    font-family: var(--font-serif, 'Inter', sans-serif);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-text, #1a1a1a);
+}
+
+.age-gate-logo-suffix {
+    color: var(--color-primary, #1c3a13);
+}
+
+/* Age Badge */
+.age-gate-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--color-primary, #1c3a13) 0%, #142d0e 100%);
+    border-radius: 50%;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 14px rgba(28, 58, 19, 0.4);
+}
+
+.age-gate-badge span {
+    font-size: 28px;
+    font-weight: 500;
+    color: white;
+}
+
+/* Content */
+.age-gate-title {
+    font-family: var(--font-serif, 'Inter', sans-serif);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-text, #1a1a1a);
+    margin-bottom: 12px;
+}
+
+.age-gate-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-secondary, #6b7280);
+    margin-bottom: 32px;
+}
+
+/* Buttons */
+.age-gate-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.age-gate-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    width: 100%;
+}
+
+.age-gate-btn-confirm {
+    background: linear-gradient(135deg, var(--color-primary, #1c3a13) 0%, #142d0e 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(28, 58, 19, 0.3);
+}
+
+.age-gate-btn-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(28, 58, 19, 0.4);
+}
+
+.age-gate-btn-confirm:active {
+    transform: translateY(0);
+}
+
+.age-gate-btn-deny {
+    background: var(--color-bg, #fafafa);
+    color: var(--color-text-secondary, #6b7280);
+    border: 1px solid var(--color-border, #e5e7eb);
+}
+
+.age-gate-btn-deny:hover {
+    background: var(--color-border, #e5e7eb);
+    color: var(--color-text, #1a1a1a);
+}
+
+/* Disclaimer */
+.age-gate-disclaimer {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border, #e5e7eb);
+    font-size: 12px;
+    color: var(--color-text-muted, #9ca3af);
+    line-height: 1.5;
+}
+
+.age-gate-disclaimer a {
+    color: var(--color-primary, #1c3a13);
+    text-decoration: none;
+}
+
+.age-gate-disclaimer a:hover {
+    text-decoration: underline;
+}
+
+/* Dark mode removed - single seed theme */
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .age-gate-modal {
+        padding: 36px 24px;
+        border-radius: 20px;
+    }
+
+    .age-gate-badge {
+        width: 64px;
+        height: 64px;
+    }
+
+    .age-gate-badge span {
+        font-size: 24px;
+    }
+
+    .age-gate-title {
+        font-size: 22px;
+    }
+
+    .age-gate-text {
+        font-size: 14px;
+    }
+
+    .age-gate-btn {
+        padding: 14px 20px;
+        font-size: 15px;
+    }
+}
+
+/* Prevent body scroll when modal is open */
+body.age-gate-active {
+    overflow: hidden;
+}

@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Growing & Harvesting Plants - The Botanical Classroom | Nored Farms</title>
+    <meta name="title" content="Growing & Harvesting Plants - The Botanical Classroom | Nored Farms">
+    <meta name="description" content="Explore every plant type from seed to harvest. Learn about trees, bushes, herbs, grasses, moss, and fungi -- both living and harvested forms. Free educational content from Nored Farms.">
+    <meta name="keywords" content="plant growing guide, harvesting plants, botanical education, trees, shrubs, herbs, grasses, moss, fungi, ethnobotany, plant cultivation">
+    <meta name="author" content="Nored Farms">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://noredfarms.netlify.app/classroom/growing.html">
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#1c3a13">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://noredfarms.netlify.app/classroom/growing.html">
+    <meta property="og:title" content="Growing & Harvesting Plants - The Botanical Classroom">
+    <meta property="og:description" content="Explore every plant type from seed to harvest. Living specimens and harvested forms across trees, bushes, herbs, grasses, moss, and fungi.">
+    <meta property="og:site_name" content="Nored Farms">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Growing & Harvesting Plants",
+        "description": "Comprehensive guide to growing and harvesting botanical plants across all categories: trees, bushes, herbs, grasses, moss, and fungi.",
+        "provider": {
+            "@type": "Organization",
+            "name": "Nored Farms",
+            "url": "https://noredfarms.netlify.app"
+        },
+        "isPartOf": {
+            "@type": "EducationalOrganization",
+            "name": "Nored Farms - The Classroom",
+            "url": "https://noredfarms.netlify.app/classroom.html"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+        /* ============================================
+           Growing & Harvesting - Page Styles
+           Ancient Ayurvedic Ruins with Flourishing Gardens
+           ============================================ */
+
+        /* Page-level variable overrides */
+        .growing-body {
+            --color-living: #3a7d44;
+            --color-living-light: #4a9d54;
+            --color-living-subtle: rgba(58, 125, 68, 0.1);
+            --color-living-border: rgba(58, 125, 68, 0.25);
+            --color-harvested: #b8860b;
+            --color-harvested-light: #d4a84b;
+            --color-harvested-subtle: rgba(184, 134, 11, 0.1);
+            --color-harvested-border: rgba(184, 134, 11, 0.25);
+            --color-ruin-stone: #8b7d6b;
+            --color-ruin-moss: #6b7c5e;
+        }
+
+        /* ============================================
+           Hero Section - Ancient Garden Entrance
+           ============================================ */
+
+        .growing-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--nav-height) + var(--spacing-3xl)) var(--container-padding) var(--spacing-3xl);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .growing-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .growing-hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(58, 125, 68, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(184, 134, 11, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 20%, rgba(139, 125, 107, 0.05) 0%, transparent 60%),
+                linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+        }
+
+        /* Decorative ruins silhouette */
+        .ruins-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            overflow: hidden;
+            opacity: 0.06;
+        }
+
+        .ruins-silhouette svg {
+            width: 100%;
+            height: 100%;
+            color: var(--color-text);
+        }
+
+        .growing-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+
+        .hero-breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+
+        .hero-breadcrumb a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .hero-breadcrumb a:hover {
+            opacity: 0.8;
+        }
+
+        .hero-breadcrumb .separator {
+            font-size: 10px;
+            opacity: 0.5;
+        }
+
+        .growing-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-ruin-moss);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .growing-hero-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .growing-hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.25rem, 7vw, 3.75rem);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text);
+        }
+
+        .title-accent {
+            background: linear-gradient(135deg, var(--color-living) 0%, var(--color-harvested) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .growing-hero-subtitle {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 580px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        /* View mode explanation */
+        .view-legend {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+
+        .legend-swatch {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-swatch-living {
+            background: var(--color-living);
+        }
+
+        .legend-swatch-harvested {
+            background: var(--color-harvested);
+        }
+
+        /* ============================================
+           Dual-View Toggle
+           ============================================ */
+
+        .view-toggle-bar {
+            position: sticky;
+            top: var(--nav-height);
+            z-index: 50;
+            background: rgba(var(--color-bg-rgb), 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--spacing-sm) 0;
+        }
+
+        .view-toggle-inner {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+        }
+
+        .view-toggle-group {
+            display: inline-flex;
+            background: var(--color-bg-muted);
+            border-radius: var(--radius-full);
+            padding: 3px;
+            border: 1px solid var(--color-border);
+        }
+
+        .view-toggle-btn {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: var(--color-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .view-toggle-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .view-toggle-btn.active-living {
+            background: var(--color-living);
+            color: white;
+            box-shadow: 0 2px 8px rgba(58, 125, 68, 0.3);
+        }
+
+        .view-toggle-btn.active-harvested {
+            background: var(--color-harvested);
+            color: white;
+            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
+        }
+
+        .view-toggle-btn.active-both {
+            background: var(--color-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============================================
+           Plant Category Sections
+           ============================================ */
+
+        .plant-categories {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--spacing-3xl) var(--container-padding);
+        }
+
+        .category-section {
+            margin-bottom: var(--spacing-4xl);
+        }
+
+        .category-section:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Category Header with decorative ruins line */
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .category-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-living) 0%, var(--color-harvested) 100%);
+            border-radius: 1px;
+        }
+
+        .category-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--color-living-subtle), var(--color-harvested-subtle));
+            border: 1px solid var(--color-border);
+        }
+
+        .category-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--color-ruin-moss);
+        }
+
+        .category-title-group {
+            flex: 1;
+        }
+
+        .category-number {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2px;
+        }
+
+        .category-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            font-weight: 500;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+
+        /* Dual-View Card Grid */
+        .dual-view-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        /* Living Card */
+        .plant-card {
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plant-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .plant-card-living {
+            background: var(--color-living-subtle);
+            border: 1px solid var(--color-living-border);
+        }
+
+        .plant-card-living::before {
+            background: linear-gradient(90deg, var(--color-living) 0%, var(--color-living-light) 100%);
+        }
+
+        .plant-card-living:hover {
+            border-color: var(--color-living);
+            box-shadow: 0 8px 24px rgba(58, 125, 68, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .plant-card-harvested {
+            background: var(--color-harvested-subtle);
+            border: 1px solid var(--color-harvested-border);
+        }
+
+        .plant-card-harvested::before {
+            background: linear-gradient(90deg, var(--color-harvested) 0%, var(--color-harvested-light) 100%);
+        }
+
+        .plant-card-harvested:hover {
+            border-color: var(--color-harvested);
+            box-shadow: 0 8px 24px rgba(184, 134, 11, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .card-state-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--spacing-md);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+        }
+
+        .card-state-label svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .state-living {
+            color: var(--color-living);
+            background: rgba(58, 125, 68, 0.08);
+        }
+
+        .state-harvested {
+            color: var(--color-harvested);
+            background: rgba(184, 134, 11, 0.08);
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .card-description {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Facts list */
+        .card-facts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card-facts li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .card-facts li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        .plant-card-living .card-facts li::before {
+            background: var(--color-living);
+        }
+
+        .plant-card-harvested .card-facts li::before {
+            background: var(--color-harvested);
+        }
+
+        /* Botanical facts strip */
+        .botanical-facts-strip {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            flex-wrap: wrap;
+        }
+
+        .fact-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            padding: 4px 10px;
+            background: var(--color-bg-muted);
+            border-radius: var(--radius-full);
+            font-weight: 500;
+        }
+
+        .fact-chip svg {
+            width: 12px;
+            height: 12px;
+            color: var(--color-primary);
+        }
+
+        .fact-chip strong {
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        /* ============================================
+           Visibility toggling via data attributes
+           ============================================ */
+
+        [data-view="living"] .plant-card-harvested,
+        [data-view="living"] .botanical-facts-strip {
+            display: none;
+        }
+
+        [data-view="living"] .dual-view-grid {
+            grid-template-columns: 1fr;
+        }
+
+        [data-view="harvested"] .plant-card-living,
+        [data-view="harvested"] .botanical-facts-strip {
+            display: none;
+        }
+
+        [data-view="harvested"] .dual-view-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* ============================================
+           Footer
+           ============================================ */
+
+        .growing-footer {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: 48px 0 32px;
+        }
+
+        .footer-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        /* Seed footer styles inherited from styles.css */
+
+        /* ============================================
+           CTA Section
+           ============================================ */
+
+        .growing-cta {
+            background: linear-gradient(135deg, var(--color-living-subtle) 0%, var(--color-harvested-subtle) 100%);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--spacing-3xl) var(--container-padding);
+            text-align: center;
+        }
+
+        .cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-inner h2 {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            color: var(--color-text);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cta-inner p {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary-subtle);
+        }
+
+        /* ============================================
+           Responsive
+           ============================================ */
+
+        @media (max-width: 900px) {
+            .dual-view-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .botanical-facts-strip {
+                grid-column: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .growing-hero {
+                min-height: auto;
+                padding-top: calc(var(--nav-height) + var(--spacing-xl));
+                padding-bottom: var(--spacing-xl);
+            }
+
+            .growing-hero-title {
+                font-size: clamp(1.75rem, 6vw, 2.5rem);
+            }
+
+            .view-legend {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--spacing-sm);
+            }
+
+            .view-toggle-group {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .category-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .view-toggle-btn {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+
+            .plant-card {
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ============================================
+           Technique Sections
+           ============================================ */
+
+        .technique-section .category-header::after {
+            background: linear-gradient(90deg, var(--color-ruin-moss) 0%, var(--color-living) 100%);
+        }
+
+        .technique-description {
+            font-size: var(--text-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 700px;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .technique-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        @media (max-width: 900px) {
+            .technique-grid { grid-template-columns: 1fr; }
+        }
+
+        .technique-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: all 0.3s ease;
+        }
+
+        .technique-card:hover {
+            border-color: var(--color-living);
+            box-shadow: 0 8px 24px rgba(58, 125, 68, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .technique-card h3 {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .technique-card p {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .technique-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .technique-card ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .technique-card ul li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--color-living);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        .technique-full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Divider between plant categories and techniques */
+        .techniques-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin: var(--spacing-4xl) 0;
+            padding: var(--spacing-xl) 0;
+        }
+
+        .techniques-divider::before,
+        .techniques-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+        }
+
+        .techniques-divider-label {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-text-muted);
+            white-space: nowrap;
+        }
+    </style>
+    <link rel="stylesheet" href="../chat-widget.css">
+    <link rel="stylesheet" href="../shipping-estimator.css">
+    <link rel="stylesheet" href="../site-enhancements.css">
+    <link rel="stylesheet" href="../site-search.css">
+    <link rel="stylesheet" href="../visual-enhancements.css">
+</head>
+<body class="growing-body">
+
+    <nav class="nav" id="nav">
+        <a href="../index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html#products">Shop</a>
+            <a href="../research.html">Science</a>
+            <a href="../blog.html">Learn</a>
+            <a href="../courses/login.html">Login</a>
+            <a href="../contact.html" class="nav-cta">Get Started</a>
+        </div>
+        <button class="hamburger" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="growing-hero">
+        <div class="growing-hero-bg">
+            <!-- Decorative ruins silhouette -->
+            <div class="ruins-silhouette">
+                <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="currentColor">
+                    <rect x="40" y="50" width="14" height="70" opacity="0.4"/>
+                    <rect x="36" y="42" width="22" height="10" rx="1" opacity="0.5"/>
+                    <rect x="90" y="60" width="10" height="60" opacity="0.3"/>
+                    <rect x="87" y="54" width="16" height="8" rx="1" opacity="0.4"/>
+                    <path d="M200 120 L200 70 Q240 40 280 70 L280 120" opacity="0.25"/>
+                    <rect x="500" y="65" width="12" height="55" opacity="0.3"/>
+                    <rect x="496" y="58" width="20" height="9" rx="1" opacity="0.4"/>
+                    <rect x="550" y="75" width="8" height="45" opacity="0.2"/>
+                    <path d="M700 120 L700 55 Q730 30 760 55 L760 120" opacity="0.2"/>
+                    <rect x="900" y="70" width="10" height="50" opacity="0.25"/>
+                    <rect x="896" y="63" width="18" height="9" rx="1" opacity="0.35"/>
+                    <rect x="1000" y="60" width="14" height="60" opacity="0.35"/>
+                    <rect x="996" y="52" width="22" height="10" rx="1" opacity="0.45"/>
+                    <path d="M1150 120 L1150 65 Q1190 35 1230 65 L1230 120" opacity="0.22"/>
+                    <rect x="1350" y="72" width="10" height="48" opacity="0.28"/>
+                    <rect x="1346" y="65" width="18" height="9" rx="1" opacity="0.38"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="growing-hero-content">
+            <div class="hero-breadcrumb">
+                <a href="../classroom.html">The Classroom</a>
+                <span class="separator">&#9656;</span>
+                <span>Growing & Harvesting</span>
+            </div>
+
+            <div class="growing-hero-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22c-4-3-8-6-8-11a8 8 0 1 1 16 0c0 5-4 8-8 11z"/>
+                    <circle cx="12" cy="11" r="3"/>
+                </svg>
+                <span>Classroom 02</span>
+            </div>
+
+            <h1 class="growing-hero-title">
+                Growing &<br><span class="title-accent">Harvesting Plants</span>
+            </h1>
+
+            <p class="growing-hero-subtitle">
+                Explore the full lifecycle of botanical plants. From living specimens rooted in the earth
+                to carefully harvested material ready for processing. Compare both states across every major plant type.
+            </p>
+
+            <div class="view-legend">
+                <span class="legend-item">
+                    <span class="legend-swatch legend-swatch-living"></span>
+                    Living / Growing
+                </span>
+                <span class="legend-item">
+                    <span class="legend-swatch legend-swatch-harvested"></span>
+                    Harvested / Processed
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- View Toggle Bar -->
+    <div class="view-toggle-bar" id="viewToggleBar">
+        <div class="view-toggle-inner">
+            <div class="view-toggle-group" role="radiogroup" aria-label="View mode">
+                <button class="view-toggle-btn active-both" data-view="both" role="radio" aria-checked="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    Both
+                </button>
+                <button class="view-toggle-btn" data-view="living" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c-4-3-8-6-8-11a8 8 0 1 1 16 0c0 5-4 8-8 11z"/></svg>
+                    Living
+                </button>
+                <button class="view-toggle-btn" data-view="harvested" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    Harvested
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plant Categories Content -->
+    <main class="plant-categories" id="plantContent" data-view="both">
+
+        <!-- ============================================
+             Category 1: Trees
+             ============================================ -->
+        <section class="category-section" id="trees">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22V12"/>
+                        <path d="M12 12L7 2h10L12 12z" opacity="0.4"/>
+                        <path d="M12 16L5 6h14L12 16z"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Category 01</div>
+                    <h2 class="category-title">Trees</h2>
+                </div>
+            </div>
+
+            <div class="dual-view-grid">
+                <div class="plant-card plant-card-living">
+                    <div class="card-state-label state-living">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>
+                        Living Plant
+                    </div>
+                    <h3 class="card-title">Living Trees in the Wild</h3>
+                    <p class="card-description">
+                        Large woody perennial plants with a single dominant trunk and an elevated crown of branches.
+                        Trees are the longest-lived organisms on Earth, with some species reaching thousands of years.
+                        They form complex root networks and canopy ecosystems.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Grow from seed or cutting; require years to reach maturity</li>
+                        <li>Deep root systems anchor soil and draw water from underground aquifers</li>
+                        <li>Annual growth rings reveal age and environmental history</li>
+                        <li>Canopy structure determines light availability for understory plants</li>
+                        <li>Many medicinal trees (willow, neem, kratom) concentrate alkaloids in bark and leaves</li>
+                    </ul>
+                </div>
+
+                <div class="plant-card plant-card-harvested">
+                    <div class="card-state-label state-harvested">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        Harvested Form
+                    </div>
+                    <h3 class="card-title">Harvested Tree Materials</h3>
+                    <p class="card-description">
+                        Tree harvest yields bark, leaves, sap, resin, fruit, and wood. Sustainable harvesting
+                        practices like coppicing and selective pruning allow continued growth. Timing of harvest
+                        dramatically affects alkaloid concentration and compound profiles.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Bark stripping and leaf picking are primary harvest methods for medicinal trees</li>
+                        <li>Drying temperature and duration affect alkaloid preservation</li>
+                        <li>Resin tapping (frankincense, myrrh, pine) produces aromatic and medicinal materials</li>
+                        <li>Kratom leaves are graded by vein color and maturity at time of harvest</li>
+                        <li>Sustainable harvest rotations prevent over-exploitation of wild stands</li>
+                    </ul>
+                </div>
+
+                <div class="botanical-facts-strip">
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <strong>Lifespan:</strong> 50 to 5,000+ years
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V2M5 12h14"/></svg>
+                        <strong>Height:</strong> 5m to 100m+
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c-4-3-8-6-8-11a8 8 0 1 1 16 0c0 5-4 8-8 11z"/></svg>
+                        <strong>Key genus:</strong> Mitragyna, Salix, Cinchona
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <strong>Harvest parts:</strong> Leaves, bark, sap, resin, fruit
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Category 2: Bushes & Shrubs
+             ============================================ -->
+        <section class="category-section" id="bushes">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <ellipse cx="12" cy="14" rx="9" ry="7"/>
+                        <path d="M12 21v-3"/>
+                        <path d="M9 21h6"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Category 02</div>
+                    <h2 class="category-title">Bushes & Shrubs</h2>
+                </div>
+            </div>
+
+            <div class="dual-view-grid">
+                <div class="plant-card plant-card-living">
+                    <div class="card-state-label state-living">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>
+                        Living Plant
+                    </div>
+                    <h3 class="card-title">Living Bushes & Shrubs</h3>
+                    <p class="card-description">
+                        Multi-stemmed woody plants that branch from or near the base. Shrubs typically reach
+                        1 to 6 meters in height and form dense, rounded canopies. They occupy the mid-layer
+                        of natural ecosystems between ground cover and tree canopy.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Multiple stems from the base differentiate shrubs from trees</li>
+                        <li>Many produce berries, flowers, and aromatic leaves valued in herbalism</li>
+                        <li>Kava (Piper methysticum) is a prominent medicinal shrub from the Pacific Islands</li>
+                        <li>Tea plant (Camellia sinensis) is technically a shrub pruned for leaf harvest</li>
+                        <li>Dense growth habit makes shrubs ideal for hedgerow and companion planting systems</li>
+                    </ul>
+                </div>
+
+                <div class="plant-card plant-card-harvested">
+                    <div class="card-state-label state-harvested">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        Harvested Form
+                    </div>
+                    <h3 class="card-title">Harvested Shrub Materials</h3>
+                    <p class="card-description">
+                        Shrubs yield roots, leaves, berries, bark, and flowers. Root harvest is common for plants
+                        like kava and ashwagandha. Leaf and berry harvests are typically done by hand to
+                        preserve plant structure and encourage regrowth over multiple seasons.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Kava roots are harvested after 3-5 years of growth for peak kavalactone content</li>
+                        <li>Roots are washed, chopped, sun-dried, and traditionally pounded for preparation</li>
+                        <li>Berry harvests (elderberry, hawthorn) are timed to sugar and antioxidant peak</li>
+                        <li>Leaf harvests are often done in morning when volatile oil content is highest</li>
+                        <li>Pruning-based harvest encourages bushier regrowth and higher future yields</li>
+                    </ul>
+                </div>
+
+                <div class="botanical-facts-strip">
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <strong>Lifespan:</strong> 10 to 100+ years
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V2M5 12h14"/></svg>
+                        <strong>Height:</strong> 1m to 6m
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c-4-3-8-6-8-11a8 8 0 1 1 16 0c0 5-4 8-8 11z"/></svg>
+                        <strong>Key genus:</strong> Piper, Camellia, Withania
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <strong>Harvest parts:</strong> Roots, leaves, berries, bark, flowers
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Category 3: Plants & Herbs
+             ============================================ -->
+        <section class="category-section" id="herbs">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22V10"/>
+                        <path d="M6 14c0-3.5 2.7-6 6-6s6 2.5 6 6"/>
+                        <path d="M8 10c0-2.2 1.8-4 4-4s4 1.8 4 4"/>
+                        <path d="M10 6c0-1.1.9-2 2-2s2 .9 2 2"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Category 03</div>
+                    <h2 class="category-title">Plants & Herbs</h2>
+                </div>
+            </div>
+
+            <div class="dual-view-grid">
+                <div class="plant-card plant-card-living">
+                    <div class="card-state-label state-living">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>
+                        Living Plant
+                    </div>
+                    <h3 class="card-title">Living Herbs & Herbaceous Plants</h3>
+                    <p class="card-description">
+                        Non-woody plants with soft, green stems that typically complete their lifecycle in one to
+                        three seasons. Herbs are the backbone of traditional medicine systems worldwide, from
+                        Ayurveda to Traditional Chinese Medicine to Western herbalism.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Annual herbs (basil, cilantro) complete lifecycle in one growing season</li>
+                        <li>Perennial herbs (mint, echinacea) return from rootstock each year</li>
+                        <li>Many concentrate essential oils and active compounds in leaf trichomes</li>
+                        <li>Blue lotus (Nymphaea caerulea) is an aquatic herb sacred in ancient Egypt</li>
+                        <li>Companion planting with herbs can protect neighboring plants through chemical signaling</li>
+                    </ul>
+                </div>
+
+                <div class="plant-card plant-card-harvested">
+                    <div class="card-state-label state-harvested">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        Harvested Form
+                    </div>
+                    <h3 class="card-title">Harvested Herb Materials</h3>
+                    <p class="card-description">
+                        Herb harvest is the most time-sensitive of all plant categories. Optimal harvest windows
+                        can be as narrow as a few hours. The aerial parts (leaves, flowers, stems) and underground
+                        parts (roots, rhizomes, tubers) each require different techniques and timing.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Flower harvest at bud stage preserves maximum volatile oil content</li>
+                        <li>Leaf harvest before flowering captures peak alkaloid concentrations</li>
+                        <li>Drying methods include air-drying, shade-drying, and low-temperature dehydration</li>
+                        <li>Blue lotus petals are typically sun-dried or used fresh for tinctures</li>
+                        <li>Root herbs like valerian and goldenseal are harvested in autumn after aerial dieback</li>
+                    </ul>
+                </div>
+
+                <div class="botanical-facts-strip">
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <strong>Lifespan:</strong> 1 season to 20+ years
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V2M5 12h14"/></svg>
+                        <strong>Height:</strong> 5cm to 2m
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c-4-3-8-6-8-11a8 8 0 1 1 16 0c0 5-4 8-8 11z"/></svg>
+                        <strong>Key genus:</strong> Nymphaea, Valeriana, Echinacea
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <strong>Harvest parts:</strong> Leaves, flowers, stems, roots, rhizomes
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Category 4: Grasses
+             ============================================ -->
+        <section class="category-section" id="grasses">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 22V12C4 12 4 6 8 4"/>
+                        <path d="M9 22V14C9 14 9 9 12 7"/>
+                        <path d="M14 22V12C14 12 14 6 17 4"/>
+                        <path d="M19 22V14C19 14 19 9 21 8"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Category 04</div>
+                    <h2 class="category-title">Grasses</h2>
+                </div>
+            </div>
+
+            <div class="dual-view-grid">
+                <div class="plant-card plant-card-living">
+                    <div class="card-state-label state-living">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>
+                        Living Plant
+                    </div>
+                    <h3 class="card-title">Living Grasses</h3>
+                    <p class="card-description">
+                        The grass family (Poaceae) is one of the most successful plant families on Earth, covering
+                        roughly 40% of land surface. Grasses grow from basal meristems, meaning they regenerate
+                        from the base after cutting or grazing -- a key advantage for both ecology and harvest.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Basal growth point allows rapid regrowth after cutting or grazing</li>
+                        <li>Lemongrass, vetiver, and citronella are prominent medicinal grasses</li>
+                        <li>Wheatgrass and barley grass are juiced for nutritional supplementation</li>
+                        <li>Bamboo, the largest grass, can grow up to 91cm per day</li>
+                        <li>Grass root systems prevent erosion and build topsoil through organic matter deposition</li>
+                    </ul>
+                </div>
+
+                <div class="plant-card plant-card-harvested">
+                    <div class="card-state-label state-harvested">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        Harvested Form
+                    </div>
+                    <h3 class="card-title">Harvested Grass Materials</h3>
+                    <p class="card-description">
+                        Grasses are among the easiest plants to harvest sustainably because cutting stimulates
+                        new growth. Essential oil extraction from grasses uses steam distillation. Nutritional grasses
+                        are juiced fresh or freeze-dried to preserve enzymatic activity.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Lemongrass stalks are cut at base and steam-distilled for citral-rich essential oil</li>
+                        <li>Vetiver roots are harvested after 12-18 months for perfumery and aromatherapy</li>
+                        <li>Wheatgrass is harvested at the jointing stage (7-10 days) for peak nutrition</li>
+                        <li>Multiple harvests per season are possible due to basal regeneration</li>
+                        <li>Dried grass bundles have been used in traditional smudging and fumigation practices</li>
+                    </ul>
+                </div>
+
+                <div class="botanical-facts-strip">
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <strong>Lifespan:</strong> Annual to perennial
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V2M5 12h14"/></svg>
+                        <strong>Height:</strong> 2cm to 30m (bamboo)
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c-4-3-8-6-8-11a8 8 0 1 1 16 0c0 5-4 8-8 11z"/></svg>
+                        <strong>Key genus:</strong> Cymbopogon, Vetiveria, Triticum
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <strong>Harvest parts:</strong> Blades, stalks, roots, seeds
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Category 5: Moss
+             ============================================ -->
+        <section class="category-section" id="moss">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M2 20h20"/>
+                        <path d="M4 20c0-2 1-4 3-4s2.5 1.5 4 1.5S13 16 15 16s2 2 3 3 2 1 2 1"/>
+                        <circle cx="7" cy="13" r="1.5" opacity="0.5"/>
+                        <circle cx="12" cy="12" r="1" opacity="0.4"/>
+                        <circle cx="17" cy="14" r="1.5" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Category 05</div>
+                    <h2 class="category-title">Moss</h2>
+                </div>
+            </div>
+
+            <div class="dual-view-grid">
+                <div class="plant-card plant-card-living">
+                    <div class="card-state-label state-living">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>
+                        Living Plant
+                    </div>
+                    <h3 class="card-title">Living Mosses</h3>
+                    <p class="card-description">
+                        Non-vascular plants that absorb water and nutrients directly through their leaf-like
+                        structures. Mosses are among the oldest land plants, predating flowering plants by
+                        hundreds of millions of years. They thrive in shaded, moist environments and play
+                        critical ecological roles.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Lack true roots, stems, and leaves -- use rhizoids to anchor to surfaces</li>
+                        <li>Sphagnum moss creates acidic bog environments where unique medicinal plants grow</li>
+                        <li>Spanish moss (Tillandsia) is an epiphyte, not a true moss, used in folk medicine</li>
+                        <li>Moss carpets regulate moisture in forest floors and prevent erosion</li>
+                        <li>Club mosses (Lycopodium) have been used in traditional medicine for centuries</li>
+                    </ul>
+                </div>
+
+                <div class="plant-card plant-card-harvested">
+                    <div class="card-state-label state-harvested">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        Harvested Form
+                    </div>
+                    <h3 class="card-title">Harvested Moss Materials</h3>
+                    <p class="card-description">
+                        Moss harvest must be done carefully as regrowth is extremely slow compared to
+                        vascular plants. Sphagnum moss is the most commercially harvested species, used in
+                        horticulture, wound care, and as a growing medium for botanical operations.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Sphagnum can hold up to 20x its dry weight in water, making it ideal for cultivation</li>
+                        <li>Historically used as wound dressings due to natural antiseptic properties</li>
+                        <li>Peat moss is harvested from bogs and used as soil amendment and growing medium</li>
+                        <li>Club moss spores (Lycopodium powder) are used in herbal medicine and as coating agents</li>
+                        <li>Sustainable harvest requires leaving at least 50% of moss beds undisturbed</li>
+                    </ul>
+                </div>
+
+                <div class="botanical-facts-strip">
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <strong>Lifespan:</strong> Indefinite (colony)
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V2M5 12h14"/></svg>
+                        <strong>Height:</strong> 1mm to 50cm
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c-4-3-8-6-8-11a8 8 0 1 1 16 0c0 5-4 8-8 11z"/></svg>
+                        <strong>Key genus:</strong> Sphagnum, Lycopodium, Polytrichum
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <strong>Harvest parts:</strong> Whole plant, spores, peat
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Category 6: Fungi
+             ============================================ -->
+        <section class="category-section" id="fungi">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22v-6"/>
+                        <path d="M12 16C6 16 2 12 2 8c0-3 4-6 10-6s10 3 10 6c0 4-4 8-10 8z"/>
+                        <circle cx="8" cy="9" r="1" opacity="0.4"/>
+                        <circle cx="15" cy="8" r="1.5" opacity="0.4"/>
+                        <circle cx="11" cy="12" r="1" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Category 06</div>
+                    <h2 class="category-title">Fungi</h2>
+                </div>
+            </div>
+
+            <div class="dual-view-grid">
+                <div class="plant-card plant-card-living">
+                    <div class="card-state-label state-living">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>
+                        Living Plant
+                    </div>
+                    <h3 class="card-title">Living Fungi</h3>
+                    <p class="card-description">
+                        Fungi are not plants but a distinct kingdom of life. They grow as networks of
+                        mycelium underground and produce fruiting bodies (mushrooms) above ground.
+                        Medicinal fungi have been central to traditional medicine for millennia, particularly
+                        in East Asian and indigenous systems.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Mycelium networks can span hectares and connect plant roots in "wood wide web" systems</li>
+                        <li>Reishi (Ganoderma lucidum) grows on hardwood trees and has been used for 2,000+ years</li>
+                        <li>Lion's mane (Hericium erinaceus) grows on dead and living broadleaf trees</li>
+                        <li>Chaga (Inonotus obliquus) forms a dark conk on birch trees in cold climates</li>
+                        <li>Cordyceps naturally parasitizes insects but is now cultivated on grain substrates</li>
+                    </ul>
+                </div>
+
+                <div class="plant-card plant-card-harvested">
+                    <div class="card-state-label state-harvested">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        Harvested Form
+                    </div>
+                    <h3 class="card-title">Harvested Fungal Materials</h3>
+                    <p class="card-description">
+                        Fungal harvest involves collecting the fruiting body (mushroom) while preserving the
+                        mycelium for continued growth. Modern cultivation uses sterilized substrate bags for
+                        consistent, contaminant-free production. Both fruiting bodies and mycelium contain
+                        bioactive compounds.
+                    </p>
+                    <ul class="card-facts">
+                        <li>Fruiting bodies are sliced thin and dried at low temperatures to preserve beta-glucans</li>
+                        <li>Dual extraction (water + alcohol) captures both water-soluble and fat-soluble compounds</li>
+                        <li>Chaga conks are harvested by cutting from the birch, leaving some for regrowth</li>
+                        <li>Hot water extraction is the traditional method for reishi and turkey tail</li>
+                        <li>Mycelium-on-grain products differ significantly from pure fruiting body extracts</li>
+                    </ul>
+                </div>
+
+                <div class="botanical-facts-strip">
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <strong>Lifespan:</strong> Days (fruiting) to centuries (mycelium)
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V2M5 12h14"/></svg>
+                        <strong>Size:</strong> Microscopic to 9km+ (mycelium)
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c-4-3-8-6-8-11a8 8 0 1 1 16 0c0 5-4 8-8 11z"/></svg>
+                        <strong>Key genus:</strong> Ganoderma, Hericium, Inonotus
+                    </span>
+                    <span class="fact-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <strong>Harvest parts:</strong> Fruiting body, mycelium, spores, conks
+                    </span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================
+             Divider: Agricultural Techniques
+             ============================================ -->
+        <div class="techniques-divider">
+            <span class="techniques-divider-label">Agricultural Techniques</span>
+        </div>
+
+        <!-- ============================================
+             Technique 01: Irrigation Design
+             ============================================ -->
+        <section class="category-section technique-section" id="irrigation">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2C12 2 6 8.5 6 13a6 6 0 0 0 12 0c0-4.5-6-11-6-11z"/>
+                        <path d="M12 19v-4" opacity="0.5"/>
+                        <path d="M10 17l2-2 2 2" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 01</div>
+                    <h2 class="category-title">Irrigation Design</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Water is the foundation of all cultivation. From simple hand-watering to fully automated
+                fertigation systems, irrigation design determines plant health, yield, and resource efficiency.
+                Matching the right delivery method to your growing environment is one of the most impactful
+                decisions a grower can make.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Water Sources</h3>
+                    <p>Understanding your water source is the first step in irrigation planning. Each source has unique mineral profiles, pH ranges, and treatment requirements.</p>
+                    <ul>
+                        <li>City/municipal water -- chlorine and chloramine removal required for living soil systems</li>
+                        <li>Well water -- test for hardness, iron, sulfur, and pH; may need filtration</li>
+                        <li>Rainwater collection -- naturally soft, low EC, ideal for sensitive plants</li>
+                        <li>In-ground water tables -- accessed via sub-irrigation and wicking beds</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Delivery Methods</h3>
+                    <p>Different crops and environments call for different irrigation approaches. The goal is uniform water distribution with minimal waste.</p>
+                    <ul>
+                        <li>Drip irrigation -- precise delivery to root zone, 90-95% water efficiency</li>
+                        <li>Flood tables and ebb-and-flow -- ideal for container growing and hydroponics</li>
+                        <li>Deep water culture (DWC) -- roots suspended in aerated nutrient solution</li>
+                        <li>Overhead sprinklers -- useful for field crops but higher evaporation loss</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Automation & Sensors</h3>
+                    <p>Modern irrigation systems use timers, sensors, and controllers to eliminate guesswork and reduce labor while improving consistency.</p>
+                    <ul>
+                        <li>Programmable timers for scheduled watering cycles</li>
+                        <li>Soil moisture sensors (capacitive or tensiometer) for on-demand watering</li>
+                        <li>Fertigation integration -- injecting nutrients directly into irrigation lines</li>
+                        <li>Flow meters and leak detection for system monitoring</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Scaling Systems</h3>
+                    <p>Irrigation needs change dramatically from a backyard garden to a commercial greenhouse to open field agriculture.</p>
+                    <ul>
+                        <li>Garden scale -- gravity-fed drip or hand watering with simple timers</li>
+                        <li>Greenhouse scale -- centralized mixing tanks, zone control, recirculation</li>
+                        <li>Field scale -- mainline and lateral pipe systems, pivot or drip tape</li>
+                        <li>Water budgeting and run-off management for environmental compliance</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 02: Growing Media & Soil
+             ============================================ -->
+        <section class="category-section technique-section" id="growing-media">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M2 20h20"/>
+                        <path d="M4 20v-4c0-1 1-2 3-2h10c2 0 3 1 3 2v4"/>
+                        <path d="M6 14v-2c0-1 .5-2 2-2h8c1.5 0 2 1 2 2v2"/>
+                        <path d="M8 10V8c0-1 1-2 4-2s4 1 4 2v2" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 02</div>
+                    <h2 class="category-title">Growing Media & Soil</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Soil is not dirt -- it is a living ecosystem of minerals, organic matter, water, air, and billions
+                of microorganisms. Understanding soil chemistry, structure, and biology allows growers to build
+                media that feeds plants naturally and sustains productivity across seasons.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Soil Assessment & Testing</h3>
+                    <p>Before amending soil, you need to understand what you are working with. Lab testing provides the baseline for all soil improvement decisions.</p>
+                    <ul>
+                        <li>pH testing -- most plants prefer 6.0-7.0; blueberries and azaleas prefer 4.5-5.5</li>
+                        <li>Nutrient panels -- nitrogen, phosphorus, potassium, calcium, magnesium, sulfur</li>
+                        <li>Texture analysis -- sand, silt, clay ratios determine drainage and water retention</li>
+                        <li>Organic matter percentage -- target 3-5% for most agricultural soils</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Amendments & Media Components</h3>
+                    <p>Amendments modify soil structure, drainage, aeration, and nutrient availability. Each component serves a specific purpose in the mix.</p>
+                    <ul>
+                        <li>Perlite -- volcanic glass for drainage and aeration; does not decompose</li>
+                        <li>Vermiculite -- expanded mica that retains moisture and cation exchange capacity</li>
+                        <li>Coco coir -- sustainable peat alternative with excellent water retention</li>
+                        <li>Biochar -- charcoal that improves CEC and provides microbial habitat for centuries</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Soil Chemistry & CEC</h3>
+                    <p>Cation Exchange Capacity (CEC) determines how well soil holds and releases nutrients. Higher CEC means greater fertility potential.</p>
+                    <ul>
+                        <li>CEC measures the soil's ability to hold positively charged nutrients (Ca, Mg, K)</li>
+                        <li>pH buffering -- how resistant soil is to pH changes from inputs</li>
+                        <li>Nutrient availability changes with pH -- iron locks out above 7.0, phosphorus below 6.0</li>
+                        <li>Base saturation ratios guide lime and gypsum application rates</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Regenerative & Living Soil</h3>
+                    <p>Regenerative agriculture builds soil health over time rather than depleting it. Living soil methods minimize tillage and maximize biological activity.</p>
+                    <ul>
+                        <li>No-till methods preserve fungal networks and soil structure</li>
+                        <li>Cover crops (clover, vetch, rye) fix nitrogen and prevent erosion</li>
+                        <li>Companion planting for nutrient cycling and pest management</li>
+                        <li>Mycorrhizal inoculation extends root reach by up to 700x</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 03: Composting
+             ============================================ -->
+        <section class="category-section technique-section" id="composting">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 12a9 9 0 1 1-9-9"/>
+                        <path d="M21 3v6h-6"/>
+                        <path d="M21 3l-9 9"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 03</div>
+                    <h2 class="category-title">Composting</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Composting transforms organic waste into rich humus teeming with beneficial microorganisms. It is
+                the oldest and most fundamental soil-building technique -- every successful garden starts with
+                good compost. Modern composting science has refined this ancient practice into a precise art.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Composting Methods</h3>
+                    <p>Different composting approaches suit different scales, timelines, and material types. Temperature management is the key differentiator.</p>
+                    <ul>
+                        <li>Hot composting -- 130-160F kills pathogens and weed seeds in 4-8 weeks</li>
+                        <li>Cold composting -- passive decomposition over 6-12 months, lower labor</li>
+                        <li>Vermicomposting -- red wigglers (Eisenia fetida) produce nutrient-dense castings</li>
+                        <li>Bokashi -- anaerobic fermentation using effective microorganisms (EM)</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Compost Teas & Extracts</h3>
+                    <p>Liquid compost preparations multiply beneficial microbes and deliver them directly to soil and foliage.</p>
+                    <ul>
+                        <li>Aerated compost tea (ACT) -- brewed with oxygen pump for 24-48 hours</li>
+                        <li>Non-aerated extracts -- simpler to make but favor different microbial populations</li>
+                        <li>Application methods: soil drench, foliar spray, seed soak</li>
+                        <li>Use within 4-6 hours of brewing for maximum microbial viability</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Inputs & C:N Ratios</h3>
+                    <p>The carbon-to-nitrogen ratio of your inputs determines composting speed and final product quality. The ideal ratio is 25-30:1.</p>
+                    <ul>
+                        <li>High carbon (browns): wood chips, straw, cardboard, dried leaves (C:N 60-500:1)</li>
+                        <li>High nitrogen (greens): kitchen scraps, grass clippings, manure (C:N 10-25:1)</li>
+                        <li>Comfrey and legume cuttings are grown specifically as compost activators</li>
+                        <li>Avoid: meat, dairy, diseased plants, pet waste, treated wood</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Beneficial Microbes & Monitoring</h3>
+                    <p>Healthy compost is alive with bacteria, fungi, protozoa, and beneficial nematodes. Monitoring ensures the process stays on track.</p>
+                    <ul>
+                        <li>Bacteria dominate early stages; fungi increase as compost matures</li>
+                        <li>Temperature monitoring with a compost thermometer (target 130-150F for hot compost)</li>
+                        <li>Moisture should feel like a wrung-out sponge (50-60%)</li>
+                        <li>Finished compost smells earthy, not sour or ammonia-like</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 04: Making Nutrients from Crops - KNF
+             ============================================ -->
+        <section class="category-section technique-section" id="knf-nutrients">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 3h6v4H9z" opacity="0.4"/>
+                        <path d="M10 7v5"/>
+                        <path d="M14 7v5"/>
+                        <path d="M6 12h12v2a8 8 0 0 1-12 0v-2z"/>
+                        <path d="M12 22v-4"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 04</div>
+                    <h2 class="category-title">Making Nutrients from Crops &mdash; KNF</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Korean Natural Farming (KNF), developed by Cho Han-Kyu, teaches growers to produce their own
+                fertilizers and soil amendments from locally available plants, fruits, and microorganisms. This
+                self-sufficient approach drastically reduces input costs and builds deeply resilient soil ecosystems.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>FPJ & FFJ</h3>
+                    <p>Fermented Plant Juice and Fermented Fruit Juice are the backbone of KNF nutrition, providing growth-stage-specific nutrients from local biology.</p>
+                    <ul>
+                        <li>FPJ -- made from fast-growing plant tips (mugwort, comfrey) fermented with brown sugar</li>
+                        <li>FFJ -- made from ripe fruits fermented with brown sugar for flowering and fruiting</li>
+                        <li>1:1000 dilution ratio for foliar spray or soil drench application</li>
+                        <li>Harvest plants at dawn for maximum nutrient content before sugar translocation</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>LAB & OHN</h3>
+                    <p>Lactic Acid Bacteria and Oriental Herbal Nutrient are powerful microbial and plant-defense inputs that replace synthetic pesticides and soil conditioners.</p>
+                    <ul>
+                        <li>LAB -- cultured from rice wash water exposed to air, then fed with milk</li>
+                        <li>OHN -- garlic, ginger, cinnamon, and licorice fermented in alcohol and brown sugar</li>
+                        <li>LAB breaks down organic matter and suppresses harmful pathogens in soil</li>
+                        <li>OHN applied as foliar spray strengthens plant immune response</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Understanding pH, EC & ppm</h3>
+                    <p>Whether using KNF inputs or conventional nutrients, monitoring your solution chemistry is essential for plant health.</p>
+                    <ul>
+                        <li>pH -- measures hydrogen ion concentration; affects nutrient availability</li>
+                        <li>EC (electrical conductivity) -- measures total dissolved salts in solution</li>
+                        <li>ppm (parts per million) -- specific nutrient concentrations in water</li>
+                        <li>N-P-K ratios shift through growth stages: high N for veg, high P-K for bloom</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Fish & Seaweed Preparations</h3>
+                    <p>Marine-derived fertilizers provide broad-spectrum nutrition and growth hormones that complement fermented plant inputs.</p>
+                    <ul>
+                        <li>Fish hydrolysate -- cold-processed, retains amino acids and beneficial oils</li>
+                        <li>Fish emulsion -- heat-processed, cheaper but less biologically active</li>
+                        <li>Seaweed extract provides cytokinins, auxins, and trace minerals</li>
+                        <li>Combine fish + seaweed + molasses for a complete organic feed</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 05: Seed Production & Genetics
+             ============================================ -->
+        <section class="category-section technique-section" id="seed-production">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22V10"/>
+                        <path d="M7 14c0-3 2.2-5 5-5s5 2 5 5"/>
+                        <circle cx="12" cy="6" r="3"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 05</div>
+                    <h2 class="category-title">Seed Production & Genetics</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Seed saving is one of humanity's oldest agricultural skills. Understanding plant genetics,
+                pollination, and storage allows growers to develop locally adapted varieties, maintain
+                biodiversity, and become independent from commercial seed suppliers.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Seed Saving & Storage</h3>
+                    <p>Proper seed harvest and storage can preserve viability for years or even decades depending on species.</p>
+                    <ul>
+                        <li>Harvest seeds when fully mature -- dry on the plant whenever possible</li>
+                        <li>Dry seeds to 6-8% moisture content before storage</li>
+                        <li>Store in cool (40-50F), dark, low-humidity conditions in airtight containers</li>
+                        <li>Silica gel packets help maintain low moisture in storage containers</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Cloning & Vegetative Propagation</h3>
+                    <p>Cloning produces genetically identical copies of a parent plant, preserving desirable traits with 100% fidelity.</p>
+                    <ul>
+                        <li>Stem cuttings with rooting hormone (IBA or natural willow water)</li>
+                        <li>Humidity domes maintain 90%+ humidity during root development</li>
+                        <li>Root development typically takes 7-21 days depending on species</li>
+                        <li>Air layering for woody plants that resist standard cutting propagation</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Plant Genetics Basics</h3>
+                    <p>Understanding inheritance patterns helps growers predict offspring traits and make informed breeding decisions.</p>
+                    <ul>
+                        <li>Dominant vs recessive traits -- Mendel's laws still govern plant breeding</li>
+                        <li>F1 hybrids show hybrid vigor but do not breed true in the F2 generation</li>
+                        <li>Open-pollinated varieties stabilize after 6-8 generations of selection</li>
+                        <li>Polyploidy (chromosome doubling) creates larger, more vigorous plants</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Breeding & Diversity</h3>
+                    <p>Selective breeding and genetic diversity are the twin pillars of crop improvement and resilience.</p>
+                    <ul>
+                        <li>Isolation distances prevent unwanted cross-pollination (varies by species)</li>
+                        <li>Hand pollination for controlled crosses between selected parents</li>
+                        <li>Maintaining seed banks preserves genetic resources for future generations</li>
+                        <li>Landrace varieties carry decades of natural selection for local conditions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 06: Tissue Culture
+             ============================================ -->
+        <section class="category-section technique-section" id="tissue-culture">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="3"/>
+                        <circle cx="12" cy="12" r="7" opacity="0.3"/>
+                        <path d="M12 2v3"/>
+                        <path d="M12 19v3"/>
+                        <path d="M2 12h3"/>
+                        <path d="M19 12h3"/>
+                        <path d="M4.93 4.93l2.12 2.12" opacity="0.5"/>
+                        <path d="M16.95 16.95l2.12 2.12" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 06</div>
+                    <h2 class="category-title">Tissue Culture</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Tissue culture (micropropagation) uses sterile laboratory techniques to grow plants from tiny
+                tissue samples on nutrient agar media. This enables mass propagation of genetically identical
+                plants, virus elimination, and preservation of rare or endangered species.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Sterile Technique & Equipment</h3>
+                    <p>Contamination is the primary enemy of tissue culture. Every surface, tool, and media must be sterile before use.</p>
+                    <ul>
+                        <li>Laminar flow hoods provide a stream of HEPA-filtered air over the work surface</li>
+                        <li>Autoclaving sterilizes media, tools, and vessels at 121C / 15 PSI for 15-20 minutes</li>
+                        <li>Still air boxes (SABs) are a low-cost alternative for home tissue culture</li>
+                        <li>70% isopropyl alcohol and flame sterilization for tools between transfers</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Media Preparation</h3>
+                    <p>Tissue culture media provides all the nutrients, sugars, and hormones needed for plant cells to grow and differentiate.</p>
+                    <ul>
+                        <li>MS (Murashige & Skoog) media is the most widely used base formula</li>
+                        <li>Plant growth regulators: auxins (rooting) and cytokinins (shoot multiplication)</li>
+                        <li>Agar (6-8 g/L) provides the gel matrix; pH adjusted to 5.7-5.8 before autoclaving</li>
+                        <li>Sucrose (20-30 g/L) serves as the carbon source for growing tissue</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Culture Stages</h3>
+                    <p>Tissue culture follows a defined sequence from initial explant to established plantlet ready for soil.</p>
+                    <ul>
+                        <li>Stage 0: Mother plant selection and preconditioning</li>
+                        <li>Stage 1: Surface sterilization and explant establishment on media</li>
+                        <li>Stage 2: Multiplication -- shoots are divided and subcultured every 4-6 weeks</li>
+                        <li>Stage 3: Rooting on auxin-enriched media, then hardening off to ambient conditions</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Applications</h3>
+                    <p>Tissue culture serves diverse purposes from commercial nurseries to conservation biology to mycology.</p>
+                    <ul>
+                        <li>Mass propagation: produce thousands of identical plants from a single mother</li>
+                        <li>Virus elimination through meristem tip culture (0.2-0.5mm explants)</li>
+                        <li>Germplasm preservation of rare and endangered species</li>
+                        <li>Mycelium tissue culture for fungi -- transferring clean cultures to new media</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 07: Liquid Cultures
+             ============================================ -->
+        <section class="category-section technique-section" id="liquid-cultures">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2v6l-3 4v5a3 3 0 0 0 6 0v-5l-3-4V2"/>
+                        <path d="M9 12h6"/>
+                        <circle cx="10" cy="15" r="1" opacity="0.4"/>
+                        <circle cx="13" cy="17" r="0.8" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 07</div>
+                    <h2 class="category-title">Liquid Cultures</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Liquid culture is a method of growing mycelium in a nutrient-rich broth rather than on solid
+                agar. This produces a suspension of mycelial fragments that can be used to quickly inoculate
+                grain spawn, dramatically speeding up the mushroom cultivation pipeline.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Media Recipes</h3>
+                    <p>Liquid culture media must provide sugars and nutrients while remaining easy to sterilize and work with.</p>
+                    <ul>
+                        <li>Light malt extract (LME) -- 4% solution (40g per liter) is the standard</li>
+                        <li>Honey water -- 4% solution, widely available and effective</li>
+                        <li>Potato dextrose broth -- made from potato flakes and dextrose</li>
+                        <li>Karo corn syrup -- 4% solution as a budget-friendly alternative</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Inoculation & Incubation</h3>
+                    <p>Clean inoculation and proper incubation conditions determine whether your liquid culture succeeds or contaminates.</p>
+                    <ul>
+                        <li>Inoculate from clean agar wedge or spore syringe using sterile technique</li>
+                        <li>Incubate at species-appropriate temperature (typically 75-80F)</li>
+                        <li>Gentle agitation (swirling or magnetic stir plate) breaks up mycelium for faster colonization</li>
+                        <li>Full colonization typically takes 7-14 days depending on species and conditions</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Contamination Testing</h3>
+                    <p>Every liquid culture must be tested before use. A single contaminated syringe can ruin an entire batch of grain spawn.</p>
+                    <ul>
+                        <li>Visual inspection: healthy LC is wispy white clouds; bacteria makes it cloudy or slimy</li>
+                        <li>Smell test: clean mycelium smells mushroomy; bacteria smells sour or foul</li>
+                        <li>Agar test: drop LC onto a clean agar plate and watch for 5-7 days</li>
+                        <li>pH test: healthy mycelium maintains slightly acidic conditions (pH 4-6)</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Scaling Up</h3>
+                    <p>Once you have a clean liquid culture, it can be expanded almost indefinitely to inoculate large quantities of grain spawn.</p>
+                    <ul>
+                        <li>Magnetic stir plates keep mycelium in suspension and promote even growth</li>
+                        <li>Air pumps with inline HEPA filters provide oxygen for aerobic species</li>
+                        <li>Self-healing injection ports allow repeated syringe draws without opening the jar</li>
+                        <li>One jar of LC can inoculate dozens of grain bags via syringe transfer</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 08: Substrate Preparation
+             ============================================ -->
+        <section class="category-section technique-section" id="substrate-prep">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="4" y="4" width="16" height="16" rx="2"/>
+                        <path d="M4 10h16"/>
+                        <path d="M4 16h16" opacity="0.5"/>
+                        <path d="M10 4v16" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 08</div>
+                    <h2 class="category-title">Substrate Preparation</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Substrate is the material that fungi colonize and fruit from. Proper substrate preparation --
+                selecting the right materials, achieving correct moisture content, and eliminating competing
+                organisms -- is the foundation of successful mushroom cultivation at any scale.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Substrate Materials</h3>
+                    <p>Different mushroom species prefer different substrates. Matching the right material to the right species is critical for success.</p>
+                    <ul>
+                        <li>Hardwood sawdust -- oak, maple, alder preferred for most gourmet species</li>
+                        <li>Straw -- wheat or oat straw for oyster mushrooms and wine caps</li>
+                        <li>Coco coir + vermiculite -- popular for general-purpose substrates</li>
+                        <li>Wood chips -- larger particle size for outdoor beds and log alternatives</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Pasteurization Methods</h3>
+                    <p>Pasteurization reduces competitor organisms while leaving some beneficial microbes intact. It is the minimum treatment for bulk substrates.</p>
+                    <ul>
+                        <li>Hot water bath -- submerge substrate at 160-180F for 60-90 minutes</li>
+                        <li>Steam pasteurization -- steam injected into substrate containers or drums</li>
+                        <li>Cold water lime bath -- hydrated lime (pH 12+) soaks substrate for 16-24 hours</li>
+                        <li>All methods target the elimination of mold spores and bacteria</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Sterilization</h3>
+                    <p>Sterilization kills all organisms in the substrate and is required for supplemented or nutrient-rich substrates that would otherwise contaminate.</p>
+                    <ul>
+                        <li>Pressure cooking at 15 PSI / 121C for 90-150 minutes depending on bag size</li>
+                        <li>Autoclaving for commercial operations -- same parameters at larger scale</li>
+                        <li>Required for: supplemented sawdust blocks, grain spawn, enriched substrates</li>
+                        <li>Sterile substrates must be inoculated in clean conditions (flow hood or SAB)</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Moisture & Supplements</h3>
+                    <p>Getting the moisture content right and adding appropriate supplements can dramatically increase yields.</p>
+                    <ul>
+                        <li>Target moisture: 60-65% field capacity (squeeze test -- a few drops, not a stream)</li>
+                        <li>Wheat bran supplement (5-15% by dry weight) boosts protein and nutrition</li>
+                        <li>Gypsum (calcium sulfate) at 2-5% improves structure and prevents clumping</li>
+                        <li>Coffee grounds can supplement but increase contamination risk above 25%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 09: Fruiting Conditions
+             ============================================ -->
+        <section class="category-section technique-section" id="fruiting-conditions">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2"/>
+                        <path d="M12 20v2"/>
+                        <path d="M4.93 4.93l1.41 1.41"/>
+                        <path d="M17.66 17.66l1.41 1.41"/>
+                        <path d="M2 12h2"/>
+                        <path d="M20 12h2"/>
+                        <path d="M4.93 19.07l1.41-1.41" opacity="0.5"/>
+                        <path d="M17.66 6.34l1.41-1.41" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 09</div>
+                    <h2 class="category-title">Fruiting Conditions</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                After colonization, mushroom mycelium needs specific environmental triggers to produce fruiting
+                bodies. Temperature, humidity, fresh air exchange, and light must all be carefully controlled
+                to achieve consistent harvests across multiple flushes.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Sealed Container Fruiting</h3>
+                    <p>Monotubs and shotgun fruiting chambers (SGFCs) are the most accessible methods for small-scale indoor mushroom cultivation.</p>
+                    <ul>
+                        <li>Monotubs -- modified storage totes with polyfill-stuffed holes for passive FAE</li>
+                        <li>Shotgun fruiting chambers -- perlite-lined totes with drilled holes for humidity</li>
+                        <li>Maintain 85-95% relative humidity during fruiting</li>
+                        <li>Fan briefly 2-3 times daily or use passive air exchange via hole placement</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Fruiting Room Setup</h3>
+                    <p>Dedicated fruiting rooms allow precise environmental control for commercial or serious hobbyist operations.</p>
+                    <ul>
+                        <li>Humidifier with controller maintaining 85-95% RH (ultrasonic or cool mist)</li>
+                        <li>Fresh air exchange (FAE) via inline fan with filter -- CO2 below 800 ppm</li>
+                        <li>Indirect light on 12/12 cycle -- mushrooms need light for directional growth</li>
+                        <li>Temperature control: most gourmets fruit at 55-75F depending on species</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Outdoor Cultivation</h3>
+                    <p>Many mushroom species thrive outdoors with minimal infrastructure, producing seasonal harvests from logs, straw beds, and wood chips.</p>
+                    <ul>
+                        <li>Log inoculation -- drill and plug hardwood logs with spawn for shiitake, lion's mane</li>
+                        <li>Straw beds and wood chip gardens for wine caps and king stropharia</li>
+                        <li>Shade, moisture, and seasonal temperature swings provide natural fruiting triggers</li>
+                        <li>Outdoor logs can produce for 3-7 years depending on log diameter and species</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Harvesting & Multiple Flushes</h3>
+                    <p>Timing the harvest correctly and managing between flushes maximizes total yield from each batch of substrate.</p>
+                    <ul>
+                        <li>Harvest just before or as caps flatten -- before spore drop for clean results</li>
+                        <li>Twist and pull or cut at the base with a clean blade</li>
+                        <li>Rehydrate substrate by soaking in cold water for 6-12 hours between flushes</li>
+                        <li>Most substrates produce 2-4 flushes with decreasing yields per flush</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             Technique 10: Leftover Substrate Uses
+             ============================================ -->
+        <section class="category-section technique-section" id="substrate-reuse">
+            <div class="category-header">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M7.5 7.5L3 12l4.5 4.5"/>
+                        <path d="M16.5 16.5L21 12l-4.5-4.5"/>
+                        <path d="M3 12h18" opacity="0.3"/>
+                        <circle cx="12" cy="12" r="9"/>
+                    </svg>
+                </div>
+                <div class="category-title-group">
+                    <div class="category-number">Technique 10</div>
+                    <h2 class="category-title">Leftover Substrate Uses</h2>
+                </div>
+            </div>
+            <p class="technique-description">
+                Spent mushroom substrate (SMS) is not waste -- it is a valuable resource. After fruiting is
+                complete, the colonized material retains nutrients, beneficial mycelium, and organic matter
+                that can be redirected into gardens, construction, remediation, and even energy production.
+            </p>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h3>Garden Amendment & Mulch</h3>
+                    <p>Spent substrate is an excellent soil amendment that adds organic matter, improves structure, and introduces beneficial fungi to garden beds.</p>
+                    <ul>
+                        <li>Break up spent blocks and incorporate into garden beds as soil conditioner</li>
+                        <li>Use as surface mulch around trees, shrubs, and perennial beds</li>
+                        <li>Mycelium in spent substrate continues to decompose organic matter in the garden</li>
+                        <li>Allow SMS to age 2-4 weeks before applying around sensitive seedlings</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Myco-Construction</h3>
+                    <p>Mycelium-bound substrates can be dried and formed into building materials, packaging, and insulation with remarkable properties.</p>
+                    <ul>
+                        <li>Mycelium bricks -- grown in molds, dried, and used as thermal insulation</li>
+                        <li>Packaging materials replacing styrofoam (companies like Ecovative lead this field)</li>
+                        <li>Acoustic panels from mycelium-bound agricultural waste</li>
+                        <li>Fully compostable at end of life unlike petroleum-based alternatives</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Bioremediation</h3>
+                    <p>Certain fungi can break down environmental pollutants including petroleum hydrocarbons, pesticides, and heavy metals.</p>
+                    <ul>
+                        <li>Mycoremediation -- using fungal mycelium to degrade toxic compounds in soil</li>
+                        <li>Oyster mushroom mycelium is particularly effective at breaking down hydrocarbons</li>
+                        <li>Mycofiltration -- using mycelium mats to filter contaminated water runoff</li>
+                        <li>Spent substrate placed in contaminated areas can reduce pollutant concentration over time</li>
+                    </ul>
+                </div>
+                <div class="technique-card">
+                    <h3>Secondary Uses & Energy</h3>
+                    <p>Beyond soil and construction, spent substrate has applications in animal husbandry, energy production, and further cultivation.</p>
+                    <ul>
+                        <li>Animal feed supplement -- spent substrate retains protein and digestible fiber</li>
+                        <li>Biogas production through anaerobic digestion of spent organic material</li>
+                        <li>Re-inoculation with secondary species (e.g., fruit oysters on spent shiitake blocks)</li>
+                        <li>Worm food -- vermicomposting bins thrive on broken-up spent substrate</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- CTA Section -->
+    <section class="growing-cta">
+        <div class="cta-inner">
+            <h2>Continue Your Botanical Education</h2>
+            <p>Explore extraction methods, learn about effects on the human body, or dive into our interactive labs.</p>
+            <div class="cta-actions">
+                <a href="../classroom.html" class="btn btn-primary">
+                    <span>Back to Classroom</span>
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                <a href="../blog.html" class="btn btn-secondary">
+                    <span>Browse Articles</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <footer class="seed-footer">
+        <div class="seed-footer-inner">
+            <div class="seed-footer-top">
+                <div class="seed-footer-mission">
+                    <h3>Pioneering botanical science for human wellness since 2010.</h3>
+                    <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
+                </div>
+                <div class="seed-footer-signup">
+                    <p>Science with PETX &mdash; research updates for your inbox.</p>
+                    <div class="seed-footer-email-row">
+                        <input type="email" placeholder="Your email" class="seed-footer-email">
+                        <button class="seed-footer-email-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="seed-footer-links">
+                <div class="seed-footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="../products/extracts.html">Botanical Extracts</a></li>
+                        <li><a href="../products/tinctures.html">Tinctures</a></li>
+                        <li><a href="../products/gummies.html">Gummies</a></li>
+                        <li><a href="../products/live-plants.html">Live Plants</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="../blog.html">Education</a></li>
+                        <li><a href="../classes.html">Classes</a></li>
+                        <li><a href="../classroom.html">Classroom</a></li>
+                        <li><a href="../research.html">Research Library</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Science</h4>
+                    <ul>
+                        <li><a href="../articles/extraction-methods.html">Extraction 101</a></li>
+                        <li><a href="../articles/kratom-alkaloids.html">Kratom Science</a></li>
+                        <li><a href="../articles/kavalactones-explained.html">Kava Science</a></li>
+                        <li><a href="../articles/blue-lotus-compounds.html">Blue Lotus</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../consulting.html">Consulting</a></li>
+                        <li><a href="../courses/login.html">Course Login</a></li>
+                        <li><a href="../roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../seo.html">Transparency</a></li>
+                        <li><a href="../welcome.html">Welcome</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../contact.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="seed-footer-disclaimer">
+                *These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use. Must be 21+ to purchase. Not for sale where prohibited by law. Nored Farms products are manufactured in a GMP-compliant facility and tested by independent third-party laboratories.
+            </div>
+            <div class="seed-footer-bottom">
+                <span>&copy; 2026 Nored Farms. All rights reserved.</span>
+                <span>Crafted in Texas Hill Country</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // ============================================
+        // View Toggle Functionality
+        // ============================================
+        (function() {
+            const toggleBtns = document.querySelectorAll('.view-toggle-btn');
+            const plantContent = document.getElementById('plantContent');
+
+            toggleBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var view = this.getAttribute('data-view');
+
+                    // Update active states
+                    toggleBtns.forEach(function(b) {
+                        b.classList.remove('active-both', 'active-living', 'active-harvested');
+                        b.setAttribute('aria-checked', 'false');
+                    });
+
+                    this.setAttribute('aria-checked', 'true');
+                    if (view === 'both') {
+                        this.classList.add('active-both');
+                    } else if (view === 'living') {
+                        this.classList.add('active-living');
+                    } else {
+                        this.classList.add('active-harvested');
+                    }
+
+                    // Update content visibility
+                    plantContent.setAttribute('data-view', view);
+                });
+            });
+
+            // ============================================
+            // Scroll-based nav styling
+            // ============================================
+            var nav = document.getElementById('nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 40) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // ============================================
+            // Mobile nav toggle
+            // ============================================
+            var navToggle = document.getElementById('navToggle');
+            var navLinks = document.getElementById('navLinks');
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            // ============================================
+            // Theme Switcher
+            // ============================================
+        })();
+    </script>
+    <script src="../age-verification.js"></script>
+    <script src="../chat-widget.js"></script>
+    <script src="../shipping-estimator.js"></script>
+    <script src="../site-enhancements.js"></script>
+    <script src="../site-search.js"></script>
+    <script src="../visual-enhancements.js"></script>
+</body>
+</html>

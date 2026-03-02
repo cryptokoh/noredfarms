@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Research Library | Nored Farms</title>
+    <meta name="description" content="Comprehensive research library covering botanical infrastructure, growing techniques, extraction methods, and effects on the human body. Read-friendly format from Nored Farms.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://noredfarms.netlify.app/research.html">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://noredfarms.netlify.app/research.html">
+    <meta property="og:title" content="Research Library | Nored Farms">
+    <meta property="og:description" content="Comprehensive botanical research library - infrastructure, growing, extraction, and human body effects.">
+    <meta property="og:site_name" content="Nored Farms">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="age-verification.css">
+    <style>
+        .research-page { padding-top: 100px; min-height: 100vh; }
+
+        /* Hero */
+        .research-hero {
+            text-align: center;
+            padding: 2rem 1.5rem 2.5rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .research-hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--color-primary-subtle); color: var(--color-primary);
+            padding: 0.375rem 1rem; border-radius: var(--radius-full);
+            font-size: var(--text-sm); font-weight: 500; text-transform: uppercase;
+            letter-spacing: 0.05em; margin-bottom: 1.5rem;
+        }
+        .research-hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.15; color: var(--color-text); margin-bottom: 1rem;
+        }
+        .research-hero p {
+            font-size: var(--text-lg); color: var(--color-text-muted); line-height: 1.7;
+        }
+
+        /* Category Tabs */
+        .research-categories {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .research-tab {
+            padding: 0.625rem 1.25rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            background: var(--color-bg);
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-family: var(--font-sans);
+        }
+        .research-tab:hover { border-color: var(--color-primary); color: var(--color-primary); }
+        .research-tab.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        /* Content Container */
+        .research-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        /* Research Category Section */
+        .research-section {
+            margin-bottom: 3rem;
+        }
+        .research-section.hidden { display: none; }
+
+        .research-section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-border);
+        }
+        .research-section-icon {
+            width: 48px; height: 48px;
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+        .research-section-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            color: var(--color-text);
+        }
+        .research-section-count {
+            margin-left: auto;
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            font-family: var(--font-mono);
+        }
+
+        /* Article Cards */
+        .research-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .research-article {
+            display: flex;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            transition: var(--transition-fast);
+            text-decoration: none;
+            color: inherit;
+        }
+        .research-article:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+        }
+        .research-article-number {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: var(--color-primary);
+            opacity: 0.6;
+            font-weight: 500;
+            min-width: 28px;
+            padding-top: 2px;
+        }
+        .research-article-body { flex: 1; }
+        .research-article-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .research-article-excerpt {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+        .research-article-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+        .research-article-tag {
+            background: var(--color-primary-subtle);
+            color: var(--color-primary);
+            padding: 0.125rem 0.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Interactive Classroom CTA */
+        .research-cta {
+            background: var(--color-surface-alt, var(--color-bg-secondary));
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-2xl);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .research-cta p {
+            color: var(--color-text-muted);
+            font-size: var(--text-sm);
+            margin-bottom: 1rem;
+        }
+        .research-cta-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.625rem 1.5rem; background: var(--color-primary); color: white;
+            border-radius: var(--radius-full); font-weight: 500; font-size: var(--text-sm);
+            text-decoration: none; transition: var(--transition-fast);
+        }
+        .research-cta-btn:hover { background: var(--color-primary-dark); }
+        .research-cta-btn svg { width: 16px; height: 16px; }
+
+        /* No results */
+        .no-results {
+            text-align: center; padding: 3rem 1rem; display: none;
+        }
+        .no-results.visible { display: block; }
+        .no-results p { color: var(--color-text-muted); }
+    </style>
+    <link rel="stylesheet" href="chat-widget.css">
+    <link rel="stylesheet" href="shipping-estimator.css">
+    <link rel="stylesheet" href="site-enhancements.css">
+    <link rel="stylesheet" href="site-search.css">
+    <link rel="stylesheet" href="visual-enhancements.css">
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html#products">Shop</a>
+            <a href="research.html">Science</a>
+            <a href="blog.html">Learn</a>
+            <a href="courses/login.html">Login</a>
+            <a href="contact.html" class="nav-cta">Get Started</a>
+        </div>
+        <button class="hamburger" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    </main>
+    <footer class="seed-footer">
+        <div class="seed-footer-inner">
+            <div class="seed-footer-top">
+                <div class="seed-footer-mission">
+                    <h3>Pioneering botanical science for human wellness since 2010.</h3>
+                    <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
+                </div>
+                <div class="seed-footer-signup">
+                    <p>Science with PETX &mdash; research updates for your inbox.</p>
+                    <div class="seed-footer-email-row">
+                        <input type="email" placeholder="Your email" class="seed-footer-email">
+                        <button class="seed-footer-email-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="seed-footer-links">
+                <div class="seed-footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products/extracts.html">Botanical Extracts</a></li>
+                        <li><a href="products/tinctures.html">Tinctures</a></li>
+                        <li><a href="products/gummies.html">Gummies</a></li>
+                        <li><a href="products/live-plants.html">Live Plants</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="blog.html">Education</a></li>
+                        <li><a href="classes.html">Classes</a></li>
+                        <li><a href="classroom.html">Classroom</a></li>
+                        <li><a href="research.html">Research Library</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Science</h4>
+                    <ul>
+                        <li><a href="articles/extraction-methods.html">Extraction 101</a></li>
+                        <li><a href="articles/kratom-alkaloids.html">Kratom Science</a></li>
+                        <li><a href="articles/kavalactones-explained.html">Kava Science</a></li>
+                        <li><a href="articles/blue-lotus-compounds.html">Blue Lotus</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="consulting.html">Consulting</a></li>
+                        <li><a href="courses/login.html">Course Login</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="seo.html">Transparency</a></li>
+                        <li><a href="welcome.html">Welcome</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="contact.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="seed-footer-disclaimer">
+                *These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use. Must be 21+ to purchase. Not for sale where prohibited by law. Nored Farms products are manufactured in a GMP-compliant facility and tested by independent third-party laboratories.
+            </div>
+            <div class="seed-footer-bottom">
+                <span>&copy; 2026 Nored Farms. All rights reserved.</span>
+                <span>Crafted in Texas Hill Country</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Research category filtering
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.research-tab');
+            const sections = document.querySelectorAll('.research-section');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const category = tab.dataset.category;
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Filter sections
+                    sections.forEach(section => {
+                        if (category === 'all' || section.dataset.category === category) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+
+                    // Update URL hash
+                    if (category !== 'all') {
+                        history.replaceState(null, '', `#${category}`);
+                    } else {
+                        history.replaceState(null, '', window.location.pathname);
+                    }
+                });
+            });
+
+            // Handle URL hash on load
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                const targetTab = document.querySelector(`.research-tab[data-category="${hash}"]`);
+                if (targetTab) {
+                    targetTab.click();
+                    // Scroll to section after a brief delay
+                    setTimeout(() => {
+                        const section = document.getElementById(hash);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 100);
+                }
+            }
+        });
+    </script>
+    <script src="analytics.js"></script>
+    <script src="age-verification.js"></script>
+    <script src="chat-widget.js"></script>
+    <script src="shipping-estimator.js"></script>
+    <script src="site-enhancements.js"></script>
+    <script src="site-search.js"></script>
+    <script src="visual-enhancements.js"></script>
+</body>
+</html>

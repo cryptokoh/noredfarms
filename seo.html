@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Our SEO Strategy | Nored Farms</title>
+    <meta name="title" content="Our SEO Strategy | Nored Farms">
+    <meta name="description" content="Transparency in everything we do - including how we approach search engine optimization. Learn about our ethical SEO strategy focused on education and quality content.">
+    <meta name="keywords" content="pure extracts seo, botanical company transparency, ethical seo, content marketing botanicals">
+    <meta name="author" content="Nored Farms">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://noredfarms.netlify.app/seo.html">
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#1c3a13">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://noredfarms.netlify.app/seo.html">
+    <meta property="og:title" content="Our SEO Strategy | Nored Farms">
+    <meta property="og:description" content="Transparency in everything - including our approach to search optimization.">
+    <meta property="og:image" content="https://noredfarms.netlify.app/images/og-image.jpg">
+    <meta property="og:site_name" content="Nored Farms">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our SEO Strategy | Nored Farms">
+    <meta name="twitter:description" content="Transparency in everything - including our approach to search optimization.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-bg: #fafafa;
+            --color-surface: #ffffff;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #6b7280;
+            --color-text-muted: #9ca3af;
+            --color-primary: #1c3a13;
+            --color-primary-dark: #142d0e;
+            --color-primary-subtle: rgba(28, 58, 19, 0.1);
+            --color-border: #e5e7eb;
+            --color-accent: #d97706;
+            --color-success: #10b981;
+            --color-code-bg: #f3f4f6;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-serif: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+        }
+
+        /* Nav styles inherited from styles.css */
+
+        /* Hero */
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--color-primary-subtle) 0%, transparent 100%);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content */
+        .content {
+            padding: 60px 0 100px;
+        }
+
+        .content-section {
+            margin-bottom: 60px;
+        }
+
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary-subtle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .section-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-primary);
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 32px 0 12px;
+            color: var(--color-text);
+        }
+
+        p {
+            color: var(--color-text-secondary);
+            margin-bottom: 16px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Strategy Cards */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .strategy-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .strategy-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .strategy-card-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary-subtle);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .strategy-card-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--color-primary);
+        }
+
+        .strategy-card h4 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .strategy-card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .checklist-title {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .checklist-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .checklist-icon svg {
+            width: 14px;
+            height: 14px;
+            color: var(--color-success);
+        }
+
+        .checklist-icon.pending {
+            background: rgba(217, 119, 6, 0.1);
+        }
+
+        .checklist-icon.pending svg {
+            color: var(--color-accent);
+        }
+
+        .checklist-text {
+            flex: 1;
+        }
+
+        .checklist-text strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 2px;
+        }
+
+        .checklist-text span {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--color-code-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .code-label {
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-muted);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* Keywords Table */
+        .keywords-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 14px;
+        }
+
+        .keywords-table th,
+        .keywords-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .keywords-table th {
+            font-weight: 500;
+            color: var(--color-text);
+            background: var(--color-surface);
+        }
+
+        .keywords-table td {
+            color: var(--color-text-secondary);
+        }
+
+        .keywords-table tr:hover td {
+            background: var(--color-primary-subtle);
+        }
+
+        .keyword-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--color-primary-subtle);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--color-primary);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+            margin: 32px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--color-border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 32px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -32px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background: var(--color-primary);
+            border: 3px solid var(--color-bg);
+            border-radius: 50%;
+        }
+
+        .timeline-item.pending .timeline-dot {
+            background: var(--color-border);
+        }
+
+        .timeline-phase {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+        }
+
+        .timeline-item.pending .timeline-phase {
+            color: var(--color-text-muted);
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-cta h2 {
+            margin-bottom: 12px;
+        }
+
+        .footer-cta p {
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .keywords-table {
+                font-size: 13px;
+            }
+
+            .keywords-table th,
+            .keywords-table td {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html#products">Shop</a>
+            <a href="research.html">Science</a>
+            <a href="blog.html">Learn</a>
+            <a href="courses/login.html">Login</a>
+            <a href="contact.html" class="nav-cta">Get Started</a>
+        </div>
+        <button class="hamburger" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                Transparency Report
+            </div>
+            <h1>Our <span class="gradient-text">SEO Strategy</span></h1>
+            <p class="hero-subtitle">We believe in transparency in everything we do - including how we approach search engine optimization. Here's our playbook.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <main class="content">
+        <div class="container">
+
+            <!-- Philosophy Section -->
+            <section class="content-section">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h2>Our SEO Philosophy</h2>
+                <p>We don't chase algorithms. We focus on creating genuinely useful content that helps people make informed decisions about botanical wellness. When you prioritize education and transparency, search engines naturally reward that.</p>
+                <p>Our approach is simple: <strong>be the most helpful resource</strong> for anyone researching kratom, kava, blue lotus, and ethnobotanicals. No tricks, no keyword stuffing, no black-hat tactics - just quality content backed by 30+ years of real research.</p>
+
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <div class="strategy-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <h4>Education First</h4>
+                        <p>Our classroom and blog exist to educate, not just to rank. Real value creates real engagement.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h4>Trust & Authority</h4>
+                        <p>Lab testing, GMP compliance, and transparent sourcing build the E-E-A-T signals Google values.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <h4>Local Focus</h4>
+                        <p>Texas Hill Country is our home. Local SEO helps us connect with our community first.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Implementation -->
+            <section class="content-section">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 18 22 12 16 6"/>
+                        <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                </div>
+                <h2>Technical Implementation</h2>
+                <p>Good SEO starts with solid technical foundations. Here's what we've implemented:</p>
+
+                <div class="checklist">
+                    <div class="checklist-title">Completed</div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="checklist-text">
+                            <strong>Structured Data (JSON-LD)</strong>
+                            <span>Organization, LocalBusiness, Products, FAQPage, and BreadcrumbList schemas</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="checklist-text">
+                            <strong>Open Graph & Twitter Cards</strong>
+                            <span>Full social sharing optimization for Facebook, Twitter, LinkedIn</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="checklist-text">
+                            <strong>XML Sitemap & Robots.txt</strong>
+                            <span>Properly configured for all search engine crawlers</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="checklist-text">
+                            <strong>Canonical URLs</strong>
+                            <span>Preventing duplicate content issues across all pages</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="checklist-text">
+                            <strong>Geographic Meta Tags</strong>
+                            <span>Texas Hill Country coordinates for local search</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="checklist-text">
+                            <strong>Semantic HTML Structure</strong>
+                            <span>Proper heading hierarchy, ARIA labels, and accessibility</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="checklist-text">
+                            <strong>Mobile-First Design</strong>
+                            <span>Responsive layout optimized for Core Web Vitals</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-icon pending">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="checklist-text">
+                            <strong>Google Search Console</strong>
+                            <span>Pending - will submit sitemap upon launch</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-icon pending">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="checklist-text">
+                            <strong>Google Business Profile</strong>
+                            <span>Pending - will create for local SEO after launch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Sample Structured Data</h3>
+                <p>Here's an example of the schema markup we use for rich search results:</p>
+
+                <div class="code-block">
+                    <span class="code-label">JSON-LD / Organization Schema</span>
+                    <code><pre>{
+  "@type": "Organization",
+  "name": "Nored Farms",
+  "url": "https://noredfarms.netlify.app",
+  "description": "Premium botanical extracts...",
+  "foundingDate": "1995",
+  "areaServed": "US",
+  "slogan": "Ancient Wisdom. Modern Science.",
+  "knowsAbout": ["Kratom", "Kava", "Blue Lotus"]
+}</pre></code>
+                </div>
+            </section>
+
+            <!-- Keyword Strategy -->
+            <section class="content-section">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                </div>
+                <h2>Keyword Strategy</h2>
+                <p>We target keywords where we can provide genuine expertise and value. Our focus areas:</p>
+
+                <table class="keywords-table">
+                    <thead>
+                        <tr>
+                            <th>Keyword Focus</th>
+                            <th>Intent</th>
+                            <th>Target Page</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="keyword-tag">kratom extract texas</span></td>
+                            <td>Commercial</td>
+                            <td>Homepage</td>
+                        </tr>
+                        <tr>
+                            <td><span class="keyword-tag">kava extract benefits</span></td>
+                            <td>Informational</td>
+                            <td>Blog / Classroom</td>
+                        </tr>
+                        <tr>
+                            <td><span class="keyword-tag">blue lotus effects</span></td>
+                            <td>Informational</td>
+                            <td>Classroom</td>
+                        </tr>
+                        <tr>
+                            <td><span class="keyword-tag">lab tested kratom</span></td>
+                            <td>Commercial</td>
+                            <td>Homepage</td>
+                        </tr>
+                        <tr>
+                            <td><span class="keyword-tag">kratom alkaloids guide</span></td>
+                            <td>Educational</td>
+                            <td>Classroom</td>
+                        </tr>
+                        <tr>
+                            <td><span class="keyword-tag">ethnobotanicals near me</span></td>
+                            <td>Local</td>
+                            <td>Homepage</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Content Pillars</h3>
+                <p>Our content strategy is built around four main pillars:</p>
+
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <h4>1. Product Education</h4>
+                        <p>Deep dives into kratom strains, kava varieties, and ethnobotanical origins.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>2. Science & Research</h4>
+                        <p>Alkaloid profiles, extraction methods, and published research summaries.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>3. Safety & Dosing</h4>
+                        <p>Responsible use guides, interaction warnings, and quality indicators.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>4. Cultural History</h4>
+                        <p>Traditional uses, cultural significance, and ethnobotanical heritage.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Roadmap -->
+            <section class="content-section">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h2>SEO Roadmap</h2>
+                <p>Our phased approach to organic growth:</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-phase">Phase 1 - Foundation</div>
+                        <div class="timeline-title">Technical SEO & Structure</div>
+                        <p class="timeline-desc">Meta tags, structured data, sitemap, robots.txt, and page speed optimization. Complete.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-phase">Phase 2 - Content</div>
+                        <div class="timeline-title">Educational Content Library</div>
+                        <p class="timeline-desc">Building out the Classroom with comprehensive guides on each botanical category.</p>
+                    </div>
+
+                    <div class="timeline-item pending">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-phase">Phase 3 - Launch</div>
+                        <div class="timeline-title">Search Console & Analytics</div>
+                        <p class="timeline-desc">Submit to search engines, set up tracking, and begin monitoring rankings.</p>
+                    </div>
+
+                    <div class="timeline-item pending">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-phase">Phase 4 - Growth</div>
+                        <div class="timeline-title">Link Building & Outreach</div>
+                        <p class="timeline-desc">Guest posts on botanical blogs, partnerships with wellness publications, and community engagement.</p>
+                    </div>
+
+                    <div class="timeline-item pending">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-phase">Phase 5 - Local</div>
+                        <div class="timeline-title">Local SEO Expansion</div>
+                        <p class="timeline-desc">Google Business Profile, local citations, and Texas-focused content marketing.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- What We Don't Do -->
+            <section class="content-section">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+                    </svg>
+                </div>
+                <h2>What We Don't Do</h2>
+                <p>Ethical SEO means avoiding tactics that might work short-term but damage trust long-term:</p>
+
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <h4>No Keyword Stuffing</h4>
+                        <p>Content is written for humans first. Keywords appear naturally.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>No Bought Links</h4>
+                        <p>We earn backlinks through quality content, not purchased placements.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>No Hidden Text</h4>
+                        <p>Everything on our pages is visible to users, not just search engines.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>No False Claims</h4>
+                        <p>We never make health claims we can't support with evidence.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <h2>Questions About Our Approach?</h2>
+            <p class="hero-subtitle">We're always happy to discuss our methods. Transparency is kind of our thing.</p>
+            <a href="index.html#contact" class="btn">
+                <span>Get in Touch</span>
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <footer class="seed-footer">
+        <div class="seed-footer-inner">
+            <div class="seed-footer-top">
+                <div class="seed-footer-mission">
+                    <h3>Pioneering botanical science for human wellness since 2010.</h3>
+                    <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
+                </div>
+                <div class="seed-footer-signup">
+                    <p>Science with PETX &mdash; research updates for your inbox.</p>
+                    <div class="seed-footer-email-row">
+                        <input type="email" placeholder="Your email" class="seed-footer-email">
+                        <button class="seed-footer-email-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="seed-footer-links">
+                <div class="seed-footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products/extracts.html">Botanical Extracts</a></li>
+                        <li><a href="products/tinctures.html">Tinctures</a></li>
+                        <li><a href="products/gummies.html">Gummies</a></li>
+                        <li><a href="products/live-plants.html">Live Plants</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="blog.html">Education</a></li>
+                        <li><a href="classes.html">Classes</a></li>
+                        <li><a href="classroom.html">Classroom</a></li>
+                        <li><a href="research.html">Research Library</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Science</h4>
+                    <ul>
+                        <li><a href="articles/extraction-methods.html">Extraction 101</a></li>
+                        <li><a href="articles/kratom-alkaloids.html">Kratom Science</a></li>
+                        <li><a href="articles/kavalactones-explained.html">Kava Science</a></li>
+                        <li><a href="articles/blue-lotus-compounds.html">Blue Lotus</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="consulting.html">Consulting</a></li>
+                        <li><a href="courses/login.html">Course Login</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="seo.html">Transparency</a></li>
+                        <li><a href="welcome.html">Welcome</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="contact.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="seed-footer-disclaimer">
+                *These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use. Must be 21+ to purchase. Not for sale where prohibited by law. Nored Farms products are manufactured in a GMP-compliant facility and tested by independent third-party laboratories.
+            </div>
+            <div class="seed-footer-bottom">
+                <span>&copy; 2026 Nored Farms. All rights reserved.</span>
+                <span>Crafted in Texas Hill Country</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="age-verification.js"></script>
+</body>
+</html>

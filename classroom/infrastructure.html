@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary Meta Tags -->
+    <title>Building Infrastructure & Equipment - The Classroom | Nored Farms</title>
+    <meta name="title" content="Building Infrastructure & Equipment - The Classroom | Nored Farms">
+    <meta name="description" content="Learn to build growing infrastructure from outdoor rows and irrigation to greenhouses, aquaponics, aeroponics, indoor grow rooms, cloning, and tissue culture labs.">
+    <meta name="keywords" content="growing infrastructure, greenhouse construction, aquaponics system, aeroponics setup, indoor growing, LED grow lights, plant cloning, tissue culture, raised beds, irrigation systems">
+    <meta name="author" content="Nored Farms">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://noredfarms.netlify.app/classroom/infrastructure.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://noredfarms.netlify.app/classroom/infrastructure.html">
+    <meta property="og:title" content="Building Infrastructure & Equipment - The Classroom">
+    <meta property="og:description" content="Learn to build growing infrastructure from outdoor rows to tissue culture labs.">
+    <meta property="og:site_name" content="Nored Farms">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Building Infrastructure & Equipment",
+        "description": "Comprehensive guide to botanical growing infrastructure, from outdoor rows and irrigation systems to tissue culture labs.",
+        "provider": {
+            "@type": "Organization",
+            "name": "Nored Farms",
+            "url": "https://noredfarms.netlify.app"
+        },
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "PT2H"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://noredfarms.netlify.app/" },
+                { "@type": "ListItem", "position": 2, "name": "The Classroom", "item": "https://noredfarms.netlify.app/classroom.html" },
+                { "@type": "ListItem", "position": 3, "name": "Building Infrastructure & Equipment" }
+            ]
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../age-verification.css">
+
+    <style>
+        /* ============================================
+           Infrastructure Classroom - Page Styles
+           Modern industrial: clean lines, steel/glass
+           ============================================ */
+
+        /* Page body */
+        .infra-body {
+            overflow-x: hidden;
+        }
+
+        /* ---- Hero ---- */
+        .infra-hero {
+            position: relative;
+            padding: calc(var(--nav-height) + 3rem) var(--container-padding) 3rem;
+            background: var(--color-bg-alt);
+            border-bottom: 1px solid var(--color-border);
+            overflow: hidden;
+        }
+
+        .infra-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(
+                    90deg,
+                    var(--color-border) 0,
+                    var(--color-border) 1px,
+                    transparent 1px,
+                    transparent 80px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    var(--color-border) 0,
+                    var(--color-border) 1px,
+                    transparent 1px,
+                    transparent 80px
+                );
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .infra-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity var(--transition-fast);
+        }
+
+        .breadcrumb a:hover {
+            opacity: 0.8;
+        }
+
+        .breadcrumb-sep {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            color: var(--color-text-muted);
+            flex-shrink: 0;
+        }
+
+        .infra-hero-content {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .infra-hero-text {
+            max-width: 680px;
+        }
+
+        .infra-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-primary-subtle);
+            color: var(--color-primary);
+            padding: 0.3rem 0.875rem;
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .infra-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .infra-hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            font-weight: 500;
+            line-height: 1.15;
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
+        }
+
+        .infra-hero-subtitle {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            line-height: 1.65;
+            max-width: 560px;
+        }
+
+        .infra-hero-stat {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .stat-block {
+            text-align: center;
+            padding: 0.75rem 1.25rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+        }
+
+        .stat-block-number {
+            font-family: var(--font-mono);
+            font-size: var(--text-2xl);
+            font-weight: 500;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+
+        .stat-block-label {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        /* ---- Tab Navigation ---- */
+        .infra-tabs-wrapper {
+            position: sticky;
+            top: var(--nav-height);
+            z-index: 50;
+            background: rgba(var(--color-bg-rgb, 255, 255, 255), 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .infra-tabs {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .infra-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .infra-tab {
+            flex-shrink: 0;
+            padding: 0.875rem 1.25rem;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-text-muted);
+            border-bottom: 2px solid transparent;
+            transition: all var(--transition-base);
+            cursor: pointer;
+            white-space: nowrap;
+            background: none;
+            font-family: inherit;
+        }
+
+        .infra-tab:hover {
+            color: var(--color-text-secondary);
+        }
+
+        .infra-tab.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        /* ---- Main Content ---- */
+        .infra-main {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        /* ---- Topic Section ---- */
+        .topic-section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .topic-section:last-child {
+            border-bottom: none;
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .topic-icon {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-primary-subtle);
+            border-radius: var(--radius-lg);
+            color: var(--color-primary);
+        }
+
+        .topic-icon svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .topic-number {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
+        }
+
+        .topic-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 500;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+
+        .topic-intro {
+            font-size: var(--text-lg);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 780px;
+            margin-bottom: 2rem;
+        }
+
+        /* ---- Concept Cards Grid ---- */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .concept-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .concept-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-card);
+            transform: translateY(-2px);
+        }
+
+        .concept-card:hover::before {
+            opacity: 1;
+        }
+
+        .concept-card-icon {
+            width: 36px;
+            height: 36px;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .concept-card h4 {
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-card p {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ---- Step List ---- */
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.25rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            transition: border-color var(--transition-base);
+        }
+
+        .step-item:hover {
+            border-color: var(--color-primary);
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            border-radius: var(--radius-full);
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+
+        .step-content h4 {
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content p {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ---- Learn More Box ---- */
+        .learn-more-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: var(--color-bg-alt);
+            border: 1px dashed var(--color-border);
+            border-radius: var(--radius-lg);
+            color: var(--color-text-secondary);
+            font-size: var(--text-sm);
+            transition: all var(--transition-base);
+        }
+
+        .learn-more-box:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            background: var(--color-primary-subtle);
+        }
+
+        .learn-more-box svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            color: var(--color-primary);
+        }
+
+        .learn-more-box span {
+            font-weight: 500;
+        }
+
+        /* ---- Spec Table ---- */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            font-size: var(--text-sm);
+        }
+
+        .spec-table th,
+        .spec-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .spec-table th {
+            font-weight: 500;
+            color: var(--color-text);
+            background: var(--color-bg-alt);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .spec-table td {
+            color: var(--color-text-secondary);
+        }
+
+        .spec-table tr:hover td {
+            background: var(--color-surface-hover);
+        }
+
+        .spec-tag {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            background: var(--color-primary-subtle);
+            color: var(--color-primary);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: 500;
+        }
+
+        /* Seed footer styles inherited from styles.css */
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .infra-hero {
+                padding-top: calc(var(--nav-height) + 2rem);
+                padding-bottom: 2rem;
+            }
+
+            .infra-hero-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .infra-hero-stat {
+                gap: 0.75rem;
+            }
+
+            .stat-block {
+                padding: 0.5rem 0.875rem;
+            }
+
+            .stat-block-number {
+                font-size: var(--text-xl);
+            }
+
+            .topic-section {
+                padding: 2.5rem 0;
+            }
+
+            .topic-header {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .infra-footer .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .infra-footer .footer-bottom-bar {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .infra-hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .infra-tab {
+                padding: 0.75rem 1rem;
+                font-size: var(--text-xs);
+            }
+        }
+
+        /* ---- Reduced Motion ---- */
+        @media (prefers-reduced-motion: reduce) {
+            .concept-card,
+            .step-item,
+            .learn-more-box {
+                transition: none;
+            }
+
+            .concept-card:hover {
+                transform: none;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../chat-widget.css">
+    <link rel="stylesheet" href="../shipping-estimator.css">
+    <link rel="stylesheet" href="../site-enhancements.css">
+    <link rel="stylesheet" href="../site-search.css">
+    <link rel="stylesheet" href="../visual-enhancements.css">
+</head>
+<body class="infra-body">
+    <nav class="nav" id="nav">
+        <a href="../index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html#products">Shop</a>
+            <a href="../research.html">Science</a>
+            <a href="../blog.html">Learn</a>
+            <a href="../courses/login.html">Login</a>
+            <a href="../contact.html" class="nav-cta">Get Started</a>
+        </div>
+        <button class="hamburger" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="infra-hero">
+        <div class="infra-hero-inner">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="../index.html">Home</a>
+                <svg class="breadcrumb-sep" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4l4 4-4 4"/></svg>
+                <a href="../classroom.html">The Classroom</a>
+                <svg class="breadcrumb-sep" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4l4 4-4 4"/></svg>
+                <span>Infrastructure & Equipment</span>
+            </nav>
+            <div class="infra-hero-content">
+                <div class="infra-hero-text">
+                    <div class="infra-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V10l7-6 7 6v10M9 20v-6h6v6"/></svg>
+                        <span>Classroom 01</span>
+                    </div>
+                    <h1>Building Infrastructure & Equipment</h1>
+                    <p class="infra-hero-subtitle">
+                        From open-field rows to sterile tissue culture labs, explore the full spectrum of growing
+                        infrastructure. Learn to design, build, and optimize systems at every scale.
+                    </p>
+                </div>
+                <div class="infra-hero-stat">
+                    <div class="stat-block">
+                        <div class="stat-block-number">9</div>
+                        <div class="stat-block-label">Topics</div>
+                    </div>
+                    <div class="stat-block">
+                        <div class="stat-block-number">All</div>
+                        <div class="stat-block-label">Scales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="infra-tabs-wrapper">
+        <div class="infra-tabs" id="infraTabs" role="tablist" aria-label="Infrastructure topics">
+            <button class="infra-tab active" role="tab" data-target="outdoor-rows">Outdoor Rows</button>
+            <button class="infra-tab" role="tab" data-target="terraced-land">Terraced Land</button>
+            <button class="infra-tab" role="tab" data-target="raised-beds">Raised Beds</button>
+            <button class="infra-tab" role="tab" data-target="aquaponics">Aquaponics</button>
+            <button class="infra-tab" role="tab" data-target="greenhouses">Greenhouses</button>
+            <button class="infra-tab" role="tab" data-target="aeroponics">Aeroponics</button>
+            <button class="infra-tab" role="tab" data-target="indoor-growing">Indoor Growing</button>
+            <button class="infra-tab" role="tab" data-target="cloning">Cloning</button>
+            <button class="infra-tab" role="tab" data-target="tissue-culture">Tissue Culture</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="infra-main">
+
+        <!-- 1. Outdoor Rows of Plants & Irrigation Systems -->
+        <section class="topic-section" id="outdoor-rows">
+            <div class="topic-header">
+                <div class="topic-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18"/>
+                        <path d="M5 21V7l3-4 3 4v14"/>
+                        <path d="M13 21V7l3-4 3 4v14"/>
+                        <path d="M5 11h6M13 11h6"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="topic-number">Topic 01</div>
+                    <h2 class="topic-title">Outdoor Rows of Plants & Irrigation Systems</h2>
+                </div>
+            </div>
+            <p class="topic-intro">
+                The most fundamental growing infrastructure begins with well-planned outdoor rows. Whether you are
+                cultivating kratom trees, kava shrubs, or medicinal herbs, row spacing, soil preparation, and
+                irrigation design determine yield and plant health for decades to come.
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+                    <h4>Row Layout & Spacing</h4>
+                    <p>Plan row orientation for maximum sun exposure. Typical spacing ranges from 4-8 feet for shrubs to 15-25 feet for tree species like Mitragyna speciosa.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v6M12 22v-6M2 12h6M22 12h-6"/><path d="M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+                    <h4>Drip Irrigation</h4>
+                    <p>Delivers water directly to root zones through emitters, reducing waste by up to 60% compared to overhead sprinklers. Ideal for arid climates and water-conscious operations.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 16.5A5.5 5.5 0 0 1 12.5 11H14a5 5 0 0 1 5 5"/><path d="M3 21h18"/><path d="M12 3v4"/></svg>
+                    <h4>Overhead Sprinklers</h4>
+                    <p>Impact or rotary sprinklers cover large areas uniformly. Best for establishing new plantings and foliar feeding, though less efficient than drip for mature rows.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+                    <h4>Fertigation Integration</h4>
+                    <p>Combine fertilizer delivery with your irrigation system using injectors or venturi devices. Precise nutrient control at the root zone maximizes uptake and reduces runoff.</p>
+                </div>
+            </div>
+
+            <a href="#" class="learn-more-box" aria-label="Detailed guide coming soon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <span>Detailed irrigation design guide coming soon - covering pipe sizing, pressure calculations, and zone layout.</span>
+            </a>
+        </section>
+
+        <!-- 2. Terraced Land with Stone Edges & Massive Planters -->
+        <section class="topic-section" id="terraced-land">
+            <div class="topic-header">
+                <div class="topic-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 20h20"/>
+                        <path d="M2 16h16"/>
+                        <path d="M2 12h12"/>
+                        <path d="M2 8h8"/>
+                        <path d="M18 16v4M14 12v8M10 8v12"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="topic-number">Topic 02</div>
+                    <h2 class="topic-title">Terraced Land with Stone Edges & Massive Planters</h2>
+                </div>
+            </div>
+            <p class="topic-intro">
+                Terracing transforms sloped terrain into productive growing platforms. By cutting level benches
+                into hillsides and retaining them with stone, concrete, or timber, you prevent erosion, manage
+                water flow, and create microclimates ideal for diverse botanical collections.
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20l5-5 5 5 5-5 5 5"/><path d="M2 14l5-5 5 5 5-5 5 5"/></svg>
+                    <h4>Cut-and-Fill Terracing</h4>
+                    <p>The classic method: excavate the uphill side and use that soil to build up the downhill side. Requires proper compaction and drainage behind retaining walls.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="14" width="20" height="8" rx="1"/><rect x="5" y="6" width="14" height="8" rx="1"/></svg>
+                    <h4>Stone & Block Retaining Walls</h4>
+                    <p>Dry-stacked natural stone or engineered block walls. Include weep holes every 6-8 feet and a gravel backfill layer for drainage. Walls over 4 feet may require engineering.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9"/></svg>
+                    <h4>Massive Planters & Containers</h4>
+                    <p>Concrete, corten steel, or cedar planters 3-6 feet across create self-contained growing zones. Perfect for controlling soil composition per species on terraced platforms.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0020 0h-3"/><path d="M8 5l4-3 4 3"/></svg>
+                    <h4>Water Management</h4>
+                    <p>Terrace drainage channels, French drains behind walls, and swale collection systems prevent waterlogging while capturing runoff for reuse in lower tiers.</p>
+                </div>
+            </div>
+
+            <a href="#" class="learn-more-box" aria-label="Detailed guide coming soon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <span>Full terrace construction walkthrough with material calculations and slope analysis - coming soon.</span>
+            </a>
+        </section>
+
+        <!-- 3. Raised Beds -->
+        <section class="topic-section" id="raised-beds">
+            <div class="topic-header">
+                <div class="topic-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="10" width="18" height="10" rx="1"/>
+                        <path d="M8 10V6a1 1 0 011-1h6a1 1 0 011 1v4"/>
+                        <path d="M12 15v-3"/>
+                        <path d="M9 14l3-2 3 2"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="topic-number">Topic 03</div>
+                    <h2 class="topic-title">Raised Beds</h2>
+                </div>
+            </div>
+            <p class="topic-intro">
+                Raised beds give you complete control over soil composition, drainage, and root depth.
+                They warm faster in spring, drain more freely, and let you garden without compacting the
+                growing medium. Build them from untreated lumber, galvanized steel, or masonry blocks.
+            </p>
+
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Choose Location & Size</h4>
+                        <p>Select a site with 6+ hours of direct sun. Standard widths are 3-4 feet so you can reach the center without stepping in. Length is flexible; height of 12-24 inches suits most botanicals.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Build the Frame</h4>
+                        <p>Use rot-resistant materials: cedar, redwood, galvanized steel panels, or concrete blocks. Avoid pressure-treated lumber near food or medicinal plants. Corner brackets add structural integrity.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Layer the Soil Mix</h4>
+                        <p>Bottom third: coarse material for drainage (wood chips, gravel). Middle third: compost and aged manure. Top third: premium potting mix or native loam blended with perlite and worm castings.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h4>Install Irrigation & Mulch</h4>
+                        <p>Lay drip lines or soaker hoses before planting. Cover with 2-3 inches of organic mulch to retain moisture, suppress weeds, and regulate soil temperature year-round.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="learn-more-box" aria-label="Detailed guide coming soon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <span>Material cost comparisons and soil recipe formulations for different botanical species - coming soon.</span>
+            </a>
+        </section>
+
+        <!-- 4. Aquaponics Systems -->
+        <section class="topic-section" id="aquaponics">
+            <div class="topic-header">
+                <div class="topic-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 15c3-1 5.5 0 8-1s5-3 8-1"/>
+                        <path d="M2 19c3-1 5.5 0 8-1s5-3 8-1"/>
+                        <circle cx="7" cy="9" r="3"/>
+                        <path d="M10 9h4l2-2"/>
+                        <path d="M14 9l2 2"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="topic-number">Topic 04</div>
+                    <h2 class="topic-title">Aquaponics Systems</h2>
+                </div>
+            </div>
+            <p class="topic-intro">
+                Aquaponics merges fish cultivation with soilless plant growing in a closed-loop ecosystem.
+                Fish waste provides organic nutrients for plants, and the plants filter the water that
+                returns to the fish. It uses up to 90% less water than conventional growing and produces
+                both botanicals and protein simultaneously.
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15h18"/><path d="M12 3v12"/></svg>
+                    <h4>Media Bed System</h4>
+                    <p>Grow beds filled with expanded clay (LECA) or gravel. Uses flood-and-drain cycles controlled by bell siphons. Best for beginners and diverse plant types including herbs and medicinal species.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v4H4z"/><path d="M4 12h16v4H4z"/><path d="M12 8v4M12 16v4"/></svg>
+                    <h4>Deep Water Culture (DWC)</h4>
+                    <p>Plants float on rafts in nutrient-rich water channels 12-18 inches deep. Highly scalable for commercial operations. Excellent for leafy botanicals and fast-growing herbs.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
+                    <h4>Nutrient Film Technique (NFT)</h4>
+                    <p>A thin film of nutrient water flows through narrow channels. Roots hang in the stream. Low water volume but requires reliable pumps and backup power for continuous flow.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c-4-3-8-6-8-11a8 8 0 1116 0c0 5-4 8-8 11z"/><circle cx="12" cy="11" r="2"/></svg>
+                    <h4>Fish Species Selection</h4>
+                    <p>Tilapia thrives in warm climates (75-85F) and tolerates variable water quality. Koi and goldfish work for ornamental setups. Channel catfish and trout suit cooler environments.</p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>System Type</th>
+                        <th>Complexity</th>
+                        <th>Best For</th>
+                        <th>Water Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Media Bed</td>
+                        <td><span class="spec-tag">Beginner</span></td>
+                        <td>Mixed botanicals, herbs</td>
+                        <td>Very Low</td>
+                    </tr>
+                    <tr>
+                        <td>Deep Water Culture</td>
+                        <td><span class="spec-tag">Intermediate</span></td>
+                        <td>Leafy plants, commercial scale</td>
+                        <td>Low</td>
+                    </tr>
+                    <tr>
+                        <td>NFT</td>
+                        <td><span class="spec-tag">Advanced</span></td>
+                        <td>Herbs, microgreens</td>
+                        <td>Very Low</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="#" class="learn-more-box" aria-label="Detailed guide coming soon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <span>Complete aquaponics build guide with plumbing diagrams and cycling instructions - coming soon.</span>
+            </a>
+        </section>
+
+        <!-- 5. Greenhouse Structures -->
+        <section class="topic-section" id="greenhouses">
+            <div class="topic-header">
+                <div class="topic-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21V9l9-7 9 7v12"/>
+                        <path d="M3 21h18"/>
+                        <path d="M7 21V12h10v9"/>
+                        <path d="M12 2v10"/>
+                        <path d="M7 12h10"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="topic-number">Topic 05</div>
+                    <h2 class="topic-title">Greenhouse Structures</h2>
+                </div>
+            </div>
+            <p class="topic-intro">
+                Greenhouses extend your growing season, protect plants from weather extremes, and allow
+                precise environmental control. From simple hoop houses to fully automated glass structures,
+                the right greenhouse design depends on your climate, budget, and the botanicals you grow.
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20Q12 4 20 20"/><path d="M4 20h16"/></svg>
+                    <h4>Hoop House / High Tunnel</h4>
+                    <p>Galvanized steel hoops covered with 6-mil greenhouse poly. Most affordable option per square foot. No heating required for season extension in zones 7+. Typical lifespan: 4-year poly, 15-year frame.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20V10l9-7 9 7v10"/><path d="M3 20h18"/></svg>
+                    <h4>Gable / A-Frame</h4>
+                    <p>Classic peaked roof design sheds rain and snow efficiently. Built from aluminum, wood, or steel. Allows maximum headroom for tall species like kratom trees. Excellent ventilation options.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M3 14h18"/><path d="M8 8V5M16 8V5"/></svg>
+                    <h4>Polycarbonate Panels</h4>
+                    <p>Twin-wall or triple-wall polycarbonate offers superior insulation (R-1.5 to R-2.5) compared to single-pane glass. Virtually unbreakable, lightweight, and diffuses light evenly to reduce hot spots.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M4 12H2M6.34 6.34L4.93 4.93M17.66 6.34l1.41-1.41M22 12h-2"/><circle cx="12" cy="12" r="5"/><path d="M12 17v4"/></svg>
+                    <h4>Climate Control Systems</h4>
+                    <p>Automated ridge vents, exhaust fans, evaporative cooling pads, and thermostat-controlled heaters. Target ranges: 65-85F for tropical botanicals, 50-75F for temperate species.</p>
+                </div>
+            </div>
+
+            <a href="#" class="learn-more-box" aria-label="Detailed guide coming soon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <span>Greenhouse sizing calculator, ventilation formulas, and covering material comparison chart - coming soon.</span>
+            </a>
+        </section>
+
+        <!-- 6. Aeroponics Setups -->
+        <section class="topic-section" id="aeroponics">
+            <div class="topic-header">
+                <div class="topic-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="topic-number">Topic 06</div>
+                    <h2 class="topic-title">Aeroponics Setups</h2>
+                </div>
+            </div>
+            <p class="topic-intro">
+                Aeroponics suspends plant roots in air and delivers nutrients as a fine mist. Originally
+                developed by NASA for growing food in space, this method uses the least water of any growing
+                technique and produces rapid root development with exceptional oxygenation.
+            </p>
+
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Build the Root Chamber</h4>
+                        <p>Construct a light-proof enclosure from food-grade plastic or PVC. Root chambers must be completely dark to prevent algae growth. Use net pots with neoprene collars in the lid to hold plants.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Install Misting System</h4>
+                        <p>High-pressure aeroponics uses pumps at 80-100 PSI with misting nozzles that produce 5-50 micron droplets. Low-pressure systems use standard pumps with sprinkler heads - simpler but less efficient.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Configure Timers & Sensors</h4>
+                        <p>Mist cycles typically run 5 seconds on, 3-5 minutes off. Cycle timers with seconds-resolution are essential. Add pH and EC sensors for automated nutrient monitoring and adjustment.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h4>Maintain & Monitor</h4>
+                        <p>Clean nozzles weekly to prevent clogging. Monitor root health for signs of drying (mist cycle too long) or root rot (too frequent). Keep nutrient solution at 65-72F for optimal uptake.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="learn-more-box" aria-label="Detailed guide coming soon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <span>High-pressure vs. low-pressure aeroponic system comparison with parts lists - coming soon.</span>
+            </a>
+        </section>
+
+        <!-- 7. Indoor Growing (HPS / LED Lighting) -->
+        <section class="topic-section" id="indoor-growing">
+            <div class="topic-header">
+                <div class="topic-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 18h6"/>
+                        <path d="M10 22h4"/>
+                        <path d="M12 2v1"/>
+                        <path d="M12 7a4 4 0 014 4c0 1.5-.8 2.8-2 3.5V16H10v-1.5A4.02 4.02 0 018 11a4 4 0 014-4z"/>
+                        <path d="M4.22 4.22l.71.71M18.36 4.93l.71-.71M1 12h2M21 12h2M4.22 19.78l.71-.71M18.36 19.07l.71.71"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="topic-number">Topic 07</div>
+                    <h2 class="topic-title">Indoor Growing (HPS / LED Lighting)</h2>
+                </div>
+            </div>
+            <p class="topic-intro">
+                Indoor cultivation gives you total control over photoperiod, temperature, humidity, and
+                CO2 levels. The choice between High Pressure Sodium (HPS) and LED lighting technology
+                is one of the most consequential decisions in indoor growing, affecting yield, energy
+                costs, and plant quality.
+            </p>
+
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th>HPS</th>
+                        <th>LED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Efficiency</td>
+                        <td>1.0-1.7 umol/J</td>
+                        <td>2.5-3.0 umol/J</td>
+                    </tr>
+                    <tr>
+                        <td>Spectrum</td>
+                        <td>Fixed (warm yellow-orange)</td>
+                        <td>Tunable (full spectrum)</td>
+                    </tr>
+                    <tr>
+                        <td>Heat Output</td>
+                        <td>High (requires cooling)</td>
+                        <td>Moderate (heatsink-cooled)</td>
+                    </tr>
+                    <tr>
+                        <td>Lifespan</td>
+                        <td>10,000-24,000 hours</td>
+                        <td>50,000-100,000 hours</td>
+                    </tr>
+                    <tr>
+                        <td>Upfront Cost</td>
+                        <td><span class="spec-tag">Lower</span></td>
+                        <td><span class="spec-tag">Higher</span></td>
+                    </tr>
+                    <tr>
+                        <td>Operating Cost</td>
+                        <td>Higher (more watts, bulb replacement)</td>
+                        <td>Lower (energy savings 40-60%)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                    <h4>Photoperiod Control</h4>
+                    <p>Most botanicals thrive on 18/6 (veg) or 12/12 (flower) light schedules. Tropical species like kratom prefer consistent 12/12 to mimic equatorial conditions. Use digital timers for precision.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v1M12 20v1M4.22 5.22l.7.7M18.36 18.36l.7.7M1 12h3M20 12h3M4.22 18.78l.7-.7M18.36 5.64l.7-.7"/><circle cx="12" cy="12" r="4"/></svg>
+                    <h4>PPFD & Light Mapping</h4>
+                    <p>Target 400-600 umol/m2/s for vegetative growth and 600-1000 for flowering. Use a quantum meter to map light distribution and adjust fixture height to achieve uniform canopy coverage.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v6h6"/><path d="M4 20V10a2 2 0 012-2h4V4a2 2 0 012-2h2a2 2 0 012 2v4h4a2 2 0 012 2v10"/></svg>
+                    <h4>Environmental Integration</h4>
+                    <p>HVAC, dehumidifiers, CO2 injection, and oscillating fans work together with lighting. Match cooling capacity to heat load. Supplement CO2 to 1000-1500 ppm under intense light for maximum photosynthesis.</p>
+                </div>
+            </div>
+
+            <a href="#" class="learn-more-box" aria-label="Detailed guide coming soon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <span>Room design calculator covering watts per sq ft, BTU cooling requirements, and electrical load planning - coming soon.</span>
+            </a>
+        </section>
+
+        <!-- 8. Cloning Plants -->
+        <section class="topic-section" id="cloning">
+            <div class="topic-header">
+                <div class="topic-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 20l5-5 5 5"/>
+                        <path d="M12 15V4"/>
+                        <path d="M7 8l5-4 5 4"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="topic-number">Topic 08</div>
+                    <h2 class="topic-title">Cloning Plants</h2>
+                </div>
+            </div>
+            <p class="topic-intro">
+                Cloning produces genetically identical copies of a parent plant through vegetative
+                propagation. For botanical operations, cloning preserves elite chemotypes with specific
+                alkaloid profiles, ensures uniform crops, and accelerates production timelines compared
+                to seed-grown plants.
+            </p>
+
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Select the Mother Plant</h4>
+                        <p>Choose a vigorous, disease-free specimen with the desired traits: alkaloid content, growth habit, pest resistance. Keep mothers in vegetative state under 18+ hours of light.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Take Cuttings</h4>
+                        <p>Use sterile, sharp blades to cut 4-6 inch stem sections at a 45-degree angle. Include 2-3 leaf nodes. Remove lower leaves and dip cut end in rooting hormone (IBA or NAA based).</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Root in Propagation Environment</h4>
+                        <p>Place cuttings in rockwool cubes, peat plugs, or a cloning machine with aeroponic misters. Maintain 75-80F, 90%+ humidity under low-intensity light (T5 fluorescent or gentle LED).</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h4>Harden Off & Transplant</h4>
+                        <p>Once roots reach 1-2 inches (typically 7-14 days), gradually reduce humidity over 3-5 days. Transplant to final growing medium under normal light levels. Avoid transplant shock with gentle handling.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></svg>
+                    <h4>Cloning Machines</h4>
+                    <p>Aeroponic cloners suspend stem cuttings above a reservoir with misting nozzles. Roots develop in 5-10 days with near 100% success rates. Low-cost DIY builds use tote containers and pond pumps.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <h4>Sanitization Protocols</h4>
+                    <p>Sterilize all tools and surfaces with 70% isopropyl alcohol or 10% bleach solution between cuts. Clean cloner reservoirs weekly. Contamination is the leading cause of clone failure.</p>
+                </div>
+            </div>
+
+            <a href="#" class="learn-more-box" aria-label="Detailed guide coming soon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <span>Species-specific cloning protocols for kratom, kava, and other woody botanicals - coming soon.</span>
+            </a>
+        </section>
+
+        <!-- 9. Tissue Culture -->
+        <section class="topic-section" id="tissue-culture">
+            <div class="topic-header">
+                <div class="topic-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 3v3a2 2 0 01-2 2H3m18 0h-3a2 2 0 01-2-2V3m0 18v-3a2 2 0 012-2h3M3 16h3a2 2 0 012 2v3"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 9v-1M12 16v-1M9 12H8M16 12h-1"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="topic-number">Topic 09</div>
+                    <h2 class="topic-title">Tissue Culture</h2>
+                </div>
+            </div>
+            <p class="topic-intro">
+                Tissue culture (micropropagation) is the most advanced propagation technique, growing
+                plants from tiny explants on sterile nutrient media inside controlled laboratory conditions.
+                A single mother plant can produce thousands of identical, disease-free clones. This is
+                how commercial nurseries scale rare or difficult-to-propagate botanicals.
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v5a3 3 0 01-3 3 3 3 0 01-3-3V3z"/><path d="M12 11v4"/><path d="M8 15h8v3a4 4 0 01-4 4 4 4 0 01-4-4v-3z"/></svg>
+                    <h4>Laminar Flow Hood</h4>
+                    <p>HEPA-filtered workstation providing sterile airflow. Essential for contamination-free transfers. DIY builds start around $300; commercial units run $1,500-5,000. The single most important equipment investment.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2v4a2 2 0 002 2h4"/><rect x="4" y="8" width="16" height="14" rx="2"/><path d="M8 14h8M8 18h5"/></svg>
+                    <h4>Media Preparation</h4>
+                    <p>Murashige and Skoog (MS) media is the standard base. Supplemented with plant growth regulators (BAP, NAA, IBA) at precise concentrations. Autoclave at 121C for 15-20 minutes to sterilize.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    <h4>Stages of Micropropagation</h4>
+                    <p>Stage 0: Mother plant preparation. Stage 1: Initiation (explant establishment). Stage 2: Multiplication (shoot proliferation). Stage 3: Rooting. Stage 4: Acclimatization to ex vitro conditions.</p>
+                </div>
+                <div class="concept-card">
+                    <svg class="concept-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    <h4>Growth Room Setup</h4>
+                    <p>Temperature-controlled space at 25C (+/- 2C) with 16/8 photoperiod from cool-white fluorescent or LED. Shelving units with adjustable light heights. Air filtration to minimize contamination pathways.</p>
+                </div>
+            </div>
+
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Surface Sterilization</h4>
+                        <p>Wash explants in running water, then soak in 70% ethanol for 30 seconds followed by 10-20% commercial bleach (sodium hypochlorite) for 10-15 minutes. Rinse 3x with sterile distilled water.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Explant Transfer</h4>
+                        <p>Working inside the laminar flow hood, trim the explant to 0.5-1 cm and place on initiation media using flame-sterilized forceps and scalpel. Seal vessels with parafilm or autoclavable caps.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Subculture & Multiply</h4>
+                        <p>Every 4-6 weeks, transfer growing shoots to fresh multiplication media. Each subculture can double or triple shoot numbers. Maintain careful records of multiplication rates and media formulations.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h4>Root & Acclimatize</h4>
+                        <p>Transfer shoots to rooting media with auxin (IBA). After root development (2-4 weeks), carefully wash agar from roots and transplant to sterile potting mix under high humidity. Gradually reduce humidity over 2-4 weeks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="learn-more-box" aria-label="Detailed guide coming soon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                <span>Complete tissue culture starter kit list, media recipes for kratom and kava, and troubleshooting contamination - coming soon.</span>
+            </a>
+        </section>
+
+    </main>
+    <footer class="seed-footer">
+        <div class="seed-footer-inner">
+            <div class="seed-footer-top">
+                <div class="seed-footer-mission">
+                    <h3>Pioneering botanical science for human wellness since 2010.</h3>
+                    <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
+                </div>
+                <div class="seed-footer-signup">
+                    <p>Science with PETX &mdash; research updates for your inbox.</p>
+                    <div class="seed-footer-email-row">
+                        <input type="email" placeholder="Your email" class="seed-footer-email">
+                        <button class="seed-footer-email-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="seed-footer-links">
+                <div class="seed-footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="../products/extracts.html">Botanical Extracts</a></li>
+                        <li><a href="../products/tinctures.html">Tinctures</a></li>
+                        <li><a href="../products/gummies.html">Gummies</a></li>
+                        <li><a href="../products/live-plants.html">Live Plants</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="../blog.html">Education</a></li>
+                        <li><a href="../classes.html">Classes</a></li>
+                        <li><a href="../classroom.html">Classroom</a></li>
+                        <li><a href="../research.html">Research Library</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Science</h4>
+                    <ul>
+                        <li><a href="../articles/extraction-methods.html">Extraction 101</a></li>
+                        <li><a href="../articles/kratom-alkaloids.html">Kratom Science</a></li>
+                        <li><a href="../articles/kavalactones-explained.html">Kava Science</a></li>
+                        <li><a href="../articles/blue-lotus-compounds.html">Blue Lotus</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../consulting.html">Consulting</a></li>
+                        <li><a href="../courses/login.html">Course Login</a></li>
+                        <li><a href="../roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../seo.html">Transparency</a></li>
+                        <li><a href="../welcome.html">Welcome</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../contact.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="seed-footer-disclaimer">
+                *These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use. Must be 21+ to purchase. Not for sale where prohibited by law. Nored Farms products are manufactured in a GMP-compliant facility and tested by independent third-party laboratories.
+            </div>
+            <div class="seed-footer-bottom">
+                <span>&copy; 2026 Nored Farms. All rights reserved.</span>
+                <span>Crafted in Texas Hill Country</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Tab navigation with scroll-to-section and active state tracking
+        (function() {
+            const tabs = document.querySelectorAll('.infra-tab');
+            const sections = document.querySelectorAll('.topic-section');
+            const tabsWrapper = document.querySelector('.infra-tabs-wrapper');
+
+            // Click handler for tabs
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    var targetId = this.getAttribute('data-target');
+                    var targetSection = document.getElementById(targetId);
+                    if (!targetSection) return;
+
+                    var navHeight = document.querySelector('.nav').offsetHeight || 72;
+                    var tabsHeight = tabsWrapper.offsetHeight || 48;
+                    var offset = navHeight + tabsHeight + 16;
+
+                    window.scrollTo({
+                        top: targetSection.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Scroll spy: highlight active tab based on scroll position
+            function updateActiveTab() {
+                var navHeight = document.querySelector('.nav').offsetHeight || 72;
+                var tabsHeight = tabsWrapper.offsetHeight || 48;
+                var scrollPos = window.scrollY + navHeight + tabsHeight + 40;
+
+                var currentSection = null;
+                sections.forEach(function(section) {
+                    if (section.offsetTop <= scrollPos) {
+                        currentSection = section;
+                    }
+                });
+
+                if (currentSection) {
+                    var currentId = currentSection.getAttribute('id');
+                    tabs.forEach(function(tab) {
+                        if (tab.getAttribute('data-target') === currentId) {
+                            tab.classList.add('active');
+                        } else {
+                            tab.classList.remove('active');
+                        }
+                    });
+
+                    // Scroll active tab into view within the tab bar
+                    var activeTab = document.querySelector('.infra-tab.active');
+                    if (activeTab) {
+                        var tabsContainer = document.getElementById('infraTabs');
+                        var tabLeft = activeTab.offsetLeft;
+                        var tabWidth = activeTab.offsetWidth;
+                        var containerWidth = tabsContainer.offsetWidth;
+                        var scrollLeft = tabsContainer.scrollLeft;
+
+                        if (tabLeft < scrollLeft || tabLeft + tabWidth > scrollLeft + containerWidth) {
+                            tabsContainer.scrollTo({
+                                left: tabLeft - containerWidth / 2 + tabWidth / 2,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                }
+            }
+
+            var ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateActiveTab();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            updateActiveTab();
+        })();
+    </script>
+    <script src="../age-verification.js"></script>
+    <script src="../chat-widget.js"></script>
+    <script src="../shipping-estimator.js"></script>
+    <script src="../site-enhancements.js"></script>
+    <script src="../site-search.js"></script>
+    <script src="../visual-enhancements.js"></script>
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="earth">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#4a4543">
+    <title>Ancient Ruins Garden Lab | Nored Farms</title>
+    <meta name="description" content="Explore the Ancient Ruins Garden Lab - an immersive educational experience where ancient botanical wisdom meets modern extraction science.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ancient-lab-styles.css">
+    <link rel="stylesheet" href="age-verification.css">
+    <link rel="stylesheet" href="chat-widget.css">
+    <link rel="stylesheet" href="shipping-estimator.css">
+    <link rel="stylesheet" href="site-enhancements.css">
+    <link rel="stylesheet" href="site-search.css">
+    <link rel="stylesheet" href="visual-enhancements.css">
+</head>
+<body class="ancient-lab-body">
+    <!-- Ambient Background Layer -->
+    <div class="ambient-layer" id="ambientLayer">
+        <div class="mist-layer"></div>
+        <div class="pollen-particles" id="pollenParticles"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="lab-header">
+        <nav class="lab-nav">
+            <a href="classroom.html" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span>Back to Classroom</span>
+            </a>
+            <div class="lab-title">
+                <svg class="lab-logo" viewBox="0 0 40 40" fill="none">
+                    <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                    <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                    <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+                </svg>
+                <span>Ancient Ruins Garden Lab</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Zone Navigation -->
+    <nav class="zone-nav" id="zoneNav">
+        <button class="zone-btn active" data-zone="garden">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                <path d="M12 6v6l4 2"/>
+            </svg>
+            <span>Garden</span>
+        </button>
+        <div class="zone-connector"></div>
+        <button class="zone-btn" data-zone="ruins">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4"/>
+                <path d="M9 10h.01M15 10h.01"/>
+            </svg>
+            <span>Ruins</span>
+        </button>
+        <div class="zone-connector"></div>
+        <button class="zone-btn" data-zone="lab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
+            <span>Lab</span>
+        </button>
+        <div class="zone-connector"></div>
+        <button class="zone-btn" data-zone="library">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+            <span>Library</span>
+        </button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="lab-main">
+        <!-- ================================
+             ZONE 1: GARDEN PERIMETER
+             ================================ -->
+        <section class="zone zone-garden active" id="zone-garden">
+            <div class="zone-header">
+                <h1 class="zone-title">The Botanical Garden</h1>
+                <p class="zone-description">
+                    Wander through ancient herb beds and discover the medicinal plants that have been
+                    cultivated for centuries. Click on any plant to learn about its properties and traditional uses.
+                </p>
+            </div>
+
+            <div class="garden-layout">
+                <!-- Garden Beds -->
+                <div class="garden-beds">
+                    <!-- Kratom -->
+                    <div class="plant-card" data-plant="kratom">
+                        <div class="plant-visual">
+                            <svg viewBox="0 0 100 120" class="plant-illustration kratom-plant">
+                                <ellipse cx="50" cy="110" rx="30" ry="8" fill="currentColor" opacity="0.2"/>
+                                <path d="M50 110 V50" stroke="currentColor" stroke-width="3" fill="none"/>
+                                <path d="M50 50 Q30 40 25 55 Q35 50 50 50" fill="currentColor" opacity="0.7"/>
+                                <path d="M50 50 Q70 40 75 55 Q65 50 50 50" fill="currentColor" opacity="0.7"/>
+                                <path d="M50 65 Q25 55 20 70 Q35 60 50 65" fill="currentColor" opacity="0.6"/>
+                                <path d="M50 65 Q75 55 80 70 Q65 60 50 65" fill="currentColor" opacity="0.6"/>
+                                <path d="M50 80 Q30 72 28 85 Q40 75 50 80" fill="currentColor" opacity="0.5"/>
+                                <path d="M50 80 Q70 72 72 85 Q60 75 50 80" fill="currentColor" opacity="0.5"/>
+                            </svg>
+                        </div>
+                        <div class="plant-info">
+                            <span class="plant-category">Adaptogen</span>
+                            <h3 class="plant-name">Kratom</h3>
+                            <p class="plant-latin">Mitragyna speciosa</p>
+                        </div>
+                        <button class="plant-learn-more" aria-label="Learn more about Kratom">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Kava -->
+                    <div class="plant-card" data-plant="kava">
+                        <div class="plant-visual">
+                            <svg viewBox="0 0 100 120" class="plant-illustration kava-plant">
+                                <ellipse cx="50" cy="110" rx="30" ry="8" fill="currentColor" opacity="0.2"/>
+                                <path d="M50 110 V55" stroke="currentColor" stroke-width="4" fill="none"/>
+                                <ellipse cx="50" cy="45" rx="25" ry="15" fill="currentColor" opacity="0.4"/>
+                                <path d="M50 30 Q60 20 55 10 M50 30 Q40 20 45 10" stroke="currentColor" stroke-width="2" fill="none" opacity="0.6"/>
+                                <circle cx="50" cy="45" r="8" fill="currentColor" opacity="0.6"/>
+                            </svg>
+                        </div>
+                        <div class="plant-info">
+                            <span class="plant-category">Relaxant</span>
+                            <h3 class="plant-name">Kava</h3>
+                            <p class="plant-latin">Piper methysticum</p>
+                        </div>
+                        <button class="plant-learn-more" aria-label="Learn more about Kava">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Blue Lotus -->
+                    <div class="plant-card" data-plant="blue-lotus">
+                        <div class="plant-visual">
+                            <svg viewBox="0 0 100 120" class="plant-illustration lotus-plant">
+                                <ellipse cx="50" cy="105" rx="35" ry="12" fill="#5a8fa8" opacity="0.3"/>
+                                <path d="M50 105 V70" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M50 70 Q55 50 50 35 Q45 50 50 70" fill="#4a7fa8" opacity="0.8"/>
+                                <path d="M50 60 Q35 45 30 55 Q40 50 50 60" fill="#5a8fb8" opacity="0.7"/>
+                                <path d="M50 60 Q65 45 70 55 Q60 50 50 60" fill="#5a8fb8" opacity="0.7"/>
+                                <path d="M50 55 Q25 40 20 50 Q35 42 50 55" fill="#6a9fc8" opacity="0.6"/>
+                                <path d="M50 55 Q75 40 80 50 Q65 42 50 55" fill="#6a9fc8" opacity="0.6"/>
+                                <circle cx="50" cy="40" r="5" fill="#d4a857" opacity="0.9"/>
+                            </svg>
+                        </div>
+                        <div class="plant-info">
+                            <span class="plant-category">Nootropic</span>
+                            <h3 class="plant-name">Blue Lotus</h3>
+                            <p class="plant-latin">Nymphaea caerulea</p>
+                        </div>
+                        <button class="plant-learn-more" aria-label="Learn more about Blue Lotus">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Ashwagandha -->
+                    <div class="plant-card" data-plant="ashwagandha">
+                        <div class="plant-visual">
+                            <svg viewBox="0 0 100 120" class="plant-illustration ashwa-plant">
+                                <ellipse cx="50" cy="110" rx="30" ry="8" fill="currentColor" opacity="0.2"/>
+                                <path d="M50 110 V45" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M50 45 Q40 35 35 45 Q42 38 50 45" fill="currentColor" opacity="0.6"/>
+                                <path d="M50 45 Q60 35 65 45 Q58 38 50 45" fill="currentColor" opacity="0.6"/>
+                                <circle cx="35" cy="50" r="4" fill="#e6a847" opacity="0.8"/>
+                                <circle cx="65" cy="50" r="4" fill="#e6a847" opacity="0.8"/>
+                                <path d="M50 60 Q35 52 30 62 Q40 54 50 60" fill="currentColor" opacity="0.5"/>
+                                <path d="M50 60 Q65 52 70 62 Q60 54 50 60" fill="currentColor" opacity="0.5"/>
+                                <circle cx="50" cy="55" r="5" fill="#c45c4b" opacity="0.7"/>
+                            </svg>
+                        </div>
+                        <div class="plant-info">
+                            <span class="plant-category">Adaptogen</span>
+                            <h3 class="plant-name">Ashwagandha</h3>
+                            <p class="plant-latin">Withania somnifera</p>
+                        </div>
+                        <button class="plant-learn-more" aria-label="Learn more about Ashwagandha">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Lion's Mane -->
+                    <div class="plant-card" data-plant="lions-mane">
+                        <div class="plant-visual">
+                            <svg viewBox="0 0 100 120" class="plant-illustration mushroom-plant">
+                                <path d="M45 110 Q40 90 45 75 L55 75 Q60 90 55 110 Z" fill="currentColor" opacity="0.5"/>
+                                <ellipse cx="50" cy="55" rx="30" ry="25" fill="currentColor" opacity="0.3"/>
+                                <path d="M25 55 Q30 40 35 55 M35 50 Q40 35 45 50 M45 48 Q50 33 55 48 M55 50 Q60 35 65 50 M65 55 Q70 40 75 55" stroke="currentColor" stroke-width="2" fill="none" opacity="0.6"/>
+                                <path d="M30 60 Q35 70 40 60 M40 62 Q45 72 50 62 M50 62 Q55 72 60 62 M60 60 Q65 70 70 60" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                            </svg>
+                        </div>
+                        <div class="plant-info">
+                            <span class="plant-category">Nootropic Mushroom</span>
+                            <h3 class="plant-name">Lion's Mane</h3>
+                            <p class="plant-latin">Hericium erinaceus</p>
+                        </div>
+                        <button class="plant-learn-more" aria-label="Learn more about Lion's Mane">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Passionflower -->
+                    <div class="plant-card" data-plant="passionflower">
+                        <div class="plant-visual">
+                            <svg viewBox="0 0 100 120" class="plant-illustration passion-plant">
+                                <ellipse cx="50" cy="110" rx="30" ry="8" fill="currentColor" opacity="0.2"/>
+                                <path d="M50 110 V65 Q30 55 50 45 Q70 55 50 65" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <circle cx="50" cy="45" r="20" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.6"/>
+                                <path d="M50 25 L50 35 M50 55 L50 65 M30 45 L40 45 M60 45 L70 45" stroke="#8b5cf6" stroke-width="1.5" opacity="0.7"/>
+                                <path d="M35 30 L42 38 M65 30 L58 38 M35 60 L42 52 M65 60 L58 52" stroke="#8b5cf6" stroke-width="1.5" opacity="0.6"/>
+                                <circle cx="50" cy="45" r="8" fill="#8b5cf6" opacity="0.5"/>
+                                <circle cx="50" cy="45" r="4" fill="#d4a857" opacity="0.9"/>
+                            </svg>
+                        </div>
+                        <div class="plant-info">
+                            <span class="plant-category">Relaxant</span>
+                            <h3 class="plant-name">Passionflower</h3>
+                            <p class="plant-latin">Passiflora incarnata</p>
+                        </div>
+                        <button class="plant-learn-more" aria-label="Learn more about Passionflower">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Zone Navigation Hint -->
+                <div class="zone-hint">
+                    <p>Click on any plant to learn more, or navigate to the Ruins entrance to continue your journey.</p>
+                    <button class="zone-continue-btn" data-target="ruins">
+                        <span>Enter the Ruins</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================
+             ZONE 2: RUINS ENTRANCE
+             ================================ -->
+        <section class="zone zone-ruins" id="zone-ruins">
+            <div class="ruins-atmosphere">
+                <div class="ruins-columns">
+                    <div class="column column-left">
+                        <div class="vine vine-1"></div>
+                        <div class="vine vine-2"></div>
+                    </div>
+                    <div class="column column-right">
+                        <div class="vine vine-3"></div>
+                    </div>
+                </div>
+                <div class="ruins-arch">
+                    <svg viewBox="0 0 400 300" class="arch-svg">
+                        <defs>
+                            <linearGradient id="stoneGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#8b8178"/>
+                                <stop offset="100%" style="stop-color:#4a4543"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Left pillar -->
+                        <rect x="20" y="100" width="60" height="200" fill="url(#stoneGradient)" opacity="0.8"/>
+                        <rect x="15" y="90" width="70" height="20" fill="url(#stoneGradient)"/>
+                        <!-- Right pillar -->
+                        <rect x="320" y="100" width="60" height="200" fill="url(#stoneGradient)" opacity="0.8"/>
+                        <rect x="315" y="90" width="70" height="20" fill="url(#stoneGradient)"/>
+                        <!-- Arch -->
+                        <path d="M80 100 Q200 20 320 100" stroke="url(#stoneGradient)" stroke-width="25" fill="none"/>
+                        <!-- Decorative cracks -->
+                        <path d="M40 150 L50 180 L35 200" stroke="#3d3835" stroke-width="1" fill="none" opacity="0.5"/>
+                        <path d="M350 160 L340 190" stroke="#3d3835" stroke-width="1" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="ruins-content">
+                <div class="zone-header ruins-header">
+                    <h1 class="zone-title ruins-title">Where Ancient Wisdom<br>Meets Modern Science</h1>
+                    <p class="zone-description ruins-description">
+                        For millennia, healers and herbalists have studied the plants around them,
+                        discovering their properties through careful observation and experimentation.
+                        Today, we continue this tradition with advanced extraction techniques
+                        that preserve the full spectrum of botanical compounds.
+                    </p>
+                </div>
+
+                <div class="ruins-wisdom">
+                    <div class="wisdom-card">
+                        <div class="wisdom-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3>Ancient Knowledge</h3>
+                        <p>Traditional medicine systems like Ayurveda, Traditional Chinese Medicine, and indigenous practices have used these plants for thousands of years.</p>
+                    </div>
+
+                    <div class="wisdom-card">
+                        <div class="wisdom-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                            </svg>
+                        </div>
+                        <h3>Modern Extraction</h3>
+                        <p>Our CO2 extraction and distillation processes isolate specific compounds while maintaining the plant's natural synergy - the entourage effect.</p>
+                    </div>
+
+                    <div class="wisdom-card">
+                        <div class="wisdom-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <h3>Quality Assurance</h3>
+                        <p>Every batch is tested for potency, purity, and contaminants. We provide Certificates of Analysis so you know exactly what you're getting.</p>
+                    </div>
+                </div>
+
+                <div class="zone-hint">
+                    <button class="zone-continue-btn" data-target="lab">
+                        <span>Continue to 2D Laboratory</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================
+             ZONE 3: LAB INTERIOR
+             ================================ -->
+        <section class="zone zone-lab" id="zone-lab">
+            <div class="zone-header">
+                <h1 class="zone-title">The Extraction Laboratory</h1>
+                <p class="zone-description">
+                    Inside the ancient walls, modern equipment hums with purpose. Click on any piece
+                    of equipment to learn how it works and its role in creating pure botanical extracts.
+                </p>
+            </div>
+
+            <div class="lab-layout">
+                <div class="equipment-grid">
+                    <!-- CO2 Extractor -->
+                    <div class="equipment-card" data-equipment="co2-extractor">
+                        <div class="equipment-visual">
+                            <svg viewBox="0 0 120 150" class="equipment-illustration">
+                                <!-- Main vessel -->
+                                <rect x="30" y="30" width="60" height="90" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <!-- Pressure gauge -->
+                                <circle cx="60" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <path d="M60 15 L60 20 L65 22" stroke="currentColor" stroke-width="1.5"/>
+                                <!-- Internal chamber -->
+                                <rect x="40" y="45" width="40" height="50" rx="3" fill="currentColor" opacity="0.2"/>
+                                <!-- Piping -->
+                                <path d="M30 60 L15 60 L15 130 L50 130" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M90 60 L105 60 L105 130 L70 130" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <!-- Output vessel -->
+                                <rect x="45" y="125" width="30" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <path d="M50 135 Q60 140 70 135" stroke="#d4a857" stroke-width="2" opacity="0.8"/>
+                            </svg>
+                        </div>
+                        <div class="equipment-info">
+                            <span class="equipment-tag">Primary Extraction</span>
+                            <h3>CO2 Extractor</h3>
+                            <p>Supercritical CO2 extraction for full-spectrum botanical compounds</p>
+                        </div>
+                        <button class="equipment-learn-btn" aria-label="Learn about CO2 extraction">
+                            <span>Learn Process</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Distillation -->
+                    <div class="equipment-card" data-equipment="distillation">
+                        <div class="equipment-visual">
+                            <svg viewBox="0 0 120 150" class="equipment-illustration">
+                                <!-- Boiling flask -->
+                                <path d="M35 90 Q35 130 60 130 Q85 130 85 90 L85 70 L70 70 L70 30 L50 30 L50 70 L35 70 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <!-- Condenser -->
+                                <path d="M85 50 L110 30" stroke="currentColor" stroke-width="2"/>
+                                <rect x="95" y="25" width="20" height="40" rx="3" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(-30 105 45)"/>
+                                <!-- Collection flask -->
+                                <path d="M115 70 L115 85 Q115 95 105 95 L95 95 Q85 95 85 85 L85 70" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <!-- Liquid inside -->
+                                <path d="M40 100 Q60 95 80 100 L80 120 Q60 125 40 120 Z" fill="#d4a857" opacity="0.3"/>
+                                <!-- Bubbles -->
+                                <circle cx="50" cy="105" r="2" fill="currentColor" opacity="0.4"/>
+                                <circle cx="65" cy="110" r="3" fill="currentColor" opacity="0.3"/>
+                                <circle cx="55" cy="115" r="2" fill="currentColor" opacity="0.4"/>
+                            </svg>
+                        </div>
+                        <div class="equipment-info">
+                            <span class="equipment-tag">Purification</span>
+                            <h3>Distillation Apparatus</h3>
+                            <p>Separates compounds by boiling point for refined extracts</p>
+                        </div>
+                        <button class="equipment-learn-btn" aria-label="Learn about distillation">
+                            <span>Learn Process</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Chromatography -->
+                    <div class="equipment-card" data-equipment="chromatography">
+                        <div class="equipment-visual">
+                            <svg viewBox="0 0 120 150" class="equipment-illustration">
+                                <!-- Column -->
+                                <rect x="45" y="20" width="30" height="100" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <!-- Bands of separation -->
+                                <rect x="48" y="35" width="24" height="8" fill="#5c8a7a" opacity="0.6"/>
+                                <rect x="48" y="50" width="24" height="6" fill="#d4a857" opacity="0.7"/>
+                                <rect x="48" y="65" width="24" height="10" fill="#8b5cf6" opacity="0.5"/>
+                                <rect x="48" y="85" width="24" height="5" fill="#22c55e" opacity="0.6"/>
+                                <!-- Input funnel -->
+                                <path d="M50 20 L50 10 L70 10 L70 20" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <!-- Output valve -->
+                                <path d="M60 120 L60 135 M55 135 L65 135" stroke="currentColor" stroke-width="2"/>
+                                <!-- Collection tubes -->
+                                <rect x="25" y="125" width="15" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <rect x="52" y="125" width="15" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <rect x="80" y="125" width="15" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <div class="equipment-info">
+                            <span class="equipment-tag">Separation</span>
+                            <h3>Chromatography Column</h3>
+                            <p>Isolates individual alkaloids and compounds</p>
+                        </div>
+                        <button class="equipment-learn-btn" aria-label="Learn about chromatography">
+                            <span>Learn Process</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Testing Equipment -->
+                    <div class="equipment-card" data-equipment="testing">
+                        <div class="equipment-visual">
+                            <svg viewBox="0 0 120 150" class="equipment-illustration">
+                                <!-- Monitor -->
+                                <rect x="25" y="20" width="70" height="50" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <rect x="30" y="25" width="60" height="40" rx="2" fill="currentColor" opacity="0.1"/>
+                                <!-- Graph on screen -->
+                                <path d="M35 55 L45 45 L55 50 L65 35 L75 40 L85 30" stroke="#22c55e" stroke-width="2" fill="none"/>
+                                <!-- Monitor stand -->
+                                <path d="M55 70 L55 80 M45 80 L65 80" stroke="currentColor" stroke-width="2"/>
+                                <!-- Sample tray -->
+                                <rect x="30" y="90" width="60" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <!-- Sample vials -->
+                                <rect x="35" y="92" width="8" height="11" rx="1" fill="#d4a857" opacity="0.6"/>
+                                <rect x="47" y="92" width="8" height="11" rx="1" fill="#5c8a7a" opacity="0.6"/>
+                                <rect x="59" y="92" width="8" height="11" rx="1" fill="#8b5cf6" opacity="0.6"/>
+                                <rect x="71" y="92" width="8" height="11" rx="1" fill="#22c55e" opacity="0.6"/>
+                                <!-- Base unit -->
+                                <rect x="20" y="110" width="80" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="35" cy="125" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <rect x="50" y="118" width="40" height="4" rx="1" fill="currentColor" opacity="0.3"/>
+                                <rect x="50" y="126" width="30" height="4" rx="1" fill="currentColor" opacity="0.3"/>
+                            </svg>
+                        </div>
+                        <div class="equipment-info">
+                            <span class="equipment-tag">Quality Control</span>
+                            <h3>HPLC Analyzer</h3>
+                            <p>High-precision testing for potency and purity verification</p>
+                        </div>
+                        <button class="equipment-learn-btn" aria-label="Learn about HPLC testing">
+                            <span>Learn Process</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="zone-hint">
+                    <p>Explore each piece of equipment, or visit the Library to browse all educational content.</p>
+                    <button class="zone-continue-btn" data-target="library">
+                        <span>Enter the Library</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================
+             ZONE 4: LIBRARY
+             ================================ -->
+        <section class="zone zone-library" id="zone-library">
+            <div class="zone-header">
+                <h1 class="zone-title">The Library</h1>
+                <p class="zone-description">
+                    Browse our complete collection of educational content. Search by topic, filter by category,
+                    or explore at your own pace.
+                </p>
+            </div>
+
+            <div class="library-layout">
+                <!-- Search and Filter -->
+                <div class="library-controls">
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <input type="text" id="librarySearch" placeholder="Search topics, plants, processes...">
+                    </div>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        <button class="filter-tab" data-filter="plants">Plants</button>
+                        <button class="filter-tab" data-filter="processes">Processes</button>
+                        <button class="filter-tab" data-filter="equipment">Equipment</button>
+                        <button class="filter-tab" data-filter="research">Research</button>
+                    </div>
+                </div>
+
+                <!-- Content Grid -->
+                <div class="library-grid" id="libraryGrid">
+                    <!-- Plant entries -->
+                    <article class="library-card" data-category="plants" data-tags="kratom adaptogen alkaloid">
+                        <div class="library-card-icon plants">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0.2"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3>Kratom (Mitragyna speciosa)</h3>
+                        <p>Southeast Asian tree with over 40 alkaloids including mitragynine and 7-hydroxymitragynine.</p>
+                        <div class="library-card-tags">
+                            <span>Adaptogen</span>
+                            <span>Alkaloid</span>
+                        </div>
+                    </article>
+
+                    <article class="library-card" data-category="plants" data-tags="kava relaxant kavalactone">
+                        <div class="library-card-icon plants">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0.2"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3>Kava (Piper methysticum)</h3>
+                        <p>Pacific Island root known for kavalactones that promote relaxation without cognitive impairment.</p>
+                        <div class="library-card-tags">
+                            <span>Relaxant</span>
+                            <span>Kavalactone</span>
+                        </div>
+                    </article>
+
+                    <article class="library-card" data-category="plants" data-tags="blue lotus nootropic aporphine">
+                        <div class="library-card-icon plants">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0.2"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3>Blue Lotus (Nymphaea caerulea)</h3>
+                        <p>Ancient Egyptian sacred flower containing aporphine and nuciferine for lucid relaxation.</p>
+                        <div class="library-card-tags">
+                            <span>Nootropic</span>
+                            <span>Aporphine</span>
+                        </div>
+                    </article>
+
+                    <article class="library-card" data-category="plants" data-tags="ashwagandha adaptogen withanolide">
+                        <div class="library-card-icon plants">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0.2"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3>Ashwagandha (Withania somnifera)</h3>
+                        <p>Ayurvedic adaptogen with withanolides that help the body adapt to stress.</p>
+                        <div class="library-card-tags">
+                            <span>Adaptogen</span>
+                            <span>Withanolide</span>
+                        </div>
+                    </article>
+
+                    <!-- Process entries -->
+                    <article class="library-card" data-category="processes" data-tags="co2 extraction supercritical">
+                        <div class="library-card-icon processes">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                            </svg>
+                        </div>
+                        <h3>CO2 Extraction</h3>
+                        <p>Supercritical carbon dioxide extracts full-spectrum compounds without heat degradation.</p>
+                        <div class="library-card-tags">
+                            <span>Extraction</span>
+                            <span>Supercritical</span>
+                        </div>
+                    </article>
+
+                    <article class="library-card" data-category="processes" data-tags="distillation purification separation">
+                        <div class="library-card-icon processes">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                            </svg>
+                        </div>
+                        <h3>Steam Distillation</h3>
+                        <p>Separates volatile compounds using steam, ideal for essential oils and aromatic extracts.</p>
+                        <div class="library-card-tags">
+                            <span>Purification</span>
+                            <span>Separation</span>
+                        </div>
+                    </article>
+
+                    <!-- Equipment entries -->
+                    <article class="library-card" data-category="equipment" data-tags="hplc testing analysis">
+                        <div class="library-card-icon equipment">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="14" rx="2"/>
+                                <path d="M3 9h18M9 21H7M17 21h-2M12 17v4"/>
+                            </svg>
+                        </div>
+                        <h3>HPLC Analysis</h3>
+                        <p>High-Performance Liquid Chromatography for precise identification and quantification of compounds.</p>
+                        <div class="library-card-tags">
+                            <span>Testing</span>
+                            <span>Analysis</span>
+                        </div>
+                    </article>
+
+                    <article class="library-card" data-category="equipment" data-tags="chromatography separation isolation">
+                        <div class="library-card-icon equipment">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="14" rx="2"/>
+                                <path d="M3 9h18M9 21H7M17 21h-2M12 17v4"/>
+                            </svg>
+                        </div>
+                        <h3>Column Chromatography</h3>
+                        <p>Separates compounds based on polarity for isolating specific alkaloids and active ingredients.</p>
+                        <div class="library-card-tags">
+                            <span>Separation</span>
+                            <span>Isolation</span>
+                        </div>
+                    </article>
+
+                    <!-- Research entries -->
+                    <article class="library-card" data-category="research" data-tags="alkaloid chemistry pharmacology">
+                        <div class="library-card-icon research">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <h3>Alkaloid Pharmacology</h3>
+                        <p>Understanding how plant alkaloids interact with human receptor systems.</p>
+                        <div class="library-card-tags">
+                            <span>Chemistry</span>
+                            <span>Pharmacology</span>
+                        </div>
+                    </article>
+
+                    <article class="library-card" data-category="research" data-tags="entourage synergy compounds">
+                        <div class="library-card-icon research">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <h3>The Entourage Effect</h3>
+                        <p>How multiple plant compounds work synergistically for enhanced benefits.</p>
+                        <div class="library-card-tags">
+                            <span>Synergy</span>
+                            <span>Full-Spectrum</span>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- No results message -->
+                <div class="library-no-results" id="libraryNoResults" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    <p>No results found. Try a different search term or filter.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Info Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content" id="modalContent">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="modal-header" id="modalHeader">
+                <!-- Header loaded dynamically -->
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content loaded dynamically -->
+            </div>
+    </div>
+
+    <script src="ancient-lab-script.js"></script>
+    <script src="age-verification.js"></script>
+    <script src="chat-widget.js"></script>
+    <script src="shipping-estimator.js"></script>
+    <script src="site-enhancements.js"></script>
+    <script src="site-search.js"></script>
+    <script src="visual-enhancements.js"></script>
+</body>
+</html>

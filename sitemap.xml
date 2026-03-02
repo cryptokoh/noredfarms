@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://noredfarms.netlify.app/</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://noredfarms.netlify.app/images/og-image.jpg</image:loc>
+            <image:title>Nored Farms - Premium Botanical Extracts</image:title>
+            <image:caption>Premium kratom, kava, blue lotus and ethnobotanical extracts from Texas Hill Country</image:caption>
+        </image:image>
+    </url>
+
+    <!-- Education: The Classroom -->
+    <url>
+        <loc>https://noredfarms.netlify.app/classroom.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Education: Interactive Lab -->
+    <url>
+        <loc>https://noredfarms.netlify.app/lab-2d.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Education: Ancient Wisdom -->
+    <url>
+        <loc>https://noredfarms.netlify.app/ancient-lab.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Blog / Research Articles -->
+    <url>
+        <loc>https://noredfarms.netlify.app/blog.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Roadmap -->
+    <url>
+        <loc>https://noredfarms.netlify.app/roadmap.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Welcome Page -->
+    <url>
+        <loc>https://noredfarms.netlify.app/welcome.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- 3D Lab Experience -->
+    <url>
+        <loc>https://noredfarms.netlify.app/lab.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- SEO Strategy (Transparency) -->
+    <url>
+        <loc>https://noredfarms.netlify.app/seo.html</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+</urlset>

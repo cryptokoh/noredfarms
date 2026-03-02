@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Project Roadmap | Nored Farms</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0a0f0d;
+            --color-bg-elevated: #111916;
+            --color-surface: #1a2420;
+            --color-border: #2d3f36;
+            --color-text: #f0fdf4;
+            --color-text-secondary: #a7c4b5;
+            --color-text-muted: #6b8f7a;
+            --color-primary: #22c55e;
+            --color-primary-subtle: rgba(34, 197, 94, 0.15);
+            --color-secondary: #38bdf8;
+            --color-warning: #fbbf24;
+            --color-error: #f87171;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--color-bg-elevated);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-brand svg {
+            width: 32px;
+            height: 32px;
+            color: var(--color-primary);
+        }
+
+        .header-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .header-badge {
+            background: var(--color-primary-subtle);
+            color: var(--color-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .header-link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .header-link:hover {
+            background: var(--color-surface);
+            color: var(--color-text);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-primary-subtle);
+            color: var(--color-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--color-bg-elevated);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .stat-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            color: var(--color-primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            padding: 3rem 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--color-border);
+        }
+
+        .timeline-phase {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-phase::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--color-surface);
+            border: 3px solid var(--color-border);
+        }
+
+        .timeline-phase.active::before {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+        }
+
+        .timeline-phase.completed::before {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .phase-number {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            color: var(--color-text-muted);
+        }
+
+        .phase-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .phase-dates {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-left: auto;
+        }
+
+        .phase-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-planning {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--color-warning);
+        }
+
+        .status-active {
+            background: var(--color-primary-subtle);
+            color: var(--color-primary);
+        }
+
+        .status-completed {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--color-primary);
+        }
+
+        .status-upcoming {
+            background: rgba(148, 163, 184, 0.15);
+            color: var(--color-text-muted);
+        }
+
+        .phase-content {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .phase-description {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .task-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--color-bg-elevated);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .task-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--color-border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .task-checkbox.checked {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .task-checkbox svg {
+            width: 12px;
+            height: 12px;
+            color: var(--color-bg);
+        }
+
+        .task-item.completed {
+            color: var(--color-text-muted);
+        }
+
+        /* Tech Stack */
+        .tech-section {
+            padding: 3rem 2rem;
+            background: var(--color-bg-elevated);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .tech-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        .tech-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary-subtle);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .tech-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-desc {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Architecture Diagram */
+        .architecture-section {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .architecture-diagram {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+
+        .architecture-diagram pre {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .architecture-diagram .highlight {
+            color: var(--color-primary);
+        }
+
+        .architecture-diagram .secondary {
+            color: var(--color-secondary);
+        }
+
+        /* Metrics */
+        .metrics-section {
+            padding: 3rem 2rem;
+            background: var(--color-bg-elevated);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .metrics-table {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .metrics-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .metrics-table th,
+        .metrics-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .metrics-table th {
+            background: var(--color-bg-elevated);
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metrics-table td {
+            font-family: var(--font-mono);
+        }
+
+        .metrics-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .metric-positive {
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .task-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            .phase-header {
+                flex-wrap: wrap;
+            }
+            .phase-dates {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-brand">
+            <svg viewBox="0 0 40 40" fill="none">
+                <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="currentColor" opacity="0.2"/>
+                <path d="M20 8C20 8 12 14 12 22C12 26.418 15.582 30 20 30C24.418 30 28 26.418 28 22C28 14 20 8 20 8Z" fill="currentColor" opacity="0.4"/>
+                <path d="M20 12C20 12 16 16 16 22C16 24.209 17.791 26 20 26C22.209 26 24 24.209 24 22C24 16 20 12 20 12Z" fill="currentColor"/>
+            </svg>
+            <span class="header-title">Nored Farms</span>
+            <span class="header-badge">v2.0 PRD</span>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html" class="header-link">Home</a>
+            <a href="PRD.md" class="header-link">Full PRD</a>
+            <a href="#timeline" class="header-link">Timeline</a>
+            <a href="#tech" class="header-link">Tech Stack</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            Project Roadmap
+        </div>
+        <h1>Building Nored Farms</h1>
+        <p>A comprehensive digital platform for premium botanical extracts (kratom, kava, blue lotus) featuring e-commerce, content management, and automated marketing.</p>
+    </section>
+
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">8</div>
+            <div class="stat-label">Development Phases</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">16</div>
+            <div class="stat-label">Weeks Full Platform</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">45+</div>
+            <div class="stat-label">Core Features</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">12</div>
+            <div class="stat-label">Automation Workflows</div>
+        </div>
+    </section>
+
+    <section class="timeline-section" id="timeline">
+        <div class="section-header">
+            <h2 class="section-title">Development Timeline</h2>
+        </div>
+
+        <div class="timeline">
+            <!-- Phase 1 -->
+            <div class="timeline-phase completed">
+                <div class="phase-header">
+                    <span class="phase-number">PHASE 1</span>
+                    <span class="phase-title">Foundation</span>
+                    <span class="phase-dates">Weeks 1-2</span>
+                    <span class="phase-status status-completed">Frontend Complete</span>
+                </div>
+                <div class="phase-content">
+                    <p class="phase-description">Core infrastructure, authentication, and basic site structure. Frontend MVP complete - backend integration pending.</p>
+                    <div class="task-list">
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Static site with 3 themes</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Mobile responsive design</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Product catalog (42 products)</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Category filtering system</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Supabase project setup</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>User authentication</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Age verification gate</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Basic admin panel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="timeline-phase active">
+                <div class="phase-header">
+                    <span class="phase-number">PHASE 2</span>
+                    <span class="phase-title">E-Commerce</span>
+                    <span class="phase-dates">Weeks 3-4</span>
+                    <span class="phase-status status-active">Frontend Complete</span>
+                </div>
+                <div class="phase-content">
+                    <p class="phase-description">Full shopping experience with cart, checkout, and payment processing via Stripe (standard rates).</p>
+                    <div class="task-list">
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Shopping cart system</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Checkout flow (frontend)</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Cart persistence (localStorage)</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Stripe payment integration</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Order management</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Email notifications</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="timeline-phase active">
+                <div class="phase-header">
+                    <span class="phase-number">PHASE 3</span>
+                    <span class="phase-title">Content System</span>
+                    <span class="phase-dates">Weeks 5-6</span>
+                    <span class="phase-status status-active">Frontend Complete</span>
+                </div>
+                <div class="phase-content">
+                    <p class="phase-description">Education center with blog listing, category filtering, search, and newsletter signup.</p>
+                    <div class="task-list">
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Blog listing page</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Category filtering</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Search functionality</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Newsletter signup</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Blog CMS admin</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Rich text editor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="timeline-phase active">
+                <div class="phase-header">
+                    <span class="phase-number">PHASE 4</span>
+                    <span class="phase-title">Automation</span>
+                    <span class="phase-dates">Weeks 7-8</span>
+                    <span class="phase-status status-active">SEO Foundation Complete</span>
+                </div>
+                <div class="phase-content">
+                    <p class="phase-description">Technical SEO foundation complete. n8n workflows for monitoring and automation pending.</p>
+                    <div class="task-list">
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Schema.org structured data</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>XML Sitemap</span>
+                        </div>
+                        <div class="task-item completed">
+                            <span class="task-checkbox checked">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Open Graph / Twitter Cards</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>VPS setup with n8n</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Social media automation</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Analytics dashboard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 5 -->
+            <div class="timeline-phase">
+                <div class="phase-header">
+                    <span class="phase-number">PHASE 5</span>
+                    <span class="phase-title">Optimization</span>
+                    <span class="phase-dates">Ongoing</span>
+                    <span class="phase-status status-upcoming">Future</span>
+                </div>
+                <div class="phase-content">
+                    <p class="phase-description">Continuous improvement through A/B testing, conversion optimization, and performance refinement.</p>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>A/B testing framework</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Conversion optimization</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Content performance analysis</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>SEO refinement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 6 -->
+            <div class="timeline-phase">
+                <div class="phase-header">
+                    <span class="phase-number">PHASE 6</span>
+                    <span class="phase-title">Growing Zones & Garden</span>
+                    <span class="phase-dates">Weeks 9-12</span>
+                    <span class="phase-status status-upcoming">Planned</span>
+                </div>
+                <div class="phase-content">
+                    <p class="phase-description">Interactive US growing zone map with native/non-native plant recommendations. Greenhouse and garden design library organized by climate zone and scale.</p>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Interactive US USDA hardiness zone map</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Zone-based plant database (native vs non-native)</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Plant care requirements & growing tips</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Greenhouse design templates by zone</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Garden layout templates (small/medium/large)</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Materials lists & cost estimates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 7 -->
+            <div class="timeline-phase">
+                <div class="phase-header">
+                    <span class="phase-number">PHASE 7</span>
+                    <span class="phase-title">Education Platform</span>
+                    <span class="phase-dates">Weeks 13-16</span>
+                    <span class="phase-status status-upcoming">Planned</span>
+                </div>
+                <div class="phase-content">
+                    <p class="phase-description">Tiered education system with FREE basic growing guides and PAID advanced courses for commercial/professional applications. Revenue stream from expertise.</p>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Course platform infrastructure (accounts, progress tracking)</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>FREE: Basic home-scale growing guides</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>FREE: Beginner irrigation & nutrient basics</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>PAID: Advanced Greenhouse Design Course</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>PAID: Irrigation System Design Course</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>PAID: Commercial Nutrient Delivery Analysis</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Video hosting & course content delivery</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Payment integration for course purchases</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 8 (Future) -->
+            <div class="timeline-phase">
+                <div class="phase-header">
+                    <span class="phase-number">PHASE 8</span>
+                    <span class="phase-title">Services Expansion</span>
+                    <span class="phase-dates">Future</span>
+                    <span class="phase-status status-upcoming">Consideration</span>
+                </div>
+                <div class="phase-content">
+                    <p class="phase-description">Professional garden/greenhouse installation services. May be separate website or integrated service offering depending on business growth.</p>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Service area definition & pricing</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Quote request system</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Project portfolio / gallery</span>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-checkbox"></span>
+                            <span>Scheduling & booking system</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-section" id="tech">
+        <div class="container">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="tech-name">Supabase</div>
+                    <div class="tech-desc">PostgreSQL database, authentication, storage, and edge functions in one platform.</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <div class="tech-name">n8n</div>
+                    <div class="tech-desc">Self-hosted workflow automation for SEO, social media, and operational tasks.</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                        </svg>
+                    </div>
+                    <div class="tech-name">Claude Code</div>
+                    <div class="tech-desc">AI agent for SEO tasks, content generation, and automated optimization.</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                            <path d="M1 10h22"/>
+                        </svg>
+                    </div>
+                    <div class="tech-name">Stripe Payments</div>
+                    <div class="tech-desc">Standard payment processing for botanical extracts (2.9% + 30¢).</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="architecture-section">
+        <div class="container">
+            <h2 class="section-title">System Architecture</h2>
+            <div class="architecture-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────┐
+│                          <span class="highlight">FRONTEND</span>                                      │
+│   Static Site (HTML/CSS/JS) + Dynamic Islands                          │
+│   Hosted: GitHub Pages / Netlify / Vercel                              │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                          <span class="highlight">SUPABASE</span>                                      │
+│   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  │
+│   │  PostgreSQL │  │    Auth     │  │   Storage   │  │    Edge     │  │
+│   │   Database  │  │   (Users)   │  │   (Media)   │  │  Functions  │  │
+│   └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘  │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                       <span class="secondary">AUTOMATION (VPS)</span>                                │
+│   ┌─────────────────────────────────────────────────────────────────┐  │
+│   │                         n8n Workflows                           │  │
+│   │   • SEO Monitoring    • Social Posting    • Email Automation   │  │
+│   │   • Content Calendar  • Inventory Alerts  • Analytics Reports  │  │
+│   └─────────────────────────────────────────────────────────────────┘  │
+│   ┌─────────────────────────────────────────────────────────────────┐  │
+│   │                      Claude Code Agent                          │  │
+│   │   • Content Briefs    • Meta Optimization  • SEO Suggestions   │  │
+│   └─────────────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        <span class="highlight">INTEGRATIONS</span>                                   │
+│   Payment: Stripe (standard rates)  Email: Resend                      │
+│   Analytics: Plausible              Search: Algolia                    │
+│   CDN: Cloudflare                   Social: Twitter/Instagram API     │
+└─────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="metrics-section">
+        <div class="container">
+            <h2 class="section-title">Success Metrics (12-Month Targets)</h2>
+            <div class="metrics-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Month 1</th>
+                            <th>Month 3</th>
+                            <th>Month 6</th>
+                            <th>Month 12</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Organic Sessions</td>
+                            <td>100</td>
+                            <td>500</td>
+                            <td class="metric-positive">2,000</td>
+                            <td class="metric-positive">10,000</td>
+                        </tr>
+                        <tr>
+                            <td>Keywords in Top 10</td>
+                            <td>0</td>
+                            <td>5</td>
+                            <td>20</td>
+                            <td class="metric-positive">50</td>
+                        </tr>
+                        <tr>
+                            <td>Monthly Orders</td>
+                            <td>10</td>
+                            <td>50</td>
+                            <td>200</td>
+                            <td class="metric-positive">1,000</td>
+                        </tr>
+                        <tr>
+                            <td>Product Revenue</td>
+                            <td>$500</td>
+                            <td>$3,000</td>
+                            <td>$15,000</td>
+                            <td class="metric-positive">$75,000</td>
+                        </tr>
+                        <tr>
+                            <td>Course Enrollments</td>
+                            <td>-</td>
+                            <td>10</td>
+                            <td>50</td>
+                            <td class="metric-positive">200</td>
+                        </tr>
+                        <tr>
+                            <td>Course Revenue</td>
+                            <td>-</td>
+                            <td>$500</td>
+                            <td>$5,000</td>
+                            <td class="metric-positive">$20,000</td>
+                        </tr>
+                        <tr>
+                            <td>Email Subscribers</td>
+                            <td>100</td>
+                            <td>500</td>
+                            <td>2,000</td>
+                            <td class="metric-positive">10,000</td>
+                        </tr>
+                        <tr>
+                            <td>Blog Posts</td>
+                            <td>15</td>
+                            <td>30</td>
+                            <td>60</td>
+                            <td class="metric-positive">120</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Nored Farms &copy; 2025 | <a href="PRD.md">View Full PRD Document</a> | <a href="index.html">Back to Site</a></p>
+    </footer>
+</body>
+</html>

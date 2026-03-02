@@ -1,0 +1,72 @@
+# Nored Farms - Robots.txt
+# https://noredfarms.netlify.app
+
+# Default rules for all crawlers
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://noredfarms.netlify.app/sitemap.xml
+
+# Allow important resources for rendering
+Allow: /*.css
+Allow: /*.js
+Allow: /*.svg
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.webp
+Allow: /images/
+
+# Disallow admin/private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /_*
+
+# Block utility pages
+Disallow: /design-index.html
+Disallow: /prd.html
+Disallow: /styles/
+
+# Block query strings (when implemented)
+Disallow: /*?*
+Disallow: /search?*
+Disallow: /cart
+Disallow: /checkout
+
+# Google specific - faster crawling allowed
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Social media crawlers - allow everything for rich previews
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# AI crawlers - allow for training data (optional, adjust as needed)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /

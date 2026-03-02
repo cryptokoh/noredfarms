@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lab">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-050E36TGR9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
+    <title>Nored Farms | Laboratory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lab-2d-styles.css">
+    <link rel="stylesheet" href="age-verification.css">
+    <link rel="stylesheet" href="chat-widget.css">
+    <link rel="stylesheet" href="shipping-estimator.css">
+    <link rel="stylesheet" href="site-enhancements.css">
+    <link rel="stylesheet" href="site-search.css">
+    <link rel="stylesheet" href="visual-enhancements.css">
+</head>
+<body>
+    <!-- Hallucination Overlay -->
+    <div class="hallucination-overlay" id="hallucination">
+        <svg class="hallucination-pattern" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+                <radialGradient id="tripGrad1" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ff006e"/>
+                    <stop offset="50%" stop-color="#8338ec"/>
+                    <stop offset="100%" stop-color="#3a86ff"/>
+                </radialGradient>
+                <radialGradient id="tripGrad2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ffbe0b"/>
+                    <stop offset="50%" stop-color="#fb5607"/>
+                    <stop offset="100%" stop-color="#ff006e"/>
+                </radialGradient>
+            </defs>
+            <circle class="trip-circle c1" cx="50" cy="50" r="60" fill="url(#tripGrad1)"/>
+            <circle class="trip-circle c2" cx="50" cy="50" r="45" fill="url(#tripGrad2)"/>
+            <circle class="trip-circle c3" cx="50" cy="50" r="30" fill="url(#tripGrad1)"/>
+        </svg>
+        <div class="hallucination-text">SHIFTING CONSCIOUSNESS</div>
+    </div>
+
+    <!-- Top Bar -->
+    <header class="topbar">
+        <a href="index.html" class="logo">NORED FARMS <span>TX</span></a>
+        <nav class="nav">
+            <a href="index.html" class="nav-link nav-link-back">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" style="margin-right: 4px;">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
+                </svg>
+                HOME
+            </a>
+            <a href="#lab" class="nav-link active" data-section="lab">LAB</a>
+            <a href="#library" class="nav-link" data-section="library">LIBRARY</a>
+            <a href="#extracts" class="nav-link" data-section="extracts">EXTRACTS</a>
+            <a href="#contact" class="nav-link" data-section="contact">CONTACT</a>
+        </nav>
+        <div class="topbar-right">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle shamanic mode">
+                <svg class="theme-icon lab" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 3v6l-5 8c-1 2 .5 4 2.5 4h11c2 0 3.5-2 2.5-4l-5-8V3"/>
+                    <rect x="7" y="1" width="10" height="3" rx="1"/>
+                </svg>
+                <svg class="theme-icon shaman" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="6"/>
+                    <circle cx="12" cy="12" r="2"/>
+                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+                </svg>
+            </button>
+            <!-- Font Size Control -->
+            <div class="font-size-control" role="group" aria-label="Font size controls">
+                <button class="font-btn font-decrease" id="fontDecrease" aria-label="Decrease font size">A-</button>
+                <button class="font-btn font-reset" id="fontReset" aria-label="Reset font size">A</button>
+                <button class="font-btn font-increase" id="fontIncrease" aria-label="Increase font size">A+</button>
+            </div>
+            <div class="status">
+                <span class="status-dot"></span>
+                <span class="status-text">ONLINE</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Lab View -->
+    <main class="lab-container" id="lab">
+        <!-- Grid Background -->
+        <div class="grid-bg"></div>
+
+        <!-- Shamanic Background (hidden by default) -->
+        <div class="shaman-bg">
+            <svg class="sacred-geometry" viewBox="0 0 200 200">
+                <g class="rotate-slow">
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <polygon points="100,10 178,145 22,145" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <polygon points="100,190 22,55 178,55" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    <circle cx="100" cy="40" r="30" fill="none" stroke="currentColor" stroke-width="0.3"/>
+                    <circle cx="55" cy="120" r="30" fill="none" stroke="currentColor" stroke-width="0.3"/>
+                    <circle cx="145" cy="120" r="30" fill="none" stroke="currentColor" stroke-width="0.3"/>
+                </g>
+            </svg>
+        </div>
+
+        <!-- Lab Scene -->
+        <div class="lab-scene">
+            <!-- Floor Grid -->
+            <svg class="floor" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
+                <g class="floor-lines" stroke="currentColor" stroke-width="0.5" fill="none">
+                    <line x1="0" y1="100" x2="400" y2="100"/>
+                    <line x1="50" y1="75" x2="350" y2="75"/>
+                    <line x1="100" y1="50" x2="300" y2="50"/>
+                    <line x1="50" y1="125" x2="350" y2="125"/>
+                    <line x1="100" y1="150" x2="300" y2="150"/>
+                    <line x1="200" y1="25" x2="0" y2="125"/>
+                    <line x1="200" y1="25" x2="50" y2="100"/>
+                    <line x1="200" y1="25" x2="100" y2="75"/>
+                    <line x1="200" y1="25" x2="400" y2="125"/>
+                    <line x1="200" y1="25" x2="350" y2="100"/>
+                    <line x1="200" y1="25" x2="300" y2="75"/>
+                </g>
+            </svg>
+
+            <!-- Lab Bench -->
+            <div class="bench">
+                <svg viewBox="0 0 300 120" preserveAspectRatio="xMidYMid meet">
+                    <polygon class="bench-top" points="150,10 280,50 150,90 20,50" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <polygon class="bench-front" points="20,50 150,90 150,110 20,70" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <polygon class="bench-side" points="150,90 280,50 280,70 150,110" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="85" y1="30" x2="85" y2="70" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+                    <line x1="150" y1="50" x2="150" y2="90" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+                    <line x1="215" y1="30" x2="215" y2="70" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+                </svg>
+            </div>
+
+            <!-- Vials -->
+            <div class="vials">
+                <button class="vial" data-product="kratom" aria-label="Kratom Extract">
+                    <svg viewBox="0 0 40 80" fill="none" stroke="currentColor">
+                        <rect x="8" y="20" width="24" height="50" rx="4" stroke-width="1.5"/>
+                        <rect x="6" y="12" width="28" height="10" rx="2" stroke-width="1.5"/>
+                        <line x1="10" y1="40" x2="30" y2="40" stroke-width="1" class="liquid-line"/>
+                        <rect x="12" y="50" width="16" height="12" rx="1" stroke-width="0.75" opacity="0.5"/>
+                    </svg>
+                    <span class="vial-label">KRATOM</span>
+                </button>
+
+                <button class="vial" data-product="kava" aria-label="Kava Extract">
+                    <svg viewBox="0 0 40 80" fill="none" stroke="currentColor">
+                        <rect x="8" y="20" width="24" height="50" rx="4" stroke-width="1.5"/>
+                        <rect x="6" y="12" width="28" height="10" rx="2" stroke-width="1.5"/>
+                        <line x1="10" y1="45" x2="30" y2="45" stroke-width="1" class="liquid-line"/>
+                        <rect x="12" y="50" width="16" height="12" rx="1" stroke-width="0.75" opacity="0.5"/>
+                    </svg>
+                    <span class="vial-label">KAVA</span>
+                </button>
+
+                <button class="vial" data-product="lotus" aria-label="Blue Lotus Extract">
+                    <svg viewBox="0 0 40 80" fill="none" stroke="currentColor">
+                        <rect x="8" y="20" width="24" height="50" rx="4" stroke-width="1.5"/>
+                        <rect x="6" y="12" width="28" height="10" rx="2" stroke-width="1.5"/>
+                        <line x1="10" y1="35" x2="30" y2="35" stroke-width="1" class="liquid-line"/>
+                        <rect x="12" y="50" width="16" height="12" rx="1" stroke-width="0.75" opacity="0.5"/>
+                    </svg>
+                    <span class="vial-label">LOTUS</span>
+                </button>
+
+                <button class="vial" data-product="nootropic" aria-label="Nootropic Blend">
+                    <svg viewBox="0 0 40 80" fill="none" stroke="currentColor">
+                        <rect x="8" y="20" width="24" height="50" rx="4" stroke-width="1.5"/>
+                        <rect x="6" y="12" width="28" height="10" rx="2" stroke-width="1.5"/>
+                        <line x1="10" y1="50" x2="30" y2="50" stroke-width="1" class="liquid-line"/>
+                        <rect x="12" y="50" width="16" height="12" rx="1" stroke-width="0.75" opacity="0.5"/>
+                    </svg>
+                    <span class="vial-label">NOOTROPIC</span>
+                </button>
+            </div>
+
+            <!-- Microscope -->
+            <div class="microscope">
+                <svg viewBox="0 0 60 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <ellipse cx="30" cy="8" rx="8" ry="4"/>
+                    <rect x="26" y="10" width="8" height="12"/>
+                    <path d="M22 22 L22 50 Q22 55 27 55 L33 55 Q38 55 38 50 L38 22"/>
+                    <path d="M38 35 L50 35 L50 70"/>
+                    <rect x="15" y="55" width="30" height="4" rx="1"/>
+                    <rect x="27" y="59" width="6" height="10"/>
+                    <ellipse cx="35" cy="85" rx="20" ry="8"/>
+                    <line x1="35" y1="70" x2="35" y2="77"/>
+                </svg>
+            </div>
+
+            <!-- Beaker -->
+            <div class="beaker">
+                <svg viewBox="0 0 50 70" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M10 15 L10 55 Q10 65 25 65 Q40 65 40 55 L40 15"/>
+                    <path d="M10 15 L5 10 L15 10"/>
+                    <line x1="35" y1="25" x2="40" y2="25" stroke-width="0.75" opacity="0.5"/>
+                    <line x1="35" y1="35" x2="40" y2="35" stroke-width="0.75" opacity="0.5"/>
+                    <line x1="35" y1="45" x2="40" y2="45" stroke-width="0.75" opacity="0.5"/>
+                    <path d="M12 40 Q25 38 38 40 L38 55 Q38 63 25 63 Q12 63 12 55 Z" stroke-width="0.75" class="liquid-line"/>
+                </svg>
+                <!-- Bubble Message -->
+                <a href="ancient-lab.html" class="beaker-bubble" id="beakerBubble">
+                    <span class="bubble-text">Ancient Shamanic Lab</span>
+                    <div class="bubble-tail"></div>
+                </a>
+            </div>
+
+            <!-- DNA Helix -->
+            <div class="dna-helix">
+                <svg viewBox="0 0 40 120" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M10 10 Q30 25 10 40 Q-10 55 10 70 Q30 85 10 100 Q-10 115 10 130" stroke-width="1.5"/>
+                    <path d="M30 10 Q10 25 30 40 Q50 55 30 70 Q10 85 30 100 Q50 115 30 130" stroke-width="1.5"/>
+                    <!-- Rungs -->
+                    <line x1="12" y1="15" x2="28" y2="15" opacity="0.5"/>
+                    <line x1="10" y1="25" x2="30" y2="25" opacity="0.5"/>
+                    <line x1="12" y1="35" x2="28" y2="35" opacity="0.5"/>
+                    <line x1="14" y1="45" x2="26" y2="45" opacity="0.5"/>
+                    <line x1="10" y1="55" x2="30" y2="55" opacity="0.5"/>
+                    <line x1="12" y1="65" x2="28" y2="65" opacity="0.5"/>
+                    <line x1="14" y1="75" x2="26" y2="75" opacity="0.5"/>
+                    <line x1="10" y1="85" x2="30" y2="85" opacity="0.5"/>
+                    <line x1="12" y1="95" x2="28" y2="95" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <!-- Molecule Structure -->
+            <div class="molecule">
+                <svg viewBox="0 0 80 80" fill="none" stroke="currentColor">
+                    <!-- Bonds -->
+                    <line x1="40" y1="20" x2="20" y2="40" stroke-width="1.5"/>
+                    <line x1="40" y1="20" x2="60" y2="40" stroke-width="1.5"/>
+                    <line x1="20" y1="40" x2="20" y2="65" stroke-width="1.5"/>
+                    <line x1="60" y1="40" x2="60" y2="65" stroke-width="1.5"/>
+                    <line x1="20" y1="65" x2="40" y2="75" stroke-width="1.5"/>
+                    <line x1="60" y1="65" x2="40" y2="75" stroke-width="1.5"/>
+                    <!-- Atoms -->
+                    <circle cx="40" cy="20" r="6" fill="currentColor" class="atom"/>
+                    <circle cx="20" cy="40" r="5" fill="none" stroke-width="1.5" class="atom"/>
+                    <circle cx="60" cy="40" r="5" fill="none" stroke-width="1.5" class="atom"/>
+                    <circle cx="20" cy="65" r="4" fill="currentColor" class="atom"/>
+                    <circle cx="60" cy="65" r="4" fill="currentColor" class="atom"/>
+                    <circle cx="40" cy="75" r="6" fill="none" stroke-width="1.5" class="atom"/>
+                </svg>
+            </div>
+
+            <!-- Test Tubes Rack -->
+            <div class="test-tubes">
+                <svg viewBox="0 0 70 80" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <!-- Rack -->
+                    <rect x="5" y="15" width="60" height="8" rx="2"/>
+                    <rect x="5" y="55" width="60" height="8" rx="2"/>
+                    <!-- Tubes -->
+                    <rect x="12" y="20" width="8" height="40" rx="4"/>
+                    <line x1="14" y1="35" x2="18" y2="35" class="liquid-line" stroke-width="1"/>
+                    <rect x="26" y="20" width="8" height="40" rx="4"/>
+                    <line x1="28" y1="30" x2="32" y2="30" class="liquid-line" stroke-width="1"/>
+                    <rect x="40" y="20" width="8" height="40" rx="4"/>
+                    <line x1="42" y1="40" x2="46" y2="40" class="liquid-line" stroke-width="1"/>
+                    <rect x="54" y="20" width="8" height="40" rx="4"/>
+                    <line x1="56" y1="32" x2="60" y2="32" class="liquid-line" stroke-width="1"/>
+                </svg>
+            </div>
+
+            <!-- Petri Dish -->
+            <div class="petri-dish">
+                <svg viewBox="0 0 60 30" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <ellipse cx="30" cy="15" rx="28" ry="12"/>
+                    <ellipse cx="30" cy="13" rx="24" ry="9" stroke-width="1"/>
+                    <!-- Culture dots -->
+                    <circle cx="22" cy="12" r="2" fill="currentColor" opacity="0.3"/>
+                    <circle cx="35" cy="14" r="3" fill="currentColor" opacity="0.3"/>
+                    <circle cx="28" cy="16" r="1.5" fill="currentColor" opacity="0.3"/>
+                    <circle cx="38" cy="10" r="1" fill="currentColor" opacity="0.3"/>
+                </svg>
+            </div>
+
+            <!-- Erlenmeyer Flask -->
+            <div class="flask">
+                <svg viewBox="0 0 50 70" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M18 5 L18 25 L5 60 Q3 67 15 67 L35 67 Q47 67 45 60 L32 25 L32 5"/>
+                    <rect x="16" y="2" width="18" height="5" rx="1"/>
+                    <path d="M8 55 Q25 50 42 55 L42 60 Q42 65 25 65 Q8 65 8 60 Z" stroke-width="1" class="liquid-line"/>
+                </svg>
+            </div>
+
+            <!-- Interactive Lab Elements - Navigation Hints -->
+            <div class="lab-portal library-portal" data-goto="library" tabindex="0" role="button" aria-label="Visit Library">
+                <svg viewBox="0 0 50 60" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <!-- Book Stack -->
+                    <rect x="5" y="40" width="40" height="8" rx="1"/>
+                    <rect x="8" y="32" width="34" height="8" rx="1"/>
+                    <rect x="6" y="24" width="38" height="8" rx="1"/>
+                    <!-- Open Book on top -->
+                    <path d="M10 24 L10 8 Q25 12 25 8 Q25 12 40 8 L40 24"/>
+                    <line x1="25" y1="8" x2="25" y2="24" stroke-width="1"/>
+                    <!-- Page lines -->
+                    <line x1="13" y1="12" x2="22" y2="14" stroke-width="0.5" opacity="0.5"/>
+                    <line x1="13" y1="16" x2="22" y2="18" stroke-width="0.5" opacity="0.5"/>
+                    <line x1="28" y1="14" x2="37" y2="12" stroke-width="0.5" opacity="0.5"/>
+                    <line x1="28" y1="18" x2="37" y2="16" stroke-width="0.5" opacity="0.5"/>
+                </svg>
+                <span class="portal-label">LIBRARY</span>
+                <span class="portal-hint">Research & Knowledge</span>
+            </div>
+
+            <div class="lab-portal extract-portal" data-goto="extracts" tabindex="0" role="button" aria-label="View Extracts">
+                <svg viewBox="0 0 60 50" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <!-- Shelf with bottles -->
+                    <line x1="5" y1="45" x2="55" y2="45"/>
+                    <line x1="5" y1="25" x2="55" y2="25"/>
+                    <!-- Bottles row 1 -->
+                    <rect x="10" y="28" width="10" height="16" rx="2"/>
+                    <rect x="8" y="26" width="14" height="4" rx="1"/>
+                    <rect x="25" y="30" width="8" height="14" rx="2"/>
+                    <rect x="24" y="28" width="10" height="3" rx="1"/>
+                    <rect x="40" y="28" width="12" height="16" rx="2"/>
+                    <rect x="38" y="26" width="16" height="4" rx="1"/>
+                    <!-- Bottles row 2 (smaller) -->
+                    <rect x="12" y="8" width="8" height="12" rx="1"/>
+                    <rect x="28" y="10" width="6" height="10" rx="1"/>
+                    <rect x="42" y="8" width="10" height="12" rx="2"/>
+                </svg>
+                <span class="portal-label">EXTRACTS</span>
+                <span class="portal-hint">Full Catalog</span>
+            </div>
+
+            <!-- Shamanic Elements (hidden by default) -->
+            <div class="shaman-elements">
+                <!-- Mortar & Pestle -->
+                <div class="mortar-pestle">
+                    <svg viewBox="0 0 60 50" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M10 25 Q10 45 30 45 Q50 45 50 25"/>
+                        <ellipse cx="30" cy="25" rx="20" ry="8"/>
+                        <line x1="30" y1="5" x2="45" y2="20" stroke-width="2"/>
+                        <ellipse cx="30" cy="5" rx="4" ry="2"/>
+                    </svg>
+                </div>
+                <!-- Herbs Bundle -->
+                <div class="herbs">
+                    <svg viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="1">
+                        <path d="M20 55 L20 30"/>
+                        <path d="M20 30 Q10 20 15 10 Q20 5 20 10 Q20 5 25 10 Q30 20 20 30"/>
+                        <path d="M18 35 Q5 30 10 20"/>
+                        <path d="M22 35 Q35 30 30 20"/>
+                        <path d="M20 40 Q8 38 12 28"/>
+                        <path d="M20 40 Q32 38 28 28"/>
+                    </svg>
+                </div>
+                <!-- Crystal -->
+                <div class="crystal">
+                    <svg viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polygon points="20,5 35,25 30,55 10,55 5,25"/>
+                        <line x1="20" y1="5" x2="20" y2="55" opacity="0.3"/>
+                        <line x1="5" y1="25" x2="35" y2="25" opacity="0.3"/>
+                        <line x1="10" y1="55" x2="35" y2="25" opacity="0.3"/>
+                        <line x1="30" y1="55" x2="5" y2="25" opacity="0.3"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <aside class="info-panel" id="infoPanel">
+            <div class="panel-header">
+                <span class="panel-title">SELECT EXTRACT</span>
+                <button class="panel-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="panel-content">
+                <p class="panel-hint">Click a vial to view extract information</p>
+            </div>
+        </aside>
+
+        <!-- Bottom Stats Bar -->
+        <footer class="stats-bar">
+            <div class="stat">
+                <span class="stat-label">PURITY</span>
+                <span class="stat-value">99.9%</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">LAB TESTED</span>
+                <span class="stat-value">3RD PARTY</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">EXTRACTS</span>
+                <span class="stat-value">04</span>
+            </div>
+            <div class="stat shaman-stat">
+                <span class="stat-label">TRADITION</span>
+                <span class="stat-value">5000 YRS</span>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Product Data Templates -->
+    <template id="product-kratom">
+        <div class="product-info">
+            <h2>KRATOM EXTRACT</h2>
+            <p class="latin">Mitragyna speciosa</p>
+            <div class="specs">
+                <div class="spec-row"><span>PRIMARY</span><span>Mitragynine</span></div>
+                <div class="spec-row"><span>SECONDARY</span><span>7-Hydroxymitragynine</span></div>
+                <div class="spec-row"><span>METHOD</span><span>Water Extraction</span></div>
+                <div class="spec-row"><span>ORIGIN</span><span>Southeast Asia</span></div>
+            </div>
+            <button class="inquire-btn" onclick="scrollToContact('kratom')">INQUIRE</button>
+        </div>
+    </template>
+
+    <template id="product-kava">
+        <div class="product-info">
+            <h2>KAVA EXTRACT</h2>
+            <p class="latin">Piper methysticum</p>
+            <div class="specs">
+                <div class="spec-row"><span>ACTIVE</span><span>Kavalactones 30%+</span></div>
+                <div class="spec-row"><span>CULTIVAR</span><span>Noble Variety</span></div>
+                <div class="spec-row"><span>METHOD</span><span>CO2 Extraction</span></div>
+                <div class="spec-row"><span>ORIGIN</span><span>Vanuatu</span></div>
+            </div>
+            <button class="inquire-btn" onclick="scrollToContact('kava')">INQUIRE</button>
+        </div>
+    </template>
+
+    <template id="product-lotus">
+        <div class="product-info">
+            <h2>BLUE LOTUS</h2>
+            <p class="latin">Nymphaea caerulea</p>
+            <div class="specs">
+                <div class="spec-row"><span>PRIMARY</span><span>Aporphine</span></div>
+                <div class="spec-row"><span>SECONDARY</span><span>Nuciferine</span></div>
+                <div class="spec-row"><span>METHOD</span><span>Dual-Solvent</span></div>
+                <div class="spec-row"><span>TRADITION</span><span>5000+ Years</span></div>
+            </div>
+            <button class="inquire-btn" onclick="scrollToContact('lotus')">INQUIRE</button>
+        </div>
+    </template>
+
+    <template id="product-nootropic">
+        <div class="product-info">
+            <h2>NOOTROPIC BLEND</h2>
+            <p class="latin">Cognitive Formula</p>
+            <div class="specs">
+                <div class="spec-row"><span>PRIMARY</span><span>Alpha-GPC</span></div>
+                <div class="spec-row"><span>SECONDARY</span><span>Lion's Mane</span></div>
+                <div class="spec-row"><span>FOCUS</span><span>Clarity + Memory</span></div>
+                <div class="spec-row"><span>TYPE</span><span>Adaptogen Stack</span></div>
+            </div>
+            <button class="inquire-btn" onclick="scrollToContact('nootropic')">INQUIRE</button>
+        </div>
+    </template>
+
+    <!-- Library Section -->
+    <section class="library-section" id="librarySection">
+        <div class="library-container">
+            <!-- Library Header -->
+            <header class="library-header">
+                <button class="back-to-lab" aria-label="Back to Lab">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    <span>LAB</span>
+                </button>
+                <h1 class="library-title">
+                    <span class="title-lab">RESEARCH LIBRARY</span>
+                    <span class="title-shaman">ANCIENT TEXTS</span>
+                </h1>
+                <div class="library-search">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                </div>
+            </header>
+
+            <!-- Library Grid Background -->
+            <div class="library-bg">
+                <svg class="bookshelf-bg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+                    <!-- Shelves -->
+                    <line x1="0" y1="75" x2="400" y2="75" stroke="currentColor" stroke-width="2"/>
+                    <line x1="0" y1="150" x2="400" y2="150" stroke="currentColor" stroke-width="2"/>
+                    <line x1="0" y1="225" x2="400" y2="225" stroke="currentColor" stroke-width="2"/>
+                    <!-- Books outline hints -->
+                    <g opacity="0.1">
+                        <rect x="20" y="45" width="15" height="28" rx="1"/>
+                        <rect x="38" y="50" width="12" height="23" rx="1"/>
+                        <rect x="53" y="42" width="18" height="31" rx="1"/>
+                        <rect x="120" y="120" width="14" height="28" rx="1"/>
+                        <rect x="137" y="125" width="10" height="23" rx="1"/>
+                        <rect x="280" y="195" width="16" height="28" rx="1"/>
+                        <rect x="299" y="200" width="12" height="23" rx="1"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Ancient Scroll Background (Shaman mode) -->
+            <div class="scroll-bg">
+                <svg viewBox="0 0 200 200">
+                    <g class="rotate-slow" opacity="0.1">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor"/>
+                        <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor"/>
+                        <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor"/>
+                        <path d="M100 20 L100 180 M20 100 L180 100" stroke="currentColor"/>
+                        <path d="M43 43 L157 157 M157 43 L43 157" stroke="currentColor" opacity="0.5"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Category Tabs -->
+            <nav class="library-tabs">
+                <button class="tab-btn active" data-category="all">ALL</button>
+                <button class="tab-btn" data-category="kratom">KRATOM</button>
+                <button class="tab-btn" data-category="kava">KAVA</button>
+                <button class="tab-btn" data-category="lotus">BLUE LOTUS</button>
+                <button class="tab-btn" data-category="science">
+                    <span class="tab-lab">RESEARCH</span>
+                    <span class="tab-shaman">WISDOM</span>
+                </button>
+            </nav>
+
+            <!-- Library Content Grid -->
+            <div class="library-grid">
+                <!-- Kratom Articles -->
+                <article class="library-card" data-category="kratom" data-article="kratom-alkaloids">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="5" y="5" width="30" height="30" rx="2"/>
+                            <line x1="10" y1="12" x2="30" y2="12"/>
+                            <line x1="10" y1="18" x2="25" y2="18"/>
+                            <line x1="10" y1="24" x2="28" y2="24"/>
+                            <line x1="10" y1="30" x2="20" y2="30"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Mitragynine Alkaloid Profile</span>
+                        <span class="shaman-text">The Spirit of Kratom</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Comprehensive analysis of primary and secondary alkaloids found in Mitragyna speciosa.</span>
+                        <span class="shaman-text">Understanding the sacred plant ally used by Southeast Asian healers for millennia.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">12 min read • Lab Report</span>
+                        <span class="shaman-text">Ancient Knowledge • Sacred</span>
+                    </span>
+                </article>
+
+                <article class="library-card" data-category="kratom" data-article="kratom-extraction">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 5 L20 15 M15 10 L25 10"/>
+                            <circle cx="20" cy="25" r="12"/>
+                            <path d="M14 22 Q20 18 26 22 Q20 30 14 22"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Extraction Methods Comparison</span>
+                        <span class="shaman-text">Traditional Preparation Ways</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Water vs. ethanol extraction efficiency and alkaloid preservation analysis.</span>
+                        <span class="shaman-text">How village elders prepared the leaves for ceremony and healing.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">8 min read • Technical</span>
+                        <span class="shaman-text">Oral Tradition • Methods</span>
+                    </span>
+                </article>
+
+                <!-- Kava Articles -->
+                <article class="library-card" data-category="kava" data-article="kava-chemotypes">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <ellipse cx="20" cy="30" rx="15" ry="6"/>
+                            <path d="M5 30 L5 20 Q5 10 20 10 Q35 10 35 20 L35 30"/>
+                            <path d="M12 18 Q20 22 28 18"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Kavalactone Chemotypes</span>
+                        <span class="shaman-text">Spirits of the Kava Bowl</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Understanding the six primary kavalactones and their neurological effects.</span>
+                        <span class="shaman-text">The sacred root that brings peace and connects the village.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">15 min read • Research</span>
+                        <span class="shaman-text">Pacific Wisdom • Ceremony</span>
+                    </span>
+                </article>
+
+                <article class="library-card" data-category="kava" data-article="kava-varieties">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="20" cy="20" r="15"/>
+                            <circle cx="20" cy="20" r="8"/>
+                            <circle cx="20" cy="20" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Noble vs. Tudei Varieties</span>
+                        <span class="shaman-text">Choosing the Right Spirit</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Quality indicators and safety considerations for kava cultivar selection.</span>
+                        <span class="shaman-text">Why the ancestors chose certain roots for different occasions.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">6 min read • Guide</span>
+                        <span class="shaman-text">Elder Teaching • Selection</span>
+                    </span>
+                </article>
+
+                <!-- Blue Lotus Articles -->
+                <article class="library-card" data-category="lotus" data-article="lotus-alkaloids">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 35 L20 22"/>
+                            <path d="M20 22 Q10 18 12 10 Q16 14 20 10 Q24 14 28 10 Q30 18 20 22"/>
+                            <ellipse cx="20" cy="8" rx="3" ry="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Aporphine & Nuciferine Analysis</span>
+                        <span class="shaman-text">Flower of the Nile Gods</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Psychoactive alkaloid research from Nymphaea caerulea specimens.</span>
+                        <span class="shaman-text">The sacred lotus that opened the doors to the divine for Egyptian priests.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">10 min read • Study</span>
+                        <span class="shaman-text">5000 Years • Egypt</span>
+                    </span>
+                </article>
+
+                <article class="library-card" data-category="lotus" data-article="lotus-history">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="8" y="8" width="24" height="24" rx="2"/>
+                            <path d="M12 16 L28 16 M12 22 L28 22 M12 28 L20 28"/>
+                            <circle cx="26" cy="28" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Historical Use Documentation</span>
+                        <span class="shaman-text">Temple Scrolls Decoded</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Archaeological evidence of blue lotus in ancient Egyptian ceremonies.</span>
+                        <span class="shaman-text">What the hieroglyphs reveal about lotus in sacred rites.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">20 min read • History</span>
+                        <span class="shaman-text">Ancient Text • Sacred</span>
+                    </span>
+                </article>
+
+                <!-- General Science/Wisdom -->
+                <article class="library-card" data-category="science" data-article="extraction-guide">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M15 5 L15 15 L8 32 Q6 36 12 36 L28 36 Q34 36 32 32 L25 15 L25 5"/>
+                            <line x1="12" y1="5" x2="28" y2="5"/>
+                            <path d="M12 25 Q20 22 28 25"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Extraction Technology Guide</span>
+                        <span class="shaman-text">Alchemical Principles</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Modern extraction methods: CO2, ethanol, and water-based techniques.</span>
+                        <span class="shaman-text">The ancient art of drawing forth the essence of sacred plants.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">25 min read • Technical</span>
+                        <span class="shaman-text">Master Teaching • Art</span>
+                    </span>
+                </article>
+
+                <article class="library-card" data-category="science" data-article="quality-testing">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="20" cy="12" r="8"/>
+                            <path d="M20 20 L20 28 M15 33 L20 28 L25 33"/>
+                            <circle cx="10" cy="30" r="4"/>
+                            <circle cx="30" cy="30" r="4"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">
+                        <span class="lab-text">Quality Testing Standards</span>
+                        <span class="shaman-text">Signs of True Medicine</span>
+                    </h3>
+                    <p class="card-desc">
+                        <span class="lab-text">Third-party testing protocols and certificate of analysis interpretation.</span>
+                        <span class="shaman-text">How the wise ones knew which plants held true healing power.</span>
+                    </p>
+                    <span class="card-meta">
+                        <span class="lab-text">8 min read • Standards</span>
+                        <span class="shaman-text">Discernment • Truth</span>
+                    </span>
+                </article>
+            </div>
+
+            <!-- Library Footer -->
+            <footer class="library-footer">
+                <p class="footer-text">
+                    <span class="lab-text">All research for educational purposes. Consult healthcare providers before use.</span>
+                    <span class="shaman-text">Honor the plants. Honor the traditions. Honor yourself.</span>
+                </p>
+            </footer>
+        </div>
+    </section>
+
+    <!-- Contact Overlay -->
+    <div class="contact-overlay" id="contact">
+        <div class="contact-panel">
+            <div class="panel-header">
+                <span class="panel-title">CONTACT</span>
+                <button class="panel-close" onclick="closeContact()">&times;</button>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label>NAME</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>EMAIL</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>INTEREST</label>
+                    <select name="interest" id="interestSelect">
+                        <option value="">Select</option>
+                        <option value="kratom">Kratom</option>
+                        <option value="kava">Kava</option>
+                        <option value="lotus">Blue Lotus</option>
+                        <option value="nootropic">Nootropic</option>
+                        <option value="wholesale">Wholesale</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>MESSAGE</label>
+                    <textarea name="message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">SEND INQUIRY</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Library Article Modal -->
+    <div class="article-modal-overlay" id="articleModalOverlay">
+        <div class="article-modal" id="articleModal">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Content populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content Templates -->
+    <template id="article-kratom-alkaloids">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">KRATOM</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Mitragynine Alkaloid Profile</span>
+                    <span class="shaman-text">The Spirit of Kratom</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Primary Alkaloids</h3>
+                    <p><strong>Mitragynine</strong> comprises 60-66% of the alkaloid content in Mitragyna speciosa leaves. This indole alkaloid acts on opioid receptors with partial agonist activity, contributing to the plant's analgesic properties.</p>
+                    <p><strong>7-Hydroxymitragynine</strong> represents only 2% of alkaloid content but possesses significantly higher receptor binding affinity. Research indicates it's 13 times more potent than morphine in certain assays.</p>
+
+                    <h3>Secondary Alkaloids</h3>
+                    <ul>
+                        <li><strong>Paynantheine</strong> (8-9%) - Smooth muscle relaxant</li>
+                        <li><strong>Speciogynine</strong> (6-7%) - Smooth muscle relaxant</li>
+                        <li><strong>Speciociliatine</strong> (1%) - Weak opioid activity</li>
+                        <li><strong>Corynantheidine</strong> (&lt;1%) - Mu-opioid antagonist</li>
+                    </ul>
+
+                    <h3>Extraction Considerations</h3>
+                    <p>Alkaloid preservation requires careful pH management during extraction. Water-based methods at pH 4-5 optimize mitragynine solubility while minimizing degradation of 7-hydroxymitragynine.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Living Spirit</h3>
+                    <p>For thousands of years, the people of Southeast Asia have known kratom as a plant ally. Thai farmers chewed fresh leaves to endure long hours of labor under the tropical sun. The spirit of the plant gave them strength and eased their suffering.</p>
+
+                    <h3>Traditional Knowledge</h3>
+                    <p>Village healers understood that different preparations yielded different effects. Fresh leaves brought energy; dried leaves brought calm. The elders knew to honor the plant by taking only what was needed and giving thanks for its gifts.</p>
+
+                    <h3>The Sacred Balance</h3>
+                    <p>The spirit of kratom teaches balance. Too little offers no benefit; too much brings discomfort. Like all plant teachers, it asks us to listen carefully and approach with respect.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-kratom-extraction">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">KRATOM</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Extraction Methods Comparison</span>
+                    <span class="shaman-text">Traditional Preparation Ways</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Water Extraction</h3>
+                    <p>The simplest and most traditional method. Acidified water (pH 4-5 using citric acid) at 80-90°C extracts 70-85% of available alkaloids. Multiple extractions increase yield but dilute concentration.</p>
+
+                    <h3>Ethanol Extraction</h3>
+                    <p>Food-grade ethanol (40-95%) provides superior alkaloid solubility. Cold maceration preserves heat-sensitive compounds. Yields typically reach 85-95% with proper technique.</p>
+
+                    <h3>Comparison Table</h3>
+                    <table class="modal-table">
+                        <tr><th>Method</th><th>Yield</th><th>Purity</th><th>Cost</th></tr>
+                        <tr><td>Water</td><td>70-85%</td><td>Medium</td><td>Low</td></tr>
+                        <tr><td>Ethanol</td><td>85-95%</td><td>High</td><td>Medium</td></tr>
+                        <tr><td>CO2</td><td>90-98%</td><td>Very High</td><td>High</td></tr>
+                    </table>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Way of Water</h3>
+                    <p>The ancestors knew that water carries the essence of plants into our bodies. They would simmer fresh leaves slowly, allowing the spirit to transfer gently. Rushing the process insults the plant and weakens its medicine.</p>
+
+                    <h3>Preparation Ritual</h3>
+                    <p>Before harvesting, traditional practitioners would offer prayers of gratitude. The leaves were gathered at dawn when their power was strongest. The preparation was done in silence, with focused intention.</p>
+
+                    <h3>Honoring the Process</h3>
+                    <p>Modern extraction may be faster, but it lacks the ceremony that connects us to the plant's spirit. Consider incorporating gratitude and intention into your preparation, whatever method you choose.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-kava-chemotypes">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">KAVA</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Kavalactone Chemotypes</span>
+                    <span class="shaman-text">Spirits of the Kava Bowl</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>The Six Major Kavalactones</h3>
+                    <p>Kava's effects are determined by six primary kavalactones, each assigned a number for chemotype classification:</p>
+                    <ul>
+                        <li><strong>1 - Desmethoxyyangonin (DMY)</strong> - Mood elevation</li>
+                        <li><strong>2 - Dihydrokavain (DHK)</strong> - Relaxation, mild sedation</li>
+                        <li><strong>3 - Yangonin (Y)</strong> - Anxiolytic effects</li>
+                        <li><strong>4 - Kavain (K)</strong> - Mental clarity, sociability</li>
+                        <li><strong>5 - Dihydromethysticin (DHM)</strong> - Strong sedation</li>
+                        <li><strong>6 - Methysticin (M)</strong> - Moderate relaxation</li>
+                    </ul>
+
+                    <h3>Understanding Chemotype Codes</h3>
+                    <p>A chemotype like "426135" indicates kavain is most abundant, followed by DHK, then DMY. Noble varieties typically start with 4, 2, or 6.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Spirits Within</h3>
+                    <p>The Pacific Islanders say each kava plant contains many spirits. Some bring joy and laughter; others bring deep peace and dreaming. The wise ones learned which plants to choose for ceremony, for medicine, and for daily life.</p>
+
+                    <h3>The Kava Circle</h3>
+                    <p>When the village gathers around the kava bowl, the spirits unite the people. Arguments are forgotten, friendships are strengthened, and the ancestors draw near. This is the true power of kava - not in any single compound, but in the communion it creates.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-kava-varieties">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">KAVA</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Noble vs. Tudei Varieties</span>
+                    <span class="shaman-text">Choosing the Right Spirit</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Noble Kava Characteristics</h3>
+                    <p>Noble varieties are the only type recommended for regular consumption. They produce pleasant effects without next-day drowsiness.</p>
+                    <ul>
+                        <li>Chemotypes beginning with 4, 2, or 6</li>
+                        <li>Low levels of Flavokavain B (&lt;0.5%)</li>
+                        <li>Pleasant taste profile</li>
+                        <li>Clear-headed effects</li>
+                    </ul>
+
+                    <h3>Tudei (Two-Day) Kava</h3>
+                    <p>Named for effects lasting two days, Tudei varieties contain higher levels of DHM and Flavokavain B. Associated with nausea and prolonged lethargy.</p>
+
+                    <h3>Quality Indicators</h3>
+                    <p>Reputable vendors provide chemotype testing and certificates of analysis. Look for Flavokavain B levels below 0.5% and chemotypes starting with noble indicators.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Elder's Teaching</h3>
+                    <p>Not all kava is meant for people. Some varieties were used only for specific ceremonies or reserved for communication with spirits. The elders knew which plants were safe for daily use and which should be approached with caution.</p>
+
+                    <h3>Reading the Signs</h3>
+                    <p>The wise ones could identify good kava by its appearance, smell, and taste. Dark, bitter roots with unpleasant effects were avoided. The best kava brought peace without penalty.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-lotus-alkaloids">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">BLUE LOTUS</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Aporphine & Nuciferine Analysis</span>
+                    <span class="shaman-text">Flower of the Nile Gods</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Primary Active Compounds</h3>
+                    <p><strong>Aporphine</strong> acts as a dopamine agonist, producing mild euphoria and altered perception. Concentrations vary from 0.1-0.5% in dried flowers.</p>
+                    <p><strong>Nuciferine</strong> functions as a dopamine receptor blocker with sedative properties. It may contribute to the dream-enhancing effects reported by users.</p>
+
+                    <h3>Synergistic Effects</h3>
+                    <p>The combination of aporphine's stimulating and nuciferine's sedating properties creates the unique "lucid relaxation" characteristic of blue lotus.</p>
+
+                    <h3>Extraction Notes</h3>
+                    <p>Alcohol extraction (40-60% ethanol) yields the most complete alkaloid profile. Water extraction captures nuciferine effectively but less aporphine.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>Gift of the Nile</h3>
+                    <p>The ancient Egyptians called it the Sacred Lily of the Nile. They believed it emerged from the primordial waters at the beginning of creation, carrying the light of the sun within its petals.</p>
+
+                    <h3>Gateway to the Divine</h3>
+                    <p>Temple priests used blue lotus to enter trance states and communicate with the gods. The flower was sacred to Ra, Osiris, and Nefertem - the god of perfume who emerged from a lotus at dawn.</p>
+
+                    <h3>The Dream Flower</h3>
+                    <p>Those who drink lotus tea before sleep often report vivid, meaningful dreams. The ancients believed the flower opened doors between worlds, allowing the soul to travel freely.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-lotus-history">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">BLUE LOTUS</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Historical Use Documentation</span>
+                    <span class="shaman-text">Temple Scrolls Decoded</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Archaeological Evidence</h3>
+                    <p>Blue lotus appears extensively in Egyptian art from 3000 BCE onward. Tomb paintings show it held at banquets, offered to deities, and placed on mummies.</p>
+
+                    <h3>Documented Uses</h3>
+                    <ul>
+                        <li>Religious ceremonies and temple rituals</li>
+                        <li>Funerary practices (found in Tutankhamun's tomb)</li>
+                        <li>Social gatherings and celebrations</li>
+                        <li>Medicinal preparations for various ailments</li>
+                    </ul>
+
+                    <h3>Cultural Significance</h3>
+                    <p>The lotus represented creation, rebirth, and the sun. Its daily cycle of closing at night and opening at dawn symbolized the eternal return of life.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>Words of the Ancients</h3>
+                    <p>"I am the pure lotus that emerged from the divine light..." - inscription from the Book of the Dead. The lotus was not merely a plant but a symbol of spiritual awakening.</p>
+
+                    <h3>The Priest's Path</h3>
+                    <p>Before entering the inner sanctuary, temple priests would anoint themselves with lotus oil and drink lotus wine. This prepared their consciousness to receive divine wisdom.</p>
+
+                    <h3>Legacy of the Flower</h3>
+                    <p>For 5,000 years, the blue lotus has guided seekers toward enlightenment. Its spirit continues to teach those who approach with reverence and open hearts.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-extraction-guide">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">SCIENCE</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Extraction Technology Guide</span>
+                    <span class="shaman-text">Alchemical Principles</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>CO2 Extraction</h3>
+                    <p>Supercritical CO2 provides the cleanest extraction with precise compound targeting. Operating at 31°C and 74 bar, CO2 becomes a powerful solvent that leaves no residue.</p>
+
+                    <h3>Ethanol Extraction</h3>
+                    <p>Food-grade ethanol remains the industry standard for full-spectrum extracts. Cold ethanol (-40°C) minimizes chlorophyll extraction while capturing desired compounds.</p>
+
+                    <h3>Water Extraction</h3>
+                    <p>The gentlest method, ideal for heat-sensitive compounds. Acidified water enhances alkaloid solubility. Often used as a first-pass before ethanol refinement.</p>
+
+                    <h3>Quality Parameters</h3>
+                    <ul>
+                        <li>Solvent residue: &lt;500ppm (ethanol), 0ppm (CO2)</li>
+                        <li>Heavy metals: Below detectable limits</li>
+                        <li>Microbial: Negative for pathogens</li>
+                    </ul>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Alchemist's Art</h3>
+                    <p>True alchemy is not about turning lead into gold - it is about extracting the essence, the spirit, from matter. The ancient alchemists knew that plants contain subtle forces that can be concentrated and purified.</p>
+
+                    <h3>Solve et Coagula</h3>
+                    <p>"Dissolve and recombine" - the fundamental alchemical principle. We break down the plant to release its spirit, then bring that spirit together in concentrated form. The process mirrors spiritual transformation.</p>
+
+                    <h3>Working with Intention</h3>
+                    <p>The alchemists believed the practitioner's consciousness affected the work. Approach extraction with clear intention and respect for the plant spirits. The quality of your presence influences the quality of your medicine.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="article-quality-testing">
+        <article class="modal-article">
+            <header class="modal-header">
+                <span class="modal-category">SCIENCE</span>
+                <h2 class="modal-title">
+                    <span class="lab-text">Quality Testing Standards</span>
+                    <span class="shaman-text">Signs of True Medicine</span>
+                </h2>
+            </header>
+            <div class="modal-body">
+                <section class="lab-text">
+                    <h3>Certificate of Analysis (COA)</h3>
+                    <p>A valid COA should include: identity confirmation, potency testing, contaminant screening, and batch-specific information from an ISO-accredited laboratory.</p>
+
+                    <h3>Key Tests</h3>
+                    <ul>
+                        <li><strong>Identity</strong>: HPLC fingerprinting confirms species</li>
+                        <li><strong>Potency</strong>: Quantifies active compounds</li>
+                        <li><strong>Heavy Metals</strong>: Lead, arsenic, mercury, cadmium</li>
+                        <li><strong>Microbial</strong>: E. coli, Salmonella, mold, yeast</li>
+                        <li><strong>Pesticides</strong>: Screen for common agricultural chemicals</li>
+                    </ul>
+
+                    <h3>Red Flags</h3>
+                    <p>Avoid products without batch-specific COAs, tests from non-accredited labs, or results that seem too good to be true. Legitimate vendors welcome questions about their testing.</p>
+                </section>
+                <section class="shaman-text">
+                    <h3>The Healer's Discernment</h3>
+                    <p>Traditional healers developed keen senses for recognizing true medicine. They would smell, taste, and observe the effects of plants before using them. This wisdom took lifetimes to develop.</p>
+
+                    <h3>Signs of Power</h3>
+                    <p>Good medicine has presence. It looks vibrant, smells characteristic, and produces consistent effects. The ancestors knew that plants grown with care and harvested properly carried stronger spirits.</p>
+
+                    <h3>Trust Your Body</h3>
+                    <p>Modern tests confirm what the body already knows. If a plant product causes unexpected reactions or feels wrong, trust your instincts. The body recognizes true medicine.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <!-- Back Navigation Drawer -->
+    <div class="back-drawer" id="backDrawer">
+        <button class="back-drawer-toggle" id="backDrawerToggle" aria-label="Navigation menu">
+            <svg class="drawer-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <nav class="back-drawer-menu">
+            <a href="classroom.html#labs" class="drawer-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                </svg>
+                <span>Classroom</span>
+            </a>
+            <a href="index.html" class="drawer-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span>Home</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="lab-2d-script.js"></script>
+    <script src="age-verification.js"></script>
+    <script src="chat-widget.js"></script>
+    <script src="shipping-estimator.js"></script>
+    <script src="site-enhancements.js"></script>
+    <script src="site-search.js"></script>
+    <script src="visual-enhancements.js"></script>
+</body>
+</html>

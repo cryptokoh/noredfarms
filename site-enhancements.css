@@ -1,0 +1,160 @@
+/* ============================================
+   Nored Farms - Site Enhancements
+   Self-injecting widget styles for:
+   1. Back-to-Top Button
+   2. Breadcrumbs (article pages)
+   3. Reading Progress Bar (article pages)
+   4. External Link Icons
+   ============================================ */
+
+/* ============================================
+   1. Reading Progress Bar
+   ============================================ */
+
+#pe-reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--color-primary, #1c3a13);
+    z-index: 9999;
+    transition: width 60ms linear;
+    pointer-events: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ============================================
+   2. Back-to-Top Button
+   ============================================ */
+
+#pe-back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-primary, #1c3a13);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    z-index: 9990;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease,
+                background-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#pe-back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#pe-back-to-top:hover {
+    background: var(--color-primary-dark, #142d0e);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+#pe-back-to-top:active {
+    transform: translateY(0);
+}
+
+#pe-back-to-top svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+    #pe-back-to-top {
+        bottom: 1.25rem;
+        left: 1.25rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    #pe-back-to-top svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ============================================
+   3. Breadcrumbs
+   ============================================ */
+
+#pe-breadcrumbs {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-text-muted, #94a3b8);
+}
+
+#pe-breadcrumbs a {
+    color: var(--color-text-muted, #94a3b8);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+#pe-breadcrumbs a:hover {
+    color: var(--color-primary, #1c3a13);
+    text-decoration: underline;
+}
+
+#pe-breadcrumbs .pe-breadcrumb-separator {
+    display: inline-block;
+    margin: 0 0.5rem;
+    color: var(--color-border, #e2e8f0);
+    font-size: 0.75rem;
+    user-select: none;
+}
+
+#pe-breadcrumbs .pe-breadcrumb-current {
+    color: var(--color-text-secondary, #475569);
+    font-weight: 500;
+}
+
+/* ============================================
+   4. External Link Icon
+   ============================================ */
+
+.pe-external-link-icon {
+    display: inline-block;
+    width: 0.75em;
+    height: 0.75em;
+    margin-left: 0.2em;
+    vertical-align: baseline;
+    position: relative;
+    top: -0.05em;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+a:hover .pe-external-link-icon {
+    opacity: 0.8;
+}
+
+/* Do not show icon on image-only links or buttons */
+a.nav-link .pe-external-link-icon,
+a.nav-logo .pe-external-link-icon,
+a.btn .pe-external-link-icon,
+a.back-to-blog .pe-external-link-icon,
+a.pe-breadcrumb-link .pe-external-link-icon,
+.article-footer a .pe-external-link-icon {
+    display: none;
+}

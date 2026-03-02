@@ -128,7 +128,7 @@ insert into kanban_boards (name, slug, icon, position) values
 -- Web Dev
 insert into kanban_tasks (board_id, title, description, column_name, position, priority) values
   ((select id from kanban_boards where slug = 'web-dev'),
-   'Rename site from Pure Extracts to Nored Farms',
+   'Rename site from Nored Farms to Nored Farms',
    'Update all page titles, nav logo text, footer references, meta tags, and manifest across all ~80 HTML pages. Update styles.css comments. Update README.',
    'backlog', 0, 'high'),
   ((select id from kanban_boards where slug = 'web-dev'),

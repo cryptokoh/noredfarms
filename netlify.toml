@@ -1,4 +1,4 @@
-# Netlify configuration for Pure Extracts TX
+# Netlify configuration for Nored Farms
 
 [build]
   publish = "."

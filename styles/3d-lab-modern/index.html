@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nored Farms | 3D Laboratory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-flask">
+                <svg width="60" height="80" viewBox="0 0 60 80">
+                    <path class="flask-body" d="M20,0 L40,0 L40,25 L55,70 Q57,78 50,78 L10,78 Q3,78 5,70 L20,25 Z" fill="none" stroke="rgba(16, 185, 129, 0.5)" stroke-width="2"/>
+                    <path class="flask-liquid" d="M12,55 Q30,50 48,55 L50,70 Q52,76 48,76 L12,76 Q8,76 10,70 Z" fill="rgba(16, 185, 129, 0.6)">
+                        <animate attributeName="d" dur="2s" repeatCount="indefinite" values="M12,55 Q30,50 48,55 L50,70 Q52,76 48,76 L12,76 Q8,76 10,70 Z;M12,52 Q30,58 48,52 L50,70 Q52,76 48,76 L12,76 Q8,76 10,70 Z;M12,55 Q30,50 48,55 L50,70 Q52,76 48,76 L12,76 Q8,76 10,70 Z"/>
+                    </path>
+                </svg>
+            </div>
+            <div class="loader-text">
+                <span>Initializing Laboratory</span>
+                <span class="loader-dots"><span>.</span><span>.</span><span>.</span></span>
+            </div>
+            <div class="loader-progress">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <svg class="logo-flask" width="32" height="40" viewBox="0 0 32 40">
+                    <path d="M10,0 L22,0 L22,12 L30,35 Q31,39 27,39 L5,39 Q1,39 2,35 L10,12 Z" fill="none" stroke="#10B981" stroke-width="2"/>
+                    <path d="M6,28 Q16,24 26,28 L27,35 Q28,38 26,38 L6,38 Q4,38 5,35 Z" fill="#10B981" opacity="0.6"/>
+                </svg>
+                <span class="logo-text">Pure<span>Extracts</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link" data-view="lab">Lab</a>
+                <a href="#" class="nav-link" data-view="products">Products</a>
+                <a href="#" class="nav-link" data-view="research">Research</a>
+                <a href="#" class="nav-link" data-view="about">About</a>
+                <a href="#" class="nav-link nav-cta">Shop Now</a>
+            </div>
+            <button class="nav-mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 3D Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- UI Overlay -->
+    <div id="ui-overlay">
+        <!-- Hero Content (shown initially) -->
+        <div id="hero-content" class="ui-section active">
+            <div class="hero-badge">
+                <span class="badge-pulse"></span>
+                <span>Lab-Grade Botanical Science</span>
+            </div>
+            <h1 class="hero-title">
+                Welcome to the <span class="text-gradient">Laboratory</span>
+            </h1>
+            <p class="hero-subtitle">
+                Explore our extraction facility. Click on equipment to discover our premium botanical extracts.
+            </p>
+            <div class="hero-controls">
+                <button class="btn btn-primary" id="explore-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    Enter Lab
+                </button>
+                <div class="controls-hint">
+                    <span>Click anywhere to enter</span>
+                    <span class="divider">|</span>
+                    <span>Drag to look around</span>
+                    <span class="divider">|</span>
+                    <span>Click glowing indicators to explore</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div id="info-panel" class="ui-panel">
+            <button class="panel-close" id="panel-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="panel-content">
+                <div class="panel-header">
+                    <div class="panel-icon" id="panel-icon"></div>
+                    <div class="panel-titles">
+                        <span class="panel-label" id="panel-label">KRATOM EXTRACT</span>
+                        <h2 class="panel-title" id="panel-title">Gold Reserve</h2>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p class="panel-description" id="panel-description"></p>
+                    <div class="panel-compounds">
+                        <h3>Active Compounds</h3>
+                        <div class="compound-grid" id="compound-grid"></div>
+                    </div>
+                    <div class="panel-benefits">
+                        <h3>Key Benefits</h3>
+                        <ul class="benefits-list" id="benefits-list"></ul>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="panel-price">
+                        <span class="price-amount" id="price-amount">$49.99</span>
+                        <span class="price-unit">/ 30ml</span>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="btn btn-secondary" id="view-coa-btn">View COA</button>
+                        <button class="btn btn-primary" id="add-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal" id="detail-modal">
+            <button class="modal-close" id="modal-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="modal-content" id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Three.js -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+        // ============================================
+        // Configuration
+        // ============================================
+        const CONFIG = {
+            colors: {
+                kratom: 0xD4A574,
+                kava: 0x10B981,
+                lotus: 0x8B5CF6,
+                nootropic: 0x06B6D4,
+                // Lab colors
+                wallColor: 0xf5f5f5,
+                floorTile: 0xe8e8e8,
+                floorGrout: 0xcccccc,
+                counter: 0x2c3e50,
+                counterTop: 0xecf0f1,
+                metal: 0x7f8c8d,
+                wood: 0x8B4513
+            }
+        };
+
+        const PRODUCTS = {
+            rotovap: {
+                type: 'equipment',
+                label: 'EXTRACTION EQUIPMENT',
+                title: 'Rotary Evaporator',
+                description: 'Our Buchi R-300 rotary evaporator gently removes solvents under reduced pressure, preserving delicate alkaloids and terpenes during botanical extraction.',
+                compounds: [
+                    { name: 'Vacuum Distillation', effect: 'Low-temp extraction', color: '#06B6D4' },
+                    { name: 'Rotation Speed', effect: '20-280 RPM', color: '#06B6D4' },
+                    { name: 'Bath Temp', effect: '20-95°C', color: '#06B6D4' }
+                ],
+                benefits: [
+                    'Preserves heat-sensitive compounds',
+                    'Efficient solvent recovery',
+                    'Precise temperature control',
+                    'GMP-compliant processing'
+                ],
+                price: 'Lab Equipment',
+                unit: ''
+            },
+            distillation: {
+                type: 'equipment',
+                label: 'PURIFICATION',
+                title: 'Short Path Distillation',
+                description: 'Advanced short-path distillation apparatus for isolating and purifying individual alkaloids to pharmaceutical-grade purity.',
+                compounds: [
+                    { name: 'Vacuum Level', effect: '0.01-1 mbar', color: '#8B5CF6' },
+                    { name: 'Separation', effect: 'Fractional', color: '#8B5CF6' },
+                    { name: 'Purity', effect: '>99%', color: '#8B5CF6' }
+                ],
+                benefits: [
+                    'Isolates specific compounds',
+                    'Removes impurities',
+                    'Creates standardized extracts',
+                    'Lab-verified potency'
+                ],
+                price: 'Lab Equipment',
+                unit: ''
+            },
+            beaker_kratom: {
+                type: 'kratom',
+                label: 'KRATOM EXTRACT',
+                title: 'Gold Reserve',
+                description: 'Premium Maeng Da kratom extract with optimized alkaloid profile. Water-based extraction preserves the full spectrum of beneficial compounds.',
+                compounds: [
+                    { name: 'Mitragynine', effect: 'Primary alkaloid', color: '#D4A574' },
+                    { name: '7-OH-Mitragynine', effect: 'Potent analgesic', color: '#D4A574' },
+                    { name: 'Speciogynine', effect: 'Muscle relaxant', color: '#D4A574' },
+                    { name: 'Paynantheine', effect: 'Relaxation', color: '#D4A574' }
+                ],
+                benefits: [
+                    'Natural energy enhancement',
+                    'Mood elevation',
+                    'Discomfort management',
+                    'Extended duration'
+                ],
+                price: '$49.99',
+                unit: '30ml'
+            },
+            beaker_kava: {
+                type: 'kava',
+                label: 'KAVA EXTRACT',
+                title: 'Noble Root',
+                description: 'Premium noble kava from Vanuatu. Traditional water extraction preserves the full kavalactone profile for authentic island relaxation.',
+                compounds: [
+                    { name: 'Kavain', effect: 'Anxiolytic', color: '#10B981' },
+                    { name: 'Dihydrokavain', effect: 'Relaxation', color: '#10B981' },
+                    { name: 'Methysticin', effect: 'Calming', color: '#10B981' },
+                    { name: 'Yangonin', effect: 'Mood lift', color: '#10B981' }
+                ],
+                benefits: [
+                    'Deep relaxation',
+                    'Social anxiety relief',
+                    'Muscle tension release',
+                    'Clear-headed calm'
+                ],
+                price: '$39.99',
+                unit: '30ml'
+            },
+            beaker_lotus: {
+                type: 'lotus',
+                label: 'BLUE LOTUS',
+                title: 'Sacred Bloom',
+                description: 'Ancient Egyptian blue lotus flower extract. Ethanol extraction captures the full spectrum of psychoactive alkaloids.',
+                compounds: [
+                    { name: 'Nuciferine', effect: 'Dopamine modulator', color: '#8B5CF6' },
+                    { name: 'Aporphine', effect: 'Relaxation', color: '#8B5CF6' },
+                    { name: 'Nupharidine', effect: 'Dream enhancement', color: '#8B5CF6' }
+                ],
+                benefits: [
+                    'Vivid dreams',
+                    'Meditative states',
+                    'Natural mood lift',
+                    'Gentle relaxation'
+                ],
+                price: '$44.99',
+                unit: '30ml'
+            },
+            beaker_nootropic: {
+                type: 'nootropic',
+                label: 'NOOTROPIC BLEND',
+                title: 'Mind Matrix',
+                description: 'Synergistic blend of cognitive-enhancing botanicals. Dual-extraction process maximizes bioavailability.',
+                compounds: [
+                    { name: 'Lions Mane', effect: 'Neurogenesis', color: '#06B6D4' },
+                    { name: 'Bacopa', effect: 'Memory', color: '#06B6D4' },
+                    { name: 'Ginkgo', effect: 'Circulation', color: '#06B6D4' },
+                    { name: 'Rhodiola', effect: 'Adaptogen', color: '#06B6D4' }
+                ],
+                benefits: [
+                    'Enhanced cognition',
+                    'Improved memory',
+                    'Mental clarity',
+                    'Sustained focus'
+                ],
+                price: '$54.99',
+                unit: '30ml'
+            },
+            plant_kratom: {
+                type: 'kratom',
+                label: 'BOTANICAL SOURCE',
+                title: 'Mitragyna Speciosa',
+                description: 'Live kratom specimen from our partner farms in Indonesia. These mature trees produce leaves with optimal alkaloid content.',
+                compounds: [
+                    { name: 'Red Vein', effect: 'Relaxation', color: '#D4A574' },
+                    { name: 'Green Vein', effect: 'Balanced', color: '#22c55e' },
+                    { name: 'White Vein', effect: 'Energy', color: '#f5f5f5' }
+                ],
+                benefits: [
+                    'Sustainably harvested',
+                    'Fair trade certified',
+                    'Organic practices',
+                    'Direct farmer relationships'
+                ],
+                price: 'Learn More',
+                unit: ''
+            },
+            plant_kava: {
+                type: 'kava',
+                label: 'BOTANICAL SOURCE',
+                title: 'Piper Methysticum',
+                description: 'Noble kava cultivar from Vanuatu. Only lateral root material is used for traditional, safe preparation.',
+                compounds: [
+                    { name: 'Borogu', effect: 'Balanced effects', color: '#10B981' },
+                    { name: 'Melomelo', effect: 'Heady variety', color: '#10B981' },
+                    { name: 'Palarasul', effect: 'Heavy variety', color: '#10B981' }
+                ],
+                benefits: [
+                    'Noble varieties only',
+                    'Traditional preparation',
+                    'Tested for safety',
+                    'Island-sourced'
+                ],
+                price: 'Learn More',
+                unit: ''
+            },
+            microscope: {
+                type: 'equipment',
+                label: 'QUALITY CONTROL',
+                title: 'Analysis Station',
+                description: 'Every batch undergoes microscopic analysis and HPLC testing to verify botanical identity and alkaloid content.',
+                compounds: [
+                    { name: 'Microscopy', effect: 'Species verification', color: '#06B6D4' },
+                    { name: 'HPLC', effect: 'Alkaloid quantification', color: '#06B6D4' },
+                    { name: 'Microbial', effect: 'Safety testing', color: '#06B6D4' }
+                ],
+                benefits: [
+                    'Third-party verified',
+                    'COA for every batch',
+                    'Heavy metal screening',
+                    'Pesticide-free guarantee'
+                ],
+                price: 'View COAs',
+                unit: ''
+            },
+            shelf_products: {
+                type: 'equipment',
+                label: 'PRODUCT LINE',
+                title: 'Extract Collection',
+                description: 'Our complete line of standardized botanical extracts, ready for wholesale or retail distribution.',
+                compounds: [
+                    { name: 'Kratom', effect: '4 varieties', color: '#D4A574' },
+                    { name: 'Kava', effect: '3 varieties', color: '#10B981' },
+                    { name: 'Blue Lotus', effect: '2 varieties', color: '#8B5CF6' },
+                    { name: 'Nootropics', effect: '5 blends', color: '#06B6D4' }
+                ],
+                benefits: [
+                    'Sample packs available',
+                    'Subscription discounts',
+                    'Wholesale pricing',
+                    'Custom formulations'
+                ],
+                price: 'Browse All',
+                unit: ''
+            }
+        };
+
+        // ============================================
+        // Scene Variables
+        // ============================================
+        let scene, camera, renderer, composer, controls;
+        let interactiveObjects = [];
+        let interactiveIndicators = []; // Floating rings for clickable items
+        let raycaster, mouse;
+        let hoveredObject = null;
+        let clock;
+
+        // ============================================
+        // Initialize
+        // ============================================
+        function init() {
+            clock = new THREE.Clock();
+
+            // Scene with light background
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf0f0f0);
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.set(0, 2.5, 6);
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.0;
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Controls
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.minDistance = 2;
+            controls.maxDistance = 12;
+            controls.maxPolarAngle = Math.PI / 2 - 0.05;
+            controls.minPolarAngle = 0.3;
+            controls.target.set(0, 1.2, 0);
+
+            // Raycaster
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+
+            // Build scene
+            createLighting();
+            createLabRoom();
+            createLabBenches();
+            createExtractionEquipment();
+            createBeakers();
+            createPlants();
+            createShelvingWithProducts();
+            createMicroscope();
+            createLabDetails();
+            createInteractiveIndicators(); // Add visual indicators for clickable objects
+            setupPostProcessing();
+
+            // Events
+            window.addEventListener('resize', onWindowResize);
+            renderer.domElement.addEventListener('mousemove', onMouseMove);
+            renderer.domElement.addEventListener('click', onClick);
+            renderer.domElement.addEventListener('touchend', onTouchEnd);
+
+            // UI Events - Click anywhere to enter lab
+            document.getElementById('hero-content').addEventListener('click', () => {
+                document.getElementById('hero-content').classList.remove('active');
+                document.getElementById('hero-content').classList.add('hidden');
+            });
+            document.getElementById('panel-close').addEventListener('click', closePanel);
+            document.getElementById('modal-close').addEventListener('click', closeModal);
+            document.getElementById('modal-overlay').addEventListener('click', (e) => {
+                if (e.target.id === 'modal-overlay') closeModal();
+            });
+            document.getElementById('view-coa-btn').addEventListener('click', showCOA);
+
+            // Hide loading
+            setTimeout(() => {
+                document.getElementById('loading-screen').classList.add('hidden');
+            }, 1500);
+
+            animate();
+        }
+
+        // ============================================
+        // Lighting - Bright Lab Style
+        // ============================================
+        function createLighting() {
+            // Bright ambient
+            const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambient);
+
+            // Main overhead lights (fluorescent style)
+            const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            light1.position.set(0, 8, 0);
+            light1.castShadow = true;
+            light1.shadow.mapSize.width = 2048;
+            light1.shadow.mapSize.height = 2048;
+            light1.shadow.camera.near = 0.5;
+            light1.shadow.camera.far = 20;
+            light1.shadow.camera.left = -8;
+            light1.shadow.camera.right = 8;
+            light1.shadow.camera.top = 8;
+            light1.shadow.camera.bottom = -8;
+            scene.add(light1);
+
+            // Fill lights
+            const fill1 = new THREE.DirectionalLight(0xffffff, 0.4);
+            fill1.position.set(5, 5, 5);
+            scene.add(fill1);
+
+            const fill2 = new THREE.DirectionalLight(0xffffff, 0.3);
+            fill2.position.set(-5, 5, -5);
+            scene.add(fill2);
+
+            // Subtle colored accent lights
+            const greenAccent = new THREE.PointLight(0x10B981, 0.3, 5);
+            greenAccent.position.set(-2, 2, 0);
+            scene.add(greenAccent);
+
+            const blueAccent = new THREE.PointLight(0x06B6D4, 0.2, 5);
+            blueAccent.position.set(2, 2, -2);
+            scene.add(blueAccent);
+        }
+
+        // ============================================
+        // Lab Room - Walls & Floor
+        // ============================================
+        function createLabRoom() {
+            // Floor with tile pattern
+            const floorSize = 14;
+            const tileSize = 0.5;
+            const floorGroup = new THREE.Group();
+
+            // Base floor
+            const floorGeo = new THREE.PlaneGeometry(floorSize, floorSize);
+            const floorMat = new THREE.MeshStandardMaterial({
+                color: 0xe0e0e0,
+                roughness: 0.3,
+                metalness: 0.1
+            });
+            const floor = new THREE.Mesh(floorGeo, floorMat);
+            floor.rotation.x = -Math.PI / 2;
+            floor.receiveShadow = true;
+            floorGroup.add(floor);
+
+            // Tile grid lines
+            const gridGeo = new THREE.BufferGeometry();
+            const gridPositions = [];
+            const halfSize = floorSize / 2;
+
+            for (let i = -halfSize; i <= halfSize; i += tileSize) {
+                gridPositions.push(-halfSize, 0.001, i, halfSize, 0.001, i);
+                gridPositions.push(i, 0.001, -halfSize, i, 0.001, halfSize);
+            }
+            gridGeo.setAttribute('position', new THREE.Float32BufferAttribute(gridPositions, 3));
+            const gridMat = new THREE.LineBasicMaterial({ color: 0xcccccc, transparent: true, opacity: 0.5 });
+            const grid = new THREE.LineSegments(gridGeo, gridMat);
+            floorGroup.add(grid);
+
+            scene.add(floorGroup);
+
+            // Back wall
+            const wallGeo = new THREE.PlaneGeometry(floorSize, 5);
+            const wallMat = new THREE.MeshStandardMaterial({
+                color: 0xfafafa,
+                roughness: 0.9,
+                metalness: 0
+            });
+            const backWall = new THREE.Mesh(wallGeo, wallMat);
+            backWall.position.set(0, 2.5, -floorSize / 2);
+            backWall.receiveShadow = true;
+            scene.add(backWall);
+
+            // Side walls
+            const leftWall = new THREE.Mesh(wallGeo, wallMat);
+            leftWall.position.set(-floorSize / 2, 2.5, 0);
+            leftWall.rotation.y = Math.PI / 2;
+            leftWall.receiveShadow = true;
+            scene.add(leftWall);
+
+            const rightWall = new THREE.Mesh(wallGeo, wallMat);
+            rightWall.position.set(floorSize / 2, 2.5, 0);
+            rightWall.rotation.y = -Math.PI / 2;
+            rightWall.receiveShadow = true;
+            scene.add(rightWall);
+
+            // Ceiling
+            const ceilingGeo = new THREE.PlaneGeometry(floorSize, floorSize);
+            const ceilingMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.9 });
+            const ceiling = new THREE.Mesh(ceilingGeo, ceilingMat);
+            ceiling.position.y = 5;
+            ceiling.rotation.x = Math.PI / 2;
+            scene.add(ceiling);
+
+            // Fluorescent light fixtures
+            createLightFixture(0, 4.95, -2);
+            createLightFixture(0, 4.95, 2);
+
+            // Baseboards
+            const baseboardGeo = new THREE.BoxGeometry(floorSize, 0.1, 0.05);
+            const baseboardMat = new THREE.MeshStandardMaterial({ color: 0x888888 });
+
+            const bbBack = new THREE.Mesh(baseboardGeo, baseboardMat);
+            bbBack.position.set(0, 0.05, -floorSize / 2 + 0.025);
+            scene.add(bbBack);
+        }
+
+        function createLightFixture(x, y, z) {
+            const fixtureGroup = new THREE.Group();
+
+            // Housing
+            const housingGeo = new THREE.BoxGeometry(1.5, 0.08, 0.4);
+            const housingMat = new THREE.MeshStandardMaterial({ color: 0xdddddd });
+            const housing = new THREE.Mesh(housingGeo, housingMat);
+            fixtureGroup.add(housing);
+
+            // Light panel (emissive)
+            const panelGeo = new THREE.PlaneGeometry(1.4, 0.3);
+            const panelMat = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                emissive: 0xffffff,
+                emissiveIntensity: 0.5
+            });
+            const panel = new THREE.Mesh(panelGeo, panelMat);
+            panel.position.y = -0.041;
+            panel.rotation.x = -Math.PI / 2;
+            fixtureGroup.add(panel);
+
+            fixtureGroup.position.set(x, y, z);
+            scene.add(fixtureGroup);
+        }
+
+        // ============================================
+        // Lab Benches
+        // ============================================
+        function createLabBenches() {
+            // Main center bench
+            createBench(0, 0, 0, 4, 0.9, 1.2);
+
+            // Side bench (left)
+            createBench(-4, 0, -3, 3, 0.9, 0.8);
+
+            // Side bench (right) - for plants
+            createBench(4, 0, -3, 3, 0.9, 0.8);
+        }
+
+        function createBench(x, y, z, width, height, depth) {
+            const benchGroup = new THREE.Group();
+
+            // Countertop
+            const topGeo = new THREE.BoxGeometry(width, 0.05, depth);
+            const topMat = new THREE.MeshStandardMaterial({
+                color: 0x1a1a2e,
+                roughness: 0.2,
+                metalness: 0.3
+            });
+            const top = new THREE.Mesh(topGeo, topMat);
+            top.position.y = height;
+            top.castShadow = true;
+            top.receiveShadow = true;
+            benchGroup.add(top);
+
+            // Edge trim (colored accent)
+            const edgeGeo = new THREE.BoxGeometry(width + 0.02, 0.02, depth + 0.02);
+            const edgeMat = new THREE.MeshStandardMaterial({
+                color: 0x10B981,
+                roughness: 0.5,
+                metalness: 0.5
+            });
+            const edge = new THREE.Mesh(edgeGeo, edgeMat);
+            edge.position.y = height - 0.025;
+            benchGroup.add(edge);
+
+            // Cabinets below
+            const cabinetGeo = new THREE.BoxGeometry(width - 0.1, height - 0.1, depth - 0.1);
+            const cabinetMat = new THREE.MeshStandardMaterial({
+                color: 0x2c3e50,
+                roughness: 0.7
+            });
+            const cabinet = new THREE.Mesh(cabinetGeo, cabinetMat);
+            cabinet.position.y = (height - 0.1) / 2;
+            cabinet.castShadow = true;
+            benchGroup.add(cabinet);
+
+            // Cabinet doors
+            const doorWidth = (width - 0.2) / 3;
+            for (let i = 0; i < 3; i++) {
+                const doorGeo = new THREE.BoxGeometry(doorWidth - 0.05, height - 0.2, 0.02);
+                const doorMat = new THREE.MeshStandardMaterial({ color: 0x34495e, roughness: 0.6 });
+                const door = new THREE.Mesh(doorGeo, doorMat);
+                door.position.set(-width / 2 + doorWidth / 2 + 0.1 + i * doorWidth, (height - 0.1) / 2, depth / 2 - 0.04);
+                benchGroup.add(door);
+
+                // Door handle
+                const handleGeo = new THREE.CylinderGeometry(0.01, 0.01, 0.08, 8);
+                const handleMat = new THREE.MeshStandardMaterial({ color: 0x95a5a6, metalness: 0.8 });
+                const handle = new THREE.Mesh(handleGeo, handleMat);
+                handle.rotation.x = Math.PI / 2;
+                handle.position.set(door.position.x + doorWidth / 2 - 0.1, door.position.y, depth / 2 - 0.02);
+                benchGroup.add(handle);
+            }
+
+            // Legs
+            const legGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.05, 8);
+            const legMat = new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 0.8 });
+            const legPositions = [
+                [-width / 2 + 0.1, 0.025, depth / 2 - 0.1],
+                [width / 2 - 0.1, 0.025, depth / 2 - 0.1],
+                [-width / 2 + 0.1, 0.025, -depth / 2 + 0.1],
+                [width / 2 - 0.1, 0.025, -depth / 2 + 0.1]
+            ];
+            legPositions.forEach(pos => {
+                const leg = new THREE.Mesh(legGeo, legMat);
+                leg.position.set(...pos);
+                benchGroup.add(leg);
+            });
+
+            benchGroup.position.set(x, y, z);
+            scene.add(benchGroup);
+        }
+
+        // ============================================
+        // Extraction Equipment
+        // ============================================
+        function createExtractionEquipment() {
+            // Rotary Evaporator
+            createRotovap(-1.2, 0.95, -0.2);
+
+            // Distillation Setup
+            createDistillation(1.2, 0.95, -0.2);
+        }
+
+        function createRotovap(x, y, z) {
+            const rotovapGroup = new THREE.Group();
+            rotovapGroup.name = 'rotovap';
+            rotovapGroup.userData = { type: 'equipment', id: 'rotovap' };
+
+            const metalMat = new THREE.MeshStandardMaterial({ color: 0x7f8c8d, roughness: 0.3, metalness: 0.8 });
+            const glassMat = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff, metalness: 0, roughness: 0, transmission: 0.9, thickness: 0.1, ior: 1.5
+            });
+
+            // Main column/motor housing
+            const housingGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.5, 16);
+            const housing = new THREE.Mesh(housingGeo, metalMat);
+            housing.position.y = 0.35;
+            housing.castShadow = true;
+            rotovapGroup.add(housing);
+
+            // Diagonal arm
+            const armGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.4, 8);
+            const arm = new THREE.Mesh(armGeo, metalMat);
+            arm.position.set(0.15, 0.45, 0);
+            arm.rotation.z = -Math.PI / 4;
+            rotovapGroup.add(arm);
+
+            // Evaporating flask (round bottom)
+            const flaskGeo = new THREE.SphereGeometry(0.12, 24, 24);
+            const flask = new THREE.Mesh(flaskGeo, glassMat);
+            flask.position.set(0.3, 0.25, 0);
+            rotovapGroup.add(flask);
+
+            // Liquid in flask
+            const liquidGeo = new THREE.SphereGeometry(0.08, 24, 12, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+            const liquidMat = new THREE.MeshPhysicalMaterial({
+                color: CONFIG.colors.kava, transmission: 0.6, roughness: 0.1,
+                emissive: CONFIG.colors.kava, emissiveIntensity: 0.2
+            });
+            const liquid = new THREE.Mesh(liquidGeo, liquidMat);
+            liquid.position.set(0.3, 0.18, 0);
+            liquid.rotation.x = Math.PI;
+            rotovapGroup.add(liquid);
+
+            // Flask neck
+            const neckGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.1, 12, 1, true);
+            const neck = new THREE.Mesh(neckGeo, glassMat);
+            neck.position.set(0.3, 0.4, 0);
+            rotovapGroup.add(neck);
+
+            // Heating bath
+            const bathGeo = new THREE.CylinderGeometry(0.18, 0.16, 0.15, 24);
+            const bathMat = new THREE.MeshStandardMaterial({ color: 0x3498db, roughness: 0.4 });
+            const bath = new THREE.Mesh(bathGeo, bathMat);
+            bath.position.set(0.3, 0.075, 0);
+            bath.castShadow = true;
+            rotovapGroup.add(bath);
+
+            // Condenser (vertical glass tube)
+            const condenserGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.35, 12, 1, true);
+            const condenser = new THREE.Mesh(condenserGeo, glassMat);
+            condenser.position.set(-0.15, 0.55, 0);
+            rotovapGroup.add(condenser);
+
+            // Collection flask
+            const collectGeo = new THREE.SphereGeometry(0.08, 16, 16);
+            const collect = new THREE.Mesh(collectGeo, glassMat);
+            collect.position.set(-0.15, 0.25, 0);
+            rotovapGroup.add(collect);
+
+            // Small amount of collected liquid
+            const collected = new THREE.Mesh(
+                new THREE.SphereGeometry(0.04, 16, 8, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
+                new THREE.MeshPhysicalMaterial({ color: CONFIG.colors.kava, transmission: 0.7 })
+            );
+            collected.position.set(-0.15, 0.2, 0);
+            collected.rotation.x = Math.PI;
+            rotovapGroup.add(collected);
+
+            // Base
+            const baseGeo = new THREE.BoxGeometry(0.25, 0.05, 0.15);
+            const base = new THREE.Mesh(baseGeo, metalMat);
+            base.position.y = 0.025;
+            rotovapGroup.add(base);
+
+            // Digital display
+            const displayGeo = new THREE.BoxGeometry(0.08, 0.04, 0.02);
+            const displayMat = new THREE.MeshStandardMaterial({
+                color: 0x000000, emissive: 0x00ff00, emissiveIntensity: 0.3
+            });
+            const display = new THREE.Mesh(displayGeo, displayMat);
+            display.position.set(0, 0.12, 0.07);
+            rotovapGroup.add(display);
+
+            rotovapGroup.position.set(x, y, z);
+            scene.add(rotovapGroup);
+            interactiveObjects.push(rotovapGroup);
+        }
+
+        function createDistillation(x, y, z) {
+            const distGroup = new THREE.Group();
+            distGroup.name = 'distillation';
+            distGroup.userData = { type: 'equipment', id: 'distillation' };
+
+            const glassMat = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff, metalness: 0, roughness: 0, transmission: 0.9, thickness: 0.1
+            });
+            const metalMat = new THREE.MeshStandardMaterial({ color: 0x7f8c8d, roughness: 0.3, metalness: 0.8 });
+
+            // Boiling flask
+            const boilFlaskGeo = new THREE.SphereGeometry(0.1, 24, 24);
+            const boilFlask = new THREE.Mesh(boilFlaskGeo, glassMat);
+            boilFlask.position.set(-0.25, 0.15, 0);
+            distGroup.add(boilFlask);
+
+            // Liquid in boiling flask
+            const boilLiquid = new THREE.Mesh(
+                new THREE.SphereGeometry(0.07, 24, 12, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
+                new THREE.MeshPhysicalMaterial({
+                    color: CONFIG.colors.lotus, transmission: 0.6,
+                    emissive: CONFIG.colors.lotus, emissiveIntensity: 0.15
+                })
+            );
+            boilLiquid.position.set(-0.25, 0.1, 0);
+            boilLiquid.rotation.x = Math.PI;
+            distGroup.add(boilLiquid);
+
+            // Heating mantle
+            const mantleGeo = new THREE.CylinderGeometry(0.12, 0.14, 0.1, 24);
+            const mantleMat = new THREE.MeshStandardMaterial({ color: 0x8e44ad, roughness: 0.6 });
+            const mantle = new THREE.Mesh(mantleGeo, mantleMat);
+            mantle.position.set(-0.25, 0.05, 0);
+            mantle.castShadow = true;
+            distGroup.add(mantle);
+
+            // Distillation head (diagonal tube)
+            const headGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.3, 12);
+            const head = new THREE.Mesh(headGeo, glassMat);
+            head.position.set(-0.1, 0.35, 0);
+            head.rotation.z = Math.PI / 6;
+            distGroup.add(head);
+
+            // Condenser tube (horizontal with jacket)
+            const condenserOuter = new THREE.CylinderGeometry(0.04, 0.04, 0.35, 12, 1, true);
+            const condenserOuterMesh = new THREE.Mesh(condenserOuter, glassMat);
+            condenserOuterMesh.position.set(0.1, 0.4, 0);
+            condenserOuterMesh.rotation.z = Math.PI / 2;
+            distGroup.add(condenserOuterMesh);
+
+            const condenserInner = new THREE.CylinderGeometry(0.02, 0.02, 0.4, 12);
+            const condenserInnerMesh = new THREE.Mesh(condenserInner, glassMat);
+            condenserInnerMesh.position.set(0.1, 0.4, 0);
+            condenserInnerMesh.rotation.z = Math.PI / 2;
+            distGroup.add(condenserInnerMesh);
+
+            // Receiving flask
+            const recFlaskGeo = new THREE.SphereGeometry(0.08, 20, 20);
+            const recFlask = new THREE.Mesh(recFlaskGeo, glassMat);
+            recFlask.position.set(0.35, 0.15, 0);
+            distGroup.add(recFlask);
+
+            // Collected distillate
+            const distillate = new THREE.Mesh(
+                new THREE.SphereGeometry(0.05, 16, 8, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
+                new THREE.MeshPhysicalMaterial({
+                    color: CONFIG.colors.lotus, transmission: 0.8
+                })
+            );
+            distillate.position.set(0.35, 0.1, 0);
+            distillate.rotation.x = Math.PI;
+            distGroup.add(distillate);
+
+            // Stand/clamps
+            const standGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.6, 8);
+            const stand = new THREE.Mesh(standGeo, metalMat);
+            stand.position.set(-0.25, 0.35, 0.15);
+            distGroup.add(stand);
+
+            const stand2 = new THREE.Mesh(standGeo, metalMat);
+            stand2.position.set(0.35, 0.35, 0.12);
+            distGroup.add(stand2);
+
+            // Base plate
+            const basePlate = new THREE.Mesh(
+                new THREE.BoxGeometry(0.3, 0.02, 0.15),
+                metalMat
+            );
+            basePlate.position.set(-0.25, 0.01, 0.15);
+            distGroup.add(basePlate);
+
+            distGroup.position.set(x, y, z);
+            scene.add(distGroup);
+            interactiveObjects.push(distGroup);
+        }
+
+        // ============================================
+        // Beakers
+        // ============================================
+        function createBeakers() {
+            createBeaker(-0.5, 0.95, 0.35, 'kratom', 'beaker_kratom');
+            createBeaker(0, 0.95, 0.35, 'kava', 'beaker_kava');
+            createBeaker(0.5, 0.95, 0.35, 'lotus', 'beaker_lotus');
+            createBeaker(1.0, 0.95, 0.35, 'nootropic', 'beaker_nootropic');
+        }
+
+        function createBeaker(x, y, z, type, id) {
+            const beakerGroup = new THREE.Group();
+            beakerGroup.name = id;
+            beakerGroup.userData = { type: 'product', id: id };
+
+            const color = CONFIG.colors[type];
+
+            // Glass beaker body
+            const points = [];
+            for (let i = 0; i < 12; i++) {
+                const t = i / 11;
+                const r = 0.05 + t * 0.03;
+                points.push(new THREE.Vector2(r, t * 0.18));
+            }
+            points.push(new THREE.Vector2(0.085, 0.18));
+            points.push(new THREE.Vector2(0.085, 0.19));
+
+            const glassGeo = new THREE.LatheGeometry(points, 24);
+            const glassMat = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff, metalness: 0, roughness: 0,
+                transmission: 0.92, thickness: 0.02, ior: 1.5
+            });
+            const glass = new THREE.Mesh(glassGeo, glassMat);
+            glass.castShadow = true;
+            beakerGroup.add(glass);
+
+            // Liquid
+            const liquidPoints = [];
+            for (let i = 0; i < 10; i++) {
+                const t = i / 9;
+                const r = 0.045 + t * 0.025;
+                liquidPoints.push(new THREE.Vector2(r, t * 0.12));
+            }
+            liquidPoints.push(new THREE.Vector2(0, 0.12));
+
+            const liquidGeo = new THREE.LatheGeometry(liquidPoints, 24);
+            const liquidMat = new THREE.MeshPhysicalMaterial({
+                color: color, metalness: 0, roughness: 0.15,
+                transmission: 0.65, thickness: 0.3,
+                emissive: color, emissiveIntensity: 0.15
+            });
+            const liquid = new THREE.Mesh(liquidGeo, liquidMat);
+            liquid.position.y = 0.01;
+            beakerGroup.add(liquid);
+
+            // Measurement lines
+            const lineGeo = new THREE.BufferGeometry();
+            const linePos = [];
+            for (let i = 1; i <= 3; i++) {
+                const yPos = i * 0.04 + 0.02;
+                const r = 0.052 + (yPos / 0.18) * 0.03;
+                linePos.push(-r, yPos, 0, r, yPos, 0);
+            }
+            lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+            const lineMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.4 });
+            const lines = new THREE.LineSegments(lineGeo, lineMat);
+            beakerGroup.add(lines);
+
+            // Label
+            const labelGeo = new THREE.PlaneGeometry(0.06, 0.03);
+            const labelMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 });
+            const label = new THREE.Mesh(labelGeo, labelMat);
+            label.position.set(0, 0.1, 0.06);
+            beakerGroup.add(label);
+
+            beakerGroup.position.set(x, y, z);
+            scene.add(beakerGroup);
+            interactiveObjects.push(beakerGroup);
+        }
+
+        // ============================================
+        // Plants
+        // ============================================
+        function createPlants() {
+            // Kratom plant on right bench
+            createPottedPlant(3.5, 0.95, -3, 'kratom', 'plant_kratom', 0.5);
+
+            // Kava plant
+            createPottedPlant(4.5, 0.95, -3, 'kava', 'plant_kava', 0.4);
+
+            // Small plants on windowsill area
+            createSmallPlant(-4.5, 0.95, -3.2, 0x22c55e);
+            createSmallPlant(-3.8, 0.95, -3.2, 0x16a34a);
+        }
+
+        function createPottedPlant(x, y, z, type, id, scale = 1) {
+            const plantGroup = new THREE.Group();
+            plantGroup.name = id;
+            plantGroup.userData = { type: 'product', id: id };
+
+            // Terracotta pot
+            const potGeo = new THREE.CylinderGeometry(0.12 * scale, 0.1 * scale, 0.15 * scale, 16);
+            const potMat = new THREE.MeshStandardMaterial({ color: 0xc66b3d, roughness: 0.8 });
+            const pot = new THREE.Mesh(potGeo, potMat);
+            pot.castShadow = true;
+            plantGroup.add(pot);
+
+            // Pot rim
+            const rimGeo = new THREE.TorusGeometry(0.12 * scale, 0.015 * scale, 8, 24);
+            const rim = new THREE.Mesh(rimGeo, potMat);
+            rim.position.y = 0.075 * scale;
+            rim.rotation.x = Math.PI / 2;
+            plantGroup.add(rim);
+
+            // Soil
+            const soilGeo = new THREE.CylinderGeometry(0.11 * scale, 0.11 * scale, 0.02 * scale, 16);
+            const soilMat = new THREE.MeshStandardMaterial({ color: 0x3d2817, roughness: 1 });
+            const soil = new THREE.Mesh(soilGeo, soilMat);
+            soil.position.y = 0.065 * scale;
+            plantGroup.add(soil);
+
+            // Plant stem
+            const stemGeo = new THREE.CylinderGeometry(0.01 * scale, 0.015 * scale, 0.25 * scale, 8);
+            const stemMat = new THREE.MeshStandardMaterial({ color: 0x228B22, roughness: 0.6 });
+            const stem = new THREE.Mesh(stemGeo, stemMat);
+            stem.position.y = 0.2 * scale;
+            plantGroup.add(stem);
+
+            // Leaves
+            const leafColor = type === 'kratom' ? 0x2d5016 : 0x166534;
+            const leafMat = new THREE.MeshStandardMaterial({
+                color: leafColor, roughness: 0.5, side: THREE.DoubleSide
+            });
+
+            const leafShape = new THREE.Shape();
+            leafShape.moveTo(0, 0);
+            leafShape.quadraticCurveTo(0.03, 0.05, 0.05, 0.12);
+            leafShape.quadraticCurveTo(0.02, 0.1, 0, 0.08);
+            leafShape.quadraticCurveTo(-0.02, 0.1, -0.05, 0.12);
+            leafShape.quadraticCurveTo(-0.03, 0.05, 0, 0);
+
+            const leafGeo = new THREE.ShapeGeometry(leafShape);
+
+            // Multiple leaves at different angles
+            const leafAngles = [
+                { y: 0.22, rotZ: 0.3, rotY: 0 },
+                { y: 0.25, rotZ: -0.4, rotY: Math.PI / 3 },
+                { y: 0.23, rotZ: 0.5, rotY: Math.PI * 2 / 3 },
+                { y: 0.28, rotZ: -0.3, rotY: Math.PI },
+                { y: 0.26, rotZ: 0.4, rotY: Math.PI * 4 / 3 },
+                { y: 0.3, rotZ: -0.2, rotY: Math.PI * 5 / 3 },
+                { y: 0.32, rotZ: 0.1, rotY: Math.PI / 6 },
+                { y: 0.35, rotZ: -0.1, rotY: Math.PI / 2 }
+            ];
+
+            leafAngles.forEach(({ y, rotZ, rotY }) => {
+                const leaf = new THREE.Mesh(leafGeo, leafMat);
+                leaf.position.y = y * scale;
+                leaf.rotation.z = rotZ;
+                leaf.rotation.y = rotY;
+                leaf.scale.setScalar(scale * 1.2);
+                plantGroup.add(leaf);
+            });
+
+            plantGroup.position.set(x, y, z);
+            scene.add(plantGroup);
+            interactiveObjects.push(plantGroup);
+        }
+
+        function createSmallPlant(x, y, z, color) {
+            const group = new THREE.Group();
+
+            // Small pot
+            const potGeo = new THREE.CylinderGeometry(0.05, 0.04, 0.06, 12);
+            const potMat = new THREE.MeshStandardMaterial({ color: 0x8B4513, roughness: 0.8 });
+            const pot = new THREE.Mesh(potGeo, potMat);
+            group.add(pot);
+
+            // Soil
+            const soil = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.045, 0.045, 0.01, 12),
+                new THREE.MeshStandardMaterial({ color: 0x3d2817 })
+            );
+            soil.position.y = 0.025;
+            group.add(soil);
+
+            // Simple leaves
+            const leafMat = new THREE.MeshStandardMaterial({ color: color, side: THREE.DoubleSide });
+            for (let i = 0; i < 5; i++) {
+                const leaf = new THREE.Mesh(
+                    new THREE.PlaneGeometry(0.03, 0.05),
+                    leafMat
+                );
+                leaf.position.y = 0.06 + i * 0.01;
+                leaf.rotation.y = (i / 5) * Math.PI * 2;
+                leaf.rotation.x = -0.3;
+                group.add(leaf);
+            }
+
+            group.position.set(x, y, z);
+            scene.add(group);
+        }
+
+        // ============================================
+        // Shelving with Products
+        // ============================================
+        function createShelvingWithProducts() {
+            // Shelving unit on back wall
+            const shelfGroup = new THREE.Group();
+            shelfGroup.name = 'shelf_products';
+            shelfGroup.userData = { type: 'equipment', id: 'shelf_products' };
+
+            const metalMat = new THREE.MeshStandardMaterial({ color: 0x444444, roughness: 0.3, metalness: 0.7 });
+
+            // Vertical posts
+            const postGeo = new THREE.BoxGeometry(0.04, 1.8, 0.04);
+            const postPositions = [[-1.2, 0.9, 0], [1.2, 0.9, 0]];
+            postPositions.forEach(pos => {
+                const post = new THREE.Mesh(postGeo, metalMat);
+                post.position.set(...pos);
+                post.castShadow = true;
+                shelfGroup.add(post);
+            });
+
+            // Shelf boards
+            const shelfGeo = new THREE.BoxGeometry(2.5, 0.03, 0.35);
+            const shelfMat = new THREE.MeshStandardMaterial({ color: 0x2c3e50, roughness: 0.4 });
+            const shelfHeights = [0.3, 0.8, 1.3, 1.8];
+
+            shelfHeights.forEach(h => {
+                const shelf = new THREE.Mesh(shelfGeo, shelfMat);
+                shelf.position.y = h;
+                shelf.castShadow = true;
+                shelf.receiveShadow = true;
+                shelfGroup.add(shelf);
+            });
+
+            // Add product bottles/jars on shelves
+            const bottleColors = [CONFIG.colors.kratom, CONFIG.colors.kava, CONFIG.colors.lotus, CONFIG.colors.nootropic];
+            const bottlePositions = [-0.9, -0.45, 0, 0.45, 0.9];
+
+            shelfHeights.slice(0, 3).forEach((h, shelfIdx) => {
+                bottlePositions.forEach((xPos, i) => {
+                    const color = bottleColors[(shelfIdx + i) % bottleColors.length];
+                    createProductBottle(xPos, h + 0.08, 0, color, shelfGroup);
+                });
+            });
+
+            shelfGroup.position.set(0, 0, -6.7);
+            scene.add(shelfGroup);
+            interactiveObjects.push(shelfGroup);
+        }
+
+        function createProductBottle(x, y, z, color, parent) {
+            const bottleGroup = new THREE.Group();
+
+            // Amber bottle
+            const bottleGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.12, 12);
+            const bottleMat = new THREE.MeshPhysicalMaterial({
+                color: 0x8B4513, transmission: 0.4, roughness: 0.2, thickness: 0.1
+            });
+            const bottle = new THREE.Mesh(bottleGeo, bottleMat);
+            bottle.position.y = 0.06;
+            bottleGroup.add(bottle);
+
+            // Cap
+            const capGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.03, 12);
+            const capMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.3 });
+            const cap = new THREE.Mesh(capGeo, capMat);
+            cap.position.y = 0.135;
+            bottleGroup.add(cap);
+
+            // Label
+            const labelGeo = new THREE.CylinderGeometry(0.042, 0.042, 0.06, 12, 1, true, 0, Math.PI);
+            const labelMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.8 });
+            const label = new THREE.Mesh(labelGeo, labelMat);
+            label.position.y = 0.06;
+            label.rotation.y = Math.PI;
+            bottleGroup.add(label);
+
+            bottleGroup.position.set(x, y, z);
+            parent.add(bottleGroup);
+        }
+
+        // ============================================
+        // Microscope
+        // ============================================
+        function createMicroscope() {
+            const scopeGroup = new THREE.Group();
+            scopeGroup.name = 'microscope';
+            scopeGroup.userData = { type: 'equipment', id: 'microscope' };
+
+            const metalMat = new THREE.MeshStandardMaterial({ color: 0x2c3e50, roughness: 0.3, metalness: 0.6 });
+            const chromeMat = new THREE.MeshStandardMaterial({ color: 0x95a5a6, roughness: 0.1, metalness: 0.9 });
+
+            // Base
+            const baseGeo = new THREE.CylinderGeometry(0.12, 0.14, 0.04, 24);
+            const base = new THREE.Mesh(baseGeo, metalMat);
+            base.castShadow = true;
+            scopeGroup.add(base);
+
+            // Arm (vertical)
+            const armGeo = new THREE.BoxGeometry(0.04, 0.4, 0.06);
+            const arm = new THREE.Mesh(armGeo, metalMat);
+            arm.position.set(0, 0.22, -0.04);
+            scopeGroup.add(arm);
+
+            // Body tube
+            const tubeGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.15, 16);
+            const tube = new THREE.Mesh(tubeGeo, chromeMat);
+            tube.position.set(0, 0.45, 0);
+            scopeGroup.add(tube);
+
+            // Eyepiece
+            const eyeGeo = new THREE.CylinderGeometry(0.02, 0.025, 0.06, 16);
+            const eye = new THREE.Mesh(eyeGeo, chromeMat);
+            eye.position.set(0, 0.55, 0);
+            scopeGroup.add(eye);
+
+            // Objective turret
+            const turretGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.03, 16);
+            const turret = new THREE.Mesh(turretGeo, chromeMat);
+            turret.position.set(0, 0.35, 0);
+            scopeGroup.add(turret);
+
+            // Objective lenses
+            for (let i = 0; i < 3; i++) {
+                const objGeo = new THREE.CylinderGeometry(0.01, 0.015, 0.04, 8);
+                const obj = new THREE.Mesh(objGeo, chromeMat);
+                obj.position.set(Math.sin(i * Math.PI * 2 / 3) * 0.025, 0.31, Math.cos(i * Math.PI * 2 / 3) * 0.025);
+                scopeGroup.add(obj);
+            }
+
+            // Stage
+            const stageGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.015, 24);
+            const stage = new THREE.Mesh(stageGeo, metalMat);
+            stage.position.y = 0.14;
+            scopeGroup.add(stage);
+
+            // Slide on stage
+            const slideGeo = new THREE.BoxGeometry(0.08, 0.002, 0.025);
+            const slideMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.9, thickness: 0.01 });
+            const slide = new THREE.Mesh(slideGeo, slideMat);
+            slide.position.y = 0.15;
+            scopeGroup.add(slide);
+
+            // Sample
+            const sampleGeo = new THREE.CircleGeometry(0.008, 16);
+            const sampleMat = new THREE.MeshBasicMaterial({ color: CONFIG.colors.kava });
+            const sample = new THREE.Mesh(sampleGeo, sampleMat);
+            sample.position.y = 0.152;
+            sample.rotation.x = -Math.PI / 2;
+            scopeGroup.add(sample);
+
+            // Light source
+            const lightGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.03, 16);
+            const lightMat = new THREE.MeshStandardMaterial({
+                color: 0xffffff, emissive: 0xffffcc, emissiveIntensity: 0.3
+            });
+            const light = new THREE.Mesh(lightGeo, lightMat);
+            light.position.y = 0.08;
+            scopeGroup.add(light);
+
+            // Focus knobs
+            const knobGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.01, 16);
+            const knob1 = new THREE.Mesh(knobGeo, chromeMat);
+            knob1.position.set(0.05, 0.25, -0.04);
+            knob1.rotation.z = Math.PI / 2;
+            scopeGroup.add(knob1);
+
+            const knob2 = new THREE.Mesh(knobGeo, chromeMat);
+            knob2.position.set(-0.05, 0.25, -0.04);
+            knob2.rotation.z = Math.PI / 2;
+            scopeGroup.add(knob2);
+
+            scopeGroup.position.set(-4, 0.95, -2.6);
+            scene.add(scopeGroup);
+            interactiveObjects.push(scopeGroup);
+        }
+
+        // ============================================
+        // Lab Details
+        // ============================================
+        function createLabDetails() {
+            // Fume hood on left wall
+            createFumeHood(-6.8, 0, -2);
+
+            // Scale on bench
+            createScale(-1.8, 0.95, 0);
+
+            // Safety equipment
+            createSafetyShower(6.5, 0, -5);
+
+            // Lab stool
+            createStool(0, 0, 2);
+        }
+
+        function createFumeHood(x, y, z) {
+            const hoodGroup = new THREE.Group();
+
+            const metalMat = new THREE.MeshStandardMaterial({ color: 0x555555, roughness: 0.4 });
+            const glassMat = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff, transmission: 0.85, roughness: 0, thickness: 0.05
+            });
+
+            // Base cabinet
+            const cabinetGeo = new THREE.BoxGeometry(1.5, 0.9, 0.8);
+            const cabinet = new THREE.Mesh(cabinetGeo, new THREE.MeshStandardMaterial({ color: 0x2c3e50 }));
+            cabinet.position.y = 0.45;
+            cabinet.castShadow = true;
+            hoodGroup.add(cabinet);
+
+            // Work surface
+            const surfaceGeo = new THREE.BoxGeometry(1.5, 0.03, 0.8);
+            const surfaceMat = new THREE.MeshStandardMaterial({ color: 0x1a1a2e, roughness: 0.2 });
+            const surface = new THREE.Mesh(surfaceGeo, surfaceMat);
+            surface.position.y = 0.915;
+            hoodGroup.add(surface);
+
+            // Hood enclosure
+            const backGeo = new THREE.BoxGeometry(1.5, 1.2, 0.03);
+            const back = new THREE.Mesh(backGeo, metalMat);
+            back.position.set(0, 1.5, -0.385);
+            hoodGroup.add(back);
+
+            // Side panels
+            const sideGeo = new THREE.BoxGeometry(0.03, 1.2, 0.8);
+            const leftSide = new THREE.Mesh(sideGeo, metalMat);
+            leftSide.position.set(-0.735, 1.5, 0);
+            hoodGroup.add(leftSide);
+
+            const rightSide = new THREE.Mesh(sideGeo, metalMat);
+            rightSide.position.set(0.735, 1.5, 0);
+            hoodGroup.add(rightSide);
+
+            // Top
+            const topGeo = new THREE.BoxGeometry(1.5, 0.03, 0.8);
+            const top = new THREE.Mesh(topGeo, metalMat);
+            top.position.y = 2.1;
+            hoodGroup.add(top);
+
+            // Glass sash (front)
+            const sashGeo = new THREE.BoxGeometry(1.44, 0.8, 0.01);
+            const sash = new THREE.Mesh(sashGeo, glassMat);
+            sash.position.set(0, 1.7, 0.39);
+            hoodGroup.add(sash);
+
+            // Duct
+            const ductGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.5, 16);
+            const duct = new THREE.Mesh(ductGeo, metalMat);
+            duct.position.set(0, 2.35, -0.2);
+            hoodGroup.add(duct);
+
+            hoodGroup.position.set(x, y, z);
+            hoodGroup.rotation.y = Math.PI / 2;
+            scene.add(hoodGroup);
+        }
+
+        function createScale(x, y, z) {
+            const scaleGroup = new THREE.Group();
+
+            const metalMat = new THREE.MeshStandardMaterial({ color: 0x333333, roughness: 0.3, metalness: 0.5 });
+
+            // Base
+            const baseGeo = new THREE.BoxGeometry(0.2, 0.04, 0.15);
+            const base = new THREE.Mesh(baseGeo, metalMat);
+            base.castShadow = true;
+            scaleGroup.add(base);
+
+            // Display back
+            const displayBackGeo = new THREE.BoxGeometry(0.12, 0.08, 0.02);
+            const displayBack = new THREE.Mesh(displayBackGeo, metalMat);
+            displayBack.position.set(0, 0.06, -0.05);
+            scaleGroup.add(displayBack);
+
+            // Screen
+            const screenGeo = new THREE.PlaneGeometry(0.1, 0.05);
+            const screenMat = new THREE.MeshStandardMaterial({
+                color: 0x001100, emissive: 0x00ff00, emissiveIntensity: 0.2
+            });
+            const screen = new THREE.Mesh(screenGeo, screenMat);
+            screen.position.set(0, 0.06, -0.039);
+            scaleGroup.add(screen);
+
+            // Weighing pan
+            const panGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.005, 24);
+            const panMat = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, metalness: 0.8 });
+            const pan = new THREE.Mesh(panGeo, panMat);
+            pan.position.y = 0.025;
+            scaleGroup.add(pan);
+
+            scaleGroup.position.set(x, y, z);
+            scene.add(scaleGroup);
+        }
+
+        function createSafetyShower(x, y, z) {
+            const showerGroup = new THREE.Group();
+
+            const pipeMat = new THREE.MeshStandardMaterial({ color: 0xffcc00, roughness: 0.4 });
+
+            // Vertical pipe
+            const pipeGeo = new THREE.CylinderGeometry(0.03, 0.03, 2.5, 12);
+            const pipe = new THREE.Mesh(pipeGeo, pipeMat);
+            pipe.position.y = 1.25;
+            showerGroup.add(pipe);
+
+            // Shower head arm
+            const armGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.4, 12);
+            const arm = new THREE.Mesh(armGeo, pipeMat);
+            arm.position.set(-0.2, 2.4, 0);
+            arm.rotation.z = Math.PI / 2;
+            showerGroup.add(arm);
+
+            // Shower head
+            const headGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.05, 16);
+            const head = new THREE.Mesh(headGeo, pipeMat);
+            head.position.set(-0.4, 2.35, 0);
+            showerGroup.add(head);
+
+            // Pull handle
+            const handleGeo = new THREE.TorusGeometry(0.05, 0.01, 8, 16);
+            const handleMat = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+            const handle = new THREE.Mesh(handleGeo, handleMat);
+            handle.position.set(-0.4, 2.1, 0);
+            showerGroup.add(handle);
+
+            // Sign
+            const signGeo = new THREE.PlaneGeometry(0.2, 0.15);
+            const signMat = new THREE.MeshStandardMaterial({ color: 0x00aa00 });
+            const sign = new THREE.Mesh(signGeo, signMat);
+            sign.position.set(0, 1.8, 0.04);
+            showerGroup.add(sign);
+
+            showerGroup.position.set(x, y, z);
+            scene.add(showerGroup);
+        }
+
+        function createStool(x, y, z) {
+            const stoolGroup = new THREE.Group();
+
+            const metalMat = new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 0.7 });
+
+            // Seat
+            const seatGeo = new THREE.CylinderGeometry(0.18, 0.18, 0.04, 24);
+            const seatMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.6 });
+            const seat = new THREE.Mesh(seatGeo, seatMat);
+            seat.position.y = 0.65;
+            seat.castShadow = true;
+            stoolGroup.add(seat);
+
+            // Stem
+            const stemGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.4, 12);
+            const stem = new THREE.Mesh(stemGeo, metalMat);
+            stem.position.y = 0.43;
+            stoolGroup.add(stem);
+
+            // Base ring
+            const baseGeo = new THREE.TorusGeometry(0.2, 0.015, 8, 24);
+            const base = new THREE.Mesh(baseGeo, metalMat);
+            base.position.y = 0.05;
+            base.rotation.x = Math.PI / 2;
+            stoolGroup.add(base);
+
+            // Legs (5)
+            for (let i = 0; i < 5; i++) {
+                const angle = (i / 5) * Math.PI * 2;
+                const legGeo = new THREE.CylinderGeometry(0.015, 0.015, 0.25, 8);
+                const leg = new THREE.Mesh(legGeo, metalMat);
+                leg.position.set(Math.sin(angle) * 0.15, 0.15, Math.cos(angle) * 0.15);
+                leg.rotation.z = Math.sin(angle) * 0.3;
+                leg.rotation.x = Math.cos(angle) * 0.3;
+                stoolGroup.add(leg);
+
+                // Caster wheel
+                const wheelGeo = new THREE.SphereGeometry(0.025, 12, 12);
+                const wheel = new THREE.Mesh(wheelGeo, metalMat);
+                wheel.position.set(Math.sin(angle) * 0.2, 0.025, Math.cos(angle) * 0.2);
+                stoolGroup.add(wheel);
+            }
+
+            stoolGroup.position.set(x, y, z);
+            scene.add(stoolGroup);
+        }
+
+        // ============================================
+        // Interactive Indicators - Visual cues for clickable objects
+        // ============================================
+        function createInteractiveIndicators() {
+            interactiveObjects.forEach((obj, index) => {
+                // Get object bounds to position indicator
+                const box = new THREE.Box3().setFromObject(obj);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+
+                // Create indicator group
+                const indicatorGroup = new THREE.Group();
+                indicatorGroup.userData.targetObject = obj;
+                indicatorGroup.userData.baseY = center.y + size.y / 2 + 0.15;
+                indicatorGroup.userData.phase = index * 0.5; // Offset animations
+
+                // Determine color based on product type
+                let color = 0x10B981; // Default green
+                if (obj.userData.id) {
+                    const product = PRODUCTS[obj.userData.id];
+                    if (product) {
+                        if (product.type === 'kratom') color = 0xD4A574;
+                        else if (product.type === 'kava') color = 0x10B981;
+                        else if (product.type === 'lotus') color = 0x8B5CF6;
+                        else if (product.type === 'nootropic') color = 0x06B6D4;
+                        else color = 0x06B6D4; // equipment
+                    }
+                }
+
+                // Outer ring (pulsing)
+                const ringGeo = new THREE.RingGeometry(0.08, 0.12, 32);
+                const ringMat = new THREE.MeshBasicMaterial({
+                    color: color,
+                    transparent: true,
+                    opacity: 0.6,
+                    side: THREE.DoubleSide
+                });
+                const ring = new THREE.Mesh(ringGeo, ringMat);
+                ring.rotation.x = -Math.PI / 2;
+                indicatorGroup.add(ring);
+
+                // Inner dot
+                const dotGeo = new THREE.CircleGeometry(0.04, 16);
+                const dotMat = new THREE.MeshBasicMaterial({
+                    color: color,
+                    transparent: true,
+                    opacity: 0.9
+                });
+                const dot = new THREE.Mesh(dotGeo, dotMat);
+                dot.rotation.x = -Math.PI / 2;
+                dot.position.y = 0.001;
+                indicatorGroup.add(dot);
+
+                // Outer glow ring
+                const glowGeo = new THREE.RingGeometry(0.12, 0.18, 32);
+                const glowMat = new THREE.MeshBasicMaterial({
+                    color: color,
+                    transparent: true,
+                    opacity: 0.25,
+                    side: THREE.DoubleSide
+                });
+                const glow = new THREE.Mesh(glowGeo, glowMat);
+                glow.rotation.x = -Math.PI / 2;
+                glow.position.y = -0.001;
+                indicatorGroup.add(glow);
+
+                // Small floating particles around the ring
+                for (let i = 0; i < 4; i++) {
+                    const particleGeo = new THREE.SphereGeometry(0.015, 8, 8);
+                    const particleMat = new THREE.MeshBasicMaterial({
+                        color: color,
+                        transparent: true,
+                        opacity: 0.7
+                    });
+                    const particle = new THREE.Mesh(particleGeo, particleMat);
+                    particle.userData.orbitAngle = (i / 4) * Math.PI * 2;
+                    particle.userData.orbitRadius = 0.15;
+                    indicatorGroup.add(particle);
+                }
+
+                // Position indicator above object
+                indicatorGroup.position.set(center.x, center.y + size.y / 2 + 0.15, center.z);
+
+                scene.add(indicatorGroup);
+                interactiveIndicators.push(indicatorGroup);
+            });
+        }
+
+        // ============================================
+        // Post Processing
+        // ============================================
+        function setupPostProcessing() {
+            composer = new EffectComposer(renderer);
+            composer.addPass(new RenderPass(scene, camera));
+
+            const bloomPass = new UnrealBloomPass(
+                new THREE.Vector2(window.innerWidth, window.innerHeight),
+                0.3, 0.4, 0.9
+            );
+            composer.addPass(bloomPass);
+            composer.addPass(new OutputPass());
+        }
+
+        // ============================================
+        // Animation
+        // ============================================
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const time = clock.getElapsedTime();
+
+            // Animate interactive indicators
+            interactiveIndicators.forEach((indicator) => {
+                const phase = indicator.userData.phase;
+
+                // Floating bob animation
+                indicator.position.y = indicator.userData.baseY + Math.sin(time * 2 + phase) * 0.05;
+
+                // Slow rotation
+                indicator.rotation.y = time * 0.5 + phase;
+
+                // Pulse the rings (scale and opacity)
+                const pulse = 0.85 + Math.sin(time * 3 + phase) * 0.15;
+                indicator.children[0].scale.setScalar(pulse); // outer ring
+                indicator.children[0].material.opacity = 0.4 + Math.sin(time * 3 + phase) * 0.3;
+
+                // Glow ring pulse (opposite phase)
+                const glowPulse = 1.0 + Math.sin(time * 2 + phase + Math.PI) * 0.2;
+                indicator.children[2].scale.setScalar(glowPulse);
+                indicator.children[2].material.opacity = 0.15 + Math.sin(time * 2 + phase) * 0.1;
+
+                // Animate orbiting particles
+                for (let i = 3; i < indicator.children.length; i++) {
+                    const particle = indicator.children[i];
+                    const angle = particle.userData.orbitAngle + time * 1.5;
+                    const radius = particle.userData.orbitRadius;
+                    particle.position.x = Math.cos(angle) * radius;
+                    particle.position.z = Math.sin(angle) * radius;
+                    particle.position.y = Math.sin(time * 4 + i) * 0.03;
+                }
+            });
+
+            controls.update();
+            composer.render();
+        }
+
+        // ============================================
+        // Events
+        // ============================================
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onMouseMove(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            checkHover();
+        }
+
+        function checkHover() {
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(interactiveObjects, true);
+
+            if (intersects.length > 0) {
+                let obj = intersects[0].object;
+                while (obj.parent && !obj.userData.id) obj = obj.parent;
+
+                if (obj.userData.id) {
+                    if (obj !== hoveredObject) {
+                        hoveredObject = obj;
+                        document.body.style.cursor = 'pointer';
+                    }
+                    return;
+                }
+            }
+
+            if (hoveredObject) {
+                hoveredObject = null;
+                document.body.style.cursor = 'default';
+            }
+        }
+
+        function onClick() {
+            if (hoveredObject && hoveredObject.userData.id) {
+                const product = PRODUCTS[hoveredObject.userData.id];
+                if (product) showPanel(product);
+            }
+        }
+
+        function onTouchEnd(event) {
+            if (event.changedTouches.length > 0) {
+                const touch = event.changedTouches[0];
+                mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+
+                raycaster.setFromCamera(mouse, camera);
+                const intersects = raycaster.intersectObjects(interactiveObjects, true);
+
+                if (intersects.length > 0) {
+                    let obj = intersects[0].object;
+                    while (obj.parent && !obj.userData.id) obj = obj.parent;
+
+                    if (obj.userData.id) {
+                        const product = PRODUCTS[obj.userData.id];
+                        if (product) showPanel(product);
+                    }
+                }
+            }
+        }
+
+        // ============================================
+        // UI
+        // ============================================
+        function showPanel(product) {
+            const colors = {
+                kratom: '#D4A574', kava: '#10B981', lotus: '#8B5CF6',
+                nootropic: '#06B6D4', equipment: '#06B6D4'
+            };
+            const color = colors[product.type];
+
+            document.getElementById('panel-icon').innerHTML = `
+                <svg width="40" height="50" viewBox="0 0 40 50">
+                    <path d="M12,0 L28,0 L28,15 L38,45 Q40,49 35,49 L5,49 Q0,49 2,45 L12,15 Z"
+                          fill="none" stroke="${color}" stroke-width="2"/>
+                    <path d="M8,32 Q20,28 32,32 L34,45 Q35,48 33,48 L7,48 Q5,48 6,45 Z"
+                          fill="${color}" opacity="0.6"/>
+                </svg>`;
+
+            document.getElementById('panel-label').textContent = product.label;
+            document.getElementById('panel-label').style.color = color;
+            document.getElementById('panel-title').textContent = product.title;
+            document.getElementById('panel-description').textContent = product.description;
+
+            document.getElementById('compound-grid').innerHTML = product.compounds.map(c => `
+                <div class="compound-item">
+                    <span class="compound-dot" style="background: ${c.color}"></span>
+                    <div class="compound-info">
+                        <span class="compound-name">${c.name}</span>
+                        <span class="compound-effect">${c.effect}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('benefits-list').innerHTML = product.benefits.map(b => `
+                <li><span class="benefit-check" style="color: ${color}">&#10003;</span> ${b}</li>
+            `).join('');
+
+            document.getElementById('price-amount').textContent = product.price;
+            document.getElementById('info-panel').classList.add('active');
+        }
+
+        function closePanel() {
+            document.getElementById('info-panel').classList.remove('active');
+        }
+
+        function showCOA() {
+            document.getElementById('modal-content').innerHTML = `
+                <div class="coa-content">
+                    <h2>Certificate of Analysis</h2>
+                    <p class="coa-subtitle">Third-Party Lab Verification</p>
+                    <div class="coa-stats">
+                        <div class="coa-stat"><span class="stat-value">99.7%</span><span class="stat-label">Purity</span></div>
+                        <div class="coa-stat"><span class="stat-value">&lt;0.01%</span><span class="stat-label">Heavy Metals</span></div>
+                        <div class="coa-stat"><span class="stat-value">0</span><span class="stat-label">Pesticides</span></div>
+                    </div>
+                    <div class="coa-details">
+                        <h3>Alkaloid Profile</h3>
+                        <div class="alkaloid-bars">
+                            <div class="alkaloid-bar"><span class="bar-label">Mitragynine</span><div class="bar-track"><div class="bar-fill" style="width: 85%; background: #D4A574;"></div></div><span class="bar-value">1.8%</span></div>
+                            <div class="alkaloid-bar"><span class="bar-label">7-OH-Mitragynine</span><div class="bar-track"><div class="bar-fill" style="width: 15%; background: #D4A574;"></div></div><span class="bar-value">0.04%</span></div>
+                            <div class="alkaloid-bar"><span class="bar-label">Speciogynine</span><div class="bar-track"><div class="bar-fill" style="width: 35%; background: #D4A574;"></div></div><span class="bar-value">0.6%</span></div>
+                        </div>
+                    </div>
+                    <div class="coa-footer">
+                        <p class="coa-lab">Tested by: <strong>SC Labs</strong></p>
+                        <p class="coa-date">Report Date: ${new Date().toLocaleDateString()}</p>
+                        <button class="btn btn-primary">Download Full Report</button>
+                    </div>
+                </div>`;
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+        }
+
+        // Initialize
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+{
+  "name": "Blog to Social Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-blog-post",
+        "options": {}
+      },
+      "id": "supabase-webhook",
+      "name": "New Blog Post Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/blog_posts?id=eq.{{ $json.record.id }}&select=*",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_KEY }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fetch-blog-post",
+      "name": "Fetch Full Blog Post",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract blog post data\nconst posts = $input.all()[0].json;\nconst post = Array.isArray(posts) ? posts[0] : posts;\n\nif (!post) {\n  throw new Error('Blog post not found');\n}\n\nreturn {\n  json: {\n    id: post.id,\n    title: post.title,\n    excerpt: post.excerpt || post.content?.substring(0, 300) + '...',\n    content: post.content,\n    slug: post.slug,\n    featuredImage: post.featured_image,\n    tags: post.tags || [],\n    author: post.author,\n    url: `https://noredfarms.netlify.app/blog/${post.slug}`\n  }\n};"
+      },
+      "id": "extract-data",
+      "name": "Extract Blog Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.OPENAI_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4-turbo-preview\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a social media content specialist for Nored Farms, a legal hemp/THCA extraction lab in Texas. Create engaging, compliant content. NEVER use health claims, never say cure/treat/heal, never mention getting high. Focus on education, science, and quality. Always maintain professional, scientific tone with natural wellness appeal.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Create social media posts for all platforms based on this blog post:\\n\\nTitle: {{ $json.title }}\\n\\nExcerpt: {{ $json.excerpt }}\\n\\nURL: {{ $json.url }}\\n\\nCreate:\\n1. Instagram caption (2000 chars max, engaging, include call to action for link in bio)\\n2. Facebook post (conversational, ask a question to drive engagement)\\n3. Twitter/X thread (5 tweets, educational, include hashtags)\\n4. TikTok script (60 second video script, hook in first 3 seconds)\\n5. YouTube description (for Shorts, include timestamps)\\n\\nFormat as JSON with keys: instagram, facebook, twitter_thread (array), tiktok_script, youtube_description\\n\\nInclude relevant hashtags for each platform.\"\n    }\n  ],\n  \"temperature\": 0.7,\n  \"response_format\": { \"type\": \"json_object\" }\n}",
+        "options": {}
+      },
+      "id": "ai-transform",
+      "name": "AI Transform Content",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse AI response and prepare platform posts\nconst aiResponse = $input.all()[0].json;\nconst blogData = $node['Extract Blog Data'].json;\n\nlet content;\ntry {\n  content = JSON.parse(aiResponse.choices[0].message.content);\n} catch (e) {\n  throw new Error('Failed to parse AI response: ' + e.message);\n}\n\nreturn {\n  json: {\n    blogPost: blogData,\n    platforms: {\n      instagram: {\n        caption: content.instagram,\n        image: blogData.featuredImage,\n        platform: 'instagram'\n      },\n      facebook: {\n        content: content.facebook,\n        image: blogData.featuredImage,\n        link: blogData.url,\n        platform: 'facebook'\n      },\n      twitter: {\n        thread: content.twitter_thread,\n        platform: 'twitter'\n      },\n      tiktok: {\n        script: content.tiktok_script,\n        platform: 'tiktok'\n      },\n      youtube: {\n        description: content.youtube_description,\n        platform: 'youtube'\n      }\n    }\n  }\n};"
+      },
+      "id": "parse-ai-response",
+      "name": "Parse AI Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Compliance check all generated content\nconst data = $input.all()[0].json;\n\nconst prohibitedTerms = [\n  'cure', 'cures', 'treat', 'treats', 'treatment',\n  'heal', 'heals', 'healing', 'medicine', 'medical',\n  'drug', 'drugs', 'high', 'stoned', 'baked',\n  'intoxicating', 'psychoactive', 'marijuana',\n  'prescription', 'FDA approved', 'diagnose'\n];\n\nfunction checkContent(text) {\n  if (!text) return { compliant: true, violations: [] };\n  const textLower = text.toLowerCase();\n  const violations = prohibitedTerms.filter(term => textLower.includes(term));\n  return { compliant: violations.length === 0, violations };\n}\n\n// Check each platform\nconst results = {};\nlet allCompliant = true;\n\nfor (const [platform, content] of Object.entries(data.platforms)) {\n  const textToCheck = content.caption || content.content || content.script || \n                      (Array.isArray(content.thread) ? content.thread.join(' ') : content.description);\n  const check = checkContent(textToCheck);\n  results[platform] = { ...content, ...check };\n  if (!check.compliant) allCompliant = false;\n}\n\nreturn {\n  json: {\n    blogPost: data.blogPost,\n    platforms: results,\n    allCompliant,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "compliance-check",
+      "name": "Compliance Check All",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.allCompliant }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "compliance-gate",
+      "name": "All Compliant?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1450, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.blotato.com/v1/posts/bulk",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"posts\": [\n    {\n      \"platforms\": [\"instagram\"],\n      \"content\": {{ JSON.stringify($json.platforms.instagram.caption) }},\n      \"media\": [{{ JSON.stringify($json.blogPost.featuredImage) }}],\n      \"scheduled_time\": null\n    },\n    {\n      \"platforms\": [\"facebook\"],\n      \"content\": {{ JSON.stringify($json.platforms.facebook.content) }},\n      \"media\": [{{ JSON.stringify($json.blogPost.featuredImage) }}],\n      \"link\": {{ JSON.stringify($json.blogPost.url) }},\n      \"scheduled_time\": null\n    },\n    {\n      \"platforms\": [\"twitter\"],\n      \"content\": {{ JSON.stringify($json.platforms.twitter.thread[0]) }},\n      \"thread\": {{ JSON.stringify($json.platforms.twitter.thread.slice(1)) }},\n      \"scheduled_time\": null\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "post-to-blotato",
+      "name": "Post to All Platforms",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1700, 200],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "blotato-auth",
+          "name": "Blotato API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/blog_posts?id=eq.{{ $json.blogPost.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"social_posted\": true,\n  \"social_posted_at\": \"{{ new Date().toISOString() }}\"\n}",
+        "options": {}
+      },
+      "id": "update-blog-status",
+      "name": "Update Blog Post Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1900, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.DISCORD_WEBHOOK_URL }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"embeds\": [{\n    \"title\": \"Blog Post Distributed to Social\",\n    \"description\": \"New blog post has been shared across all platforms\",\n    \"color\": 5763719,\n    \"fields\": [\n      {\n        \"name\": \"Blog Title\",\n        \"value\": {{ JSON.stringify($node['Extract Blog Data'].json.title) }}\n      },\n      {\n        \"name\": \"Platforms\",\n        \"value\": \"Instagram, Facebook, X, TikTok (script ready), YouTube (description ready)\"\n      },\n      {\n        \"name\": \"URL\",\n        \"value\": {{ JSON.stringify($node['Extract Blog Data'].json.url) }}\n      }\n    ],\n    \"timestamp\": \"{{ new Date().toISOString() }}\"\n  }]\n}",
+        "options": {}
+      },
+      "id": "notify-distributed",
+      "name": "Notify Distribution Complete",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [2100, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.DISCORD_WEBHOOK_URL }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"embeds\": [{\n    \"title\": \"Compliance Issue - Manual Review Required\",\n    \"description\": \"AI-generated content failed compliance check\",\n    \"color\": 15548997,\n    \"fields\": [\n      {\n        \"name\": \"Blog Title\",\n        \"value\": {{ JSON.stringify($json.blogPost.title) }}\n      },\n      {\n        \"name\": \"Issues Found\",\n        \"value\": \"See detailed log in Supabase\"\n      }\n    ],\n    \"timestamp\": \"{{ new Date().toISOString() }}\"\n  }]\n}",
+        "options": {}
+      },
+      "id": "notify-compliance-fail",
+      "name": "Notify Compliance Failure",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1700, 450]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/content_review_queue",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"blog_post_id\": \"{{ $json.blogPost.id }}\",\n  \"generated_content\": {{ JSON.stringify($json.platforms) }},\n  \"status\": \"pending_review\",\n  \"reason\": \"compliance_violation\",\n  \"created_at\": \"{{ new Date().toISOString() }}\"\n}",
+        "options": {}
+      },
+      "id": "queue-for-review",
+      "name": "Queue for Manual Review",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1900, 450]
+    }
+  ],
+  "connections": {
+    "New Blog Post Webhook": {
+      "main": [
+        [
+          {
+            "node": "Fetch Full Blog Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Full Blog Post": {
+      "main": [
+        [
+          {
+            "node": "Extract Blog Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Blog Data": {
+      "main": [
+        [
+          {
+            "node": "AI Transform Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Transform Content": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Response": {
+      "main": [
+        [
+          {
+            "node": "Compliance Check All",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compliance Check All": {
+      "main": [
+        [
+          {
+            "node": "All Compliant?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "All Compliant?": {
+      "main": [
+        [
+          {
+            "node": "Post to All Platforms",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Notify Compliance Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to All Platforms": {
+      "main": [
+        [
+          {
+            "node": "Update Blog Post Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Blog Post Status": {
+      "main": [
+        [
+          {
+            "node": "Notify Distribution Complete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Compliance Failure": {
+      "main": [
+        [
+          {
+            "node": "Queue for Manual Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {
+      "name": "blog"
+    },
+    {
+      "name": "social-media"
+    },
+    {
+      "name": "automation"
+    }
+  ]
+}

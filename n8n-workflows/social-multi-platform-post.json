@@ -1,0 +1,332 @@
+{
+  "name": "Social Multi-Platform Post",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "social-post",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Validate and prepare content\nconst input = $input.all()[0].json;\n\n// Required fields check\nif (!input.content && !input.caption) {\n  throw new Error('Content or caption is required');\n}\n\n// Prepare unified content object\nconst content = {\n  text: input.content || input.caption,\n  title: input.title || '',\n  mediaUrls: input.mediaUrls || input.images || [],\n  videoUrl: input.videoUrl || null,\n  platforms: input.platforms || ['instagram', 'facebook', 'twitter', 'tiktok'],\n  scheduledTime: input.scheduledTime || null,\n  hashtags: input.hashtags || [],\n  linkInBio: input.linkInBio || null\n};\n\n// Add hashtags to text if provided\nif (content.hashtags.length > 0) {\n  content.textWithTags = content.text + '\\n\\n' + content.hashtags.map(t => '#' + t).join(' ');\n} else {\n  content.textWithTags = content.text;\n}\n\nreturn { json: content };"
+      },
+      "id": "prepare-content",
+      "name": "Prepare Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Compliance check for hemp/THCA industry\nconst content = $input.all()[0].json;\n\n// Prohibited terms\nconst prohibitedTerms = [\n  'cure', 'cures', 'treat', 'treats', 'treatment',\n  'heal', 'heals', 'healing', 'medicine', 'medical',\n  'drug', 'drugs', 'high', 'stoned', 'baked',\n  'intoxicating', 'psychoactive effects',\n  'get high', 'marijuana', 'prescription',\n  'FDA approved', 'FDA', 'diagnose'\n];\n\n// Check for violations\nconst text = content.text.toLowerCase();\nconst violations = prohibitedTerms.filter(term => text.includes(term.toLowerCase()));\n\n// Health claim patterns\nconst healthClaimPatterns = [\n  /helps? (with |to )?treat/i,\n  /cures? /i,\n  /heals? /i,\n  /reduces? (pain|anxiety|inflammation)/i,\n  /relieves? /i\n];\n\nconst healthClaims = healthClaimPatterns.filter(pattern => pattern.test(content.text));\n\nif (violations.length > 0 || healthClaims.length > 0) {\n  return {\n    json: {\n      ...content,\n      compliant: false,\n      violations: violations,\n      healthClaims: healthClaims.map(p => p.toString()),\n      error: 'Content contains prohibited terms or health claims'\n    }\n  };\n}\n\nreturn {\n  json: {\n    ...content,\n    compliant: true,\n    violations: [],\n    healthClaims: []\n  }\n};"
+      },
+      "id": "compliance-check",
+      "name": "Compliance Check",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.compliant }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "compliance-router",
+      "name": "Is Compliant?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.blotato.com/v1/posts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "content",
+              "value": "={{ $json.textWithTags }}"
+            },
+            {
+              "name": "platforms",
+              "value": "={{ JSON.stringify($json.platforms) }}"
+            },
+            {
+              "name": "media",
+              "value": "={{ JSON.stringify($json.mediaUrls) }}"
+            },
+            {
+              "name": "video",
+              "value": "={{ $json.videoUrl }}"
+            },
+            {
+              "name": "scheduled_time",
+              "value": "={{ $json.scheduledTime }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "blotato-post",
+      "name": "Post via Blotato",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1100, 200],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "blotato-auth",
+          "name": "Blotato API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/social_posts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=representation"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"content\": {{ JSON.stringify($node['Prepare Content'].json.text) }},\n  \"platforms\": {{ JSON.stringify($node['Prepare Content'].json.platforms) }},\n  \"blotato_response\": {{ JSON.stringify($json) }},\n  \"status\": \"posted\",\n  \"posted_at\": \"{{ new Date().toISOString() }}\"\n}",
+        "options": {}
+      },
+      "id": "log-to-supabase",
+      "name": "Log to Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1300, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.DISCORD_WEBHOOK_URL }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"embeds\": [{\n    \"title\": \"Social Post Published\",\n    \"description\": \"Content posted to {{ $node['Prepare Content'].json.platforms.join(', ') }}\",\n    \"color\": 5763719,\n    \"fields\": [\n      {\n        \"name\": \"Content Preview\",\n        \"value\": \"{{ $node['Prepare Content'].json.text.substring(0, 200) }}...\"\n      }\n    ],\n    \"timestamp\": \"{{ new Date().toISOString() }}\"\n  }]\n}",
+        "options": {}
+      },
+      "id": "notify-success",
+      "name": "Notify Success",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1500, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.DISCORD_WEBHOOK_URL }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"embeds\": [{\n    \"title\": \"Compliance Violation Detected\",\n    \"description\": \"Post blocked due to compliance issues\",\n    \"color\": 15548997,\n    \"fields\": [\n      {\n        \"name\": \"Violations Found\",\n        \"value\": \"{{ $json.violations.join(', ') || 'None' }}\"\n      },\n      {\n        \"name\": \"Health Claims Detected\",\n        \"value\": \"{{ $json.healthClaims.length > 0 ? 'Yes' : 'No' }}\"\n      },\n      {\n        \"name\": \"Original Content\",\n        \"value\": \"{{ $json.text.substring(0, 500) }}\"\n      }\n    ],\n    \"timestamp\": \"{{ new Date().toISOString() }}\"\n  }]\n}",
+        "options": {}
+      },
+      "id": "notify-violation",
+      "name": "Notify Violation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1100, 450]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "status",
+              "value": "success"
+            },
+            {
+              "name": "message",
+              "value": "Post published to all platforms"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "success-response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [1700, 200]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "status",
+              "value": "blocked"
+            },
+            {
+              "name": "message",
+              "value": "Post blocked due to compliance violation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "blocked-response",
+      "name": "Blocked Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [1300, 450]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Content": {
+      "main": [
+        [
+          {
+            "node": "Compliance Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compliance Check": {
+      "main": [
+        [
+          {
+            "node": "Is Compliant?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Compliant?": {
+      "main": [
+        [
+          {
+            "node": "Post via Blotato",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Notify Violation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post via Blotato": {
+      "main": [
+        [
+          {
+            "node": "Log to Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to Supabase": {
+      "main": [
+        [
+          {
+            "node": "Notify Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Success": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Violation": {
+      "main": [
+        [
+          {
+            "node": "Blocked Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "social-media"
+    },
+    {
+      "name": "automation"
+    },
+    {
+      "name": "pure-extracts"
+    }
+  ]
+}
