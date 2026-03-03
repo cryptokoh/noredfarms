@@ -1,6 +1,6 @@
 /**
- * Nored Farms - Kanban Board App
- * Vanilla JS + Supabase + SortableJS
+ * Nored Farms - Kanban Board App v3
+ * Vanilla JS + Supabase + SortableJS + Realtime + Markdown + Attachments + Dependencies + Time Tracking
  */
 
 (function () {
@@ -34,7 +34,15 @@
     let currentUser = null;
     let modalSubtasks = [];
     let modalLabels = [];
+    let modalBlockedBy = [];
+    let modalAttachments = [];
     let filterDebounce = null;
+    let realtimeChannel = null;
+
+    // Timer state
+    let timerInterval = null;
+    let timerStartTime = null;
+    let timerElapsed = 0; // seconds
 
     // ---- Init ----
 
@@ -44,6 +52,9 @@
         initTheme();
         initFilters();
         initKeyboardShortcuts();
+        initAttachmentUpload();
+        initBlockedBySelect();
+        restoreTimerState();
 
         // Close modal on overlay click
         document.getElementById('taskModal').addEventListener('click', function (e) {
@@ -91,6 +102,24 @@
                 document.getElementById('shortcutsModal').classList.remove('open');
             }
         });
+
+        // Live markdown preview update
+        document.getElementById('taskDesc').addEventListener('input', function () {
+            var preview = document.getElementById('mdPreview');
+            if (preview.style.display !== 'none') {
+                preview.innerHTML = renderMarkdown(this.value);
+            }
+        });
+    }
+
+    // ---- Markdown ----
+
+    function renderMarkdown(text) {
+        if (!text) return '';
+        if (typeof marked !== 'undefined' && marked.parse) {
+            return marked.parse(text, { breaks: true });
+        }
+        return escapeHtml(text);
     }
 
     // ---- Theme ----
@@ -172,12 +201,10 @@
         if (!f.search && !f.assignee && !f.priority && !f.due) return taskList;
 
         return taskList.filter(function (t) {
-            // Search
             if (f.search) {
                 var haystack = (t.title + ' ' + (t.description || '')).toLowerCase();
                 if (haystack.indexOf(f.search) === -1) return false;
             }
-            // Assignee
             if (f.assignee) {
                 if (f.assignee === 'unassigned') {
                     if (t.assigned_to) return false;
@@ -185,9 +212,7 @@
                     if (t.assigned_to !== f.assignee) return false;
                 }
             }
-            // Priority
             if (f.priority && t.priority !== f.priority) return false;
-            // Due date
             if (f.due) {
                 var today = new Date();
                 today.setHours(0, 0, 0, 0);
@@ -216,7 +241,6 @@
 
     function initKeyboardShortcuts() {
         document.addEventListener('keydown', function (e) {
-            // Don't trigger when typing in inputs
             var tag = (e.target.tagName || '').toLowerCase();
             if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
             if (e.ctrlKey || e.metaKey || e.altKey) return;
@@ -341,6 +365,75 @@
         });
 
         await loadTasks();
+        setupRealtime(board.id);
+    }
+
+    // ---- Realtime Subscriptions ----
+
+    function setupRealtime(boardId) {
+        // Tear down previous channel
+        if (realtimeChannel) {
+            sb.removeChannel(realtimeChannel);
+            realtimeChannel = null;
+        }
+
+        realtimeChannel = sb
+            .channel('kanban-realtime-' + boardId)
+            .on(
+                'postgres_changes',
+                { event: 'INSERT', schema: 'public', table: 'kanban_tasks', filter: 'board_id=eq.' + boardId },
+                function (payload) {
+                    var newTask = payload.new;
+                    if (!tasks.find(function (t) { return t.id === newTask.id; })) {
+                        tasks.push(newTask);
+                        renderTasks();
+                        updateCounts();
+                        updateStats();
+                        updateWipLimits();
+                        initSortable();
+                    }
+                }
+            )
+            .on(
+                'postgres_changes',
+                { event: 'UPDATE', schema: 'public', table: 'kanban_tasks', filter: 'board_id=eq.' + boardId },
+                function (payload) {
+                    var updated = payload.new;
+                    var idx = tasks.findIndex(function (t) { return t.id === updated.id; });
+                    if (idx !== -1) {
+                        tasks[idx] = updated;
+                        renderTasks();
+                        updateCounts();
+                        updateStats();
+                        updateWipLimits();
+                    }
+                }
+            )
+            .on(
+                'postgres_changes',
+                { event: 'DELETE', schema: 'public', table: 'kanban_tasks', filter: 'board_id=eq.' + boardId },
+                function (payload) {
+                    var deletedId = payload.old.id;
+                    tasks = tasks.filter(function (t) { return t.id !== deletedId; });
+                    renderTasks();
+                    updateCounts();
+                    updateStats();
+                    updateWipLimits();
+                    initSortable();
+                }
+            )
+            .on(
+                'postgres_changes',
+                { event: 'INSERT', schema: 'public', table: 'kanban_activity', filter: 'board_id=eq.' + boardId },
+                function (payload) {
+                    // Refresh activity feed if modal is open for this task
+                    var openTaskId = document.getElementById('taskId').value;
+                    if (openTaskId && payload.new.task_id === openTaskId) {
+                        loadActivity(openTaskId);
+                    }
+                }
+            )
+            .subscribe();
     }
 
     // ---- Tasks ----
@@ -403,9 +496,26 @@
         // Title
         parts.push('<p class="task-card-title">' + escapeHtml(t.title) + '</p>');
 
-        // Description snippet
+        // Description snippet (rendered as markdown, clamped)
         if (t.description) {
-            parts.push('<p class="task-card-desc">' + escapeHtml(t.description) + '</p>');
+            var descHtml = renderMarkdown(t.description);
+            parts.push('<div class="task-card-desc md-content">' + descHtml + '</div>');
+        }
+
+        // Branch badge (if task has linked git branch)
+        var gitMeta = t.metadata && t.metadata.git;
+        if (gitMeta && gitMeta.branch) {
+            var brStatus = gitMeta.status || 'created';
+            parts.push('<div class="branch-badge branch-' + brStatus + '" title="' + escapeHtml(gitMeta.branch) + '">' +
+                '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v12"/><path d="M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M18 9c0 6-6 9-12 9"/></svg>' +
+                '<span>' + brStatus + '</span>' +
+                (gitMeta.pr_url ? '<a class="branch-pr-link" href="' + escapeHtml(gitMeta.pr_url) + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">PR</a>' : '') +
+                '</div>');
+        }
+
+        // Source badge (if not human)
+        if (t.source && t.source !== 'human') {
+            parts.push('<span class="source-badge">' + escapeHtml(t.source) + '</span>');
         }
 
         // Meta row
@@ -418,12 +528,34 @@
             meta.push('<span class="task-due ' + ds.cls + '">' + ds.label + '</span>');
         }
 
+        // Blocked badge
+        var blockers = getActiveBlockers(t);
+        if (blockers.length > 0) {
+            meta.push('<span class="task-blocked-badge">Blocked (' + blockers.length + ')</span>');
+        }
+
         // Subtask progress
         var subtasks = t.subtasks || [];
         if (subtasks.length > 0) {
             var done = subtasks.filter(function (s) { return s.done; }).length;
             var pct = Math.round((done / subtasks.length) * 100);
             meta.push('<span class="task-subtasks"><span class="subtask-bar"><span class="subtask-bar-fill" style="width:' + pct + '%"></span></span>' + done + '/' + subtasks.length + '</span>');
+        }
+
+        // Attachment count
+        var attachments = (t.metadata && t.metadata.attachments) || [];
+        if (attachments.length > 0) {
+            meta.push('<span class="task-attachment-count" title="' + attachments.length + ' attachment(s)">&#128206; ' + attachments.length + '</span>');
+        }
+
+        // Time tracking
+        if (t.estimated_hours || t.actual_hours) {
+            var actual = t.actual_hours || 0;
+            var estimated = t.estimated_hours || 0;
+            var timeClass = (estimated > 0 && actual > estimated) ? ' over-estimate' : '';
+            var timeText = actual + 'h';
+            if (estimated > 0) timeText += '/' + estimated + 'h';
+            meta.push('<span class="task-time' + timeClass + '">' + timeText + '</span>');
         }
 
         // Card age
@@ -444,7 +576,240 @@
 
         parts.push('<div class="task-card-meta">' + meta.join('') + '</div>');
 
-        return '<div class="task-card" data-task-id="' + t.id + '" ondblclick="window._kanban.editTask(\'' + t.id + '\')">' + parts.join('') + '</div>';
+        // Blocked card styling
+        var blockedClass = blockers.length > 0 ? ' task-card-blocked' : '';
+        return '<div class="task-card' + blockedClass + '" data-task-id="' + t.id + '" ondblclick="window._kanban.editTask(\'' + t.id + '\')">' + parts.join('') + '</div>';
+    }
+
+    // ---- Dependencies ----
+
+    function getActiveBlockers(task) {
+        var blockedBy = task.blocked_by || [];
+        if (blockedBy.length === 0) return [];
+        return blockedBy.filter(function (blockerId) {
+            var blocker = tasks.find(function (t) { return t.id === blockerId; });
+            return blocker && blocker.column_name !== 'done';
+        });
+    }
+
+    function initBlockedBySelect() {
+        document.getElementById('blockedBySelect').addEventListener('change', function () {
+            var taskId = this.value;
+            if (!taskId) return;
+            if (modalBlockedBy.indexOf(taskId) === -1) {
+                modalBlockedBy.push(taskId);
+                renderBlockedByList();
+            }
+            this.value = '';
+        });
+    }
+
+    function populateBlockedBySelect(currentTaskId) {
+        var select = document.getElementById('blockedBySelect');
+        var options = '<option value="">Add a blocker...</option>';
+        tasks.forEach(function (t) {
+            if (t.id !== currentTaskId) {
+                options += '<option value="' + t.id + '">' + escapeHtml(t.title) + ' (' + columnLabel(t.column_name) + ')</option>';
+            }
+        });
+        select.innerHTML = options;
+    }
+
+    function renderBlockedByList() {
+        var list = document.getElementById('blockedByList');
+        if (modalBlockedBy.length === 0) {
+            list.innerHTML = '';
+            return;
+        }
+        list.innerHTML = modalBlockedBy.map(function (id) {
+            var t = tasks.find(function (x) { return x.id === id; });
+            var label = t ? escapeHtml(t.title) : id.slice(0, 8) + '...';
+            return '<div class="blocked-by-item">' +
+                '<span class="blocked-by-title">' + label + '</span>' +
+                '<button type="button" class="blocked-by-remove" onclick="window._kanban.removeBlocker(\'' + id + '\')">&times;</button>' +
+                '</div>';
+        }).join('');
+    }
+
+    // ---- Attachments ----
+
+    function initAttachmentUpload() {
+        document.getElementById('attachmentInput').addEventListener('change', async function () {
+            var file = this.files[0];
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                showToast('File too large (max 5MB)', 'error');
+                this.value = '';
+                return;
+            }
+
+            var taskId = document.getElementById('taskId').value;
+            if (!taskId) {
+                showToast('Save the task first before attaching files', 'error');
+                this.value = '';
+                return;
+            }
+
+            showToast('Uploading...', 'info');
+
+            var fileId = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+            var filePath = taskId + '/' + fileId + '-' + file.name;
+
+            var result = await sb.storage.from('kanban-attachments').upload(filePath, file);
+
+            if (result.error) {
+                console.error('Upload failed:', result.error);
+                showToast('Upload failed: ' + result.error.message, 'error');
+                this.value = '';
+                return;
+            }
+
+            var publicUrl = sb.storage.from('kanban-attachments').getPublicUrl(filePath).data.publicUrl;
+
+            var attachment = {
+                id: fileId,
+                name: file.name,
+                path: filePath,
+                url: publicUrl,
+                type: file.type,
+                size: file.size,
+                uploaded_at: new Date().toISOString()
+            };
+
+            modalAttachments.push(attachment);
+
+            // Save to task metadata
+            var task = tasks.find(function (t) { return t.id === taskId; });
+            var meta = (task && task.metadata) || {};
+            meta.attachments = modalAttachments;
+            await sb.from('kanban_tasks').update({ metadata: meta }).eq('id', taskId);
+            if (task) task.metadata = meta;
+
+            renderAttachmentList();
+            renderTasks();
+            showToast('File attached', 'success');
+            logActivity(taskId, 'update', null, { attachment_added: file.name });
+
+            this.value = '';
+        });
+    }
+
+    function renderAttachmentList() {
+        var list = document.getElementById('attachmentList');
+        if (modalAttachments.length === 0) {
+            list.innerHTML = '';
+            return;
+        }
+        list.innerHTML = modalAttachments.map(function (a) {
+            var isImage = a.type && a.type.startsWith('image/');
+            var thumb = isImage ? '<img class="attachment-thumb" src="' + escapeHtml(a.url) + '" alt="' + escapeHtml(a.name) + '">' : '';
+            return '<div class="attachment-item">' +
+                thumb +
+                '<a class="attachment-name" href="' + escapeHtml(a.url) + '" target="_blank" rel="noopener">' + escapeHtml(a.name) + '</a>' +
+                '<span class="attachment-size">' + formatFileSize(a.size) + '</span>' +
+                '<button type="button" class="attachment-remove" onclick="window._kanban.removeAttachment(\'' + a.id + '\')">&times;</button>' +
+                '</div>';
+        }).join('');
+    }
+
+    function formatFileSize(bytes) {
+        if (!bytes) return '';
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return Math.round(bytes / 1024) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    // ---- Time Tracking ----
+
+    function restoreTimerState() {
+        var saved = localStorage.getItem('kanban_timer');
+        if (saved) {
+            try {
+                var state = JSON.parse(saved);
+                if (state.taskId && state.startTime) {
+                    timerStartTime = new Date(state.startTime);
+                    timerElapsed = state.elapsed || 0;
+                    // Timer will be resumed when the task modal opens
+                }
+            } catch (e) { /* ignore */ }
+        }
+    }
+
+    function saveTimerState() {
+        if (timerStartTime) {
+            localStorage.setItem('kanban_timer', JSON.stringify({
+                taskId: document.getElementById('taskId').value,
+                startTime: timerStartTime.toISOString(),
+                elapsed: timerElapsed
+            }));
+        } else {
+            localStorage.removeItem('kanban_timer');
+        }
+    }
+
+    function startTimer() {
+        if (timerInterval) return;
+        if (!timerStartTime) {
+            timerStartTime = new Date();
+        }
+        timerInterval = setInterval(function () {
+            var now = new Date();
+            var totalSecs = timerElapsed + Math.floor((now - timerStartTime) / 1000);
+            updateTimerDisplay(totalSecs);
+        }, 1000);
+        document.getElementById('timerStartBtn').textContent = 'Stop';
+        document.getElementById('timerStartBtn').classList.add('timer-active');
+        saveTimerState();
+    }
+
+    function stopTimer() {
+        if (!timerInterval) return;
+        clearInterval(timerInterval);
+        timerInterval = null;
+
+        if (timerStartTime) {
+            var now = new Date();
+            timerElapsed += Math.floor((now - timerStartTime) / 1000);
+            timerStartTime = null;
+        }
+
+        document.getElementById('timerStartBtn').textContent = 'Start';
+        document.getElementById('timerStartBtn').classList.remove('timer-active');
+
+        // Calculate hours and add to actual_hours
+        if (timerElapsed > 0) {
+            var hours = timerElapsed / 3600;
+            addActualHours(hours);
+            timerElapsed = 0;
+            updateTimerDisplay(0);
+        }
+
+        localStorage.removeItem('kanban_timer');
+    }
+
+    function updateTimerDisplay(totalSecs) {
+        var h = Math.floor(totalSecs / 3600);
+        var m = Math.floor((totalSecs % 3600) / 60);
+        var s = totalSecs % 60;
+        document.getElementById('timerDisplay').textContent =
+            String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+
+    async function addActualHours(hours) {
+        var taskId = document.getElementById('taskId').value;
+        if (!taskId || hours <= 0) return;
+
+        var task = tasks.find(function (t) { return t.id === taskId; });
+        var current = (task && task.actual_hours) || 0;
+        var newTotal = Math.round((current + hours) * 100) / 100;
+
+        await sb.from('kanban_tasks').update({ actual_hours: newTotal }).eq('id', taskId);
+        if (task) task.actual_hours = newTotal;
+
+        document.getElementById('timeActualDisplay').textContent = newTotal + 'h';
+        logActivity(taskId, 'time_log', null, { hours_added: Math.round(hours * 100) / 100, new_total: newTotal });
+        renderTasks();
     }
 
     // ---- Helper Functions ----
@@ -498,7 +863,6 @@
             var el = document.querySelector('[data-count="' + col + '"]');
             if (!el) return;
 
-            // Check WIP limits
             var wipLimits = (activeBoard && activeBoard.wip_limits) || {};
             var limit = wipLimits[col];
             if (limit && count >= limit) {
@@ -513,7 +877,6 @@
             }
         });
 
-        // Update board tab counts
         if (activeBoard) {
             var totalEl = document.querySelector('[data-board-count="' + activeBoard.id + '"]');
             if (totalEl) totalEl.textContent = tasks.length;
@@ -565,19 +928,16 @@
         var newColumn = evt.to.id.replace('list-', '');
         var oldColumn = evt.from.id.replace('list-', '');
 
-        // Remove empty-state placeholders
         evt.to.querySelectorAll('.task-list-empty').forEach(function (el) { el.remove(); });
         if (evt.from.children.length === 0) {
             evt.from.innerHTML = '<div class="task-list-empty">' + EMPTY_MESSAGES[oldColumn] + '</div>';
         }
 
-        // Completion flash
         if (newColumn === 'done' && oldColumn !== 'done') {
             evt.item.classList.add('complete-flash');
             setTimeout(function () { evt.item.classList.remove('complete-flash'); }, 800);
         }
 
-        // Update local state
         var task = tasks.find(function (t) { return t.id === taskId; });
         var prevColumn = task ? task.column_name : oldColumn;
         if (task) {
@@ -585,7 +945,6 @@
             task.position = evt.newIndex;
         }
 
-        // Reorder target column
         var colCards = evt.to.querySelectorAll('.task-card');
         var updates = [];
         colCards.forEach(function (card, i) {
@@ -598,7 +957,6 @@
             }
         });
 
-        // Reorder source column
         if (evt.from !== evt.to) {
             var srcCards = evt.from.querySelectorAll('.task-card');
             srcCards.forEach(function (card, i) {
@@ -615,7 +973,6 @@
         updateStats();
         updateWipLimits();
 
-        // Persist
         for (var u of updates) {
             await sb.from('kanban_tasks').update({
                 column_name: u.column_name,
@@ -623,7 +980,6 @@
             }).eq('id', u.id);
         }
 
-        // Log activity if column changed
         if (prevColumn !== newColumn) {
             showToast('Moved to ' + columnLabel(newColumn), 'success');
             logActivity(taskId, 'move', null, { from: prevColumn, to: newColumn });
@@ -667,7 +1023,8 @@
                     column_name: column,
                     position: position,
                     priority: 'medium',
-                    created_by: currentUser
+                    created_by: currentUser,
+                    source: 'human'
                 }).select().single();
 
                 if (result.error) {
@@ -721,11 +1078,20 @@
         document.getElementById('deleteTaskBtn').style.display = 'none';
         document.getElementById('activityPanel').style.display = 'none';
         document.getElementById('modalMetadata').style.display = 'none';
+        document.getElementById('mdPreview').style.display = 'none';
+        document.getElementById('taskEstimatedHours').value = '';
+        document.getElementById('timeActualDisplay').textContent = '0h';
+        updateTimerDisplay(0);
 
         modalLabels = [];
         modalSubtasks = [];
+        modalBlockedBy = [];
+        modalAttachments = [];
         renderLabelPicker();
         renderSubtasks();
+        renderBlockedByList();
+        renderAttachmentList();
+        populateBlockedBySelect(null);
 
         openModal();
     }
@@ -748,6 +1114,7 @@
             document.getElementById('taskDue').value = task.due_date || '';
             document.getElementById('deleteTaskBtn').style.display = 'block';
             document.getElementById('activityPanel').style.display = '';
+            document.getElementById('mdPreview').style.display = 'none';
 
             // Labels
             modalLabels = (task.labels || []).slice();
@@ -759,6 +1126,38 @@
             });
             renderSubtasks();
 
+            // Dependencies
+            modalBlockedBy = (task.blocked_by || []).slice();
+            populateBlockedBySelect(task.id);
+            renderBlockedByList();
+
+            // Attachments
+            modalAttachments = ((task.metadata && task.metadata.attachments) || []).slice();
+            renderAttachmentList();
+
+            // Time tracking
+            document.getElementById('taskEstimatedHours').value = task.estimated_hours || '';
+            document.getElementById('timeActualDisplay').textContent = (task.actual_hours || 0) + 'h';
+
+            // Restore timer if running for this task
+            var savedTimer = localStorage.getItem('kanban_timer');
+            if (savedTimer) {
+                try {
+                    var ts = JSON.parse(savedTimer);
+                    if (ts.taskId === task.id && ts.startTime) {
+                        timerStartTime = new Date(ts.startTime);
+                        timerElapsed = ts.elapsed || 0;
+                        startTimer();
+                    } else {
+                        updateTimerDisplay(0);
+                    }
+                } catch (e) {
+                    updateTimerDisplay(0);
+                }
+            } else {
+                updateTimerDisplay(0);
+            }
+
             // Metadata
             var metaEl = document.getElementById('modalMetadata');
             metaEl.style.display = '';
@@ -766,9 +1165,12 @@
             document.getElementById('metaCreatedAt').textContent = task.created_at ? 'Created ' + relativeTime(task.created_at) : '';
             document.getElementById('metaUpdatedAt').textContent = task.updated_at ? 'Updated ' + relativeTime(task.updated_at) : '';
 
-            // Load activity
-            loadActivity(task.id);
+            // Source indicator
+            if (task.source && task.source !== 'human') {
+                document.getElementById('metaCreatedBy').textContent += ' (via ' + task.source + ')';
+            }
 
+            loadActivity(task.id);
             openModal();
         },
 
@@ -810,8 +1212,225 @@
             input.disabled = false;
             input.focus();
             loadActivity(taskId);
+        },
+
+        toggleMarkdownPreview: function () {
+            var preview = document.getElementById('mdPreview');
+            var textarea = document.getElementById('taskDesc');
+            var btn = document.getElementById('mdPreviewToggle');
+            if (preview.style.display === 'none') {
+                preview.innerHTML = renderMarkdown(textarea.value);
+                preview.style.display = '';
+                textarea.style.display = 'none';
+                btn.textContent = 'Edit';
+            } else {
+                preview.style.display = 'none';
+                textarea.style.display = '';
+                btn.textContent = 'Preview';
+            }
+        },
+
+        removeBlocker: function (id) {
+            modalBlockedBy = modalBlockedBy.filter(function (b) { return b !== id; });
+            renderBlockedByList();
+        },
+
+        removeAttachment: async function (attachmentId) {
+            var taskId = document.getElementById('taskId').value;
+            var att = modalAttachments.find(function (a) { return a.id === attachmentId; });
+
+            if (att && att.path) {
+                await sb.storage.from('kanban-attachments').remove([att.path]);
+            }
+
+            modalAttachments = modalAttachments.filter(function (a) { return a.id !== attachmentId; });
+
+            if (taskId) {
+                var task = tasks.find(function (t) { return t.id === taskId; });
+                var meta = (task && task.metadata) || {};
+                meta.attachments = modalAttachments;
+                await sb.from('kanban_tasks').update({ metadata: meta }).eq('id', taskId);
+                if (task) task.metadata = meta;
+            }
+
+            renderAttachmentList();
+            renderTasks();
+        },
+
+        toggleTimer: function () {
+            if (timerInterval) {
+                stopTimer();
+            } else {
+                startTimer();
+            }
+        },
+
+        logManualHours: function () {
+            var input = document.getElementById('manualHoursInput');
+            var hours = parseFloat(input.value);
+            if (!hours || hours <= 0) return;
+            addActualHours(hours);
+            input.value = '';
+            showToast(hours + 'h logged', 'success');
+        },
+
+        switchPanel: function (panel) {
+            var tabs = document.querySelectorAll('.panel-tab');
+            tabs.forEach(function (t) {
+                t.classList.toggle('active', t.dataset.panel === panel);
+            });
+            document.getElementById('activityContent').style.display = panel === 'activity' ? '' : 'none';
+            document.getElementById('versionsContent').style.display = panel === 'versions' ? '' : 'none';
+
+            if (panel === 'versions') {
+                var taskId = document.getElementById('taskId').value;
+                if (taskId) {
+                    loadVersionHistory(taskId);
+                    loadBranchStatus(taskId);
+                }
+            }
+        },
+
+        rollbackToVersion: async function (taskId, version) {
+            if (!confirm('Rollback this task to version ' + version + '? This will create a new version entry.')) return;
+
+            try {
+                var result = await sb.rpc('rollback_task_to_version', {
+                    p_task_id: taskId,
+                    p_version: version
+                });
+
+                if (result.error) {
+                    showToast('Rollback failed: ' + result.error.message, 'error');
+                    return;
+                }
+
+                // Refresh local task data
+                var taskResult = await sb.from('kanban_tasks').select('*').eq('id', taskId).single();
+                if (taskResult.data) {
+                    var idx = tasks.findIndex(function (t) { return t.id === taskId; });
+                    if (idx !== -1) tasks[idx] = taskResult.data;
+                }
+
+                logActivity(taskId, 'rollback', null, { to_version: version });
+                showToast('Rolled back to version ' + version, 'success');
+                renderTasks();
+                loadVersionHistory(taskId);
+
+                // Refresh modal fields
+                window._kanban.editTask(taskId);
+            } catch (err) {
+                showToast('Rollback failed', 'error');
+                console.error('Rollback error:', err);
+            }
         }
     };
+
+    // ---- Version History ----
+
+    async function loadVersionHistory(taskId) {
+        var timeline = document.getElementById('versionTimeline');
+        timeline.innerHTML = '<div class="version-loading">Loading...</div>';
+
+        var result = await sb.from('kanban_task_versions')
+            .select('*')
+            .eq('task_id', taskId)
+            .order('version', { ascending: false })
+            .limit(50);
+
+        if (result.error) {
+            timeline.innerHTML = '<div class="version-loading">Failed to load versions</div>';
+            return;
+        }
+
+        var versions = result.data || [];
+        if (versions.length === 0) {
+            timeline.innerHTML = '<div class="version-loading">No version history yet</div>';
+            return;
+        }
+
+        timeline.innerHTML = versions.map(function (v) {
+            var opClass = v.operation.toLowerCase();
+            var opLabel = v.operation === 'INSERT' ? 'Created' :
+                          v.operation === 'DELETE' ? 'Deleted' : 'Updated';
+
+            var changedHtml = '';
+            if (v.changed_fields && v.changed_fields.length > 0) {
+                changedHtml = '<div class="version-changed">' +
+                    v.changed_fields.map(function (f) {
+                        return '<span class="version-field">' + escapeHtml(f) + '</span>';
+                    }).join('') + '</div>';
+            }
+
+            var sourceHtml = '';
+            if (v.source && v.source !== 'human') {
+                sourceHtml = '<span class="version-source">' + escapeHtml(v.source) + '</span>';
+            }
+
+            var gitHtml = '';
+            if (v.git_branch) {
+                gitHtml = '<span class="version-git">' + escapeHtml(v.git_branch.split('/').pop()) + '</span>';
+            }
+
+            var rollbackBtn = '';
+            if (v.operation !== 'DELETE' && v.new_data) {
+                rollbackBtn = '<button class="version-rollback" onclick="window._kanban.rollbackToVersion(\'' + taskId + '\', ' + v.version + ')" title="Rollback to this version">Restore</button>';
+            }
+
+            return '<div class="version-entry version-' + opClass + '">' +
+                '<div class="version-dot"></div>' +
+                '<div class="version-content">' +
+                    '<div class="version-header">' +
+                        '<span class="version-op">' + opLabel + '</span>' +
+                        '<span class="version-num">v' + v.version + '</span>' +
+                        sourceHtml + gitHtml + rollbackBtn +
+                    '</div>' +
+                    changedHtml +
+                    '<div class="version-meta">' +
+                        '<span>' + (v.changed_by || 'system') + '</span>' +
+                        '<span>' + relativeTime(v.created_at) + '</span>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+        }).join('');
+    }
+
+    async function loadBranchStatus(taskId) {
+        var panel = document.getElementById('branchStatusPanel');
+        panel.style.display = 'none';
+
+        var task = tasks.find(function (t) { return t.id === taskId; });
+        if (!task || !task.metadata || !task.metadata.git) return;
+
+        var result = await sb.from('kanban_task_branches')
+            .select('*')
+            .eq('task_id', taskId)
+            .order('created_at', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+
+        if (result.error || !result.data) return;
+
+        var branch = result.data;
+        panel.style.display = '';
+
+        document.getElementById('branchName').textContent = branch.branch_name;
+        var badge = document.getElementById('branchStatusBadge');
+        badge.textContent = branch.status;
+        badge.className = 'branch-status-badge branch-' + branch.status;
+
+        var metaParts = [];
+        if (branch.commit_count > 0) {
+            metaParts.push(branch.commit_count + ' commit' + (branch.commit_count !== 1 ? 's' : ''));
+        }
+        if (branch.pr_url) {
+            metaParts.push('<a href="' + escapeHtml(branch.pr_url) + '" target="_blank" rel="noopener">PR #' + (branch.pr_number || '') + '</a>');
+        }
+        if (branch.base_branch) {
+            metaParts.push('from ' + escapeHtml(branch.base_branch));
+        }
+        document.getElementById('branchStatusMeta').innerHTML = metaParts.join(' &middot; ');
+    }
 
     function renderLabelPicker() {
         document.querySelectorAll('.label-chip').forEach(function (chip) {
@@ -871,7 +1490,6 @@
                     '<div class="activity-content">' + escapeHtml(a.content) + '</div></div>';
             }
 
-            // System event
             var msg = formatActivityMessage(a);
             return '<div class="activity-item">' + avatar + '<span class="activity-user">' + escapeHtml(userName) + '</span> ' + msg + ' <span class="activity-time">' + relativeTime(a.created_at) + '</span></div>';
         }).join('');
@@ -885,6 +1503,8 @@
             case 'update': return 'updated this task';
             case 'assign': return 'assigned to ' + (USERS[meta.to] || meta.to || 'Unassigned');
             case 'delete': return 'deleted this task';
+            case 'time_log': return 'logged ' + (meta.hours_added || 0) + 'h (total: ' + (meta.new_total || 0) + 'h)';
+            case 'rollback': return 'rolled back to version ' + (meta.to_version || '?');
             default: return a.action_type;
         }
     }
@@ -917,8 +1537,29 @@
         document.getElementById('modalTitle').textContent = 'New Task';
         document.getElementById('activityPanel').style.display = 'none';
         document.getElementById('modalMetadata').style.display = 'none';
+        document.getElementById('mdPreview').style.display = 'none';
+        document.getElementById('taskDesc').style.display = '';
+        document.getElementById('mdPreviewToggle').textContent = 'Preview';
         modalLabels = [];
         modalSubtasks = [];
+        modalBlockedBy = [];
+        modalAttachments = [];
+
+        // Reset version panel to activity tab
+        document.getElementById('activityContent').style.display = '';
+        document.getElementById('versionsContent').style.display = 'none';
+        document.getElementById('branchStatusPanel').style.display = 'none';
+        var tabs = document.querySelectorAll('.panel-tab');
+        tabs.forEach(function (t) {
+            t.classList.toggle('active', t.dataset.panel === 'activity');
+        });
+
+        // Stop timer display (timer keeps running in background)
+        if (timerInterval) {
+            // Don't stop the timer, just stop the UI interval
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
     };
 
     window.saveTask = async function (e) {
@@ -931,6 +1572,7 @@
         var column_name = document.getElementById('taskColumn').value;
         var assigned_to = document.getElementById('taskAssignee').value || null;
         var due_date = document.getElementById('taskDue').value || null;
+        var estimated_hours = parseFloat(document.getElementById('taskEstimatedHours').value) || null;
 
         if (!title) return;
 
@@ -942,11 +1584,12 @@
             assigned_to: assigned_to,
             due_date: due_date,
             labels: modalLabels,
-            subtasks: modalSubtasks
+            subtasks: modalSubtasks,
+            blocked_by: modalBlockedBy,
+            estimated_hours: estimated_hours
         };
 
         if (id) {
-            // Update existing
             var existing = tasks.find(function (t) { return t.id === id; });
             var result = await sb.from('kanban_tasks').update(payload).eq('id', id);
 
@@ -956,7 +1599,6 @@
                 return;
             }
 
-            // Log specific changes
             if (existing) {
                 if (existing.assigned_to !== assigned_to) {
                     logActivity(id, 'assign', null, { from: existing.assigned_to, to: assigned_to });
@@ -972,9 +1614,9 @@
             }
             showToast('Task updated', 'success');
         } else {
-            // Create new
             payload.board_id = activeBoard.id;
             payload.created_by = currentUser;
+            payload.source = 'human';
             var colTasks = tasks.filter(function (t) { return t.column_name === column_name; });
             payload.position = colTasks.length;
 

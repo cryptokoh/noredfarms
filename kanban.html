@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="kanban-styles.css">
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@14/marked.min.js"></script>
 </head>
 <body>
     <!-- Nav -->
@@ -178,8 +179,54 @@
                             <input type="text" id="taskTitleInput" required placeholder="What needs to be done?">
                         </div>
                         <div class="modal-field">
-                            <label for="taskDesc">Description</label>
-                            <textarea id="taskDesc" placeholder="Details, links, notes..."></textarea>
+                            <label for="taskDesc">
+                                Description
+                                <button type="button" class="md-preview-toggle" id="mdPreviewToggle" onclick="window._kanban.toggleMarkdownPreview()" title="Toggle markdown preview">Preview</button>
+                            </label>
+                            <textarea id="taskDesc" placeholder="Details, links, notes... (supports **markdown**)"></textarea>
+                            <div class="md-preview" id="mdPreview" style="display:none"></div>
+                        </div>
+                        <!-- Dependencies: Blocked By -->
+                        <div class="modal-field" id="blockedBySection">
+                            <label>Blocked By</label>
+                            <div class="blocked-by-list" id="blockedByList"></div>
+                            <select id="blockedBySelect" class="blocked-by-select">
+                                <option value="">Add a blocker...</option>
+                            </select>
+                        </div>
+                        <!-- Attachments -->
+                        <div class="modal-field" id="attachmentSection">
+                            <label>Attachments</label>
+                            <div class="attachment-list" id="attachmentList"></div>
+                            <div class="attachment-upload">
+                                <input type="file" id="attachmentInput" accept="image/*,.pdf,.txt,.md,.csv,.json" style="display:none">
+                                <button type="button" class="modal-btn" onclick="document.getElementById('attachmentInput').click()">Attach file</button>
+                                <span class="attachment-hint">Max 5MB (images, PDF, text)</span>
+                            </div>
+                        </div>
+                        <!-- Time Tracking -->
+                        <div class="modal-field" id="timeTrackingSection">
+                            <label>Time Tracking</label>
+                            <div class="time-tracking">
+                                <div class="time-tracking-row">
+                                    <div class="time-input-group">
+                                        <label for="taskEstimatedHours">Estimated</label>
+                                        <input type="number" id="taskEstimatedHours" min="0" step="0.25" placeholder="hrs">
+                                    </div>
+                                    <div class="time-input-group">
+                                        <label>Actual</label>
+                                        <span class="time-actual-display" id="timeActualDisplay">0h</span>
+                                    </div>
+                                </div>
+                                <div class="time-timer-row">
+                                    <span class="timer-display" id="timerDisplay">00:00:00</span>
+                                    <button type="button" class="modal-btn timer-btn" id="timerStartBtn" onclick="window._kanban.toggleTimer()">Start</button>
+                                    <div class="time-manual-log">
+                                        <input type="number" id="manualHoursInput" min="0" step="0.25" placeholder="hrs">
+                                        <button type="button" class="modal-btn" onclick="window._kanban.logManualHours()">Log</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-row modal-row-3">
                             <div class="modal-field">
@@ -252,15 +299,40 @@
                         </div>
                     </form>
                 </div>
-                <!-- Right: activity feed (edit mode only) -->
+                <!-- Right: activity + version history (edit mode only) -->
                 <div class="modal-activity-panel" id="activityPanel" style="display:none">
-                    <h4>Activity</h4>
-                    <div class="activity-feed" id="activityFeed">
-                        <!-- Populated by JS -->
+                    <!-- Tab switcher -->
+                    <div class="panel-tabs">
+                        <button class="panel-tab active" data-panel="activity" onclick="window._kanban.switchPanel('activity')">Activity</button>
+                        <button class="panel-tab" data-panel="versions" onclick="window._kanban.switchPanel('versions')">Versions</button>
                     </div>
-                    <div class="activity-comment-box">
-                        <input type="text" id="commentInput" placeholder="Write a comment...">
-                        <button type="button" class="modal-btn primary" onclick="window._kanban.addComment()">Post</button>
+
+                    <!-- Activity tab -->
+                    <div class="panel-content" id="activityContent">
+                        <div class="activity-feed" id="activityFeed">
+                            <!-- Populated by JS -->
+                        </div>
+                        <div class="activity-comment-box">
+                            <input type="text" id="commentInput" placeholder="Write a comment...">
+                            <button type="button" class="modal-btn primary" onclick="window._kanban.addComment()">Post</button>
+                        </div>
+                    </div>
+
+                    <!-- Version history tab -->
+                    <div class="panel-content" id="versionsContent" style="display:none">
+                        <!-- Branch status (shown when task has linked branch) -->
+                        <div class="branch-status-panel" id="branchStatusPanel" style="display:none">
+                            <div class="branch-status-header">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v12"/><path d="M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M18 9c0 6-6 9-12 9"/></svg>
+                                <span class="branch-name" id="branchName"></span>
+                                <span class="branch-status-badge" id="branchStatusBadge"></span>
+                            </div>
+                            <div class="branch-status-meta" id="branchStatusMeta"></div>
+                        </div>
+
+                        <div class="version-timeline" id="versionTimeline">
+                            <div class="version-loading">Loading version history...</div>
+                        </div>
                     </div>
                 </div>
             </div>

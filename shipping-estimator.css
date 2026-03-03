@@ -33,7 +33,7 @@
 .shipping-modal {
     background: var(--color-bg, #ffffff);
     border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 60px rgba(28,58,19,0.12);
     max-width: 460px; width: 100%;
     max-height: calc(100vh - 2rem);
     overflow-y: auto;
@@ -133,7 +133,7 @@
     white-space: nowrap;
 }
 .shipping-option-price.free {
-    color: var(--color-success, #16a34a);
+    color: var(--color-success, #3d5b34);
 }
 
 .shipping-note {

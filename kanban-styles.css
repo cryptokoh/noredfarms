@@ -32,7 +32,7 @@
 .kanban-title {
     font-family: var(--font-sans);
     font-size: var(--text-xl);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin: 0;
     white-space: nowrap;
@@ -245,7 +245,7 @@
 
 .toolbar-stats strong {
     color: var(--color-text);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 /* ============================================
@@ -290,7 +290,7 @@
 .column-title {
     font-family: var(--font-sans);
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -313,7 +313,7 @@
 .column-count.over-limit {
     background: var(--color-warning);
     color: #1a1a1a;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .column-dot {
@@ -445,7 +445,7 @@
 
 .task-priority {
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding: 2px 6px;
@@ -489,8 +489,8 @@
 }
 
 .task-due.today {
-    background: rgba(212, 168, 75, 0.15);
-    color: #b8860b;
+    background: rgba(28, 58, 19, 0.08);
+    color: var(--color-warning, #d4a84b);
 }
 
 .task-due.soon {
@@ -538,7 +538,7 @@
     justify-content: center;
     font-family: var(--font-sans);
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 500;
     color: #fff;
     flex-shrink: 0;
 }
@@ -700,7 +700,7 @@
 .modal-header h3 {
     font-family: var(--font-sans);
     font-size: var(--text-lg);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin: 0;
 }
@@ -747,7 +747,7 @@
 .modal-activity-panel h4 {
     font-family: var(--font-sans);
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
     margin: 0;
     padding: var(--spacing-lg) var(--spacing-md) var(--spacing-sm);
@@ -781,7 +781,7 @@
 }
 
 .activity-item .activity-user {
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-text);
 }
 
@@ -793,7 +793,7 @@
     align-items: center;
     justify-content: center;
     font-size: 9px;
-    font-weight: 600;
+    font-weight: 500;
     color: #fff;
     vertical-align: middle;
     margin-right: 4px;
@@ -1310,7 +1310,7 @@ kbd {
     justify-content: center;
     font-family: var(--font-sans);
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .user-logout {
@@ -1423,41 +1423,136 @@ kbd {
 }
 
 @media (max-width: 768px) {
+    /* Header */
+    .kanban-header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
     .kanban-header-inner {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: var(--spacing-sm);
     }
 
-    .kanban-columns {
-        grid-template-columns: 1fr;
+    .kanban-title {
+        font-size: var(--text-lg);
     }
 
-    .kanban-header {
-        padding: var(--spacing-md);
+    .kanban-header-right {
+        gap: var(--spacing-sm);
     }
 
-    .kanban-body {
-        padding: var(--spacing-md);
+    .board-tabs {
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
     }
 
+    .board-tab {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    /* Toolbar */
     .kanban-toolbar {
         padding: var(--spacing-sm) var(--spacing-md);
+        top: calc(var(--nav-height) + 85px);
     }
 
     .toolbar-filters {
         width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-xs);
+    }
+
+    .toolbar-search {
+        grid-column: 1 / -1;
     }
 
     .toolbar-search input {
         width: 100%;
     }
 
+    .toolbar-filters select {
+        width: 100%;
+        min-height: 38px;
+    }
+
+    .toolbar-clear {
+        grid-column: 1 / -1;
+        min-height: 38px;
+    }
+
     .toolbar-stats {
         display: none;
     }
 
-    .board-tabs {
-        width: 100%;
+    /* Columns: horizontal scroll instead of vertical stack */
+    .kanban-body {
+        padding: var(--spacing-sm) 0;
+        overflow: hidden;
+    }
+
+    .kanban-columns {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: var(--spacing-sm);
+        padding: 0 var(--spacing-md) var(--spacing-md);
+    }
+
+    .kanban-column {
+        min-width: 80vw;
+        max-width: 85vw;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+    }
+
+    /* Task cards: always show actions (no hover on touch) */
+    .task-card {
+        padding: var(--spacing-md);
+    }
+
+    .task-card-actions {
+        opacity: 1;
+    }
+
+    .task-action-btn {
+        padding: 8px;
+        font-size: 18px;
+    }
+
+    /* Bigger touch target for add-task */
+    .add-task-btn {
+        padding: 12px;
+        font-size: var(--text-base);
+        min-height: 44px;
+    }
+
+    /* Modal: full-screen on mobile */
+    .kanban-modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .kanban-modal {
+        max-width: 100%;
+        max-height: 100vh;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .kanban-modal-overlay.open .kanban-modal {
+        transform: translateY(0);
+    }
+
+    .modal-header {
+        padding: var(--spacing-md) var(--spacing-md) 0;
+    }
+
+    .modal-form-panel {
+        padding: var(--spacing-md);
     }
 
     .modal-row,
@@ -1469,8 +1564,413 @@ kbd {
         display: none !important;
     }
 
-    .kanban-modal {
+    .modal-btn {
+        padding: 10px 20px;
+        min-height: 44px;
+    }
+
+    .modal-actions {
+        position: sticky;
+        bottom: 0;
+        background: var(--color-bg-elevated);
+        padding: var(--spacing-md);
+        margin: 0 calc(-1 * var(--spacing-md));
+        border-top: 1px solid var(--color-border-light);
+    }
+
+    /* Login: stack form vertically */
+    .login-form-row {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .login-form-row input {
+        min-height: 44px;
+    }
+
+    .login-form-row .modal-btn {
+        min-height: 44px;
+    }
+
+    /* Label chips: larger touch targets */
+    .label-chip {
+        padding: 6px 14px;
+        font-size: 13px;
+    }
+
+    /* Subtask items: larger touch targets */
+    .subtask-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+
+    .subtask-remove {
+        opacity: 1 !important;
+        padding: 4px 8px;
+        font-size: 20px;
+    }
+
+    /* Toast: full width at bottom */
+    .toast-container {
+        left: var(--spacing-md);
+        right: var(--spacing-md);
+        bottom: var(--spacing-md);
+    }
+
+    .toast {
         max-width: 100%;
-        max-height: 95vh;
+    }
+
+    /* Quick add: bigger input */
+    .quick-add-form input {
+        min-height: 44px;
+        font-size: var(--text-base);
+    }
+}
+
+/* ============================================
+   Version History & Branch Status
+   ============================================ */
+
+/* Panel tabs (Activity / Versions) */
+.panel-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border-light);
+    padding: 0 var(--spacing-md);
+    gap: 0;
+}
+
+.panel-tab {
+    padding: 10px 14px 8px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--transition-fast);
+}
+
+.panel-tab:hover {
+    color: var(--color-text);
+}
+
+.panel-tab.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+.panel-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Branch status in version panel */
+.branch-status-panel {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.branch-status-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-text);
+}
+
+.branch-status-header svg {
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+}
+
+.branch-name {
+    font-family: var(--font-mono, monospace);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+}
+
+.branch-status-badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 1px 6px;
+    border-radius: var(--bdrs-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+}
+
+.branch-status-badge.branch-created,
+.branch-badge.branch-created { background: rgba(90, 127, 168, 0.12); color: var(--color-info); }
+.branch-status-badge.branch-active,
+.branch-badge.branch-active { background: rgba(212, 168, 75, 0.12); color: var(--color-warning); }
+.branch-status-badge.branch-paused { background: rgba(107, 114, 128, 0.12); color: var(--color-text-muted); }
+.branch-status-badge.branch-review,
+.branch-badge.branch-review { background: rgba(139, 92, 246, 0.12); color: #8b5cf6; }
+.branch-status-badge.branch-merged,
+.branch-badge.branch-merged { background: rgba(61, 91, 52, 0.12); color: var(--color-success); }
+.branch-status-badge.branch-abandoned { background: rgba(196, 92, 75, 0.1); color: var(--color-error); }
+
+.branch-status-meta {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+}
+
+.branch-status-meta a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.branch-status-meta a:hover {
+    text-decoration: underline;
+}
+
+/* Version timeline */
+.version-timeline {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-height: 400px;
+}
+
+.version-loading {
+    text-align: center;
+    padding: var(--spacing-lg);
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: 12px;
+}
+
+.version-entry {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    position: relative;
+}
+
+/* Connecting line between dots */
+.version-entry:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 20px;
+    bottom: -8px;
+    width: 1px;
+    background: var(--color-border);
+}
+
+.version-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    background: var(--color-bg-elevated);
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.version-insert .version-dot { border-color: var(--color-success); background: rgba(61, 91, 52, 0.15); }
+.version-update .version-dot { border-color: var(--color-info); background: rgba(90, 127, 168, 0.15); }
+.version-delete .version-dot { border-color: var(--color-error); background: rgba(196, 92, 75, 0.15); }
+
+.version-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.version-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.version-op {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.version-num {
+    font-family: var(--font-mono, monospace);
+    font-size: 10px;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+}
+
+.version-source {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+}
+
+.version-git {
+    font-size: 10px;
+    font-family: var(--font-mono, monospace);
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+    background: rgba(90, 127, 168, 0.1);
+    color: var(--color-info);
+}
+
+.version-rollback {
+    margin-left: auto;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.version-rollback:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-primary-subtle);
+}
+
+/* Changed fields badges */
+.version-changed {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.version-field {
+    font-family: var(--font-mono, monospace);
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+    background: rgba(28, 58, 19, 0.06);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border-light);
+}
+
+.version-meta {
+    display: flex;
+    gap: 8px;
+    margin-top: 3px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+}
+
+/* Branch badge on task cards */
+.branch-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: var(--bdrs-pill);
+    margin-bottom: 4px;
+}
+
+.branch-badge svg {
+    flex-shrink: 0;
+}
+
+.branch-pr-link {
+    font-size: 10px;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: underline;
+    opacity: 0.8;
+    margin-left: 2px;
+}
+
+.branch-pr-link:hover {
+    opacity: 1;
+}
+
+/* Source badge on task cards */
+.source-badge {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 1px 6px;
+    border-radius: var(--bdrs-pill);
+    background: rgba(139, 92, 246, 0.08);
+    color: #8b5cf6;
+    margin-bottom: 4px;
+}
+
+/* Review status styling */
+.review-approved { color: var(--color-success); }
+.review-changes_requested { color: var(--color-warning); }
+.review-pending { color: var(--color-text-muted); }
+.review-commented { color: var(--color-info); }
+
+/* ============================================
+   Dark Mode - Version/Branch additions
+   ============================================ */
+
+[data-theme="dark"] .version-field {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .branch-status-panel {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .version-num {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .source-badge {
+    background: rgba(139, 92, 246, 0.15);
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+    .kanban-column {
+        min-width: 88vw;
+        max-width: 92vw;
+    }
+
+    .toolbar-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .kanban-title span {
+        display: none;
     }
 }

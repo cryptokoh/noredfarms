@@ -13,17 +13,17 @@
     color: white;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(28, 58, 19, 0.12);
     z-index: 9998;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .chat-widget-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 28px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+    box-shadow: 0 6px 24px rgba(28, 58, 19, 0.15);
 }
 
 .chat-widget-btn svg {
@@ -50,7 +50,7 @@
     right: -2px;
     width: 18px;
     height: 18px;
-    background: #ef4444;
+    background: var(--color-error, #c45c4b);
     border-radius: 50%;
     font-size: 0.65rem;
     font-weight: 500;
@@ -71,7 +71,7 @@
     max-height: calc(100vh - 10rem);
     background: var(--color-bg, #ffffff);
     border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 2px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 40px rgba(28, 58, 19, 0.1), 0 2px 10px rgba(28, 58, 19, 0.06);
     z-index: 9997;
     display: flex;
     flex-direction: column;

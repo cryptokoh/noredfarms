@@ -298,8 +298,8 @@
 }
 
 .cart-item-remove:hover {
-    background: #fee2e2;
-    color: #ef4444;
+    background: rgba(196, 92, 75, 0.08);
+    color: var(--color-error, #c45c4b);
 }
 
 .cart-item-remove svg {
@@ -394,7 +394,7 @@
 .cart-notification svg {
     width: 20px;
     height: 20px;
-    color: #10b981;
+    color: var(--color--mossroot, #3d5b34);
     flex-shrink: 0;
 }
 
@@ -463,7 +463,7 @@
 
 /* Success state */
 .add-to-cart-btn.added {
-    background: var(--color-success, #10b981);
+    background: var(--color-success, #3d5b34);
     pointer-events: none;
 }
 
@@ -618,7 +618,7 @@
     display: flex;
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
-    background: #fef3c7;
+    background: var(--color--lemongrass, #e9f0ca);
     border-radius: var(--radius-md);
     margin-bottom: var(--spacing-lg);
 }
@@ -626,13 +626,13 @@
 .checkout-notice svg {
     width: 20px;
     height: 20px;
-    color: #d97706;
+    color: var(--color--olivegreen, #61735e);
     flex-shrink: 0;
 }
 
 .checkout-notice p {
     font-size: var(--font-size-sm);
-    color: #92400e;
+    color: var(--color--seedgreen, #1c3a13);
 }
 
 .checkout-actions {
@@ -674,7 +674,7 @@
     width: 80px;
     height: 80px;
     margin: 0 auto var(--spacing-lg);
-    background: #d1fae5;
+    background: var(--color--lemongrass, #e9f0ca);
     border-radius: var(--radius-full);
     display: flex;
     align-items: center;
@@ -684,7 +684,7 @@
 .success-icon svg {
     width: 40px;
     height: 40px;
-    color: #10b981;
+    color: var(--color--mossroot, #3d5b34);
 }
 
 .checkout-success h2 {

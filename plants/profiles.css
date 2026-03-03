@@ -50,7 +50,7 @@
     background: var(--color-primary);
     color: #fff;
     font-size: var(--text-xs);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     padding: 0.3rem 0.85rem;
@@ -184,7 +184,7 @@
     color: #fff;
     padding: 0.75rem 1.75rem;
     border-radius: var(--radius-full);
-    font-weight: 600;
+    font-weight: 500;
     font-size: var(--text-sm);
     text-decoration: none;
     transition: all var(--transition-base);
@@ -227,7 +227,7 @@
 
 .quick-fact-label {
     font-size: var(--text-xs);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-primary);
@@ -287,7 +287,7 @@
 
 .param-card-label {
     font-size: var(--text-xs);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-primary);
@@ -349,7 +349,7 @@
 .profile-info-box h4 {
     margin: 0 0 var(--spacing-sm);
     color: var(--color-primary);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .profile-info-box p {
@@ -399,8 +399,8 @@
 }
 
 .related-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12), 0 0 0 1px var(--color-primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(28,58,19,0.08), 0 0 0 1px var(--color-primary-light);
     border-color: var(--color-primary);
 }
 
@@ -433,7 +433,7 @@
 .related-card-name {
     font-family: var(--font-serif);
     font-size: var(--text-lg);
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 0.2rem;
 }
 
@@ -446,7 +446,7 @@
 .related-card-badge {
     display: inline-block;
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding: 0.2rem 0.6rem;
@@ -538,8 +538,8 @@
 }
 
 .directory-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12), 0 0 0 1px var(--color-primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(28,58,19,0.08), 0 0 0 1px var(--color-primary-light);
     border-color: var(--color-primary);
 }
 
@@ -572,7 +572,7 @@
 .directory-card-name {
     font-family: var(--font-serif);
     font-size: var(--text-xl);
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 0.2rem;
 }
 
@@ -593,7 +593,7 @@
 .difficulty-badge {
     display: inline-block;
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding: 0.2rem 0.6rem;
@@ -618,7 +618,7 @@
 .category-badge {
     display: inline-block;
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding: 0.2rem 0.6rem;

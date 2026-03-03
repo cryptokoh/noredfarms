@@ -147,7 +147,7 @@
 
 .auth-btn-primary:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(28, 58, 19, 0.3);
+    box-shadow: 0 6px 20px rgba(28, 58, 19, 0.12);
 }
 
 .auth-btn-primary:disabled {
@@ -228,15 +228,15 @@
 }
 
 .auth-message-success {
-    background: #ecfdf5;
-    color: #065f46;
-    border: 1px solid #a7f3d0;
+    background: var(--color--lemongrass, #e9f0ca);
+    color: var(--color--seedgreen, #1c3a13);
+    border: 1px solid rgba(28, 58, 19, 0.15);
 }
 
 .auth-message-error {
-    background: #fef2f2;
-    color: #991b1b;
-    border: 1px solid #fecaca;
+    background: rgba(196, 92, 75, 0.08);
+    color: var(--color-error, #c45c4b);
+    border: 1px solid rgba(196, 92, 75, 0.15);
 }
 
 /* ── Dashboard ── */
@@ -388,7 +388,7 @@
 
 .course-card-btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(28, 58, 19, 0.3);
+    box-shadow: 0 4px 12px rgba(28, 58, 19, 0.12);
 }
 
 .course-card-btn-secondary {
@@ -544,7 +544,7 @@
 }
 
 .lesson-list-item.completed {
-    border-color: #059669;
+    border-color: var(--color--mossroot, #3d5b34);
 }
 
 .lesson-list-item.locked {
@@ -568,9 +568,9 @@
 }
 
 .lesson-list-item.completed .lesson-number {
-    background: #ecfdf5;
-    border-color: #059669;
-    color: #059669;
+    background: var(--color--lemongrass, #e9f0ca);
+    border-color: var(--color--mossroot, #3d5b34);
+    color: var(--color--mossroot, #3d5b34);
 }
 
 .lesson-info {
@@ -596,7 +596,7 @@
 }
 
 .lesson-list-item.completed .lesson-status-icon {
-    color: #059669;
+    color: var(--color--mossroot, #3d5b34);
 }
 
 /* ── Lesson Viewer ── */
@@ -668,7 +668,7 @@
 }
 
 .sidebar-lesson-link.completed {
-    color: #059669;
+    color: var(--color--mossroot, #3d5b34);
 }
 
 .sidebar-lesson-num {
@@ -686,9 +686,9 @@
 }
 
 .sidebar-lesson-link.completed .sidebar-lesson-num {
-    background: #ecfdf5;
-    border-color: #059669;
-    color: #059669;
+    background: var(--color--lemongrass, #e9f0ca);
+    border-color: var(--color--mossroot, #3d5b34);
+    color: var(--color--mossroot, #3d5b34);
 }
 
 .sidebar-lesson-link.active .sidebar-lesson-num {
@@ -814,11 +814,11 @@
 
 .mark-complete-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(28, 58, 19, 0.3);
+    box-shadow: 0 4px 12px rgba(28, 58, 19, 0.12);
 }
 
 .mark-complete-btn.completed {
-    background: #059669;
+    background: var(--color--mossroot, #3d5b34);
     cursor: default;
 }
 
@@ -1026,10 +1026,10 @@
     align-items: center;
     gap: 0.75rem;
     padding: 1rem 1.25rem;
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
+    background: var(--color--lemongrass, #e9f0ca);
+    border: 1px solid rgba(28, 58, 19, 0.15);
     border-radius: var(--radius-xl);
-    color: #065f46;
+    color: var(--color--seedgreen, #1c3a13);
     font-size: var(--text-sm);
     font-weight: 500;
 }

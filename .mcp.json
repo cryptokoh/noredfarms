@@ -3,6 +3,15 @@
     "supabase": {
       "type": "http",
       "url": "https://mcp.supabase.com/mcp?project_ref=uqyfsqenjakqyzixfcta"
+    },
+    "kanban": {
+      "command": "node",
+      "args": ["kanban-mcp/index.js"],
+      "cwd": "/home/koh/Documents/noredFarms",
+      "env": {
+        "KANBAN_API_URL": "https://uqyfsqenjakqyzixfcta.supabase.co/functions/v1/kanban-api",
+        "KANBAN_API_KEY": ""
+      }
     }
   }
 }

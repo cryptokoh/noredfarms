@@ -45,7 +45,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(28, 58, 19, 0.1);
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
@@ -62,7 +62,7 @@
 
 #pe-back-to-top:hover {
     background: var(--color-primary-dark, #142d0e);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 20px rgba(28, 58, 19, 0.15);
     transform: translateY(-2px);
 }
 
