@@ -664,4 +664,3 @@ if (window.location.hash) {
 // Initialize
 // ============================================
 
-console.log('Ancient Ruins Garden Lab initialized');

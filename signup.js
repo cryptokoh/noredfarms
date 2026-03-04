@@ -183,7 +183,6 @@ const SignupModal = {
                 setTimeout(() => {
                     SignupTracker.setSubscribed(email);
                     button.innerHTML = '<span>Welcome!</span>';
-                    console.log('Hero signup:', email);
 
                     // Redirect to welcome page
                     setTimeout(() => {
@@ -230,7 +229,6 @@ const SignupModal = {
                 success.style.display = 'block';
             }
 
-            console.log('Modal signup:', email);
 
             // Redirect to welcome page after showing success
             setTimeout(() => {

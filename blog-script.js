@@ -266,7 +266,6 @@ function initBlogNewsletter() {
             button.disabled = false;
         }, 3000);
 
-        console.log('Blog newsletter signup:', email);
     });
 }
 
@@ -422,7 +421,6 @@ function initLoadMore() {
         loadMoreBtn.innerHTML = originalText;
         loadMoreBtn.disabled = false;
 
-        console.log('Load more articles requested');
     });
 }
 

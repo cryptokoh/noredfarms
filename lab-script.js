@@ -705,7 +705,6 @@ function simulateFormSubmission(data) {
         setTimeout(() => {
             // Simulate 90% success rate
             if (Math.random() > 0.1) {
-                console.log('Form submitted:', data);
                 resolve(data);
             } else {
                 reject(new Error('Simulated error'));
@@ -867,7 +866,6 @@ window.addEventListener('load', () => {
     // Performance mark
     if (window.performance) {
         const loadTime = window.performance.now();
-        console.log(`Lab Experience loaded in ${loadTime.toFixed(2)}ms`);
     }
 });
 

@@ -641,7 +641,6 @@
                 const displayTitle = currentTheme === 'shaman'
                     ? title.querySelector('.shaman-text')?.textContent
                     : title.querySelector('.lab-text')?.textContent;
-                console.log('Opening article:', displayTitle);
             });
         });
 

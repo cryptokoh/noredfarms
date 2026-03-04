@@ -46,6 +46,17 @@ function initNavigation() {
     const hamburger = document.getElementById('navToggle');
     if (!nav) return;
 
+    // Wrap nav children in .nav-container for centered max-width layout
+    // (also enables site-search.js desktop search bar injection)
+    if (!nav.querySelector('.nav-container')) {
+        var container = document.createElement('div');
+        container.className = 'nav-container';
+        while (nav.firstChild) {
+            container.appendChild(nav.firstChild);
+        }
+        nav.appendChild(container);
+    }
+
     // Scroll effect: add .scrolled for nav blur bg
     window.addEventListener('scroll', () => {
         if (window.scrollY > 20) {
@@ -142,8 +153,8 @@ function initFullscreenMenu(hamburger) {
         '<p class="login-subtitle">Access your account, courses, lab reports, and more.</p>' +
         '<div class="login-divider"><span>EMAIL LOGIN</span></div>' +
         '<form onsubmit="window.location.href=\'' + p + 'courses/login.html\'; return false;">' +
-        '<div class="login-field"><input type="email" placeholder="Email" class="login-input"></div>' +
-        '<div class="login-field"><input type="password" placeholder="Password" class="login-input"></div>' +
+        '<div class="login-field"><input type="email" placeholder="Email" class="login-input" autocomplete="email"></div>' +
+        '<div class="login-field"><input type="password" placeholder="Password" class="login-input" autocomplete="current-password"></div>' +
         '<div class="login-actions"><a href="' + p + 'courses/login.html" class="login-forgot">Forgot password?</a><button type="submit" class="login-submit">Sign In</button></div>' +
         '</form>' +
         '</div>' +
@@ -328,7 +339,6 @@ function initForms() {
             }, 3000);
 
             // Show success message (could be a toast notification)
-            console.log('Newsletter signup:', email);
         });
     }
 
@@ -360,7 +370,6 @@ function initForms() {
                 button.disabled = false;
             }, 3000);
 
-            console.log('Contact form submission:', data);
         });
     }
 
@@ -618,7 +627,6 @@ function initMobileEnhancements() {
         });
     }
 
-    console.log('Mobile enhancements initialized');
 }
 
 /**
@@ -683,7 +691,6 @@ function initProductFiltering() {
     window.addEventListener('hashchange', handleHashFilter);
     handleHashFilter(); // Check on load
 
-    console.log('Product filtering initialized');
 }
 
 /**
@@ -1047,7 +1054,6 @@ function initFeaturedCarousel() {
     updateCarousel();
     startAutoAdvance();
 
-    console.log('Featured carousel initialized');
 }
 
 /**
@@ -1090,7 +1096,6 @@ function initViewAllProducts() {
     viewAllBtn.setAttribute('aria-expanded', 'false');
     viewAllBtn.setAttribute('aria-controls', 'fullCatalog');
 
-    console.log('View all products initialized');
 }
 
 // Export for potential module usage
