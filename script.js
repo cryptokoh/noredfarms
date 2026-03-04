@@ -141,9 +141,11 @@ function initFullscreenMenu(hamburger) {
         '<h2 class="login-heading">Login</h2>' +
         '<p class="login-subtitle">Access your account, courses, lab reports, and more.</p>' +
         '<div class="login-divider"><span>EMAIL LOGIN</span></div>' +
+        '<form onsubmit="window.location.href=\'' + p + 'courses/login.html\'; return false;">' +
         '<div class="login-field"><input type="email" placeholder="Email" class="login-input"></div>' +
         '<div class="login-field"><input type="password" placeholder="Password" class="login-input"></div>' +
-        '<div class="login-actions"><a href="' + p + 'courses/login.html" class="login-forgot">Forgot password?</a><button class="login-submit" onclick="window.location.href=\'' + p + 'courses/login.html\'">Sign In</button></div>' +
+        '<div class="login-actions"><a href="' + p + 'courses/login.html" class="login-forgot">Forgot password?</a><button type="submit" class="login-submit">Sign In</button></div>' +
+        '</form>' +
         '</div>' +
         '</div>' + // /fs-menu-scroll
         '</div>' + // /fs-menu
@@ -731,7 +733,6 @@ function initFeaturedCarousel() {
     const dotsContainer = document.getElementById('carouselDots');
 
     if (!track || !prevBtn || !nextBtn) {
-        console.log('Carousel elements not found');
         return;
     }
 
@@ -1057,7 +1058,6 @@ function initViewAllProducts() {
     const fullCatalog = document.getElementById('fullCatalog');
 
     if (!viewAllBtn || !fullCatalog) {
-        console.log('View all elements not found');
         return;
     }
 
