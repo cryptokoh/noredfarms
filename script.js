@@ -169,6 +169,11 @@ function initFullscreenMenu(hamburger) {
         menuFooter.classList.add('open');
         hamburger.classList.add('active');
         document.body.style.overflow = 'hidden';
+        // Prevent iOS body scroll when menu is open
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+        document.body.dataset.scrollY = window.scrollY;
+        document.body.style.top = '-' + window.scrollY + 'px';
     }
 
     function closeMenu() {
@@ -177,14 +182,30 @@ function initFullscreenMenu(hamburger) {
         menuFooter.classList.remove('open');
         hamburger.classList.remove('active');
         document.body.style.overflow = '';
+        // Restore iOS scroll position
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        var scrollY = document.body.dataset.scrollY;
+        if (scrollY) window.scrollTo(0, parseInt(scrollY, 10));
     }
 
-    hamburger.addEventListener('click', function() {
+    function toggleMenu(e) {
+        if (e) e.preventDefault();
         fsMenu.classList.contains('open') ? closeMenu() : openMenu();
-    });
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    // Fallback for mobile browsers that may not fire click reliably
+    hamburger.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        toggleMenu();
+    }, { passive: false });
 
     menuClose.addEventListener('click', closeMenu);
     menuBackdrop.addEventListener('click', closeMenu);
+    menuClose.addEventListener('touchend', function(e) { e.preventDefault(); closeMenu(); }, { passive: false });
+    menuBackdrop.addEventListener('touchend', function(e) { e.preventDefault(); closeMenu(); }, { passive: false });
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
 
     // Tab switching

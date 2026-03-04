@@ -122,7 +122,7 @@
 }
 .related-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 24px rgba(28, 58, 19, 0.08);
     border-color: var(--color-primary, #1c3a13);
 }
 .related-card-body {
@@ -166,7 +166,7 @@
     border-radius: 16px;
     padding: 2rem;
     margin: 2.5rem -0.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 20px rgba(28, 58, 19, 0.06), 0 1px 3px rgba(28, 58, 19, 0.04);
     position: relative;
 }
 .elevated-panel::before {
@@ -192,7 +192,7 @@
     border: 1px solid var(--color-border, #e5e7eb);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(28, 58, 19, 0.04);
     font-size: 0.9rem;
 }
 .auto-table caption {

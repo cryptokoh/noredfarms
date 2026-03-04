@@ -471,12 +471,19 @@ ul, ol {
 .hamburger {
     display: none;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
     cursor: pointer;
     padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
     background: none;
     border: none;
     z-index: 200;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
 }
 
 .hamburger span {
@@ -508,9 +515,11 @@ ul, ol {
     right: 0;
     bottom: auto;
     max-height: 85vh;
+    max-height: 85dvh;
     z-index: 100;
     display: flex;
     flex-direction: column;
+    background: rgba(28, 58, 19, 0.85);
     border-radius: 0 0 var(--bdrs-l) var(--bdrs-l);
     opacity: 0;
     visibility: hidden;
@@ -539,7 +548,7 @@ ul, ol {
     position: fixed;
     inset: 0;
     z-index: 99;
-    background: transparent;
+    background: rgba(28, 58, 19, 0.3);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
@@ -661,7 +670,7 @@ ul, ol {
     background: var(--seed-glass);
     backdrop-filter: var(--seed-blur);
     -webkit-backdrop-filter: var(--seed-blur);
-    border-radius: var(--bdrs-l);
+    border-radius: var(--radius-2xl);
     -webkit-overflow-scrolling: touch;
     position: relative;
     z-index: 1;
@@ -2364,8 +2373,8 @@ ul, ol {
 }
 
 .product-badge.popular {
-    background: #f59e0b;
-    color: #1a1a1a;
+    background: var(--color--lemongrass);
+    color: var(--color--seedgreen);
 }
 
 .product-image {
@@ -4696,7 +4705,7 @@ ul, ol {
 .signup-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(28, 58, 19, 0.5);
     backdrop-filter: blur(4px);
 }
 
