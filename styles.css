@@ -179,6 +179,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 body {
@@ -191,6 +192,7 @@ body {
     background-color: var(--color-bg);
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 ::selection { background: rgba(28, 58, 19, 0.12); }
@@ -519,18 +521,19 @@ ul, ol {
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Get Started pill — no bg at top, glass on scroll */
+/* Get Started pill — compact like seed.com */
 .nav-cta {
-    font-size: 14px;
-    font-weight: 350;
+    font-size: 13px;
+    font-weight: 400;
     color: var(--color--snowwhite) !important;
     background: var(--color--seedgreen);
     border: none;
     border-radius: 99em;
-    padding: 8px 16px;
+    padding: 6px 14px;
     text-decoration: none !important;
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .nav-cta:hover {
@@ -627,7 +630,9 @@ ul, ol {
         background: var(--color--seedgreen);
         border: none;
         border-radius: 99em;
-        padding: 8px 16px;
+        padding: 6px 12px;
+        font-size: 13px;
+        white-space: nowrap;
     }
     .nav.scrolled .nav-cta-mobile {
         color: #fff !important;
@@ -636,7 +641,7 @@ ul, ol {
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 99em;
-        padding: 8px 16px;
+        padding: 6px 12px;
     }
 }
 
@@ -3388,10 +3393,10 @@ ul, ol {
    Optimized for touch, readability, and performance
    ============================================ */
 
-/* Touch target minimum size */
+/* Touch target minimum size — exclude dense footer links */
 @media (pointer: coarse) {
     .btn, .nav-link, .research-link,
-    .seed-footer-col ul li a, .contact-item a {
+    .contact-item a {
         min-height: 44px;
         min-width: 44px;
         display: inline-flex;
