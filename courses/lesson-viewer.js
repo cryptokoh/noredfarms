@@ -247,11 +247,11 @@ async function generateCertificateIfEligible(userId, courseId, courseSlug) {
 
     if (existing) return; // Already has certificate
 
-    // Generate certificate number: PETX-DND-YYYY-NNNN
+    // Generate certificate number: NORED-DND-YYYY-NNNN
     const prefix = courseSlug === 'dandelion-extraction' ? 'DND' : courseSlug.substring(0, 3).toUpperCase();
     const year = new Date().getFullYear();
     const seq = Math.floor(Math.random() * 9000) + 1000;
-    const certNumber = `PETX-${prefix}-${year}-${seq}`;
+    const certNumber = `NORED-${prefix}-${year}-${seq}`;
 
     const { error } = await sb.from('certificates').insert({
         user_id: userId,

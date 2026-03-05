@@ -136,7 +136,7 @@ function renderCatalogCourses(courses, enrolledCourseIds) {
 async function startCourseCheckout(tierId) {
     const user = await getUser();
     if (!user) {
-        sessionStorage.setItem('petx_pending_tier', String(tierId));
+        sessionStorage.setItem('nored_pending_tier', String(tierId));
         window.location.href = '/courses/login.html';
         return;
     }

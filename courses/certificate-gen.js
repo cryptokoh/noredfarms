@@ -111,7 +111,7 @@ function renderCertificate(canvas, data) {
     // Certificate number
     ctx.fillStyle = '#9ca3af';
     ctx.font = '12px "JetBrains Mono", monospace';
-    ctx.fillText('Certificate No: ' + (data.certificateNumber || 'PETX-XXX-0000-0000'), W / 2, 570);
+    ctx.fillText('Certificate No: ' + (data.certificateNumber || 'NORED-XXX-0000-0000'), W / 2, 570);
 
     // Signature line (left)
     ctx.strokeStyle = '#d1d5db';
@@ -200,7 +200,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
  */
 function downloadCertificate(canvas, certNumber) {
     const link = document.createElement('a');
-    link.download = `PureExtractsTX-Certificate-${certNumber}.png`;
+    link.download = `NoredFarms-Certificate-${certNumber}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
 }

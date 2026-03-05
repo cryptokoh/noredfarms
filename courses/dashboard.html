@@ -85,7 +85,7 @@
                     <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
                 </div>
                 <div class="seed-footer-signup">
-                    <p>Science with PETX &mdash; research updates for your inbox.</p>
+                    <p>Science with Nored &mdash; research updates for your inbox.</p>
                     <div class="seed-footer-email-row">
                         <input type="email" placeholder="Your email" class="seed-footer-email">
                         <button class="seed-footer-email-btn">Subscribe</button>
@@ -166,9 +166,9 @@
             const user = session.user;
 
             // Check for pending tier from pre-login enroll attempt
-            const pendingTier = sessionStorage.getItem('petx_pending_tier');
+            const pendingTier = sessionStorage.getItem('nored_pending_tier');
             if (pendingTier) {
-                sessionStorage.removeItem('petx_pending_tier');
+                sessionStorage.removeItem('nored_pending_tier');
                 startCourseCheckout(parseInt(pendingTier, 10));
                 return;
             }

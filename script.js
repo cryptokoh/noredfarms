@@ -57,14 +57,73 @@ function initNavigation() {
         nav.appendChild(container);
     }
 
-    // Scroll effect: add .scrolled for nav blur bg
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            nav.classList.add('scrolled');
-        } else {
+    var navLinks = nav.querySelector('.nav-links');
+    var container = nav.querySelector('.nav-container');
+    var hamburgerEl = nav.querySelector('.hamburger');
+
+    // Wrap logo + main links in .nav-left pill (seed.com pattern)
+    // On desktop scroll: single glass pill with logo + Shop/Science/Learn
+    if (container && navLinks && !nav.querySelector('.nav-left')) {
+        var logo = nav.querySelector('.nav-logo');
+        var navLeft = document.createElement('div');
+        navLeft.className = 'nav-left';
+
+        // Move main links (not Login/Get Started) into nav-left
+        var mainLinks = document.createElement('div');
+        mainLinks.className = 'nav-main-links';
+        var authLinks = document.createElement('div');
+        authLinks.className = 'nav-auth-links';
+
+        var allLinks = navLinks.querySelectorAll('a');
+        allLinks.forEach(function(a) {
+            var text = a.textContent.trim().toLowerCase();
+            if (text === 'login' || a.classList.contains('nav-cta')) {
+                authLinks.appendChild(a);
+            } else {
+                mainLinks.appendChild(a);
+            }
+        });
+
+        // Build: .nav-left > [logo, main-links]
+        if (logo) navLeft.appendChild(logo);
+        navLeft.appendChild(mainLinks);
+
+        // Replace nav-links with new structure
+        container.insertBefore(navLeft, navLinks);
+        container.insertBefore(authLinks, hamburgerEl);
+        navLinks.remove();
+    }
+
+    // Clone Get Started for mobile (direct child of nav-container)
+    var cta = container && container.querySelector('.nav-auth-links .nav-cta');
+    if (container && cta && hamburgerEl) {
+        var mobileCta = cta.cloneNode(true);
+        mobileCta.classList.add('nav-cta-mobile');
+        container.insertBefore(mobileCta, hamburgerEl);
+    }
+
+    // Scroll effect: at top → plain text nav, on first scroll → glass pills appear
+    var scrollThreshold = 10; // activate immediately on first scroll
+
+    function updateNavState() {
+        var overLight = window.scrollY <= scrollThreshold;
+        if (overLight) {
             nav.classList.remove('scrolled');
+        } else {
+            nav.classList.add('scrolled');
         }
-    }, { passive: true });
+        // Sync collapsed menu tab bar style with bg color
+        var menu = document.getElementById('fsMenu');
+        if (menu) {
+            if (overLight) {
+                menu.classList.add('over-light');
+            } else {
+                menu.classList.remove('over-light');
+            }
+        }
+    }
+    window.addEventListener('scroll', updateNavState, { passive: true });
+    updateNavState();
 
     // Smooth scroll for anchor links
     nav.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -101,7 +160,6 @@ function initFullscreenMenu(hamburger) {
     // Build menu HTML
     var menuHTML = '<div class="fs-menu-backdrop" id="menuBackdrop"></div>' +
         '<div class="fs-menu" id="fsMenu">' +
-        '<a href="' + p + 'articles/complete-kratom-guide.html" class="fs-menu-banner">Is KR-01 Kratom Full Spectrum Right For You? <span>&rarr;</span></a>' +
         '<div class="fs-menu-tabs">' +
         '<div class="fs-menu-logo"></div>' +
         '<button class="fs-tab active" data-tab="shop">Shop</button>' +
@@ -124,7 +182,7 @@ function initFullscreenMenu(hamburger) {
         // SCIENCE panel
         '<div class="fs-panel" data-panel="science">' +
         '<a href="' + p + 'index.html#about" class="panel-item"><div class="panel-item-image img-approach">&#128300;</div><div class="panel-item-content"><div class="panel-item-title">Approach</div><div class="panel-item-desc">Botanical science for human wellness</div></div></a>' +
-        '<a href="' + p + 'research.html" class="panel-item"><div class="panel-item-image img-labs">&#9878;</div><div class="panel-item-content"><div class="panel-item-title">PETX[Labs]</div><div class="panel-item-desc">Frontier extraction science</div></div></a>' +
+        '<a href="' + p + 'research.html" class="panel-item"><div class="panel-item-image img-labs">&#9878;</div><div class="panel-item-content"><div class="panel-item-title">Nored[Labs]</div><div class="panel-item-desc">Frontier extraction science</div></div></a>' +
         '<a href="' + p + 'consulting.html" class="panel-item"><div class="panel-item-image img-scientists">&#128200;</div><div class="panel-item-content"><div class="panel-item-title">Researchers</div><div class="panel-item-desc">Leading ethnobotanical experts</div></div></a>' +
         '<a href="' + p + 'research.html#growing" class="panel-item"><div class="panel-item-image img-sustainability">&#127807;</div><div class="panel-item-content"><div class="panel-item-title">Sustainability</div><div class="panel-item-desc">Sourcing impact on ecological health</div></div></a>' +
         '<div class="panel-group-header">Reference</div>' +
@@ -148,7 +206,7 @@ function initFullscreenMenu(hamburger) {
         '</div>' +
         // LOGIN panel
         '<div class="fs-panel" data-panel="login">' +
-        '<div class="login-brand">[ PureCircle ]</div>' +
+        '<div class="login-brand">[ Nored Farms ]</div>' +
         '<h2 class="login-heading">Login</h2>' +
         '<p class="login-subtitle">Access your account, courses, lab reports, and more.</p>' +
         '<div class="login-divider"><span>EMAIL LOGIN</span></div>' +
@@ -158,12 +216,9 @@ function initFullscreenMenu(hamburger) {
         '<div class="login-actions"><a href="' + p + 'courses/login.html" class="login-forgot">Forgot password?</a><button type="submit" class="login-submit">Sign In</button></div>' +
         '</form>' +
         '</div>' +
+        '<a href="' + p + 'articles/complete-kratom-guide.html" class="fs-menu-promo">Is KR-01 Right For You? &rarr;</a>' +
         '</div>' + // /fs-menu-scroll
-        '</div>' + // /fs-menu
-        '<div class="fs-menu-footer" id="menuFooter">' +
-        '<a href="' + p + 'products/extracts.html" class="fs-cta-primary">Shop KR-01</a>' +
-        '<a href="' + p + 'contact.html" class="fs-cta-secondary">Get Started &rarr;</a>' +
-        '</div>';
+        '</div>'; // /fs-menu
 
     // Insert menu into DOM
     document.body.insertAdjacentHTML('beforeend', menuHTML);
@@ -172,14 +227,12 @@ function initFullscreenMenu(hamburger) {
     var fsMenu = document.getElementById('fsMenu');
     var menuBackdrop = document.getElementById('menuBackdrop');
     var menuClose = document.getElementById('menuClose');
-    var menuFooter = document.getElementById('menuFooter');
     var tabs = document.querySelectorAll('.fs-tab');
     var panels = document.querySelectorAll('.fs-panel');
 
     function openMenu() {
         fsMenu.classList.add('open');
         menuBackdrop.classList.add('open');
-        menuFooter.classList.add('open');
         hamburger.classList.add('active');
         document.body.style.overflow = 'hidden';
         // Prevent iOS body scroll when menu is open
@@ -187,12 +240,13 @@ function initFullscreenMenu(hamburger) {
         document.body.style.width = '100%';
         document.body.dataset.scrollY = window.scrollY;
         document.body.style.top = '-' + window.scrollY + 'px';
+        // Position sliding glass indicator once layout is visible
+        requestAnimationFrame(initIndicator);
     }
 
     function closeMenu() {
         fsMenu.classList.remove('open');
         menuBackdrop.classList.remove('open');
-        menuFooter.classList.remove('open');
         hamburger.classList.remove('active');
         document.body.style.overflow = '';
         // Restore iOS scroll position
@@ -221,12 +275,84 @@ function initFullscreenMenu(hamburger) {
     menuBackdrop.addEventListener('touchend', function(e) { e.preventDefault(); closeMenu(); }, { passive: false });
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
 
-    // Tab switching
-    function switchTab(tabName) {
+    // iOS-style sliding glass indicator
+    var tabBar = document.querySelector('.fs-menu-tabs');
+    var indicator = document.createElement('div');
+    indicator.className = 'fs-tab-indicator';
+    if (tabBar) tabBar.appendChild(indicator);
+
+    function positionIndicator(activeTab) {
+        if (!activeTab || !indicator || !tabBar) return;
+        var tabRect = activeTab.getBoundingClientRect();
+        var barRect = tabBar.getBoundingClientRect();
+        indicator.style.width = tabRect.width + 'px';
+        indicator.style.transform = 'translateX(' + (tabRect.left - barRect.left - 4) + 'px)';
+    }
+
+    // Position on first open
+    function initIndicator() {
+        var activeTab = tabBar && tabBar.querySelector('.fs-tab.active');
+        if (activeTab) {
+            indicator.style.transition = 'none';
+            positionIndicator(activeTab);
+            // Re-enable transition after initial position
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    indicator.style.transition = '';
+                });
+            });
+        }
+    }
+
+    // Tab switching with collapse/expand toggle
+    var panelsCollapsed = false;
+
+    function collapseMenu() {
+        panelsCollapsed = true;
+        fsMenu.classList.add('panels-collapsed');
+        tabs.forEach(function(tab) { tab.classList.remove('active'); });
+        panels.forEach(function(panel) { panel.classList.remove('active'); });
+        indicator.style.opacity = '0';
+        // Hide backdrop, restore page scroll — tab bar becomes the header
+        menuBackdrop.classList.remove('open');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        var scrollY = document.body.dataset.scrollY;
+        if (scrollY) window.scrollTo(0, parseInt(scrollY, 10));
+    }
+
+    function expandMenu(tabName) {
+        panelsCollapsed = false;
+        fsMenu.classList.remove('panels-collapsed');
         tabs.forEach(function(tab) { tab.classList.toggle('active', tab.dataset.tab === tabName); });
         panels.forEach(function(panel) { panel.classList.toggle('active', panel.dataset.panel === tabName); });
         var scrollEl = document.querySelector('.fs-menu-scroll');
         if (scrollEl) scrollEl.scrollTop = 0;
+        indicator.style.opacity = '1';
+        var activeTab = tabBar && tabBar.querySelector('.fs-tab.active');
+        if (activeTab) positionIndicator(activeTab);
+        // Re-lock page scroll and show backdrop
+        menuBackdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+        document.body.dataset.scrollY = window.scrollY;
+        document.body.style.top = '-' + window.scrollY + 'px';
+    }
+
+    function switchTab(tabName) {
+        var currentActive = tabBar && tabBar.querySelector('.fs-tab.active');
+        var clickedSameTab = currentActive && currentActive.dataset.tab === tabName;
+
+        if (clickedSameTab && !panelsCollapsed) {
+            // Clicking active tab → collapse panels, keep tab bar + X
+            collapseMenu();
+        } else {
+            // Clicking different tab or expanding from collapsed
+            expandMenu(tabName);
+        }
     }
 
     tabs.forEach(function(tab) {

@@ -77,7 +77,7 @@ async function requireAuth(redirectUrl) {
     const session = await getSession();
     if (!session) {
         const returnTo = redirectUrl || window.location.href;
-        sessionStorage.setItem('petx_return_to', returnTo);
+        sessionStorage.setItem('nored_return_to', returnTo);
         window.location.href = '/courses/login.html';
         return null;
     }

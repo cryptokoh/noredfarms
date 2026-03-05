@@ -232,13 +232,15 @@
 
         /* --- HERO --- */
         .hero-section {
-            background: var(--color--seedgreen);
+            background: var(--color--snowwhite);
             padding: 80px 24px 100px;
             position: relative;
             overflow: hidden;
             min-height: 85vh;
             display: flex;
             align-items: center;
+            border-radius: 0 0 24px 24px;
+            z-index: 1;
         }
 
         .hero-inner {
@@ -246,7 +248,7 @@
             margin: 0 auto;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.4fr 1fr;
             gap: 48px;
             align-items: center;
         }
@@ -256,14 +258,14 @@
         .hero-label-code {
             font-size: 12px;
             font-weight: 400;
-            color: rgba(252, 252, 247, 0.5);
+            color: var(--color--olivegreen);
             letter-spacing: 0.02em;
         }
 
         .hero-label-name {
             font-size: 24px;
             font-weight: 350;
-            color: var(--color--snowwhite);
+            color: var(--color--seedgreen);
             letter-spacing: -0.5px;
         }
 
@@ -272,7 +274,7 @@
             font-size: clamp(32px, 5vw, 52px);
             font-weight: 350;
             letter-spacing: -0.8px;
-            color: var(--color--snowwhite);
+            color: var(--color--seedgreen);
             line-height: 1.08;
             margin-bottom: 20px;
         }
@@ -280,7 +282,7 @@
         .hero-body {
             font-size: 16px;
             font-weight: 350;
-            color: rgba(252, 252, 247, 0.7);
+            color: var(--color--olivegreen);
             line-height: 1.6;
             max-width: 440px;
             margin-bottom: 28px;
@@ -309,17 +311,17 @@
         }
 
         .btn-pill-light {
-            background: var(--color--snowwhite);
-            color: var(--color--seedgreen);
+            background: var(--color--seedgreen);
+            color: var(--color--snowwhite);
         }
 
-        .btn-pill-light:hover { background: var(--color--foamwhite); }
+        .btn-pill-light:hover { background: var(--color--seedgreen-hover); }
 
         .btn-text-link {
             font-family: var(--font-sans);
             font-size: 14px;
             font-weight: 350;
-            color: var(--color--snowwhite);
+            color: var(--color--seedgreen);
             text-decoration: underline;
             text-underline-offset: 3px;
             text-transform: capitalize;
@@ -332,19 +334,24 @@
         .btn-text-link:hover { opacity: 0.6; }
 
         .hero-visual {
+            position: static;
+            width: auto;
+            height: auto;
+            transform: none;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* CSS art: abstract botanical jar */
+        /* CSS art: abstract botanical jar — fluid sizing */
         .hero-jar {
-            width: 220px;
-            height: 280px;
+            width: clamp(120px, 18vw, 220px);
+            height: clamp(150px, 23vw, 280px);
             border-radius: 16px 16px 24px 24px;
             background: linear-gradient(180deg, #3d5b34 0%, #45663c 40%, #2d4a25 100%);
             position: relative;
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+            transition: width 0.2s ease, height 0.2s ease;
         }
 
         .hero-jar::before {
@@ -397,13 +404,21 @@
             line-height: 1.5;
         }
 
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .hero-inner { grid-template-columns: 2fr 1fr; gap: 32px; }
+            .hero-heading { font-size: clamp(28px, 4vw, 40px); }
+            .hero-jar-label { width: 90px; height: 60px; }
+            .hero-jar::before { left: 20px; right: 20px; height: 14px; }
+        }
+
         @media (max-width: 768px) {
             .hero-section { padding: 60px 16px 80px; min-height: auto; }
-            .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+            .hero-inner { grid-template-columns: 1fr; gap: 32px; }
             .hero-visual { order: -1; }
-            .hero-jar { width: 160px; height: 200px; }
-            .hero-jar::before { left: 22px; right: 22px; height: 14px; }
-            .hero-jar-label { width: 90px; height: 60px; }
+            .hero-jar-label { width: 80px; height: 55px; }
+            .hero-jar-label span { font-size: 9px; }
+            .hero-jar::before { left: 16px; right: 16px; height: 12px; }
+            .hero-jar::after { font-size: 11px; bottom: 20px; }
             .hero-heading { font-size: 32px; }
         }
 
@@ -412,6 +427,7 @@
         .products-section {
             background: var(--color--seedgreen);
             padding: 56px 24px 80px;
+            margin-top: -24px;
         }
 
         .products-header {
@@ -1338,7 +1354,7 @@
         <div class="hero-inner">
             <div class="hero-text">
                 <div class="hero-label">
-                    <div class="hero-label-code">PETX-2026</div>
+                    <div class="hero-label-code">NORED-2026</div>
                     <div class="hero-label-name">Botanical Research</div>
                 </div>
                 <h1 class="hero-heading">Ancient Wisdom. Modern Science.</h1>
@@ -1539,11 +1555,11 @@
     <section class="lab-section">
         <div class="lab-inner">
             <div class="lab-dot-label reveal">Texas Hill Country</div>
-            <h2 class="lab-heading reveal reveal-d1">PETX<span class="lab-heading-bracket">[</span>Labs<span class="lab-heading-bracket">]</span></h2>
+            <h2 class="lab-heading reveal reveal-d1">Nored<span class="lab-heading-bracket">[</span>Labs<span class="lab-heading-bracket">]</span></h2>
             <p class="lab-body reveal reveal-d2">Because quality is not just a claim. Our extraction lab operates under GMP standards with full traceability from source material to finished product.</p>
             <a href="lab-2d.html" class="btn-text-link reveal reveal-d3" style="color: var(--color--seedgreen); text-decoration: underline; text-underline-offset: 3px;">Enter the Lab</a>
             <div class="lab-visual reveal">
-                <span class="lab-visual-text">PETX Labs -- Est. 2010</span>
+                <span class="lab-visual-text">Nored Labs -- Est. 2010</span>
             </div>
         </div>
     </section>
@@ -1568,7 +1584,7 @@
                     <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
                 </div>
                 <div class="seed-footer-signup">
-                    <p>Science with PETX &mdash; research updates for your inbox.</p>
+                    <p>Science with Nored &mdash; research updates for your inbox.</p>
                     <div class="seed-footer-email-row">
                         <input type="email" placeholder="Your email" class="seed-footer-email">
                         <button class="seed-footer-email-btn">Subscribe</button>

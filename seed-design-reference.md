@@ -23,10 +23,10 @@ Extracted design system analysis from seed.com to guide Nored Farms visual refre
 | Text Secondary | `#6b7280` (gray-500) | `#9ca3af` (gray-400) |
 
 ### Mapping to Nored Farms
-| Seed Token | PETX Equivalent | Suggested Value |
-|------------|-----------------|-----------------|
-| Purple-600 | `--accent` | Keep PETX gold/amber or shift to a botanical green |
-| Gray-900 | `--text-primary` | `#1a1a2e` (current PETX dark) |
+| Seed Token | Nored Equivalent | Suggested Value |
+|------------|------------------|-----------------|
+| Purple-600 | `--accent` | Keep Nored gold/amber or shift to a botanical green |
+| Gray-900 | `--text-primary` | `#1a1a2e` (current Nored dark) |
 | White BG | `--bg-primary` | `#faf9f6` (warm off-white, botanical feel) |
 | Gray-50 | `--bg-secondary` | `#f0ede8` (warm gray) |
 
@@ -220,7 +220,7 @@ transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 ---
 
-## Design Philosophy (for PETX alignment)
+## Design Philosophy (for Nored Farms alignment)
 
 ### Seed's Approach
 1. **Scientific minimalism** - Clean, lots of whitespace, data-driven aesthetic
@@ -229,7 +229,7 @@ transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 4. **Education-forward** - Design serves to explain complex topics simply
 5. **Modernist sensibilities** - Tech-startup level polish for a health brand
 
-### How PETX Can Adapt This
+### How Nored Farms Can Adapt This
 1. **Botanical minimalism** - Replace cellular imagery with botanical/extraction motifs
 2. **Side menu navigation** - Full-panel slide-out for immersive browsing
 3. **Clean typography** - Inter or similar geometric sans for body, keep Cinzel for display

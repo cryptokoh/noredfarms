@@ -18,9 +18,10 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../age-verification.css">
     <style>
-        .product-page { padding-top: 100px; min-height: 100vh; }
+        .product-page { padding-top: calc(var(--nav-height) + var(--spacing-3xl, 2.5rem)); min-height: 100vh; }
         .product-container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 4rem; }
         .product-badge {
+            position: static; top: auto; right: auto;
             display: inline-flex; align-items: center; gap: 0.5rem;
             background: var(--color-primary-subtle); color: var(--color-primary);
             padding: 0.375rem 1rem; border-radius: var(--radius-full);
@@ -79,7 +80,7 @@
     <link rel="stylesheet" href="../visual-enhancements.css">
 </head>
 <body>
-    
+
     <nav class="nav" id="nav">
         <a href="../index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
         <div class="nav-links" id="navLinks">
@@ -169,7 +170,7 @@
         </div>
     </main>
 
-    
+
     <footer class="seed-footer">
         <div class="seed-footer-inner">
             <div class="seed-footer-top">
@@ -178,7 +179,7 @@
                     <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
                 </div>
                 <div class="seed-footer-signup">
-                    <p>Science with PETX &mdash; research updates for your inbox.</p>
+                    <p>Science with Nored &mdash; research updates for your inbox.</p>
                     <div class="seed-footer-email-row">
                         <input type="email" placeholder="Your email" class="seed-footer-email">
                         <button class="seed-footer-email-btn">Subscribe</button>

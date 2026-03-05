@@ -4,7 +4,7 @@ import urllib.request
 import os
 import time
 
-DEST = "/home/koh/Documents/pureextracts/images/plants"
+DEST = "/home/koh/Documents/noredFarms/images/plants"
 
 # plant-id: search keywords for Lorem Flickr
 PLANTS = {

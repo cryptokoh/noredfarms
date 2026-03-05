@@ -125,7 +125,7 @@
         submitBtn.querySelector('span').textContent = 'Sending...';
 
         // Store message locally (for when backend is connected)
-        const messages = JSON.parse(localStorage.getItem('petx_messages') || '[]');
+        const messages = JSON.parse(localStorage.getItem('nored_messages') || '[]');
         messages.push({
             name: name,
             email: email,
@@ -134,7 +134,7 @@
             timestamp: new Date().toISOString(),
             page: window.location.pathname
         });
-        localStorage.setItem('petx_messages', JSON.stringify(messages));
+        localStorage.setItem('nored_messages', JSON.stringify(messages));
 
         // Simulate send delay then show success
         setTimeout(function() {

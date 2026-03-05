@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="PETX Images">
+    <meta name="apple-mobile-web-app-title" content="Nored Farms Images">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#1c3a13">
     <title>Image Library - Nored Farms</title>
@@ -1431,7 +1431,7 @@
 <!-- ============ HEADER ============ -->
 <header class="header" id="header">
     <div class="header-inner">
-        <div class="header-logo">PETX <span>Images</span></div>
+        <div class="header-logo">Nored <span>Images</span></div>
         <div class="search-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <input type="search" class="search-input" id="searchInput" placeholder="Search images..." autocomplete="off" enterkeyhint="search">
@@ -1664,7 +1664,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 let _sb = null;
 let dbConnected = false;
-let unlocked = sessionStorage.getItem('petx_edit_unlocked') === 'true';
+let unlocked = sessionStorage.getItem('nored_edit_unlocked') === 'true';
 
 function getSb() {
     if (!_sb && window.supabase && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
@@ -1742,7 +1742,7 @@ function checkPassword() {
 
 function unlock() {
     unlocked = true;
-    sessionStorage.setItem('petx_edit_unlocked', 'true');
+    sessionStorage.setItem('nored_edit_unlocked', 'true');
     document.getElementById('authBtn').classList.add('logged-in');
     document.getElementById('authBtn').title = 'Edit mode unlocked';
 }
@@ -2359,7 +2359,7 @@ document.getElementById('lbDownload').addEventListener('click', () => {
 document.getElementById('lbShare').addEventListener('click', () => {
     const url = location.href;
     if (navigator.share) {
-        navigator.share({ title: 'PETX Image', url: url }).catch(() => {});
+        navigator.share({ title: 'Nored Farms Image', url: url }).catch(() => {});
     } else if (navigator.clipboard) {
         navigator.clipboard.writeText(url).then(() => toast('Link copied!'));
     } else {

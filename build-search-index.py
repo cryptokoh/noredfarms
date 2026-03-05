@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build Search Index for Pure Extracts TX
+Build Search Index for Nored Farms
 Scans all public HTML pages and regenerates the PAGES array in site-search.js.
 
 Usage:
@@ -65,8 +65,8 @@ def extract_title(content):
     if not m:
         return None
     title = html.unescape(m.group(1).strip())
-    # Strip common suffixes like " | Pure Extracts TX" or " - Pure Extracts TX"
-    title = re.sub(r'\s*[\|–—-]\s*Pure Extracts.*$', '', title, flags=re.IGNORECASE)
+    # Strip common suffixes like " | Nored Farms" or " - Nored Farms"
+    title = re.sub(r'\s*[\|–—-]\s*(Pure Extracts|Nored Farms).*$', '', title, flags=re.IGNORECASE)
     return title.strip()
 
 

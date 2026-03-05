@@ -140,7 +140,7 @@
                     <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
                 </div>
                 <div class="seed-footer-signup">
-                    <p>Science with PETX &mdash; research updates for your inbox.</p>
+                    <p>Science with Nored &mdash; research updates for your inbox.</p>
                     <div class="seed-footer-email-row">
                         <input type="email" placeholder="Your email" class="seed-footer-email">
                         <button class="seed-footer-email-btn">Subscribe</button>
@@ -225,8 +225,8 @@
             // If already logged in, redirect
             getSession().then(session => {
                 if (session) {
-                    const returnTo = sessionStorage.getItem('petx_return_to') || '/courses/dashboard.html';
-                    sessionStorage.removeItem('petx_return_to');
+                    const returnTo = sessionStorage.getItem('nored_return_to') || '/courses/dashboard.html';
+                    sessionStorage.removeItem('nored_return_to');
                     window.location.href = returnTo;
                 }
             });
@@ -292,8 +292,8 @@
                 if (error) {
                     showMessage(error.message, 'error');
                 } else {
-                    const returnTo = sessionStorage.getItem('petx_return_to') || '/courses/dashboard.html';
-                    sessionStorage.removeItem('petx_return_to');
+                    const returnTo = sessionStorage.getItem('nored_return_to') || '/courses/dashboard.html';
+                    sessionStorage.removeItem('nored_return_to');
                     window.location.href = returnTo;
                 }
             });

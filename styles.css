@@ -27,11 +27,11 @@
     --color--lemongrass: #e9f0ca;
 
     /* Frosted glass tokens */
-    --seed-glass: rgba(87, 94, 85, 0.4);
-    --seed-blur: blur(38px);
+    --seed-glass: rgba(87, 94, 85, 0.25);
+    --seed-blur: blur(48px);
     --seed-text-on-glass: #fcfcf7;
     --seed-text-muted-on-glass: rgba(252, 252, 247, 0.5);
-    --seed-tab-pill: rgba(255, 255, 255, 0.1);
+    --seed-tab-pill: rgba(255, 255, 255, 0.18);
 
     /* Mapped vars for widget compatibility */
     --color-primary: #1c3a13;
@@ -396,10 +396,10 @@ ul, ol {
     position: sticky;
     top: 0;
     z-index: 1000;
-    height: var(--nav-height);
+    min-height: var(--nav-height);
     display: flex;
     align-items: center;
-    padding: 0 24px;
+    padding: 8px 24px;
     background: transparent;
     transition: background 0.3s ease;
 }
@@ -410,18 +410,17 @@ ul, ol {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 32px;
 }
 
 .nav.scrolled {
-    background: rgba(252, 252, 247, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: transparent;
 }
 
+/* Default nav state: plain text on white hero */
 .nav-logo {
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.3px;
     color: var(--color--seedgreen);
@@ -429,6 +428,12 @@ ul, ol {
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    background: transparent;
+    border-radius: 99em;
+    padding: 8px 14px;
+    transition: all 0.3s ease;
 }
 
 .nav-logo .dot {
@@ -438,26 +443,83 @@ ul, ol {
     border-radius: 50%;
     background: var(--color--seedgreen);
     margin-left: 2px;
+    transition: background 0.3s ease;
 }
 
-.nav-links {
+/* Scrolled: white text on darker glass pill */
+.nav.scrolled .nav-logo {
+    color: #fff;
+    background: transparent;
+    padding: 0;
+}
+
+.nav.scrolled .nav-logo .dot {
+    background: #fff;
+}
+
+/* Nav left: logo + main links — becomes glass pill on scroll */
+.nav-left {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 24px;
+    border-radius: 99em;
+    padding: 0;
+    transition: all 0.3s ease;
 }
 
-.nav-links a {
+.nav.scrolled .nav-left {
+    background: rgba(120, 125, 118, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-main-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-main-links a,
+.nav-auth-links a {
     font-size: 14px;
     font-weight: 400;
     color: var(--color--seedgreen);
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: color 0.3s ease, opacity 0.2s ease;
+    white-space: nowrap;
 }
 
-.nav-links a:hover {
+.nav-main-links a:hover,
+.nav-auth-links a:not(.nav-cta):hover {
     opacity: 0.6;
 }
 
+.nav.scrolled .nav-main-links a {
+    color: #fff;
+}
+
+/* Auth links: Login + Get Started share one pill on scroll */
+.nav-auth-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+    border-radius: 99em;
+    padding: 0;
+    transition: all 0.35s ease;
+}
+
+.nav.scrolled .nav-auth-links {
+    background: rgba(120, 125, 118, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 4px 4px 4px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Get Started pill — no bg at top, glass on scroll */
 .nav-cta {
     font-size: 14px;
     font-weight: 350;
@@ -465,55 +527,122 @@ ul, ol {
     background: var(--color--seedgreen);
     border: none;
     border-radius: 99em;
-    padding: 10px 16px;
-    text-decoration: none;
+    padding: 8px 16px;
+    text-decoration: none !important;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .nav-cta:hover {
-    background: var(--color--seedgreen-hover);
+    background: var(--color--seedgreen);
+    color: var(--color--snowwhite) !important;
+    border-color: var(--color--seedgreen);
     opacity: 1 !important;
 }
 
+/* Scrolled: subtle inner pill inside the shared auth container */
+.nav.scrolled .nav-cta {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav.scrolled .nav-cta:hover {
+    background: var(--color--seedgreen);
+    color: var(--color--snowwhite) !important;
+    border-color: var(--color--seedgreen);
+}
+
+/* Hamburger: light neutral pill on white, dark glass on scroll */
 .hamburger {
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 6px;
     cursor: pointer;
     padding: 8px;
     min-width: 44px;
     min-height: 44px;
-    background: none;
+    background: transparent;
     border: none;
+    border-radius: 99em;
     z-index: 200;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     position: relative;
+    transition: all 0.3s ease;
 }
 
 .hamburger span {
     display: block;
-    width: 22px;
+    width: 18px;
     height: 1.5px;
-    background: var(--color--seedgreen);
+    background: rgba(0, 0, 0, 0.35);
     transition: all 0.3s var(--ease-out);
     border-radius: 2px;
 }
 
-.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.hamburger.active span:nth-child(2) { opacity: 0; }
-.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+/* Scrolled: matching gray glass pill */
+.nav.scrolled .hamburger {
+    background: rgba(120, 125, 118, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.nav.scrolled .hamburger span {
+    background: #fff;
+}
+
+/* Login text inside shared pill */
+.nav.scrolled .nav-auth-links a:not(.nav-cta) {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.hamburger span:nth-child(3) { display: none; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(1px, 3px); }
+.hamburger.active span:nth-child(2) { transform: rotate(-45deg) translate(1px, -3px); }
+
+/* Mobile clone visible, desktop clone hidden */
+.nav-cta-mobile {
+    display: none;
+}
 
 @media (max-width: 768px) {
+    .nav-container { gap: 8px; }
     .hamburger { display: flex; }
-    .nav-links { display: none; }
+    .nav-main-links,
+    .nav-auth-links { display: none; }
+    .nav-left {
+        gap: 0;
+    }
+    .nav.scrolled .nav-left {
+        padding: 6px 14px;
+    }
+    .nav-cta-mobile {
+        display: inline-flex;
+        align-items: center;
+        margin-left: auto;
+        color: var(--color--snowwhite) !important;
+        background: var(--color--seedgreen);
+        border: none;
+        border-radius: 99em;
+        padding: 8px 16px;
+    }
+    .nav.scrolled .nav-cta-mobile {
+        color: #fff !important;
+        background: rgba(120, 125, 118, 0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 99em;
+        padding: 8px 16px;
+    }
 }
 
 /* ============================================
-   Fullscreen Takeover Menu (Seed Pattern)
+   Floating Menu (Seed Pattern)
+   Transparent container — tab bar + content card float independently
    ============================================ */
 
 .fs-menu {
@@ -524,24 +653,32 @@ ul, ol {
     bottom: auto;
     max-height: 85vh;
     max-height: 85dvh;
-    z-index: 100;
+    z-index: 1001;
     display: flex;
     flex-direction: column;
-    background: rgba(28, 58, 19, 0.85);
-    border-radius: 0 0 var(--bdrs-l) var(--bdrs-l);
-    opacity: 0;
+    background: transparent;
+    border-radius: 0;
     visibility: hidden;
-    transform: translateY(-1rem);
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
+    transition: visibility 0s linear 0.3s;
+    overflow: visible;
 }
 
 .fs-menu.open {
-    opacity: 1;
     visibility: visible;
+    transition: visibility 0s linear 0s;
+}
+
+/* Tab bar slides in from left */
+.fs-menu.open .fs-menu-tabs {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Content panel fades up right after tab bar starts */
+.fs-menu.open:not(.panels-collapsed) .fs-menu-scroll {
+    opacity: 1;
     transform: translateY(0);
+    transition-delay: 0.15s;
 }
 
 @media (min-width: 769px) {
@@ -555,11 +692,11 @@ ul, ol {
 .fs-menu-backdrop {
     position: fixed;
     inset: 0;
-    z-index: 99;
-    background: rgba(28, 58, 19, 0.3);
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.15);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .fs-menu-backdrop.open {
@@ -567,46 +704,64 @@ ul, ol {
     visibility: visible;
 }
 
-.fs-menu-banner {
-    flex-shrink: 0;
-    background: var(--color--seedgreen);
-    color: var(--color--snowwhite);
-    text-align: center;
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    cursor: pointer;
-    transition: background 0.2s var(--ease-out);
-    position: relative;
-    z-index: 1;
-    text-decoration: none;
+/* Subtle promo link at bottom of menu scroll content */
+.fs-menu-promo {
     display: block;
+    text-align: center;
+    padding: 1rem 0.5rem 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
 }
 
-.fs-menu-banner:hover {
-    background: var(--color--seedgreen-hover);
-}
-
-.fs-menu-banner span {
-    margin-left: 0.25rem;
+.fs-menu-promo:hover {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .fs-menu-tabs {
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    padding: 0.5rem;
+    padding: 4px;
     gap: 0;
     position: relative;
     z-index: 1;
-    background: var(--seed-glass);
-    backdrop-filter: var(--seed-blur);
-    -webkit-backdrop-filter: var(--seed-blur);
+    background: rgba(28, 58, 19, 0.72);
+    backdrop-filter: blur(40px) saturate(1.4);
+    -webkit-backdrop-filter: blur(40px) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     border-radius: var(--bdrs-pill);
-    margin: 0.5rem 0.5rem 0;
+    margin: 8px 20px 0;
     min-height: 48px;
     overflow: hidden;
+    /* Slides in from left */
+    transform: translateX(-110%);
+    opacity: 0;
+    transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1),
+                opacity 0.2s ease;
+}
+
+/* iOS-style sliding glass indicator */
+.fs-tab-indicator {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: calc(100% - 8px);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--bdrs-pill);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.06),
+                inset 0 0.5px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .fs-menu-logo {
@@ -620,28 +775,29 @@ ul, ol {
 }
 
 .fs-tab {
-    padding: 7px 10.5px;
+    flex: 1;
+    padding: 7px 12px;
     font-family: var(--font-sans);
     font-size: 0.875rem;
     font-weight: 400;
-    color: var(--color--snowwhite);
+    color: rgba(255, 255, 255, 0.55);
     background: none;
     border: none;
     border-radius: var(--bdrs-pill);
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: color 0.3s ease;
     white-space: nowrap;
+    text-align: center;
     position: relative;
+    z-index: 1;
     line-height: 1;
 }
 
 .fs-tab:hover {
-    color: var(--color--snowwhite);
-    opacity: 0.7;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .fs-tab.active {
-    background: var(--seed-tab-pill);
     color: var(--color--snowwhite);
     font-weight: 400;
 }
@@ -672,19 +828,73 @@ ul, ol {
     overflow-y: auto;
     overflow-x: hidden;
     overscroll-behavior: contain;
-    margin: 0.5rem;
+    margin: 0.5rem 20px;
     min-height: 0;
     padding: 1rem;
-    background: var(--seed-glass);
-    backdrop-filter: var(--seed-blur);
-    -webkit-backdrop-filter: var(--seed-blur);
+    background: rgba(28, 58, 19, 0.72);
+    backdrop-filter: blur(40px) saturate(1.4);
+    -webkit-backdrop-filter: blur(40px) saturate(1.4);
     border-radius: var(--radius-2xl);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     -webkit-overflow-scrolling: touch;
     position: relative;
     z-index: 1;
+    /* Fades up after tab bar */
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.32, 0.72, 0, 1),
+                max-height 0.25s ease, padding 0.2s ease, margin 0.2s ease;
 }
 
 .fs-menu-scroll::-webkit-scrollbar { width: 0; }
+
+/* Collapsed state: just the tab bar floats */
+.fs-menu.panels-collapsed {
+    background: transparent;
+    border-radius: 0;
+}
+
+
+
+/* Collapsed over white/light bg: dark glass tab bar */
+.fs-menu.panels-collapsed.over-light .fs-menu-tabs {
+    background: rgba(28, 58, 19, 0.7);
+    backdrop-filter: blur(24px) saturate(1.3);
+    -webkit-backdrop-filter: blur(24px) saturate(1.3);
+    border-color: rgba(28, 58, 19, 0.15);
+}
+
+.fs-menu.panels-collapsed.over-light .fs-menu-close {
+    color: var(--color--snowwhite);
+}
+
+.fs-menu.panels-collapsed.over-light .fs-menu-logo {
+    background: var(--color--snowwhite);
+}
+
+.fs-menu.panels-collapsed .fs-menu-scroll {
+    max-height: 0;
+    padding: 0 1rem;
+    margin: 0 20px;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(0);
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s ease,
+                transform 0.2s ease,
+                margin 0.3s ease;
+}
+
+.fs-menu.open:not(.panels-collapsed) .fs-menu-scroll {
+    max-height: 70vh;
+}
+
+.fs-menu.panels-collapsed .fs-tab-indicator {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
 
 .fs-panel { display: none; }
 .fs-panel.active { display: block; animation: panelFadeIn 0.3s var(--ease-out); }
@@ -3010,7 +3220,7 @@ ul, ol {
 
 .seed-footer {
     background: var(--color--seedgreen);
-    padding: 64px 24px 32px;
+    padding: 40px 24px 24px;
 }
 
 .seed-footer-inner {
@@ -3021,19 +3231,19 @@ ul, ol {
 .seed-footer-top {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    padding-bottom: 48px;
+    gap: 32px;
+    padding-bottom: 28px;
     border-bottom: 1px solid rgba(252, 252, 247, 0.08);
 }
 
 .seed-footer-mission h3 {
     font-family: var(--font-sans);
-    font-size: clamp(22px, 3vw, 30px);
+    font-size: clamp(20px, 2.5vw, 26px);
     font-weight: 350;
     letter-spacing: -0.5px;
     color: var(--color--snowwhite);
     line-height: 1.2;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     max-width: 360px;
 }
 
@@ -3052,10 +3262,10 @@ ul, ol {
 }
 
 .seed-footer-signup p {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     color: rgba(252, 252, 247, 0.6);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .seed-footer-email-row {
@@ -3109,19 +3319,19 @@ ul, ol {
 .seed-footer-links {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 24px;
-    padding: 40px 0;
+    gap: 16px;
+    padding: 24px 0;
     border-bottom: 1px solid rgba(252, 252, 247, 0.08);
 }
 
 .seed-footer-col h4 {
     font-family: var(--font-sans);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: rgba(252, 252, 247, 0.35);
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 .seed-footer-col ul {
@@ -3131,7 +3341,7 @@ ul, ol {
 }
 
 .seed-footer-col ul li {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .seed-footer-col ul li a {
@@ -3151,11 +3361,11 @@ ul, ol {
 }
 
 .seed-footer-disclaimer {
-    padding: 32px 0 0;
+    padding: 20px 0 0;
     font-size: 11px;
     font-weight: 350;
     color: rgba(252, 252, 247, 0.25);
-    line-height: 1.7;
+    line-height: 1.6;
     max-width: 800px;
 }
 
@@ -3163,8 +3373,8 @@ ul, ol {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 24px;
-    margin-top: 24px;
+    padding-top: 16px;
+    margin-top: 16px;
     font-size: 11px;
     color: rgba(252, 252, 247, 0.2);
 }
