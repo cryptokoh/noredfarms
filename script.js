@@ -365,10 +365,10 @@ function initFullscreenMenu(hamburger) {
         '<div class="fs-menu" id="fsMenu">' +
         '<div class="fs-menu-tabs">' +
         '<div class="fs-menu-logo"></div>' +
-        '<button class="fs-tab active" data-tab="products">Products</button>' +
+        '<button class="fs-tab active" data-tab="products">Shop</button>' +
         '<button class="fs-tab" data-tab="articles">Articles</button>' +
-        '<button class="fs-tab" data-tab="classes">Classes</button>' +
-        '<button class="fs-tab" data-tab="company">Company</button>' +
+        '<button class="fs-tab" data-tab="classes">Learn</button>' +
+        '<button class="fs-tab" data-tab="company">About</button>' +
         '<button class="fs-tab" data-tab="login">Login</button>' +
         '<button class="fs-menu-close" id="menuClose" aria-label="Close">&times;</button>' +
         '</div>' +
@@ -661,10 +661,19 @@ function initFullscreenMenu(hamburger) {
         el.addEventListener('click', closeMenu);
     });
 
-    // Auto-close menu when resizing past desktop breakpoint
+    // Auto-close menu when resizing past desktop breakpoint + reposition indicator
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768 && fsMenu.classList.contains('open')) {
             closeMenu();
+        }
+        // Reposition the sliding indicator on resize
+        var activeTab = tabBar && tabBar.querySelector('.fs-tab.active');
+        if (activeTab && indicator) {
+            indicator.style.transition = 'none';
+            positionIndicator(activeTab);
+            requestAnimationFrame(function() {
+                indicator.style.transition = '';
+            });
         }
     });
 }
@@ -1147,12 +1156,12 @@ function initScrollLockCarousel() {
 
     function getCardsPerView() {
         if (window.innerWidth <= 768) return 1;
-        if (window.innerWidth <= 1024) return 2;
-        return 3;
+        if (window.innerWidth <= 900) return 2;
+        if (window.innerWidth <= 1024) return 3;
+        return 4;
     }
 
     var cardsPerView = getCardsPerView();
-    // On mobile: only allow 2 scroll advances before releasing
     var MOBILE_MAX_SCROLLS = 2;
     var maxIndex = isMobile
         ? Math.min(MOBILE_MAX_SCROLLS, Math.max(0, totalCards - cardsPerView))
@@ -1163,14 +1172,30 @@ function initScrollLockCarousel() {
     var isLocked = false;
     var lockCooldown = false;
     var accumulatedDelta = 0;
-    var SCROLL_PER_CARD = isMobile ? 80 : 150; // less scroll needed on mobile
+    var SCROLL_PER_CARD = isMobile ? 100 : (window.innerWidth <= 900 ? 150 : 280);
 
-    // Override carousel CSS for transform-based scrolling
-    carousel.style.overflow = 'visible';
-    carousel.style.scrollSnapType = 'none';
-    carousel.style.scrollBehavior = 'auto';
-    carousel.style.flexWrap = 'nowrap';
-    if (viewport) viewport.style.overflow = 'hidden';
+    function applyDesktopOverrides() {
+        carousel.style.overflow = 'visible';
+        carousel.style.scrollSnapType = 'none';
+        carousel.style.scrollBehavior = 'auto';
+        carousel.style.flexWrap = 'nowrap';
+        if (viewport) viewport.style.overflow = 'hidden';
+    }
+
+    function clearDesktopOverrides() {
+        carousel.style.overflow = '';
+        carousel.style.scrollSnapType = '';
+        carousel.style.scrollBehavior = '';
+        carousel.style.flexWrap = '';
+        carousel.style.transform = '';
+        carousel.style.transition = '';
+        if (viewport) viewport.style.overflow = '';
+    }
+
+    // Apply initial overrides based on current mode
+    if (!isMobile) {
+        applyDesktopOverrides();
+    }
 
     function getCardWidth() {
         if (!cards[0]) return 300;
@@ -1199,18 +1224,16 @@ function initScrollLockCarousel() {
         if (next) next.disabled = index >= maxIndex;
     }
 
-    // Track hover state (desktop only)
+    // Track hover state (works for desktop mode)
     var isHovering = false;
-    if (!isMobile) {
-        section.addEventListener('mouseenter', function() { isHovering = true; });
-        section.addEventListener('mouseleave', function() { isHovering = false; });
-    }
+    section.addEventListener('mouseenter', function() { isHovering = true; });
+    section.addEventListener('mouseleave', function() { isHovering = false; });
 
     function isSectionInView() {
         if (isHovering) return true;
         var rect = section.getBoundingClientRect();
         var viewH = window.innerHeight;
-        return rect.top < viewH * 0.4 && rect.bottom > viewH * 0.5;
+        return rect.top < viewH * 0.7 && rect.bottom > viewH * 0.3;
     }
 
     function releaseLock() {
@@ -1222,7 +1245,7 @@ function initScrollLockCarousel() {
 
     // ---- DESKTOP: Wheel event hijack ----
     function onWheel(e) {
-        if (lockCooldown) return;
+        if (lockCooldown || isMobile) return;
         if (!isSectionInView()) {
             if (isLocked) releaseLock();
             return;
@@ -1267,27 +1290,25 @@ function initScrollLockCarousel() {
     var touchLocked = false;
 
     function onTouchStart(e) {
-        if (lockCooldown) return;
+        if (lockCooldown || !isMobile) return;
         if (!isSectionInView()) return;
         touchStartY = e.touches[0].clientY;
         touchStartTime = Date.now();
-        // Only lock if we have room to scroll the carousel
         if ((currentIndex < maxIndex) || (currentIndex > 0)) {
             touchLocked = true;
         }
     }
 
     function onTouchMove(e) {
-        if (!touchLocked || lockCooldown) return;
+        if (!touchLocked || lockCooldown || !isMobile) return;
         if (!isSectionInView()) {
             touchLocked = false;
             return;
         }
 
         var touchY = e.touches[0].clientY;
-        var deltaY = touchStartY - touchY; // positive = scrolling down
+        var deltaY = touchStartY - touchY;
 
-        // Only hijack if vertical movement exceeds threshold
         if (Math.abs(deltaY) < 30) return;
 
         if (deltaY > 0 && currentIndex < maxIndex) {
@@ -1296,8 +1317,7 @@ function initScrollLockCarousel() {
             currentIndex++;
             slideToIndex(currentIndex);
             updateControls(currentIndex);
-            touchStartY = touchY; // reset for next swipe
-            // If we've hit the mobile max, release
+            touchStartY = touchY;
             if (currentIndex >= maxIndex) {
                 touchLocked = false;
                 releaseLock();
@@ -1314,7 +1334,6 @@ function initScrollLockCarousel() {
                 releaseLock();
             }
         } else {
-            // At boundary, release
             touchLocked = false;
             if (isLocked) releaseLock();
         }
@@ -1324,16 +1343,13 @@ function initScrollLockCarousel() {
         touchLocked = false;
     }
 
-    // Attach listeners based on device
-    if (isMobile) {
-        section.addEventListener('touchstart', onTouchStart, { passive: true });
-        section.addEventListener('touchmove', onTouchMove, { passive: false });
-        section.addEventListener('touchend', onTouchEnd, { passive: true });
-    } else {
-        window.addEventListener('wheel', onWheel, { passive: false });
-    }
+    // Attach BOTH listener sets — mode gating done inside handlers
+    window.addEventListener('wheel', onWheel, { passive: false });
+    section.addEventListener('touchstart', onTouchStart, { passive: true });
+    section.addEventListener('touchmove', onTouchMove, { passive: false });
+    section.addEventListener('touchend', onTouchEnd, { passive: true });
 
-    // Arrow buttons (both desktop + mobile)
+    // Arrow buttons
     var prevBtn = document.getElementById('carouselPrev');
     var nextBtn = document.getElementById('carouselNext');
     if (prevBtn) {
@@ -1355,18 +1371,47 @@ function initScrollLockCarousel() {
         });
     }
 
-    // Handle resize
+    // Handle resize — dynamically switch modes when crossing 768px boundary
+    var resizeTimer;
     window.addEventListener('resize', function() {
-        var nowMobile = window.innerWidth <= 768;
-        cardsPerView = getCardsPerView();
-        maxIndex = nowMobile
-            ? Math.min(MOBILE_MAX_SCROLLS, Math.max(0, totalCards - cardsPerView))
-            : Math.max(0, totalCards - cardsPerView);
-        if (currentIndex > maxIndex) {
-            currentIndex = maxIndex;
-            slideToIndex(currentIndex);
-        }
-        updateControls(currentIndex);
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            var nowMobile = window.innerWidth <= 768;
+
+            if (nowMobile !== isMobile) {
+                // Mode changed — reset carousel state
+                isMobile = nowMobile;
+                currentIndex = 0;
+                accumulatedDelta = 0;
+                isLocked = false;
+                lockCooldown = false;
+                touchLocked = false;
+
+                if (nowMobile) {
+                    // Switched to mobile: remove JS overrides, let CSS handle native scroll
+                    clearDesktopOverrides();
+                    SCROLL_PER_CARD = 100;
+                } else {
+                    // Switched to desktop: apply JS overrides for transform scrolling
+                    applyDesktopOverrides();
+                    slideToIndex(0);
+                    SCROLL_PER_CARD = window.innerWidth <= 900 ? 150 : 280;
+                }
+            }
+
+            cardsPerView = getCardsPerView();
+            if (!isMobile) {
+                SCROLL_PER_CARD = window.innerWidth <= 900 ? 150 : 280;
+            }
+            maxIndex = isMobile
+                ? Math.min(MOBILE_MAX_SCROLLS, Math.max(0, totalCards - cardsPerView))
+                : Math.max(0, totalCards - cardsPerView);
+            if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
+                if (!isMobile) slideToIndex(currentIndex);
+            }
+            updateControls(currentIndex);
+        }, 150);
     });
 }
 
