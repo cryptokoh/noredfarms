@@ -16,12 +16,7 @@
   to = "/kanban.html"
   status = 200
 
-# Custom 404 page (static site, no SPA fallback needed)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404
-  force = false
+# No catch-all redirect - static site serves files directly
 
 # Headers for security and performance
 [[headers]]
