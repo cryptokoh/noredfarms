@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="deep-forest">
+<html lang="en" data-theme="moss-slate">
 <head>
     <script src="/dev-console-filter.js"></script>
     <meta charset="UTF-8">
@@ -21,87 +21,7 @@
             --transition-theme: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ---- THEME 1: DEEP FOREST ---- */
-        [data-theme="deep-forest"] {
-            --th-bg:            #0f1f0b;
-            --th-bg-alt:        #162812;
-            --th-bg-card:       #1c3518;
-            --th-bg-elevated:   #234220;
-            --th-surface:       #1a3015;
-            --th-surface-hover: #234220;
-
-            --th-text:          #c8d8c0;
-            --th-text-heading:  #e2eedd;
-            --th-text-muted:    #7a9470;
-            --th-text-inverse:  #0f1f0b;
-
-            --th-accent:        #8bd450;
-            --th-accent-muted:  rgba(139, 212, 80, 0.15);
-            --th-accent-text:   #0f1f0b;
-
-            --th-border:        rgba(139, 212, 80, 0.1);
-            --th-border-strong: rgba(139, 212, 80, 0.2);
-
-            --th-nav-bg:        rgba(15, 31, 11, 0.85);
-            --th-nav-blur:      blur(16px);
-
-            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.3);
-            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.25);
-
-            --th-gradient-hero: linear-gradient(180deg, #162812 0%, #0f1f0b 100%);
-            --th-gradient-section: linear-gradient(180deg, #1a3015 0%, #0f1f0b 100%);
-            --th-gradient-jar:  linear-gradient(180deg, #3d6a30 0%, #2a4d20 40%, #1c3518 100%);
-
-            --th-product-bg:    #142d0e;
-            --th-product-card:  #1c3a18;
-            --th-product-card-hover: #234a20;
-
-            --th-dot-color:     #8bd450;
-            --th-badge-bg:      #8bd450;
-            --th-badge-text:    #0f1f0b;
-        }
-
-        /* ---- THEME 2: MIDNIGHT LAB ---- */
-        [data-theme="midnight-lab"] {
-            --th-bg:            #080c08;
-            --th-bg-alt:        #0e140e;
-            --th-bg-card:       #141e14;
-            --th-bg-elevated:   #1a261a;
-            --th-surface:       #121a12;
-            --th-surface-hover: #1a261a;
-
-            --th-text:          #9aaa90;
-            --th-text-heading:  #d0e0c8;
-            --th-text-muted:    #5a6a52;
-            --th-text-inverse:  #080c08;
-
-            --th-accent:        #00ff6a;
-            --th-accent-muted:  rgba(0, 255, 106, 0.08);
-            --th-accent-text:   #080c08;
-
-            --th-border:        rgba(0, 255, 106, 0.06);
-            --th-border-strong: rgba(0, 255, 106, 0.15);
-
-            --th-nav-bg:        rgba(8, 12, 8, 0.9);
-            --th-nav-blur:      blur(20px);
-
-            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.5);
-            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.4);
-
-            --th-gradient-hero: linear-gradient(180deg, #0e140e 0%, #080c08 100%);
-            --th-gradient-section: linear-gradient(180deg, #121a12 0%, #080c08 100%);
-            --th-gradient-jar:  linear-gradient(180deg, #1a4030 0%, #103020 40%, #0a1a10 100%);
-
-            --th-product-bg:    #0a120a;
-            --th-product-card:  #141e14;
-            --th-product-card-hover: #1e2e1e;
-
-            --th-dot-color:     #00ff6a;
-            --th-badge-bg:      #00ff6a;
-            --th-badge-text:    #080c08;
-        }
-
-        /* ---- THEME 3: MOSS & SLATE ---- */
+        /* ---- THEME 1: MOSS & SLATE (Original) ---- */
         [data-theme="moss-slate"] {
             --th-bg:            #1e2822;
             --th-bg-alt:        #252f28;
@@ -139,6 +59,166 @@
             --th-dot-color:     #a4cc78;
             --th-badge-bg:      #a4cc78;
             --th-badge-text:    #1e2822;
+        }
+
+        /* ---- THEME 2: LICHEN — lighter, warmer grey-green ---- */
+        [data-theme="lichen"] {
+            --th-bg:            #2a3028;
+            --th-bg-alt:        #323a30;
+            --th-bg-card:       #3a4438;
+            --th-bg-elevated:   #434e40;
+            --th-surface:       #354035;
+            --th-surface-hover: #434e40;
+
+            --th-text:          #c5ccb8;
+            --th-text-heading:  #e8eedc;
+            --th-text-muted:    #8a957e;
+            --th-text-inverse:  #2a3028;
+
+            --th-accent:        #c8e6a0;
+            --th-accent-muted:  rgba(200, 230, 160, 0.12);
+            --th-accent-text:   #1e2618;
+
+            --th-border:        rgba(200, 230, 160, 0.1);
+            --th-border-strong: rgba(200, 230, 160, 0.18);
+
+            --th-nav-bg:        rgba(42, 48, 40, 0.88);
+            --th-nav-blur:      blur(16px);
+
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.18);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.14);
+
+            --th-gradient-hero: linear-gradient(180deg, #323a30 0%, #2a3028 100%);
+            --th-gradient-section: linear-gradient(180deg, #354035 0%, #2a3028 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #5a7a4a 0%, #4a6438 40%, #3a4c30 100%);
+
+            --th-product-bg:    #2e362c;
+            --th-product-card:  #3a4438;
+            --th-product-card-hover: #465242;
+
+            --th-dot-color:     #c8e6a0;
+            --th-badge-bg:      #c8e6a0;
+            --th-badge-text:    #1e2618;
+        }
+
+        /* ---- THEME 3: IRON MOSS — cool steel-green, more grey ---- */
+        [data-theme="iron-moss"] {
+            --th-bg:            #1c2220;
+            --th-bg-alt:        #232a28;
+            --th-bg-card:       #2a3230;
+            --th-bg-elevated:   #323c38;
+            --th-surface:       #262e2c;
+            --th-surface-hover: #323c38;
+
+            --th-text:          #a8b4aa;
+            --th-text-heading:  #ced8cc;
+            --th-text-muted:    #667a6e;
+            --th-text-inverse:  #1c2220;
+
+            --th-accent:        #7cc4a0;
+            --th-accent-muted:  rgba(124, 196, 160, 0.1);
+            --th-accent-text:   #121a18;
+
+            --th-border:        rgba(124, 196, 160, 0.08);
+            --th-border-strong: rgba(124, 196, 160, 0.18);
+
+            --th-nav-bg:        rgba(28, 34, 32, 0.9);
+            --th-nav-blur:      blur(18px);
+
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.25);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.2);
+
+            --th-gradient-hero: linear-gradient(180deg, #232a28 0%, #1c2220 100%);
+            --th-gradient-section: linear-gradient(180deg, #262e2c 0%, #1c2220 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #3a6858 0%, #2e524a 40%, #243a34 100%);
+
+            --th-product-bg:    #202826;
+            --th-product-card:  #2a3430;
+            --th-product-card-hover: #34403a;
+
+            --th-dot-color:     #7cc4a0;
+            --th-badge-bg:      #7cc4a0;
+            --th-badge-text:    #121a18;
+        }
+
+        /* ---- THEME 4: PEAT — deep brown-green, organic warmth ---- */
+        [data-theme="peat"] {
+            --th-bg:            #1e2218;
+            --th-bg-alt:        #262a1e;
+            --th-bg-card:       #2e3424;
+            --th-bg-elevated:   #383e2e;
+            --th-surface:       #282e20;
+            --th-surface-hover: #383e2e;
+
+            --th-text:          #bcc0a8;
+            --th-text-heading:  #e0e4cc;
+            --th-text-muted:    #7e8468;
+            --th-text-inverse:  #1e2218;
+
+            --th-accent:        #d4c870;
+            --th-accent-muted:  rgba(212, 200, 112, 0.1);
+            --th-accent-text:   #1a1e12;
+
+            --th-border:        rgba(212, 200, 112, 0.08);
+            --th-border-strong: rgba(212, 200, 112, 0.16);
+
+            --th-nav-bg:        rgba(30, 34, 24, 0.9);
+            --th-nav-blur:      blur(16px);
+
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.22);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.18);
+
+            --th-gradient-hero: linear-gradient(180deg, #262a1e 0%, #1e2218 100%);
+            --th-gradient-section: linear-gradient(180deg, #282e20 0%, #1e2218 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #5a6a30 0%, #4a5828 40%, #363e22 100%);
+
+            --th-product-bg:    #222820;
+            --th-product-card:  #2e3424;
+            --th-product-card-hover: #3a4230;
+
+            --th-dot-color:     #d4c870;
+            --th-badge-bg:      #d4c870;
+            --th-badge-text:    #1a1e12;
+        }
+
+        /* ---- THEME 5: BASALT — darkest, high contrast, mineral ---- */
+        [data-theme="basalt"] {
+            --th-bg:            #141816;
+            --th-bg-alt:        #1a1e1c;
+            --th-bg-card:       #222824;
+            --th-bg-elevated:   #2a322c;
+            --th-surface:       #1c221e;
+            --th-surface-hover: #2a322c;
+
+            --th-text:          #98a694;
+            --th-text-heading:  #c8d4c0;
+            --th-text-muted:    #566050;
+            --th-text-inverse:  #141816;
+
+            --th-accent:        #6ae8b0;
+            --th-accent-muted:  rgba(106, 232, 176, 0.08);
+            --th-accent-text:   #0e1210;
+
+            --th-border:        rgba(106, 232, 176, 0.06);
+            --th-border-strong: rgba(106, 232, 176, 0.14);
+
+            --th-nav-bg:        rgba(20, 24, 22, 0.92);
+            --th-nav-blur:      blur(20px);
+
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.35);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.3);
+
+            --th-gradient-hero: linear-gradient(180deg, #1a1e1c 0%, #141816 100%);
+            --th-gradient-section: linear-gradient(180deg, #1c221e 0%, #141816 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #2e5a48 0%, #204438 40%, #183028 100%);
+
+            --th-product-bg:    #181e1a;
+            --th-product-card:  #222a24;
+            --th-product-card-hover: #2c362e;
+
+            --th-dot-color:     #6ae8b0;
+            --th-badge-bg:      #6ae8b0;
+            --th-badge-text:    #0e1210;
         }
 
 
@@ -272,34 +352,6 @@
             overflow: hidden;
         }
 
-        .theme-swatch-forest {
-            background: linear-gradient(135deg, #0f1f0b 50%, #234220 50%);
-        }
-        .theme-swatch-forest::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 12px;
-            height: 12px;
-            background: #8bd450;
-            border-radius: 50% 0 0 0;
-        }
-
-        .theme-swatch-midnight {
-            background: linear-gradient(135deg, #080c08 50%, #141e14 50%);
-        }
-        .theme-swatch-midnight::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 12px;
-            height: 12px;
-            background: #00ff6a;
-            border-radius: 50% 0 0 0;
-        }
-
         .theme-swatch-moss {
             background: linear-gradient(135deg, #1e2822 50%, #2c382f 50%);
         }
@@ -311,6 +363,62 @@
             width: 12px;
             height: 12px;
             background: #a4cc78;
+            border-radius: 50% 0 0 0;
+        }
+
+        .theme-swatch-lichen {
+            background: linear-gradient(135deg, #2a3028 50%, #3a4438 50%);
+        }
+        .theme-swatch-lichen::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #c8e6a0;
+            border-radius: 50% 0 0 0;
+        }
+
+        .theme-swatch-iron {
+            background: linear-gradient(135deg, #1c2220 50%, #2a3230 50%);
+        }
+        .theme-swatch-iron::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #7cc4a0;
+            border-radius: 50% 0 0 0;
+        }
+
+        .theme-swatch-peat {
+            background: linear-gradient(135deg, #1e2218 50%, #2e3424 50%);
+        }
+        .theme-swatch-peat::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #d4c870;
+            border-radius: 50% 0 0 0;
+        }
+
+        .theme-swatch-basalt {
+            background: linear-gradient(135deg, #141816 50%, #222824 50%);
+        }
+        .theme-swatch-basalt::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #6ae8b0;
             border-radius: 50% 0 0 0;
         }
 
@@ -1623,7 +1731,7 @@
                     <div class="hero-label-name">Botanical Research</div>
                 </div>
                 <h1 class="hero-heading">Ancient Wisdom. Modern Science.</h1>
-                <p class="hero-body">Lab-tested kratom, kava, and blue lotus extracts. Every alkaloid preserved. Every batch verified. Crafted in Texas Hill Country with 15+ years of research.</p>
+                <p class="hero-body">Lab-tested kanna, kava, and blue lotus extracts. Every alkaloid preserved. Every batch verified. Crafted in Texas Hill Country with 15+ years of research.</p>
                 <div class="hero-actions">
                     <button class="btn-pill btn-pill-primary">Get Early Access</button>
                     <a href="classroom.html" class="btn-text-link">Explore Classroom</a>
@@ -1744,7 +1852,7 @@
         <div class="bundle-inner">
             <span class="bundle-badge">Bundle + Save 25%</span>
             <h2 class="bundle-heading">The Hill Country Collection.</h2>
-            <p class="bundle-body">Three signature extracts in one set. Kratom, kava, and blue lotus -- curated for those who want the full botanical spectrum.</p>
+            <p class="bundle-body">Three signature extracts in one set. Kanna, kava, and blue lotus -- curated for those who want the full botanical spectrum.</p>
             <a href="products/extracts.html" class="btn-pill-accent">Shop the Bundle</a>
             <div class="bundle-visual">
                 <div class="bundle-jar j1"></div>
@@ -1763,7 +1871,7 @@
             <div class="tech-columns">
                 <div class="tech-col reveal reveal-d2">
                     <p>Most botanical extracts sacrifice compound integrity for yield. High heat, aggressive solvents, and rush-processing destroy the very alkaloids consumers are seeking.</p>
-                    <p style="margin-top: 12px;">Our cold-process extraction preserves the full alkaloid profile -- mitragynine, 7-hydroxymitragynine, kavalactones, aporphines -- exactly as nature intended.</p>
+                    <p style="margin-top: 12px;">Our cold-process extraction preserves the full alkaloid profile -- mesembrine, 7-hydroxymesembrine, kavalactones, aporphines -- exactly as nature intended.</p>
                 </div>
                 <div class="tech-col reveal reveal-d3">
                     <ul>
@@ -1828,11 +1936,11 @@
                 <a href="blog.html" class="stories-link reveal">All Articles</a>
             </div>
             <div class="stories-grid">
-                <a href="articles/kratom-alkaloids.html" class="story-card reveal">
+                <a href="articles/kanna-alkaloids.html" class="story-card reveal">
                     <div class="story-card-visual v1"><span>&#9878;</span></div>
                     <div class="story-card-body">
                         <div class="story-card-tag">Alkaloid Science</div>
-                        <div class="story-card-title">Understanding Kratom Alkaloid Profiles and Their Effects</div>
+                        <div class="story-card-title">Understanding Kanna Alkaloid Profiles and Their Effects</div>
                     </div>
                 </a>
                 <a href="articles/kavalactones-explained.html" class="story-card reveal reveal-d1">
@@ -1919,7 +2027,7 @@
                     <h4>Science</h4>
                     <ul>
                         <li><a href="articles/extraction-methods.html">Extraction 101</a></li>
-                        <li><a href="articles/kratom-alkaloids.html">Kratom Science</a></li>
+                        <li><a href="articles/adaptogens-science.html">Adaptogens Science</a></li>
                         <li><a href="articles/kavalactones-explained.html">Kava Science</a></li>
                         <li><a href="articles/blue-lotus-compounds.html">Blue Lotus</a></li>
                     </ul>
@@ -1964,25 +2072,39 @@
     <div class="theme-switcher">
         <div class="theme-panel" id="themePanel">
             <div class="theme-panel-title">Choose Theme</div>
-            <button class="theme-option active" data-theme="deep-forest">
-                <div class="theme-swatch theme-swatch-forest"></div>
-                <div class="theme-option-text">
-                    <span class="theme-option-name">Deep Forest</span>
-                    <span class="theme-option-desc">Rich greens, organic warmth</span>
-                </div>
-            </button>
-            <button class="theme-option" data-theme="midnight-lab">
-                <div class="theme-swatch theme-swatch-midnight"></div>
-                <div class="theme-option-text">
-                    <span class="theme-option-name">Midnight Lab</span>
-                    <span class="theme-option-desc">Near-black, neon green accents</span>
-                </div>
-            </button>
-            <button class="theme-option" data-theme="moss-slate">
+            <button class="theme-option active" data-theme="moss-slate">
                 <div class="theme-swatch theme-swatch-moss"></div>
                 <div class="theme-option-text">
                     <span class="theme-option-name">Moss & Slate</span>
-                    <span class="theme-option-desc">Earthy grey-green tones</span>
+                    <span class="theme-option-desc">The original -- earthy grey-green</span>
+                </div>
+            </button>
+            <button class="theme-option" data-theme="lichen">
+                <div class="theme-swatch theme-swatch-lichen"></div>
+                <div class="theme-option-text">
+                    <span class="theme-option-name">Lichen</span>
+                    <span class="theme-option-desc">Lighter, warmer grey-green</span>
+                </div>
+            </button>
+            <button class="theme-option" data-theme="iron-moss">
+                <div class="theme-swatch theme-swatch-iron"></div>
+                <div class="theme-option-text">
+                    <span class="theme-option-name">Iron Moss</span>
+                    <span class="theme-option-desc">Cool steel-green, teal accent</span>
+                </div>
+            </button>
+            <button class="theme-option" data-theme="peat">
+                <div class="theme-swatch theme-swatch-peat"></div>
+                <div class="theme-option-text">
+                    <span class="theme-option-name">Peat</span>
+                    <span class="theme-option-desc">Warm olive-brown, gold accent</span>
+                </div>
+            </button>
+            <button class="theme-option" data-theme="basalt">
+                <div class="theme-swatch theme-swatch-basalt"></div>
+                <div class="theme-option-text">
+                    <span class="theme-option-name">Basalt</span>
+                    <span class="theme-option-desc">Darkest, mint-green accent</span>
                 </div>
             </button>
         </div>
