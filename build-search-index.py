@@ -34,7 +34,7 @@ CATEGORY_RULES = [
     # Root pages are always "Pages" (no subdirectory in path)
     (lambda p, t: '/' not in p, 'Pages'),
     # Content-based keywords in title (articles only at this point)
-    (lambda p, t: any(w in t.lower() for w in ['kratom']), 'Kratom'),
+    (lambda p, t: any(w in t.lower() for w in ['kanna']), 'Kanna'),
     (lambda p, t: any(w in t.lower() for w in ['kava', 'kavalactone']), 'Kava'),
     (lambda p, t: any(w in t.lower() for w in ['blue lotus', 'nymphaea']), 'Blue Lotus'),
     (lambda p, t: any(w in t.lower() for w in ['cannabis', 'hemp', 'thc', 'cbd']), 'Cannabis'),
@@ -248,7 +248,7 @@ def main():
             f.write(new_content)
         print(f"Updated {SEARCH_JS}")
         print("New categories to add to CAT_COLORS (if any):")
-        existing_cats = {'Pages', 'Products', 'Kratom', 'Kava', 'Blue Lotus', 'Science', 'Guides', 'Texas Natives', 'Cannabis', 'Classroom'}
+        existing_cats = {'Pages', 'Products', 'Kanna', 'Kava', 'Blue Lotus', 'Science', 'Guides', 'Texas Natives', 'Cannabis', 'Classroom'}
         new_cats = set(cats) - existing_cats
         if new_cats:
             for c in new_cats:

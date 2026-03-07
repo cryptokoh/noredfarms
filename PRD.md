@@ -10,12 +10,12 @@
 
 ## Executive Summary
 
-Nored Farms is a premium botanical extract laboratory based in Fredericksburg, Texas, specializing in high-quality kratom, kava, blue lotus, and other natural plant extracts. This PRD outlines the complete digital platform strategy including e-commerce, content management, SEO automation, and social media integration.
+Nored Farms is a premium botanical extract laboratory based in Fredericksburg, Texas, specializing in high-quality kanna, kava, blue lotus, and other natural plant extracts. This PRD outlines the complete digital platform strategy including e-commerce, content management, SEO automation, and social media integration.
 
 ### Product Focus
 
 **Core Product Lines:**
-- **Kratom Extracts** - Mitragyna speciosa concentrates and powders
+- **Kanna Extracts - Sceletium tortuosum concentrates and powders
 - **Kava Extracts** - Piper methysticum preparations
 - **Blue Lotus** - Nymphaea caerulea extracts
 - **Botanical Blends** - Proprietary wellness formulations
@@ -52,14 +52,14 @@ Build a best-in-class digital presence for Nored Farms that establishes authorit
 
 ### Goals
 1. **Authority Building** - Position as the trusted source for botanical extract knowledge
-2. **Education-First** - Lead with science-backed content on kratom, kava, and botanicals
+2. **Education-First** - Lead with science-backed content on kanna, kava, and botanicals
 3. **SEO Dominance** - Organic + paid traffic strategies for botanical wellness keywords
 4. **Automation** - Minimize manual work through intelligent automation
 5. **Community** - Build engaged customer base through education and transparency
 
 ### Target Audience
 - Health-conscious consumers seeking natural wellness alternatives
-- Kratom and kava enthusiasts looking for quality lab-tested products
+- Kanna and kava enthusiasts looking for quality lab-tested products
 - Holistic health practitioners and herbalists
 - B2B clients (wellness brands, supplement retailers, spas)
 - Researchers and ethnobotany enthusiasts
@@ -219,7 +219,7 @@ Build a best-in-class digital presence for Nored Farms that establishes authorit
 
 ### Payment Processing Strategy
 
-**Advantage:** Botanical extracts (kratom, kava, blue lotus) can use standard payment processors - no high-risk fees required.
+**Advantage:** Botanical extracts (kanna, kava, blue lotus) can use standard payment processors - no high-risk fees required.
 
 **Recommended Stack:**
 
@@ -231,7 +231,7 @@ Build a best-in-class digital presence for Nored Farms that establishes authorit
 
 **Recommendation:** Stripe as primary with PayPal as backup. Crypto optional for B2B wholesale.
 
-**Note:** Kratom has some state-level restrictions. Implement geo-blocking for restricted states at checkout.
+**Note:** Kanna has some state-level restrictions. Implement geo-blocking for restricted states at checkout.
 
 ### Product Data Model
 
@@ -414,22 +414,22 @@ interface BlogPost {
 ### Target Keywords
 
 **Primary (High Intent):**
-- "buy kratom extract online"
+- "buy kanna extract online"
 - "kava extract for sale"
 - "blue lotus extract"
 - "premium botanical extracts"
 
 **Educational (Content Marketing):**
-- "kratom benefits and effects"
-- "kava vs kratom"
+- "kanna benefits and effects"
+- "kava vs kanna"
 - "blue lotus tea effects"
-- "what is mitragynine"
+- "what is mesembrine"
 - "kavalactones explained"
 
 **Long-tail (Low Competition):**
-- "kratom extract texas"
+- "kanna extract texas"
 - "bulk kava wholesale"
-- "lab tested kratom COA"
+- "lab tested kanna COA"
 - "botanical extracts fredericksburg tx"
 
 **Local SEO:**
@@ -625,8 +625,8 @@ heal → help, drug → supplement, medical → natural
 
 1. **Age Verification** - 18+ or 21+ depending on product/state
 2. **COA Display** - Certificate of Analysis for each batch (alkaloid content, heavy metals, microbials)
-3. **Kratom Consumer Protection Act** - Follow KCPA guidelines where applicable
-4. **State Restrictions** - Kratom banned in: Alabama, Arkansas, Indiana, Rhode Island, Vermont, Wisconsin
+3. **Kanna Consumer Protection Act** - Follow KCPA guidelines where applicable
+4. **State Restrictions** - Kanna banned in: Alabama, Arkansas, Indiana, Rhode Island, Vermont, Wisconsin
 5. **FDA Disclaimer** - "Not intended to diagnose, treat, cure, or prevent any disease"
 6. **Health Claims** - Avoid unsubstantiated claims (no "cures", "treats", "heals")
 

@@ -19,18 +19,18 @@
         { title: "Botanical Education Classes", url: "classes.html", desc: "Botanical education from home growing to industrial operations. 4 tiers: $100 home systems, $500 adv", cat: "Pages", kw: ["000", "100", "500", "access", "advanced", "botanical"] },
         { title: "Botanical Infrastructure Consulting", url: "consulting.html", desc: "Professional botanical infrastructure design and build services. Greenhouses, irrigation systems, sh", cat: "Pages", kw: ["botanical", "build", "consulting", "container", "design", "experience"] },
         { title: "Contact Us", url: "contact.html", desc: "Get in touch with Nored Farms. Questions about botanicals, wholesale inquiries, or general supp", cat: "Pages", kw: ["botanicals", "contact", "general", "get", "inquiries", "questions"] },
-        { title: "Education & Research", url: "blog.html", desc: "Learn about kratom, kava, blue lotus, and botanical wellness. Science-backed articles, dosage guides", cat: "Pages", kw: ["articles", "backed", "blog", "blue", "botanical", "dosage"] },
-        { title: "Premium Kratom, Kava & Botanical Extracts", url: "index.html", desc: "Lab-tested kratom, kava, blue lotus & ethnobotanical extracts crafted in Texas Hill Country. 15+ yea", cat: "Pages", kw: ["500", "blue", "botanical", "compliant", "country", "crafted"] },
+        { title: "Education & Research", url: "blog.html", desc: "Learn about kava, blue lotus, kanna, and botanical wellness. Science-backed articles, dosage guides", cat: "Pages", kw: ["articles", "backed", "blog", "blue", "botanical", "dosage"] },
+        { title: "Premium Kava, Blue Lotus & Botanical Extracts", url: "index.html", desc: "Lab-tested kava, blue lotus, kanna & ethnobotanical extracts crafted in Texas Hill Country. 15+ yea", cat: "Pages", kw: ["500", "blue", "botanical", "compliant", "country", "crafted"] },
         { title: "Project Details", url: "roadmap.html", desc: "Development progress, milestones, and roadmap for Nored Farms website.", cat: "Pages", kw: ["details", "development", "milestones", "progress", "project", "roadmap"] },
         { title: "Nored Farms | Laboratory", url: "lab-2d.html", desc: "Nored Farms | Laboratory", cat: "Pages", kw: ["lab", "laboratory"] },
-        { title: "Nored Farms | Laboratory-Grade Botanical Science", url: "lab.html", desc: "Experience botanical science in our virtual laboratory. Premium kratom, kava, and blue lotus extract", cat: "Pages", kw: ["blue", "botanical", "crafted", "experience", "kava", "kratom"] },
+        { title: "Nored Farms | Laboratory-Grade Botanical Science", url: "lab.html", desc: "Experience botanical science in our virtual laboratory. Premium kava, blue lotus, and kanna extract", cat: "Pages", kw: ["blue", "botanical", "crafted", "experience", "kava", "kanna"] },
         { title: "Research Library", url: "research.html", desc: "Comprehensive research library covering botanical infrastructure, growing techniques, extraction met", cat: "Pages", kw: ["body", "botanical", "comprehensive", "covering", "effects", "extraction"] },
-        { title: "The Classroom - Learn About Kratom, Kava & Botanical Science", url: "classroom.html", desc: "Free educational portal on kratom alkaloids, kava kavalactones, blue lotus compounds & extraction me", cat: "Pages", kw: ["alkaloids", "blue", "botanical", "classroom", "compounds", "dosing"] },
+        { title: "The Classroom - Learn About Kava, Blue Lotus & Botanical Science", url: "classroom.html", desc: "Free educational portal on kava kavalactones, blue lotus compounds, blue lotus compounds & extraction me", cat: "Pages", kw: ["alkaloids", "blue", "botanical", "classroom", "compounds", "dosing"] },
         { title: "Welcome to the Community", url: "welcome.html", desc: "Welcome to Nored Farms. Explore our educational resources and learn about botanical wellness.", cat: "Pages", kw: ["botanical", "community", "educational", "explore", "learn", "our"] },
-        { title: "Botanical Gummies", url: "products/gummies.html", desc: "Premium botanical gummies crafted with lab-tested kratom, kava, and ethnobotanical extracts. Coming ", cat: "Products", kw: ["botanical", "coming", "crafted", "ethnobotanical", "gummies", "kava"] },
-        { title: "Botanical Tinctures", url: "products/tinctures.html", desc: "Premium botanical tinctures with precise alkaloid profiles. Lab-tested kratom, kava, and ethnobotani", cat: "Products", kw: ["alkaloid", "botanical", "coming", "ethnobotanical", "kava", "kratom"] },
-        { title: "Live Botanical Plants", url: "products/live-plants.html", desc: "Live kratom, kava, and ethnobotanical plants grown in Texas Hill Country. Healthy rooted specimens f", cat: "Products", kw: ["botanical", "coming", "country", "ethnobotanical", "grown", "healthy"] },
-        { title: "Pure Botanical Extracts", url: "products/extracts.html", desc: "Concentrated botanical extracts crafted from 30+ years of extraction research. Lab-tested kratom, ka", cat: "Products", kw: ["blue", "botanical", "concentrated", "crafted", "ethnobotanical", "extraction"] },
+        { title: "Botanical Gummies", url: "products/gummies.html", desc: "Premium botanical gummies crafted with lab-tested kava, blue lotus, and ethnobotanical extracts. Coming ", cat: "Products", kw: ["botanical", "coming", "crafted", "ethnobotanical", "gummies", "kava"] },
+        { title: "Botanical Tinctures", url: "products/tinctures.html", desc: "Premium botanical tinctures with precise alkaloid profiles. Lab-tested kava, blue lotus, and ethnobotani", cat: "Products", kw: ["alkaloid", "botanical", "coming", "ethnobotanical", "kava", "kanna"] },
+        { title: "Live Botanical Plants", url: "products/live-plants.html", desc: "Live kava, blue lotus, and ethnobotanical plants grown in Texas Hill Country. Healthy rooted specimens f", cat: "Products", kw: ["botanical", "coming", "country", "ethnobotanical", "grown", "healthy"] },
+        { title: "Pure Botanical Extracts", url: "products/extracts.html", desc: "Concentrated botanical extracts crafted from 30+ years of extraction research. Lab-tested kava, blue lotus", cat: "Products", kw: ["blue", "botanical", "concentrated", "crafted", "ethnobotanical", "extraction"] },
         { title: "Building Infrastructure & Equipment - The Classroom", url: "classroom/infrastructure.html", desc: "Learn to build growing infrastructure from outdoor rows and irrigation to greenhouses, aquaponics, a", cat: "Classroom", kw: ["aeroponics", "aquaponics", "build", "building", "classroom", "cloning"] },
         { title: "Effects on the Human Body - Botanical Science", url: "classroom/effects.html", desc: "Learn how botanical compounds interact with the human body. Explore neurotransmitter pathways, organ", cat: "Classroom", kw: ["body", "botanical", "chronic", "compounds", "conditions", "effects"] },
         { title: "Extracting Plants & Making Products | The Classroom", url: "classroom/extraction.html", desc: "Comprehensive guide to botanical extraction methods: solventless, water-based, ethanol, CO2, chromat", cat: "Classroom", kw: ["based", "behind", "botanical", "chromatography", "classroom", "co2"] },
@@ -80,9 +80,9 @@
         { title: "Kava (Piper methysticum): Comprehensive Cultivation, Processing & Use Guide", url: "articles/kava-cultivation-guide.html", desc: "Complete guide to kava cultivation covering Piper methysticum, kavalactone chemistry, tropical growi", cat: "Kava", kw: ["chemistry", "clonal", "comprehensive", "context", "covering", "drying"] },
         { title: "Kavalactones Explained: The Science Behind Kava's Calm", url: "articles/kavalactones-explained.html", desc: "How the six major kavalactones work together to create kava", cat: "Kava", kw: ["behind", "calm", "create", "explained", "kava", "kavalactones"] },
         { title: "Traditional Kava Preparation: From Pacific Island to Your Cup", url: "articles/traditional-kava-preparation.html", desc: "The ancient art of kava preparation and how modern extraction methods compare. Learn traditional and", cat: "Kava", kw: ["ancient", "art", "compare", "contemporary", "cup", "extraction"] },
-        { title: "Red, Green, White: Understanding Kratom Vein Colors", url: "articles/kratom-vein-colors.html", desc: "What do the different kratom vein colors mean, and how do they affect the alkaloid profile? A compre", cat: "Kratom", kw: ["affect", "alkaloid", "colors", "comprehensive", "different", "green"] },
-        { title: "The Complete Guide to Kratom", url: "articles/complete-kratom-guide.html", desc: "Everything you need to know about Mitragyna speciosa - from its traditional use in Southeast Asia to", cat: "Kratom", kw: ["alkaloids", "asia", "everything", "know", "kratom", "mitragyna"] },
-        { title: "Understanding Kratom Alkaloids: Mitragynine vs 7-Hydroxymitragynine", url: "articles/kratom-alkaloids.html", desc: "A deep dive into the two primary alkaloids in kratom - mitragynine and 7-hydroxymitragynine - and ho", cat: "Kratom", kw: ["7hydroxymitragynine", "affect", "alkaloids", "body", "deep", "differently"] },
+        { title: "Responsible Botanical Dosing Guide", url: "articles/responsible-dosing.html", desc: "What are the principles of responsible botanical dosing mean, and how do they affect the alkaloid profile? A compre", cat: "Science", kw: ["affect", "alkaloid", "colors", "comprehensive", "different", "green"] },
+        { title: "How Adaptogens Work: The Science", url: "articles/adaptogens-science.html", desc: "Understanding how adaptogenic botanicals help the body - from its traditional use in Southeast Asia to", cat: "Science", kw: ["alkaloids", "asia", "everything", "know", "kanna", "adaptogen"] },
+        { title: "How Kavalactones Work: The Science Behind Kava", url: "articles/kavalactones-explained.html", desc: "A deep dive into the six major kavalactones in kava - and ho", cat: "Science", kw: ["kavalactones", "affect", "alkaloids", "body", "deep", "differently"] },
         { title: "Extraction Methods: CO2 vs Ethanol vs Water", url: "articles/extraction-methods.html", desc: "Comparing different extraction techniques and their impact on alkaloid profiles. Understanding how e", cat: "Science", kw: ["affect", "alkaloid", "botanical", "co2", "comparing", "different"] },
         { title: "How Adaptogens Work: The Science of Stress Response", url: "articles/adaptogens-science.html", desc: "Understanding how adaptogenic botanicals help the body maintain homeostasis. The science behind adap", cat: "Science", kw: ["adaptogenic", "adaptogens", "behind", "body", "botanicals", "help"] },
         { title: "How to Read a Certificate of Analysis (COA)", url: "articles/how-to-read-coa.html", desc: "A beginner", cat: "Science", kw: ["analysis", "beginner", "certificate", "coa", "read"] },
@@ -97,7 +97,7 @@
 
     // Category colors
     var CAT_COLORS = {
-        'Pages': '#6b7280', 'Products': '#1c3a13', 'Kratom': '#16a34a',
+        'Pages': '#8e9c98', 'Products': '#50e8c0', 'Botanicals': '#50e8c0',
         'Kava': '#7c3aed', 'Blue Lotus': '#2563eb', 'Science': '#dc2626',
         'Guides': '#059669', 'Texas Natives': '#b45309', 'Cannabis': '#65a30d',
         'Classroom': '#8b5cf6'
@@ -293,7 +293,7 @@
 
     // Suggested topics shown on empty focus
     var SUGGESTIONS = [
-        { label: 'Kratom', query: 'kratom' },
+        { label: 'Kanna', query: 'kanna' },
         { label: 'Kava', query: 'kava' },
         { label: 'Blue Lotus', query: 'blue lotus' },
         { label: 'Cultivation Guides', query: 'cultivation' },

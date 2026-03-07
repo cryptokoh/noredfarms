@@ -18,8 +18,8 @@
     <link rel="canonical" href="https://noredfarms.netlify.app/">
 
     <!-- Theme Colors -->
-    <meta name="theme-color" content="#1c3a13">
-    <meta name="msapplication-TileColor" content="#1c3a13">
+    <meta name="theme-color" content="#12181a">
+    <meta name="msapplication-TileColor" content="#12181a">
 
     <!-- Geographic Meta Tags -->
     <meta name="geo.region" content="US-TX">
@@ -227,19 +227,33 @@
 
     <style>
         /* ============================================
-           SEED HOMEPAGE SECTIONS - Inline Styles
+           HOMEPAGE REDESIGN - Clean Botanical Layout
            ============================================ */
+
+        /* --- SHARED BUTTON BASE --- */
+        .btn-pill, .btn-pill-light, .btn-pill-green, .btn-discover, .btn-outline-green, .modal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 350;
+            border-radius: 99em;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
 
         /* --- HERO --- */
         .hero-section {
             background: var(--color--snowwhite);
-            padding: 80px 24px 100px;
+            padding: 100px 24px 80px;
             position: relative;
             overflow: hidden;
-            min-height: 85vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
-            border-radius: 0 0 24px 24px;
             z-index: 1;
         }
 
@@ -248,44 +262,40 @@
             margin: 0 auto;
             width: 100%;
             display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 48px;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
             align-items: center;
         }
 
-        .hero-label { margin-bottom: 12px; }
+        .hero-label {
+            margin-bottom: 16px;
+        }
 
         .hero-label-code {
             font-size: 12px;
             font-weight: 400;
             color: var(--color--olivegreen);
-            letter-spacing: 0.02em;
-        }
-
-        .hero-label-name {
-            font-size: 24px;
-            font-weight: 350;
-            color: var(--color--seedgreen);
-            letter-spacing: -0.5px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
         }
 
         .hero-heading {
             font-family: var(--font-sans);
-            font-size: clamp(32px, 5vw, 52px);
+            font-size: clamp(36px, 5.5vw, 64px);
             font-weight: 350;
-            letter-spacing: -0.8px;
+            letter-spacing: -1.5px;
             color: var(--color--seedgreen);
-            line-height: 1.08;
+            line-height: 1.05;
             margin-bottom: 20px;
         }
 
         .hero-body {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 350;
             color: var(--color--olivegreen);
-            line-height: 1.6;
+            line-height: 1.65;
             max-width: 440px;
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
 
         .hero-actions {
@@ -293,38 +303,32 @@
             align-items: center;
             gap: 20px;
             flex-wrap: wrap;
+            margin-bottom: 40px;
         }
 
         .btn-pill {
-            display: inline-flex;
-            align-items: center;
             gap: 6px;
-            font-family: var(--font-sans);
-            font-size: 14px;
-            font-weight: 350;
-            border-radius: 99em;
             padding: 10px 16px;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s ease;
         }
 
         .btn-pill-light {
-            background: var(--color--seedgreen);
-            color: var(--color--snowwhite);
+            background: #50e8c0;
+            color: #0a1210;
+            padding: 12px 24px;
+            font-size: 15px;
         }
 
-        .btn-pill-light:hover { background: var(--color--seedgreen-hover); }
+        .btn-pill-light:hover {
+            background: #6aecd0;
+        }
 
         .btn-text-link {
             font-family: var(--font-sans);
             font-size: 14px;
             font-weight: 350;
-            color: var(--color--seedgreen);
+            color: #50e8c0;
             text-decoration: underline;
             text-underline-offset: 3px;
-            text-transform: capitalize;
             cursor: pointer;
             transition: opacity 0.2s ease;
             background: none;
@@ -333,101 +337,81 @@
 
         .btn-text-link:hover { opacity: 0.6; }
 
-        .hero-visual {
-            position: static;
-            width: auto;
-            height: auto;
-            transform: none;
+        /* Quick-nav pills */
+        .hero-quicknav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-quicknav a {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--color--olivegreen);
+            padding: 8px 16px;
+            border-radius: 99em;
+            border: 1px solid rgba(80, 232, 192, 0.1);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .hero-quicknav a:hover {
+            border-color: rgba(80, 232, 192, 0.3);
+            color: #50e8c0;
+            background: rgba(80, 232, 192, 0.06);
+        }
+
+        /* Hero photo placeholder */
+        .hero-photo {
+            width: 100%;
+            height: clamp(320px, 40vw, 480px);
+            border-radius: 20px;
+            background: linear-gradient(145deg, #1a3028 0%, #28584e 40%, #1e4640 70%, #163430 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        /* CSS art: abstract botanical jar — fluid sizing */
-        .hero-jar {
-            width: clamp(120px, 18vw, 220px);
-            height: clamp(150px, 23vw, 280px);
-            border-radius: 16px 16px 24px 24px;
-            background: linear-gradient(180deg, #3d5b34 0%, #45663c 40%, #2d4a25 100%);
             position: relative;
-            box-shadow: 0 40px 80px rgba(28, 58, 19, 0.2);
-            transition: width 0.2s ease, height 0.2s ease;
+            overflow: hidden;
         }
 
-        .hero-jar::before {
+        .hero-photo::before {
             content: '';
             position: absolute;
-            top: -16px;
-            left: 30px;
-            right: 30px;
-            height: 20px;
-            background: #4a7a4e;
-            border-radius: 6px 6px 0 0;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 40%, rgba(80, 232, 192, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(80, 232, 192, 0.05) 0%, transparent 40%);
         }
 
-        .hero-jar::after {
-            content: 'NF-01';
-            position: absolute;
-            bottom: 32px;
-            left: 0;
-            right: 0;
-            text-align: center;
+        .hero-photo-label {
             font-family: var(--font-sans);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 400;
-            letter-spacing: 0.08em;
-            color: rgba(252, 252, 247, 0.4);
-        }
-
-        .hero-jar-label {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 80px;
-            border: 1px solid rgba(252, 252, 247, 0.15);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-jar-label span {
-            font-family: var(--font-sans);
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: rgba(252, 252, 247, 0.5);
-            text-align: center;
-            line-height: 1.5;
+            color: rgba(188, 202, 196, 0.35);
+            position: relative;
+            z-index: 1;
         }
 
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .hero-inner { grid-template-columns: 2fr 1fr; gap: 32px; }
-            .hero-heading { font-size: clamp(28px, 4vw, 40px); }
-            .hero-jar-label { width: 90px; height: 60px; }
-            .hero-jar::before { left: 20px; right: 20px; height: 14px; }
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .hero-heading { font-size: clamp(32px, 4.5vw, 48px); }
         }
 
         @media (max-width: 768px) {
-            .hero-section { padding: 60px 16px 80px; min-height: auto; }
+            .hero-section { padding: 80px 16px 60px; min-height: auto; }
             .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-            .hero-visual { order: -1; }
-            .hero-jar-label { width: 80px; height: 55px; }
-            .hero-jar-label span { font-size: 9px; }
-            .hero-jar::before { left: 16px; right: 16px; height: 12px; }
-            .hero-jar::after { font-size: 11px; bottom: 20px; }
-            .hero-heading { font-size: 32px; }
+            .hero-photo { order: -1; height: 280px; }
+            .hero-heading { font-size: 36px; }
         }
 
 
         /* --- PRODUCTS CAROUSEL --- */
         .products-section {
-            background: var(--color--seedgreen);
-            padding: 56px 0 80px;
-            margin-top: -24px;
+            background: #0e1214;
+            padding: 72px 0 80px;
             overflow: hidden;
         }
 
@@ -446,7 +430,7 @@
             font-size: clamp(28px, 3.5vw, 38px);
             font-weight: 350;
             letter-spacing: -0.8px;
-            color: var(--color--snowwhite);
+            color: #bccac4;
             line-height: 1.1;
             margin-bottom: 8px;
         }
@@ -454,7 +438,7 @@
         .products-header-text p {
             font-size: 15px;
             font-weight: 350;
-            color: rgba(252, 252, 247, 0.6);
+            color: rgba(188, 202, 196, 0.5);
             max-width: 400px;
         }
 
@@ -468,7 +452,7 @@
         .products-shopall {
             font-size: 14px;
             font-weight: 400;
-            color: var(--color--snowwhite);
+            color: #50e8c0;
             text-decoration: none;
             white-space: nowrap;
             transition: opacity 0.2s ease;
@@ -486,9 +470,9 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            border: 1px solid rgba(252, 252, 247, 0.2);
-            background: rgba(252, 252, 247, 0.06);
-            color: var(--color--snowwhite);
+            border: 1px solid rgba(188, 202, 196, 0.2);
+            background: rgba(188, 202, 196, 0.06);
+            color: #bccac4;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -499,13 +483,11 @@
         }
 
         .carousel-arrow:hover {
-            background: rgba(252, 252, 247, 0.15);
-            border-color: rgba(252, 252, 247, 0.4);
+            background: rgba(80, 232, 192, 0.15);
+            border-color: rgba(80, 232, 192, 0.3);
         }
 
-        .carousel-arrow:active {
-            transform: scale(0.94);
-        }
+        .carousel-arrow:active { transform: scale(0.94); }
 
         .carousel-arrow:disabled {
             opacity: 0.25;
@@ -513,8 +495,8 @@
         }
 
         .carousel-arrow:disabled:hover {
-            background: rgba(252, 252, 247, 0.06);
-            border-color: rgba(252, 252, 247, 0.2);
+            background: rgba(188, 202, 196, 0.06);
+            border-color: rgba(188, 202, 196, 0.2);
         }
 
         .carousel-arrow svg {
@@ -528,23 +510,24 @@
         /* Carousel track */
         .carousel-viewport {
             position: relative;
+            overflow: hidden;
         }
 
         .products-carousel {
             display: flex;
             gap: 16px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
+            overflow: visible;
             scrollbar-width: none;
             padding: 0 24px 4px;
+            flex-wrap: nowrap;
+            transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+            -webkit-overflow-scrolling: touch;
         }
 
         .products-carousel::-webkit-scrollbar { display: none; }
 
         .product-card {
-            background: var(--color--seedgreen-card);
+            background: #1a2226;
             border-radius: 16px;
             padding: 24px;
             position: relative;
@@ -556,12 +539,14 @@
             min-width: 280px;
             flex: 0 0 calc(25% - 12px);
             scroll-snap-align: start;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(80, 232, 192, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
         .product-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            border-color: rgba(80, 232, 192, 0.15);
         }
 
         .product-card-badge {
@@ -570,8 +555,8 @@
             font-weight: 500;
             padding: 4px 10px;
             border-radius: 99em;
-            background: var(--color-guidance-fluorescent-green);
-            color: var(--color--seedgreen);
+            background: #50e8c0;
+            color: #0a1210;
             margin-bottom: 12px;
             align-self: flex-start;
         }
@@ -593,9 +578,7 @@
             transition: transform 0.3s ease;
         }
 
-        .product-card:hover .card-jar {
-            transform: scale(1.08);
-        }
+        .product-card:hover .card-jar { transform: scale(1.08); }
 
         .card-jar::before {
             content: '';
@@ -607,14 +590,14 @@
             border-radius: 3px 3px 0 0;
         }
 
-        .card-jar.green { background: linear-gradient(180deg, #5a8a5e, #3d6a40); }
-        .card-jar.green::before { background: #6b9a6e; }
-        .card-jar.teal { background: linear-gradient(180deg, #3d7a6f, #2d6a5f); }
-        .card-jar.teal::before { background: #4d8a7f; }
-        .card-jar.blue { background: linear-gradient(180deg, #4a7a9a, #3a6a8a); }
-        .card-jar.blue::before { background: #5a8aaa; }
-        .card-jar.amber { background: linear-gradient(180deg, #9b8a34, #8b7a24); }
-        .card-jar.amber::before { background: #ab9a44; }
+        .card-jar.green { background: linear-gradient(180deg, #28584e, #1e4640); }
+        .card-jar.green::before { background: #2a6a5e; }
+        .card-jar.teal { background: linear-gradient(180deg, #1e6a5f, #16544a); }
+        .card-jar.teal::before { background: #267a6f; }
+        .card-jar.blue { background: linear-gradient(180deg, #2a5a7a, #1e4a6a); }
+        .card-jar.blue::before { background: #326a8a; }
+        .card-jar.amber { background: linear-gradient(180deg, #7a6a24, #6a5a1a); }
+        .card-jar.amber::before { background: #8a7a34; }
 
         .product-card-bottom {
             display: flex;
@@ -625,36 +608,34 @@
         .product-card-code {
             font-size: 12px;
             font-weight: 400;
-            color: rgba(252, 252, 247, 0.4);
+            color: rgba(188, 202, 196, 0.4);
             letter-spacing: 0.02em;
         }
 
         .product-card-name {
             font-size: 16px;
             font-weight: 400;
-            color: var(--color--snowwhite);
+            color: #bccac4;
             margin-top: 2px;
         }
 
         .product-card-cta {
             font-size: 13px;
             font-weight: 400;
-            color: var(--color--snowwhite);
-            background: rgba(255, 255, 255, 0.12);
+            color: #50e8c0;
+            background: rgba(80, 232, 192, 0.12);
             border-radius: 99em;
             padding: 8px 14px;
             white-space: nowrap;
             transition: background 0.2s ease;
         }
 
-        .product-card:hover .product-card-cta {
-            background: rgba(255, 255, 255, 0.2);
-        }
+        .product-card:hover .product-card-cta { background: rgba(80, 232, 192, 0.2); }
 
         .product-card-price {
             font-size: 13px;
             font-weight: 400;
-            color: rgba(252, 252, 247, 0.5);
+            color: rgba(188, 202, 196, 0.5);
             margin-top: 4px;
         }
 
@@ -671,7 +652,7 @@
             width: 8px;
             height: 8px;
             border-radius: 99em;
-            background: rgba(252, 252, 247, 0.2);
+            background: rgba(188, 202, 196, 0.2);
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -697,20 +678,20 @@
 
         .carousel-viewport::before {
             left: 0;
-            background: linear-gradient(to right, var(--color--seedgreen), transparent);
+            background: linear-gradient(to right, #0e1214, transparent);
             opacity: 0;
             transition: opacity 0.2s ease;
         }
 
         .carousel-viewport::after {
             right: 0;
-            background: linear-gradient(to left, var(--color--seedgreen), transparent);
+            background: linear-gradient(to left, #0e1214, transparent);
         }
 
         .carousel-viewport.scrolled::before { opacity: 1; }
         .carousel-viewport.at-end::after { opacity: 0; }
 
-        /* Responsive */
+        /* Responsive carousel */
         @media (min-width: 1200px) {
             .products-carousel { padding: 0 calc((100vw - 1200px) / 2 + 24px) 4px; }
             .carousel-viewport::before { left: 0; width: calc((100vw - 1200px) / 2); }
@@ -722,18 +703,27 @@
         }
 
         @media (max-width: 768px) {
-            .products-section { padding: 40px 0 56px; }
+            .products-section { padding: 48px 0 56px; }
             .products-header {
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 0 16px;
             }
             .products-header-right { align-self: flex-end; margin-top: -8px; }
-            .products-carousel { padding: 0 16px 4px; gap: 12px; }
+            .carousel-viewport { overflow: visible; }
+            .products-carousel {
+                padding: 0 16px 4px;
+                gap: 12px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                transition: none;
+            }
             .product-card {
                 flex: 0 0 calc(75vw);
                 min-width: 240px;
                 min-height: 260px;
+                scroll-snap-align: start;
             }
             .carousel-dots { margin-top: 20px; }
             .carousel-viewport::before { width: 16px; }
@@ -746,101 +736,292 @@
         }
 
 
-        /* --- BUNDLE --- */
-        .bundle-section {
+        /* --- INTERSTITIAL --- */
+        .interstitial-section {
             background: var(--color--snowwhite);
-            border-radius: 32px 32px 0 0;
-            margin-top: -32px;
+            padding: 56px 24px;
             position: relative;
             z-index: 2;
-            padding: 48px 16px 64px;
         }
 
-        .bundle-inner {
-            max-width: 720px;
+        .interstitial-inner {
+            max-width: 900px;
             margin: 0 auto;
-            text-align: center;
-        }
-
-        .bundle-badge {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 500;
-            padding: 6px 14px;
-            border-radius: 99em;
-            background: var(--color-guidance-fluorescent-green);
-            color: var(--color--seedgreen);
-            margin-bottom: 20px;
-        }
-
-        .bundle-heading {
-            font-family: var(--font-sans);
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 350;
-            letter-spacing: -0.8px;
-            color: var(--color--seedgreen);
-            line-height: 1.1;
-            margin-bottom: 16px;
-        }
-
-        .bundle-body {
-            font-size: 16px;
-            font-weight: 350;
-            color: var(--color--olivegreen);
-            line-height: 1.6;
-            max-width: 480px;
-            margin: 0 auto 28px;
-        }
-
-        .btn-pill-green {
-            display: inline-flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
             align-items: center;
-            gap: 6px;
-            font-family: var(--font-sans);
-            font-size: 14px;
-            font-weight: 350;
-            border-radius: 99em;
-            padding: 10px 16px;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            background: var(--color--seedgreen);
-            color: var(--color--snowwhite);
-            transition: background 0.2s ease;
         }
 
-        .btn-pill-green:hover { background: var(--color--seedgreen-hover); }
+        .interstitial-text {
+            max-width: 480px;
+        }
 
-        .bundle-visual {
-            margin-top: 40px;
+        .interstitial-text p {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            font-weight: 350;
+            color: var(--color--seedgreen);
+            line-height: 1.65;
+            letter-spacing: -0.2px;
+        }
+
+        .interstitial-photo {
+            width: 100%;
+            height: 240px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1e4640, #28584e 50%, #1a3028);
             display: flex;
+            align-items: center;
             justify-content: center;
+        }
+
+        .interstitial-photo-label {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(188, 202, 196, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .interstitial-section { padding: 40px 16px; }
+            .interstitial-inner { grid-template-columns: 1fr; gap: 24px; }
+            .interstitial-photo { height: 200px; }
+        }
+
+
+        /* --- ARTICLES SECTION --- */
+        .articles-section {
+            background: var(--color--foamwhite);
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        .articles-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .articles-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 40px;
             gap: 16px;
         }
 
-        .bundle-jar {
-            width: 80px;
-            height: 100px;
-            border-radius: 8px 8px 12px 12px;
+        .articles-header-text h2 {
+            font-family: var(--font-sans);
+            font-size: clamp(26px, 3.5vw, 36px);
+            font-weight: 350;
+            letter-spacing: -0.6px;
+            color: var(--color--seedgreen);
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+
+        .articles-header-text p {
+            font-size: 15px;
+            font-weight: 350;
+            color: var(--color--olivegreen);
+        }
+
+        .articles-viewall {
+            font-size: 14px;
+            font-weight: 400;
+            color: #50e8c0;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity 0.2s ease;
+        }
+
+        .articles-viewall:hover { opacity: 0.6; }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .article-card {
+            background: var(--color--snowwhite);
+            border-radius: 16px;
+            overflow: hidden;
+            text-decoration: none;
+            border: 1px solid rgba(80, 232, 192, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .article-card-photo {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .article-card-photo.a1 { background: linear-gradient(135deg, #1e3a30, #2a5a4a); }
+        .article-card-photo.a2 { background: linear-gradient(135deg, #1e4a2d, #3a6e3a); }
+        .article-card-photo.a3 { background: linear-gradient(135deg, #1a2a3a, #2a5a6a); }
+
+        .article-card-photo span {
+            font-size: 40px;
+            opacity: 0.3;
+        }
+
+        .article-card-body {
+            padding: 20px;
+        }
+
+        .article-card-tag {
+            font-size: 11px;
+            font-weight: 500;
+            color: #50e8c0;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
+
+        .article-card-title {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--color--seedgreen);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .article-card-meta {
+            font-size: 12px;
+            font-weight: 350;
+            color: var(--color--olivegreen);
+        }
+
+        @media (max-width: 768px) {
+            .articles-section { padding: 56px 16px; }
+            .articles-header { flex-direction: column; align-items: flex-start; }
+            .articles-grid { grid-template-columns: 1fr; gap: 16px; }
+        }
+
+
+        /* --- CLASSES SECTION --- */
+        .classes-section {
+            background: var(--color--snowwhite);
+            padding: 80px 24px;
             position: relative;
         }
 
-        .bundle-jar::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 14px;
-            right: 14px;
-            height: 12px;
-            border-radius: 4px 4px 0 0;
+        .classes-inner {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .bundle-jar.j1 { background: linear-gradient(180deg, #5a8a5e, #3d6a40); }
-        .bundle-jar.j1::before { background: #6b9a6e; }
-        .bundle-jar.j2 { background: linear-gradient(180deg, #3d7a6f, #2d6a5f); }
-        .bundle-jar.j2::before { background: #4d8a7f; }
-        .bundle-jar.j3 { background: linear-gradient(180deg, #4a7a9a, #3a6a8a); }
-        .bundle-jar.j3::before { background: #5a8aaa; }
+        .classes-heading {
+            font-family: var(--font-sans);
+            font-size: clamp(26px, 3.5vw, 36px);
+            font-weight: 350;
+            letter-spacing: -0.6px;
+            color: var(--color--seedgreen);
+            line-height: 1.15;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .classes-subtitle {
+            font-size: 15px;
+            font-weight: 350;
+            color: var(--color--olivegreen);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .classes-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .classes-column-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #50e8c0;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 16px;
+        }
+
+        .class-card {
+            background: var(--color--foamwhite);
+            border-radius: 14px;
+            padding: 20px 24px;
+            text-decoration: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            border: 1px solid rgba(80, 232, 192, 0.05);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            margin-bottom: 12px;
+        }
+
+        .class-card:last-child { margin-bottom: 0; }
+
+        .class-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(80, 232, 192, 0.15);
+        }
+
+        .class-card-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(80, 232, 192, 0.06);
+            border-radius: 10px;
+        }
+
+        .class-card-text h3 {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--color--seedgreen);
+            margin-bottom: 4px;
+        }
+
+        .class-card-text p {
+            font-size: 13px;
+            font-weight: 350;
+            color: var(--color--olivegreen);
+            line-height: 1.5;
+        }
+
+        .classes-footer {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .classes-footer a {
+            font-size: 14px;
+            font-weight: 400;
+            color: #50e8c0;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .classes-footer a:hover { opacity: 0.6; }
+
+        @media (max-width: 768px) {
+            .classes-section { padding: 56px 16px; }
+            .classes-columns { grid-template-columns: 1fr; gap: 24px; }
+        }
 
 
         /* --- TECHNOLOGY / APPROACH --- */
@@ -871,7 +1052,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--color--seedgreen);
+            background: #50e8c0;
             flex-shrink: 0;
         }
 
@@ -912,7 +1093,7 @@
             font-weight: 350;
             color: var(--color--olivegreen);
             padding: 8px 0;
-            border-bottom: 1px solid rgba(28, 58, 19, 0.08);
+            border-bottom: 1px solid rgba(80, 232, 192, 0.06);
             display: flex;
             align-items: flex-start;
             gap: 10px;
@@ -935,130 +1116,17 @@
         }
 
 
-        /* --- EDUCATION --- */
-        .education-section {
-            background: var(--color--snowwhite);
-            padding: 80px 24px;
-        }
-
-        .education-inner {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .education-heading {
-            font-family: var(--font-sans);
-            font-size: clamp(28px, 4vw, 40px);
-            font-weight: 350;
-            letter-spacing: -0.8px;
-            color: var(--color--seedgreen);
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .education-stat {
-            font-family: var(--font-sans);
-            font-size: clamp(52px, 8vw, 96px);
-            font-weight: 300;
-            letter-spacing: -2px;
-            color: var(--color--seedgreen);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .education-stat-unit {
-            font-size: clamp(20px, 3vw, 32px);
-            font-weight: 350;
-            letter-spacing: -0.5px;
-        }
-
-        .education-stat-desc {
-            font-size: 16px;
-            font-weight: 350;
-            color: var(--color--olivegreen);
-            max-width: 520px;
-            margin: 0 auto 32px;
-            line-height: 1.6;
-        }
-
-        .education-actions {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn-discover {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--font-sans);
-            font-size: 14px;
-            font-weight: 350;
-            border-radius: 99em;
-            padding: 12px 20px;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            background: var(--color--seedgreen);
-            color: var(--color--snowwhite);
-            transition: background 0.2s ease;
-        }
-
-        .btn-discover:hover { background: var(--color--seedgreen-hover); }
-
-        .btn-discover svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--color--snowwhite);
-        }
-
-        .btn-outline-green {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: var(--font-sans);
-            font-size: 14px;
-            font-weight: 350;
-            border-radius: 99em;
-            padding: 10px 16px;
-            text-decoration: none;
-            cursor: pointer;
-            border: 1px solid rgba(28, 58, 19, 0.2);
-            background: transparent;
-            color: var(--color--seedgreen);
-            transition: all 0.2s ease;
-        }
-
-        .btn-outline-green:hover {
-            border-color: var(--color--seedgreen);
-            background: rgba(28, 58, 19, 0.04);
-        }
-
-
-        /* --- SOCIAL PROOF --- */
+        /* --- SOCIAL PROOF STATS --- */
         .proof-section {
             background: var(--color--snowwhite);
             padding: 64px 24px;
-            border-top: 1px solid rgba(28, 58, 19, 0.06);
+            border-top: 1px solid rgba(80, 232, 192, 0.05);
         }
 
         .proof-inner {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
-        }
-
-        .proof-heading {
-            font-family: var(--font-sans);
-            font-size: clamp(24px, 3.5vw, 36px);
-            font-weight: 350;
-            letter-spacing: -0.8px;
-            color: var(--color--seedgreen);
-            line-height: 1.15;
-            margin-bottom: 40px;
         }
 
         .proof-stats {
@@ -1071,7 +1139,7 @@
 
         .proof-stat-number {
             font-family: var(--font-sans);
-            font-size: clamp(36px, 5vw, 56px);
+            font-size: clamp(40px, 5vw, 60px);
             font-weight: 300;
             letter-spacing: -1px;
             color: var(--color--seedgreen);
@@ -1091,101 +1159,120 @@
         }
 
 
-        /* --- STORIES / ARTICLES --- */
-        .stories-section {
-            background: var(--color--snowwhite);
-            padding: 64px 24px;
+        /* --- ABOUT SECTION --- */
+        .about-section {
+            background: var(--color--foamwhite);
+            padding: 80px 24px;
+            position: relative;
         }
 
-        .stories-inner {
+        .about-inner {
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .stories-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            margin-bottom: 32px;
-            gap: 16px;
-        }
-
-        .stories-heading {
-            font-family: var(--font-sans);
-            font-size: clamp(22px, 3vw, 30px);
-            font-weight: 350;
-            letter-spacing: -0.5px;
-            color: var(--color--seedgreen);
-            line-height: 1.2;
-            max-width: 500px;
-        }
-
-        .stories-link {
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--color--seedgreen);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            white-space: nowrap;
-            transition: opacity 0.2s ease;
-        }
-
-        .stories-link:hover { opacity: 0.6; }
-
-        .stories-grid {
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .story-card {
-            border-radius: 16px;
-            overflow: hidden;
-            text-decoration: none;
-            transition: transform 0.2s ease;
-        }
-
-        .story-card:hover { transform: translateY(-2px); }
-
-        .story-card-visual {
-            height: 180px;
-            display: flex;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
             align-items: center;
-            justify-content: center;
         }
 
-        .story-card-visual.v1 { background: linear-gradient(135deg, #2d4a3e, #4a7a5e); }
-        .story-card-visual.v2 { background: linear-gradient(135deg, #3a5a2d, #6b8e4a); }
-        .story-card-visual.v3 { background: linear-gradient(135deg, #1a3a4a, #4a7a8a); }
-
-        .story-card-visual span {
-            font-size: 40px;
-            opacity: 0.3;
+        .about-text h2 {
+            font-family: var(--font-sans);
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 350;
+            letter-spacing: -0.8px;
+            color: var(--color--seedgreen);
+            line-height: 1.1;
+            margin-bottom: 16px;
         }
 
-        .story-card-body { padding: 16px; }
-
-        .story-card-tag {
-            font-size: 12px;
-            font-weight: 500;
+        .about-text p {
+            font-size: 15px;
+            font-weight: 350;
             color: var(--color--olivegreen);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .about-card {
+            background: var(--color--snowwhite);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(80, 232, 192, 0.05);
+        }
+
+        .about-card h4 {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color--seedgreen);
             margin-bottom: 6px;
         }
 
-        .story-card-title {
-            font-family: var(--font-sans);
-            font-size: 16px;
+        .about-card p {
+            font-size: 13px;
+            font-weight: 350;
+            color: var(--color--olivegreen);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .about-link {
+            font-size: 14px;
             font-weight: 400;
-            color: var(--color--seedgreen);
-            line-height: 1.35;
+            color: #50e8c0;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .about-link:hover { opacity: 0.6; }
+
+        .about-photo {
+            width: 100%;
+            height: 360px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #1a3028 0%, #28584e 35%, #1e4640 65%, #163430 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 40% 50%, rgba(80, 232, 192, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(80, 232, 192, 0.04) 0%, transparent 40%);
+        }
+
+        .about-photo-label {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(188, 202, 196, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         @media (max-width: 768px) {
-            .stories-header { flex-direction: column; align-items: flex-start; }
-            .stories-grid { grid-template-columns: 1fr; }
-            .story-card-visual { height: 140px; }
+            .about-section { padding: 56px 16px; }
+            .about-grid { grid-template-columns: 1fr; gap: 32px; }
+            .about-photo { height: 260px; order: -1; }
+            .about-cards { grid-template-columns: 1fr; }
         }
 
 
@@ -1247,7 +1334,7 @@
             margin-top: 40px;
             height: 200px;
             border-radius: 20px;
-            background: linear-gradient(135deg, #1c3a13 0%, #2d5a25 30%, #3d7a34 60%, #1c3a13 100%);
+            background: linear-gradient(135deg, #12181a 0%, #1e4640 30%, #28584e 60%, #12181a 100%);
             position: relative;
             overflow: hidden;
         }
@@ -1257,8 +1344,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(211, 250, 153, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 30%, rgba(252, 252, 247, 0.04) 0%, transparent 40%);
+                radial-gradient(circle at 20% 50%, rgba(80, 232, 192, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(80, 232, 192, 0.04) 0%, transparent 40%);
         }
 
         .lab-visual-text {
@@ -1270,7 +1357,7 @@
             font-weight: 400;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: rgba(252, 252, 247, 0.3);
+            color: rgba(188, 202, 196, 0.3);
         }
 
 
@@ -1278,6 +1365,7 @@
         .cta-section {
             background: var(--color--snowwhite);
             padding: 80px 24px 96px;
+            position: relative;
         }
 
         .cta-inner {
@@ -1300,9 +1388,66 @@
             font-size: 16px;
             font-weight: 350;
             color: var(--color--olivegreen);
-            margin: 0 auto 28px;
+            margin: 0 auto 32px;
             max-width: 440px;
             line-height: 1.6;
+        }
+
+        .btn-pill-green {
+            gap: 6px;
+            padding: 12px 24px;
+            background: #50e8c0;
+            color: #0a1210;
+            font-size: 15px;
+        }
+
+        .btn-pill-green:hover { background: #6aecd0; }
+
+        /* Newsletter inline form */
+        .cta-newsletter {
+            max-width: 420px;
+            margin: 32px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .cta-newsletter input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid rgba(80, 232, 192, 0.12);
+            border-radius: 99em;
+            font-size: 14px;
+            font-family: var(--font-sans);
+            background: var(--color--foamwhite);
+            color: var(--color--seedgreen);
+            transition: border-color 0.2s ease;
+        }
+
+        .cta-newsletter input:focus {
+            outline: none;
+            border-color: rgba(80, 232, 192, 0.3);
+        }
+
+        .cta-newsletter input::placeholder { color: var(--color--olivegreen); }
+
+        .cta-newsletter button {
+            padding: 12px 20px;
+            border-radius: 99em;
+            border: none;
+            background: #50e8c0;
+            color: #0a1210;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .cta-newsletter button:hover { background: #6aecd0; }
+
+        @media (max-width: 480px) {
+            .cta-newsletter { flex-direction: column; }
         }
 
 
@@ -1376,7 +1521,7 @@
         }
 
         .modal-close:hover {
-            background: rgba(28, 58, 19, 0.1);
+            background: rgba(80, 232, 192, 0.1);
             color: var(--color--seedgreen);
         }
 
@@ -1391,7 +1536,7 @@
             width: 64px;
             height: 64px;
             margin: 0 auto 16px;
-            background: rgba(28, 58, 19, 0.08);
+            background: rgba(80, 232, 192, 0.08);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1423,7 +1568,7 @@
         .modal-input {
             width: 100%;
             padding: 16px;
-            border: 1px solid rgba(28, 58, 19, 0.15);
+            border: 1px solid rgba(80, 232, 192, 0.1);
             border-radius: 10px;
             font-size: 16px;
             font-family: var(--font-sans);
@@ -1436,7 +1581,7 @@
         .modal-input:focus {
             outline: none;
             border-color: var(--color--seedgreen);
-            box-shadow: 0 0 0 3px rgba(28, 58, 19, 0.08);
+            box-shadow: 0 0 0 3px rgba(80, 232, 192, 0.08);
         }
 
         .modal-input::placeholder { color: var(--color--olivegreen); }
@@ -1444,17 +1589,14 @@
         .modal-btn {
             width: 100%;
             padding: 16px;
-            background: var(--color--seedgreen);
-            color: var(--color--snowwhite);
-            border: none;
+            background: #50e8c0;
+            color: #0a1210;
             border-radius: 10px;
             font-size: 16px;
             font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
         }
 
-        .modal-btn:hover { background: var(--color--seedgreen-hover); }
+        .modal-btn:hover { background: #6aecd0; }
 
         .modal-benefits {
             display: flex;
@@ -1487,12 +1629,19 @@
         @media (max-width: 480px) {
             .modal { padding: 32px 24px; }
         }
+
+        /* Ensure section content renders above trippy ::before backgrounds */
+        .hero-inner, .tech-inner, .articles-inner, .classes-inner, .cta-inner, .lab-inner, .about-inner, .interstitial-inner {
+            position: relative;
+            z-index: 1;
+        }
     </style>
     <link rel="stylesheet" href="chat-widget.css">
     <link rel="stylesheet" href="shipping-estimator.css">
     <link rel="stylesheet" href="site-enhancements.css">
     <link rel="stylesheet" href="site-search.css">
     <link rel="stylesheet" href="visual-enhancements.css">
+    <link rel="stylesheet" href="trippy-backgrounds.css">
     <link rel="stylesheet" href="cart-styles.css">
 </head>
 <body>
@@ -1513,25 +1662,28 @@
 
 
     <!-- ========== SECTION 1: HERO ========== -->
-    <section class="hero-section">
+    <section class="hero-section trippy-bg-geometry trippy-bg-dark">
         <div class="hero-inner">
             <div class="hero-text">
                 <div class="hero-label">
-                    <div class="hero-label-code">NORED-2026</div>
-                    <div class="hero-label-name">Botanical Research</div>
+                    <div class="hero-label-code">Nored Farms -- Texas Hill Country</div>
                 </div>
-                <h1 class="hero-heading">Ancient Wisdom. Modern Science.</h1>
-                <p class="hero-body">Lab-tested kava, blue lotus, and kanna extracts. Every alkaloid preserved. Every batch verified. Crafted in Texas Hill Country with 15+ years of research.</p>
+                <h1 class="hero-heading">Botanical extracts crafted with science.</h1>
+                <p class="hero-body">Lab-tested kava, blue lotus, and kanna. Every alkaloid preserved. Every batch third-party verified.</p>
                 <div class="hero-actions">
-                    <button class="btn-pill btn-pill-light" id="heroCta">Get Early Access</button>
-                    <a href="classroom.html" class="btn-text-link">Explore Classroom</a>
+                    <a href="#products" class="btn-pill btn-pill-light">Shop Products</a>
+                    <a href="classes.html" class="btn-text-link">Explore Classes</a>
+                </div>
+                <div class="hero-quicknav">
+                    <a href="#products">Products</a>
+                    <a href="#articles">Articles</a>
+                    <a href="#classes">Classes</a>
+                    <a href="#about">About Us</a>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="hero-jar">
-                    <div class="hero-jar-label">
-                        <span>Nored Farms<br>Full Spectrum</span>
-                    </div>
+                <div class="hero-photo">
+                    <span class="hero-photo-label">Photo: Blue Lotus Field</span>
                 </div>
             </div>
         </div>
@@ -1542,7 +1694,7 @@
     <section class="products-section" id="products">
         <div class="products-header">
             <div class="products-header-text">
-                <h2>Botanical science for every need.</h2>
+                <h2>Our Products</h2>
                 <p>Precision-extracted compounds. Full alkaloid profiles. Third-party verified.</p>
             </div>
             <div class="products-header-right">
@@ -1637,24 +1789,109 @@
     </section>
 
 
-    <!-- ========== SECTION 3: BUNDLE / FEATURE (snowwhite overlap) ========== -->
-    <section class="bundle-section">
-        <div class="bundle-inner">
-            <span class="bundle-badge">Bundle + Save 25%</span>
-            <h2 class="bundle-heading">The Hill Country Collection.</h2>
-            <p class="bundle-body">Three signature extracts in one set. Kava, blue lotus, and kanna -- curated for those who want the full botanical spectrum.</p>
-            <a href="products/extracts.html" class="btn-pill-green">Shop the Bundle</a>
-            <div class="bundle-visual">
-                <div class="bundle-jar j1"></div>
-                <div class="bundle-jar j2"></div>
-                <div class="bundle-jar j3"></div>
+    <!-- ========== SECTION 3: INTERSTITIAL ========== -->
+    <section class="interstitial-section">
+        <div class="interstitial-inner reveal">
+            <div class="interstitial-text">
+                <p>From seed to extract, we handle every step. Our Texas Hill Country facility combines 15 years of ethnobotanical research with GMP-standard extraction.</p>
+            </div>
+            <div class="interstitial-photo">
+                <span class="interstitial-photo-label">Photo: Extraction Facility</span>
             </div>
         </div>
     </section>
 
 
-    <!-- ========== SECTION 4: TECHNOLOGY / APPROACH ========== -->
-    <section class="tech-section">
+    <!-- ========== SECTION 4: ARTICLES ========== -->
+    <section class="articles-section" id="articles">
+        <div class="articles-inner">
+            <div class="articles-header reveal">
+                <div class="articles-header-text">
+                    <h2>Research from our lab</h2>
+                    <p>Deep dives into the science behind every botanical we offer.</p>
+                </div>
+                <a href="blog.html" class="articles-viewall">View All 50+ Articles &rarr;</a>
+            </div>
+            <div class="articles-grid">
+                <a href="articles/adaptogens-science.html" class="article-card reveal">
+                    <div class="article-card-photo a1"><span>&#9878;</span></div>
+                    <div class="article-card-body">
+                        <div class="article-card-tag">Alkaloid Science</div>
+                        <div class="article-card-title">Adaptogens: The Science of Stress Response</div>
+                        <div class="article-card-meta">8 min read</div>
+                    </div>
+                </a>
+                <a href="articles/kavalactones-explained.html" class="article-card reveal reveal-d1">
+                    <div class="article-card-photo a2"><span>&#127807;</span></div>
+                    <div class="article-card-body">
+                        <div class="article-card-tag">Kava Science</div>
+                        <div class="article-card-title">Kavalactones Explained: The Science Behind Kava</div>
+                        <div class="article-card-meta">12 min read</div>
+                    </div>
+                </a>
+                <a href="articles/extraction-methods.html" class="article-card reveal reveal-d2">
+                    <div class="article-card-photo a3"><span>&#128300;</span></div>
+                    <div class="article-card-body">
+                        <div class="article-card-tag">Extraction Methods</div>
+                        <div class="article-card-title">Extraction Methods Compared: Water vs Ethanol</div>
+                        <div class="article-card-meta">10 min read</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== SECTION 5: CLASSES ========== -->
+    <section class="classes-section" id="classes">
+        <div class="classes-inner">
+            <h2 class="classes-heading reveal">Learn from the source</h2>
+            <p class="classes-subtitle reveal reveal-d1">Hands-on education in cultivation, extraction, and botanical science.</p>
+            <div class="classes-columns">
+                <div class="reveal reveal-d1">
+                    <div class="classes-column-label">Growing Classes</div>
+                    <a href="classroom/growing.html" class="class-card">
+                        <div class="class-card-icon">&#127793;</div>
+                        <div class="class-card-text">
+                            <h3>Cultivation Techniques</h3>
+                            <p>Soil prep, propagation, and harvest timing for medicinal botanicals.</p>
+                        </div>
+                    </a>
+                    <a href="classroom/infrastructure.html" class="class-card">
+                        <div class="class-card-icon">&#9881;</div>
+                        <div class="class-card-text">
+                            <h3>Infrastructure</h3>
+                            <p>Greenhouse builds, irrigation, and climate control systems.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="reveal reveal-d2">
+                    <div class="classes-column-label">Extraction Classes</div>
+                    <a href="classroom/extraction.html" class="class-card">
+                        <div class="class-card-icon">&#9883;</div>
+                        <div class="class-card-text">
+                            <h3>Extraction Methods</h3>
+                            <p>Cold-process, ethanol, and CO2 extraction techniques.</p>
+                        </div>
+                    </a>
+                    <a href="classroom/effects.html" class="class-card">
+                        <div class="class-card-icon">&#128300;</div>
+                        <div class="class-card-text">
+                            <h3>Effects & Alkaloids</h3>
+                            <p>Alkaloid profiles, bioavailability, and compound interactions.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="classes-footer reveal reveal-d3">
+                <a href="classes.html">Browse All Classes &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== SECTION 6: OUR APPROACH ========== -->
+    <section class="tech-section trippy-bg-molecules trippy-bg-dark">
         <div class="tech-inner">
             <div class="green-dot-label reveal">Our Approach</div>
             <h2 class="tech-heading reveal reveal-d1">From plant to extract, every alkaloid preserved.</h2>
@@ -1678,29 +1915,9 @@
     </section>
 
 
-    <!-- ========== SECTION 5: EDUCATION ========== -->
-    <section class="education-section">
-        <div class="education-inner">
-            <h2 class="education-heading reveal">You deserve to know what is in your extract.</h2>
-            <div class="education-stat reveal reveal-d1">
-                58+<span class="education-stat-unit"> articles</span>
-            </div>
-            <p class="education-stat-desc reveal reveal-d2">From alkaloid profiles to extraction methods, our research library covers the science behind every botanical we offer. Because transparency is not optional.</p>
-            <div class="education-actions reveal reveal-d3">
-                <a href="blog.html" class="btn-discover">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    Explore Research Library
-                </a>
-                <a href="classroom.html" class="btn-outline-green">Enter Classroom</a>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ========== SECTION 6: SOCIAL PROOF ========== -->
+    <!-- ========== SECTION 7: SOCIAL PROOF STATS ========== -->
     <section class="proof-section">
         <div class="proof-inner">
-            <h2 class="proof-heading reveal">Rooted in research. Trusted by the community.</h2>
             <div class="proof-stats">
                 <div class="proof-stat reveal">
                     <div class="proof-stat-number">15+</div>
@@ -1719,47 +1936,42 @@
     </section>
 
 
-    <!-- ========== SECTION 7: STORIES / ARTICLES ========== -->
-    <section class="stories-section">
-        <div class="stories-inner">
-            <div class="stories-header">
-                <h2 class="stories-heading reveal">Research from our extraction lab.</h2>
-                <a href="blog.html" class="stories-link reveal">All Articles</a>
-            </div>
-            <div class="stories-grid">
-                <a href="articles/adaptogens-science.html" class="story-card reveal">
-                    <div class="story-card-visual v1"><span>&#9878;</span></div>
-                    <div class="story-card-body">
-                        <div class="story-card-tag">Alkaloid Science</div>
-                        <div class="story-card-title">How Adaptogens Work: The Science of Stress Response</div>
+    <!-- ========== SECTION 8: ABOUT ========== -->
+    <section class="about-section" id="about">
+        <div class="about-inner">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <h2>Rooted in Texas Hill Country</h2>
+                    <p>What started as a personal fascination with ethnobotany grew into a research-driven farm and extraction lab. For over 15 years, we have studied the plants that cultures around the world have used for millennia -- and built the science to honor their potential.</p>
+                    <div class="about-cards">
+                        <div class="about-card">
+                            <h4>Our Mission</h4>
+                            <p>Make high-quality botanical extracts accessible, transparent, and backed by real science.</p>
+                        </div>
+                        <div class="about-card">
+                            <h4>Sustainability</h4>
+                            <p>Single-origin sourcing, minimal waste extraction, and regenerative farming practices.</p>
+                        </div>
                     </div>
-                </a>
-                <a href="articles/kavalactones-explained.html" class="story-card reveal reveal-d1">
-                    <div class="story-card-visual v2"><span>&#127807;</span></div>
-                    <div class="story-card-body">
-                        <div class="story-card-tag">Kava Science</div>
-                        <div class="story-card-title">Kavalactones Explained: The Science Behind Kava</div>
+                    <a href="about-us.html" class="about-link">Read Our Full Story &rarr;</a>
+                </div>
+                <div class="reveal reveal-d1">
+                    <div class="about-photo">
+                        <span class="about-photo-label">Photo: Farm Aerial View</span>
                     </div>
-                </a>
-                <a href="articles/extraction-methods.html" class="story-card reveal reveal-d2">
-                    <div class="story-card-visual v3"><span>&#128300;</span></div>
-                    <div class="story-card-body">
-                        <div class="story-card-tag">Extraction Methods</div>
-                        <div class="story-card-title">Water vs Ethanol: Comparing Extraction Solvents</div>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
 
 
-    <!-- ========== SECTION 8: LAB TEASER ========== -->
-    <section class="lab-section">
+    <!-- ========== SECTION 9: LAB TEASER ========== -->
+    <section class="lab-section trippy-bg-egyptian trippy-bg-dark">
         <div class="lab-inner">
             <div class="lab-dot-label reveal">Texas Hill Country</div>
             <h2 class="lab-heading reveal reveal-d1">Nored<span class="lab-heading-bracket">[</span>Labs<span class="lab-heading-bracket">]</span></h2>
             <p class="lab-body reveal reveal-d2">Because quality is not just a claim. Our extraction lab operates under GMP standards with full traceability from source material to finished product.</p>
-            <a href="lab-2d.html" class="btn-text-link reveal reveal-d3" style="color: var(--color--seedgreen); text-decoration: underline; text-underline-offset: 3px;">Enter the Lab</a>
+            <a href="lab-2d.html" class="btn-text-link reveal reveal-d3" style="color: #50e8c0; text-decoration: underline; text-underline-offset: 3px;">Enter the Lab</a>
             <div class="lab-visual reveal">
                 <span class="lab-visual-text">Nored Labs -- Est. 2010</span>
             </div>
@@ -1767,12 +1979,18 @@
     </section>
 
 
-    <!-- ========== SECTION 9: FINAL CTA ========== -->
-    <section class="cta-section">
+    <!-- ========== SECTION 10: FINAL CTA ========== -->
+    <section class="cta-section trippy-bg-runes trippy-bg-dark">
         <div class="cta-inner">
             <h2 class="cta-heading reveal">Experience botanical extracts done right.</h2>
             <p class="cta-body reveal reveal-d1">Lab-tested. GMP compliant. Rooted in evidence. Join 500+ people who trust Nored Farms.</p>
             <button class="btn-pill-green reveal reveal-d2" id="finalCta">Get Early Access</button>
+            <div class="reveal reveal-d3">
+                <div class="cta-newsletter">
+                    <input type="email" placeholder="Your email address" id="ctaEmail">
+                    <button type="button" id="ctaSubscribe">Subscribe</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1919,93 +2137,26 @@
     </div>
 
     <script>
-        // Product Carousel
+        // Product Carousel — handled by script.js (initScrollLockCarousel)
+        // Just set up dots + arrow button wiring here
         (function() {
-            const carousel = document.getElementById('productsCarousel');
-            const viewport = document.getElementById('carouselViewport');
-            const dotsContainer = document.getElementById('carouselDots');
-            const prevBtn = document.getElementById('carouselPrev');
-            const nextBtn = document.getElementById('carouselNext');
-            const cards = carousel.querySelectorAll('.product-card');
-            const cardCount = cards.length;
+            var carousel = document.getElementById('productsCarousel');
+            var dotsContainer = document.getElementById('carouselDots');
+            if (!carousel || !dotsContainer) return;
+            var cards = carousel.querySelectorAll('.product-card');
 
             // Create dots
             cards.forEach(function(_, i) {
-                const dot = document.createElement('button');
+                var dot = document.createElement('button');
                 dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
                 dot.setAttribute('aria-label', 'Go to product ' + (i + 1));
-                dot.addEventListener('click', function() { scrollToCard(i); });
                 dotsContainer.appendChild(dot);
             });
-
-            var dots = dotsContainer.querySelectorAll('.carousel-dot');
-
-            function getCardWidth() {
-                return cards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap);
-            }
-
-            function scrollToCard(index) {
-                var gap = parseInt(getComputedStyle(carousel).gap);
-                carousel.scrollTo({ left: index * (cards[0].offsetWidth + gap), behavior: 'smooth' });
-            }
-
-            function getActiveIndex() {
-                var scrollLeft = carousel.scrollLeft;
-                var cardW = getCardWidth();
-                return Math.round(scrollLeft / cardW);
-            }
-
-            function updateState() {
-                var index = getActiveIndex();
-                var maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                var atStart = carousel.scrollLeft < 10;
-                var atEnd = carousel.scrollLeft >= maxScroll - 10;
-
-                prevBtn.disabled = atStart;
-                nextBtn.disabled = atEnd;
-
-                if (carousel.scrollLeft > 10) {
-                    viewport.classList.add('scrolled');
-                } else {
-                    viewport.classList.remove('scrolled');
-                }
-                if (atEnd) {
-                    viewport.classList.add('at-end');
-                } else {
-                    viewport.classList.remove('at-end');
-                }
-
-                dots.forEach(function(dot, i) {
-                    if (i === index) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-            }
-
-            prevBtn.addEventListener('click', function() {
-                var index = getActiveIndex();
-                if (index > 0) scrollToCard(index - 1);
-            });
-
-            nextBtn.addEventListener('click', function() {
-                var index = getActiveIndex();
-                if (index < cardCount - 1) scrollToCard(index + 1);
-            });
-
-            carousel.addEventListener('scroll', updateState, { passive: true });
-            window.addEventListener('resize', updateState);
-            updateState();
 
             // Keyboard navigation
             carousel.setAttribute('tabindex', '0');
             carousel.setAttribute('role', 'region');
             carousel.setAttribute('aria-label', 'Product carousel');
-            carousel.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft') { prevBtn.click(); e.preventDefault(); }
-                if (e.key === 'ArrowRight') { nextBtn.click(); e.preventDefault(); }
-            });
         })();
 
         // Modal functionality
@@ -2016,7 +2167,6 @@
         const form = document.getElementById('signupForm');
 
         // Open modal triggers
-        document.getElementById('heroCta').addEventListener('click', openModal);
         document.getElementById('finalCta').addEventListener('click', openModal);
 
         function openModal() {
@@ -2079,6 +2229,25 @@
             }, 1000);
         });
 
+        // CTA newsletter subscribe
+        const ctaSubscribeBtn = document.getElementById('ctaSubscribe');
+        if (ctaSubscribeBtn) {
+            ctaSubscribeBtn.addEventListener('click', function() {
+                const emailInput = document.getElementById('ctaEmail');
+                if (emailInput && emailInput.value) {
+                    localStorage.setItem('noredfarms-subscribed', 'true');
+                    localStorage.setItem('noredfarms-email', emailInput.value);
+                    ctaSubscribeBtn.textContent = 'Subscribed';
+                    ctaSubscribeBtn.disabled = true;
+                    emailInput.value = '';
+                    setTimeout(() => {
+                        ctaSubscribeBtn.textContent = 'Subscribe';
+                        ctaSubscribeBtn.disabled = false;
+                    }, 3000);
+                }
+            });
+        }
+
         // Scroll reveal
         const revealEls = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
@@ -2100,44 +2269,15 @@
     <script src="site-enhancements.js"></script>
     <script src="site-search.js"></script>
     <script src="visual-enhancements.js"></script>
-    <!-- Cart Toggle Button -->
-    <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        <span class="cart-count">0</span>
-    </button>
-
-    <!-- Cart Overlay -->
-    <div class="cart-overlay" id="cartOverlay"></div>
-
-    <!-- Cart Sidebar -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Your Cart</h2>
-            <button class="cart-close" id="cartClose" aria-label="Close cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-        </div>
-        <div class="cart-body">
-            <div id="cartEmpty" class="cart-empty">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                <h3>Your cart is empty</h3>
-                <p>Browse our products to get started</p>
-            </div>
-            <div id="cartItems"></div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-summary">
-                <div class="cart-summary-row total"><span>Total</span><span id="cartTotal">$0.00</span></div>
-            </div>
-            <button class="cart-checkout-btn" id="checkoutBtn" disabled>Checkout</button>
-            <div class="cart-security">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                Secure checkout powered by Stripe
-            </div>
-        </div>
-    </div>
-
-    <!-- Stripe Checkout Integration -->
-    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Cart removed - checkout not yet active -->
     <script src="stripe-config.js"></script>
     <script src="cart.js"></script>
+
+    <!-- Auth (site-wide) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="courses/supabase-config.js"></script>
+    <script src="courses/auth.js"></script>
+    <script src="favorites.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', () => initSiteAuth());</script>
 </body>
 </html>

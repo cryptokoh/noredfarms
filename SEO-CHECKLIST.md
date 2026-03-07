@@ -32,7 +32,7 @@
 - [x] LocalBusiness schema
 - [x] WebSite schema
 - [x] WebPage schema
-- [x] Product schemas (Kratom, Kava, Blue Lotus)
+- [x] Product schemas (Kanna, Kava, Blue Lotus)
 - [x] FAQPage schema
 - [x] BreadcrumbList schema
 
@@ -96,45 +96,45 @@ Add SEO tags to remaining pages:
 ### Primary Keywords
 | Keyword | Search Volume | Difficulty | Target Page |
 |---------|--------------|------------|-------------|
-| kratom extract | Medium | Medium | Homepage |
+| kanna extract | Medium | Medium | Homepage |
 | kava extract | Medium | Low | Homepage |
 | blue lotus extract | Low | Low | Homepage |
 | botanical extracts texas | Low | Low | Homepage |
-| kratom texas | Medium | Medium | Homepage |
+| kanna texas | Medium | Medium | Homepage |
 
 ### Educational Keywords
 | Keyword | Target Page |
 |---------|-------------|
-| kratom alkaloids | Classroom |
+| kanna alkaloids | Classroom |
 | kavalactones benefits | Classroom |
-| kratom dosing guide | Blog |
+| kanna dosing guide | Blog |
 | kava effects | Blog |
 | blue lotus tea benefits | Blog |
 
 ### Long-Tail Opportunities
-- "lab tested kratom texas"
+- "lab tested kanna texas"
 - "premium kava extract online"
 - "blue lotus extract for sleep"
 - "ethnobotanical supplier usa"
-- "GMP certified kratom"
+- "GMP certified kanna"
 
 ---
 
 ## Content Recommendations
 
 ### Blog Topics for SEO
-1. "Complete Guide to Kratom Alkaloids" (target: kratom education)
-2. "Kava vs Kratom: Understanding the Difference" (comparison traffic)
+1. "Complete Guide to Kanna Alkaloids" (target: kanna education)
+2. "Kava vs Kanna: Understanding the Difference" (comparison traffic)
 3. "Blue Lotus: History, Benefits & Modern Uses" (low competition)
-4. "How to Read Kratom Lab Results" (trust building)
-5. "Texas Kratom Laws 2025" (local SEO)
+4. "How to Read Kanna Lab Results" (trust building)
+5. "Texas Kanna Laws 2025" (local SEO)
 
 ### FAQ Expansion
 Add more FAQs to capture "People Also Ask" snippets:
-- "Is kratom legal in Texas?"
+- "Is kanna legal in Texas?"
 - "How long does kava last?"
 - "What is blue lotus used for?"
-- "How to take kratom extract?"
+- "How to take kanna extract?"
 
 ---
 

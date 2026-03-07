@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/dev-console-filter.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>My Account | Nored Farms</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="account-styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../courses/supabase-config.js"></script>
+    <script src="../courses/auth.js"></script>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="../index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html#products">Products</a>
+            <a href="../blog.html">Articles</a>
+            <a href="../classes.html">Classes</a>
+            <a href="../about-us.html">Company</a>
+            <a href="../contact.html" class="nav-cta">Get Started</a>
+        </div>
+        <button class="hamburger" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main class="account-page">
+        <div class="account-container">
+            <div class="account-header">
+                <h1>My Account</h1>
+                <p>Welcome back, <span id="accountGreeting"></span></p>
+                <button class="account-signout" id="signOutBtn">Sign Out</button>
+            </div>
+
+            <div class="account-tabs">
+                <button class="account-tab active" data-tab="orders">Orders</button>
+                <button class="account-tab" data-tab="favorites">Favorites</button>
+                <button class="account-tab" data-tab="cart">Cart</button>
+            </div>
+
+            <div id="panel-orders" class="tab-panel active">
+                <div id="ordersContent">
+                    <div class="account-loading">Loading orders...</div>
+                </div>
+            </div>
+
+            <div id="panel-favorites" class="tab-panel">
+                <div id="favoritesContent">
+                    <div class="account-loading">Loading favorites...</div>
+                </div>
+            </div>
+
+            <div id="panel-cart" class="tab-panel">
+                <div id="cartContent">
+                    <div class="account-loading">Loading cart...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="seed-footer">
+        <div class="seed-footer-inner">
+            <div class="seed-footer-bottom">
+                <span>&copy; 2026 Nored Farms. All rights reserved.</span>
+                <span>Crafted in Texas Hill Country</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../cart.js"></script>
+    <script src="account-app.js"></script>
+    <script>initSiteAuth();</script>
+</body>
+</html>

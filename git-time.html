@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Git Time Report | Nored Farms</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #12181a;
+            --bg-alt: #181e20;
+            --card: #1e2628;
+            --card-hover: #263032;
+            --teal: #50e8c0;
+            --teal-dim: rgba(80,232,192,0.07);
+            --teal-border: rgba(80,232,192,0.08);
+            --teal-border-strong: rgba(80,232,192,0.15);
+            --text: #bccac4;
+            --text-body: #8e9c98;
+            --text-muted: #506460;
+            --error: #c45c4b;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 350;
+            background: var(--bg);
+            color: var(--text-body);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ── Password Gate ── */
+        #gate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .gate-card {
+            background: var(--card);
+            border: 1px solid var(--teal-border);
+            border-radius: 16px;
+            padding: 48px 40px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+        }
+        .gate-card h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .gate-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+        .gate-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg);
+            border: 1px solid var(--teal-border);
+            border-radius: 99em;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 350;
+            outline: none;
+            transition: border-color 0.2s ease;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        .gate-input:focus { border-color: var(--teal); }
+        .gate-input::placeholder { color: var(--text-muted); letter-spacing: 0; }
+        .gate-btn {
+            margin-top: 16px;
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--teal);
+            color: var(--bg);
+            border: none;
+            border-radius: 99em;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        .gate-btn:hover { opacity: 0.85; }
+        .gate-error {
+            color: var(--error);
+            font-size: 12px;
+            margin-top: 12px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .gate-error.show { opacity: 1; }
+
+        /* ── Report ── */
+        #report { display: none; }
+
+        .report-header {
+            padding: 60px 24px 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--teal-border);
+        }
+        .report-header h1 {
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .report-header .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .report-header .date-range {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 16px;
+            background: var(--teal-dim);
+            border: 1px solid var(--teal-border);
+            border-radius: 99em;
+            font-size: 13px;
+            color: var(--teal);
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 48px 0;
+            border-bottom: 1px solid var(--teal-border);
+        }
+        section:last-child { border-bottom: none; }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+        h3:first-child { margin-top: 0; }
+
+        /* ── Stat Cards ── */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--teal-border);
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+        }
+        .stat-val {
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--teal);
+            line-height: 1.1;
+        }
+        .stat-val.money { font-size: 22px; }
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Tables ── */
+        .table-wrap {
+            overflow-x: auto;
+            margin-bottom: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--teal-border);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        thead th {
+            background: var(--card);
+            color: var(--text-muted);
+            font-weight: 400;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.8px;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--teal-border);
+            position: sticky;
+            top: 0;
+        }
+        tbody td {
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(80,232,192,0.03);
+            color: var(--text-body);
+            white-space: nowrap;
+        }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background: rgba(80,232,192,0.02); }
+        td.num { text-align: right; font-variant-numeric: tabular-nums; }
+        td.accent { color: var(--teal); font-weight: 400; }
+        td.heading-text { color: var(--text); font-weight: 400; }
+        tr.total-row td {
+            border-top: 1px solid var(--teal-border-strong);
+            color: var(--text);
+            font-weight: 400;
+        }
+
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: var(--teal-border-strong);
+        }
+        .tl-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 8px;
+        }
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -23px;
+            top: 7px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--teal);
+            border: 2px solid var(--bg);
+        }
+        .tl-date {
+            font-size: 11px;
+            color: var(--teal);
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+        .tl-title {
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 400;
+        }
+        .tl-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ── Commit Log ── */
+        .commit-log {
+            background: var(--bg-alt);
+            border: 1px solid var(--teal-border);
+            border-radius: 12px;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-size: 12px;
+            line-height: 1.8;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: var(--text-muted);
+        }
+        .commit-log::-webkit-scrollbar { width: 4px; }
+        .commit-log::-webkit-scrollbar-track { background: transparent; }
+        .commit-log::-webkit-scrollbar-thumb { background: var(--teal-border-strong); border-radius: 2px; }
+        .commit-log .c-date { color: var(--teal); opacity: 0.7; }
+        .commit-log .c-msg { color: var(--text-body); }
+
+        /* ── Bar Chart ── */
+        .bar-chart { margin: 24px 0; }
+        .bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        .bar-label {
+            width: 80px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+        .bar-track {
+            flex: 1;
+            height: 20px;
+            background: var(--bg-alt);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 12px;
+        }
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(80,232,192,0.3), var(--teal));
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+        .bar-val {
+            width: 60px;
+            text-align: right;
+            color: var(--text-body);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ── Cost Comparison ── */
+        .cost-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .cost-box {
+            background: var(--card);
+            border: 1px solid var(--teal-border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        .cost-box.highlight {
+            border-color: var(--teal-border-strong);
+            background: var(--teal-dim);
+        }
+        .cost-box .cost-title {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .cost-box .cost-amount {
+            font-size: 32px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        .cost-box.highlight .cost-amount { color: var(--teal); }
+        .cost-box .cost-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ── Savings Badge ── */
+        .savings-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(80,232,192,0.1);
+            border: 1px solid rgba(80,232,192,0.2);
+            border-radius: 99em;
+            color: var(--teal);
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 16px;
+        }
+
+        /* ── Footer ── */
+        .report-footer {
+            padding: 32px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 640px) {
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .cost-compare { grid-template-columns: 1fr; }
+            .stat-val { font-size: 24px; }
+            .report-header h1 { font-size: 22px; }
+            .gate-card { padding: 36px 28px; }
+            section { padding: 36px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="gate">
+    <div class="gate-card">
+        <h2>Git Time Report</h2>
+        <p>Internal project metrics</p>
+        <form onsubmit="return checkPass()">
+            <input type="password" id="pw" class="gate-input" placeholder="password" autocomplete="off" autofocus>
+            <button type="submit" class="gate-btn">Enter</button>
+        </form>
+        <div class="gate-error" id="gate-error">Incorrect password</div>
+    </div>
+</div>
+
+<!-- Report Content -->
+<div id="report">
+
+    <div class="report-header">
+        <h1>Pure Extracts / Nored Farms</h1>
+        <div class="subtitle">Expense & Effort Report</div>
+        <div class="date-range">Jan 13 -- Mar 7, 2026 &middot; 54 days</div>
+    </div>
+
+    <div class="container">
+
+        <!-- Overview Stats -->
+        <section>
+            <h2>Overview</h2>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-val">105</div>
+                    <div class="stat-label">Commits</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">32</div>
+                    <div class="stat-label">Sessions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">~33h</div>
+                    <div class="stat-label">Coding Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">21</div>
+                    <div class="stat-label">Active Days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">499</div>
+                    <div class="stat-label">Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">117K</div>
+                    <div class="stat-label">Lines of Code</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">236</div>
+                    <div class="stat-label">MB on Disk</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">1</div>
+                    <div class="stat-label">Contributor</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repos -->
+        <section>
+            <h2>Repository Breakdown</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Pure Extracts</th>
+                            <th>Nored Farms</th>
+                            <th>Combined</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="heading-text">Start date</td><td>Jan 13, 2026</td><td>Mar 2, 2026</td><td class="accent">Jan 13, 2026</td></tr>
+                        <tr><td class="heading-text">Latest commit</td><td>Mar 1, 2026</td><td>Mar 7, 2026</td><td class="accent">Mar 7, 2026</td></tr>
+                        <tr><td class="heading-text">Calendar span</td><td>48 days</td><td>5 days</td><td class="accent">54 days</td></tr>
+                        <tr><td class="heading-text">Active days</td><td class="num">16</td><td class="num">6</td><td class="num accent">21</td></tr>
+                        <tr><td class="heading-text">Commits</td><td class="num">87</td><td class="num">18</td><td class="num accent">105</td></tr>
+                        <tr><td class="heading-text">Sessions</td><td class="num">24</td><td class="num">8</td><td class="num accent">32</td></tr>
+                        <tr><td class="heading-text">Insertions</td><td class="num">119,716</td><td class="num">112,299</td><td class="num accent">232,015</td></tr>
+                        <tr><td class="heading-text">Deletions</td><td class="num">17,190</td><td class="num">3,109</td><td class="num accent">20,299</td></tr>
+                        <tr><td class="heading-text">Net lines</td><td class="num">102,526</td><td class="num">109,190</td><td class="num accent">211,716</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Codebase Composition -->
+        <section>
+            <h2>Codebase Composition</h2>
+            <div class="bar-chart">
+                <div class="bar-row">
+                    <span class="bar-label">HTML</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:64%"></div></div>
+                    <span class="bar-val">75,338</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">CSS</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div>
+                    <span class="bar-val">29,871</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-label">JavaScript</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:16%"></div></div>
+                    <span class="bar-val">11,998</span>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>File Type</th><th>Count</th><th>Lines</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="heading-text">HTML</td><td class="num">106</td><td class="num">75,338</td></tr>
+                        <tr><td class="heading-text">CSS</td><td class="num">30</td><td class="num">29,871</td></tr>
+                        <tr><td class="heading-text">JavaScript</td><td class="num">34</td><td class="num">11,998</td></tr>
+                        <tr><td class="heading-text">Python</td><td class="num">2</td><td class="num">--</td></tr>
+                        <tr><td class="heading-text">SQL</td><td class="num">6</td><td class="num">--</td></tr>
+                        <tr><td class="heading-text">Images</td><td class="num">249</td><td class="num">--</td></tr>
+                        <tr class="total-row"><td>Total</td><td class="num">499</td><td class="num">~117K</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Work Sessions - Pure Extracts -->
+        <section>
+            <h2>Work Sessions</h2>
+
+            <h3>Pure Extracts (Jan 13 -- Mar 1)</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Session</th><th>Date</th><th>Commits</th><th>Est. Time</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Jan 13</td><td class="num">2</td><td class="num">~40 min</td></tr>
+                        <tr><td>2</td><td>Jan 14</td><td class="num">2</td><td class="num">~40 min</td></tr>
+                        <tr><td>3</td><td>Jan 15</td><td class="num">5</td><td class="num">~67 min</td></tr>
+                        <tr><td>4--5</td><td>Jan 16</td><td class="num">5</td><td class="num">~84 min</td></tr>
+                        <tr><td>6--8</td><td>Jan 19</td><td class="num">18</td><td class="num">~209 min</td></tr>
+                        <tr><td>9--10</td><td>Jan 20</td><td class="num">3</td><td class="num">~92 min</td></tr>
+                        <tr><td>11--14</td><td>Jan 21</td><td class="num">8</td><td class="num">~212 min</td></tr>
+                        <tr><td>15</td><td>Jan 22</td><td class="num">7</td><td class="num">~178 min</td></tr>
+                        <tr><td>16</td><td>Feb 6</td><td class="num">6</td><td class="num">~80 min</td></tr>
+                        <tr><td>17</td><td>Feb 7</td><td class="num">3</td><td class="num">~59 min</td></tr>
+                        <tr><td>18--19</td><td>Feb 13</td><td class="num">3</td><td class="num">~80 min</td></tr>
+                        <tr><td>20</td><td>Feb 14</td><td class="num">2</td><td class="num">~40 min</td></tr>
+                        <tr><td>21</td><td>Feb 15</td><td class="num">8</td><td class="num">~118 min</td></tr>
+                        <tr><td>22</td><td>Feb 24</td><td class="num">1</td><td class="num">~40 min</td></tr>
+                        <tr><td>23</td><td>Feb 26</td><td class="num">12</td><td class="num">~247 min</td></tr>
+                        <tr><td>24</td><td>Mar 1</td><td class="num">2</td><td class="num">~40 min</td></tr>
+                        <tr class="total-row"><td></td><td></td><td class="num">87</td><td class="num">~27 hrs</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Nored Farms (Mar 2 -- Mar 7)</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Session</th><th>Date</th><th>Commits</th><th>Est. Time</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Mar 2</td><td class="num">3</td><td class="num">~48 min</td></tr>
+                        <tr><td>2</td><td>Mar 3</td><td class="num">1</td><td class="num">~40 min</td></tr>
+                        <tr><td>3--5</td><td>Mar 4</td><td class="num">6</td><td class="num">~120 min</td></tr>
+                        <tr><td>6</td><td>Mar 5</td><td class="num">1</td><td class="num">~40 min</td></tr>
+                        <tr><td>7</td><td>Mar 6</td><td class="num">1</td><td class="num">~40 min</td></tr>
+                        <tr><td>8</td><td>Mar 7</td><td class="num">6</td><td class="num">~90 min</td></tr>
+                        <tr class="total-row"><td></td><td></td><td class="num">18</td><td class="num">~6 hrs</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Development Phases -->
+        <section>
+            <h2>Development Phases</h2>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-date">Jan 13--14</div>
+                    <div class="tl-title">1. Foundation</div>
+                    <div class="tl-desc">Initial site, mobile optimization, PRD, SEO system &middot; 4 commits</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">Jan 15--16</div>
+                    <div class="tl-title">2. Product Pivot</div>
+                    <div class="tl-desc">Pivot to botanicals, product catalog, blog, cart, 3D/2D labs &middot; 10 commits</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">Jan 19--22</div>
+                    <div class="tl-title">3. UX Sprint</div>
+                    <div class="tl-desc">Ancient lab, classroom, mobile UX, carousel, email funnel, age verification, dark mode, SEO &middot; 38 commits</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">Feb 6--7</div>
+                    <div class="tl-title">4. Content Expansion</div>
+                    <div class="tl-desc">Full site expansion: products, contact, classroom hubs, research library, 60+ articles &middot; 9 commits</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">Feb 13--15</div>
+                    <div class="tl-title">5. Polish & Fix</div>
+                    <div class="tl-desc">Nav cleanup, modal fixes, classroom content, pricing tiers, search &middot; 13 commits</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">Feb 24--26</div>
+                    <div class="tl-title">6. Platform Build</div>
+                    <div class="tl-desc">Course platform + Supabase, Stripe, image library, seed.com design system &middot; 13 commits</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">Mar 1</div>
+                    <div class="tl-title">7. Kanban</div>
+                    <div class="tl-desc">Kanban board with dark mode &middot; 2 commits</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">Mar 2--3</div>
+                    <div class="tl-title">8. Nored Farms Fork</div>
+                    <div class="tl-desc">Clone + rebrand, seed.com aesthetic pass &middot; 4 commits</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">Mar 4--5</div>
+                    <div class="tl-title">9. Design Refinement</div>
+                    <div class="tl-desc">Mobile fixes, nav redesign, kanban v3 architecture, product carousel &middot; 7 commits</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-date">Mar 6--7</div>
+                    <div class="tl-title">10. Theming & Nav</div>
+                    <div class="tl-desc">Theme showcase, 5 Iron Moss variants, mega-menu, About Us, kratom removal &middot; 7 commits</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deliverables -->
+        <section>
+            <h2>Deliverables</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Deliverable</th><th>Detail</th></tr></thead>
+                    <tbody>
+                        <tr><td class="heading-text">HTML pages</td><td>106 (products, articles, courses, labs, classrooms)</td></tr>
+                        <tr><td class="heading-text">Design system</td><td>Deep Iron / Iron Moss, 30 CSS files, 5 theme variants</td></tr>
+                        <tr><td class="heading-text">JavaScript</td><td>34 files (cart, auth, search, labs, kanban, courses)</td></tr>
+                        <tr><td class="heading-text">Products</td><td>16 across 6 categories</td></tr>
+                        <tr><td class="heading-text">Articles</td><td>60+ botanical cultivation & research guides</td></tr>
+                        <tr><td class="heading-text">Course platform</td><td>Supabase backend + auth, login, dashboard, lessons</td></tr>
+                        <tr><td class="heading-text">E-commerce</td><td>Cart system with Stripe checkout integration</td></tr>
+                        <tr><td class="heading-text">Kanban board</td><td>Project board with Supabase backend</td></tr>
+                        <tr><td class="heading-text">Interactive labs</td><td>3D WebGL lab + 2D interactive lab</td></tr>
+                        <tr><td class="heading-text">Classrooms</td><td>4 hubs (growing, extraction, infrastructure, effects)</td></tr>
+                        <tr><td class="heading-text">Navigation</td><td>Mega-menu with frosted glass mobile menu</td></tr>
+                        <tr><td class="heading-text">Other</td><td>21+ age gate, site search, image library, analytics</td></tr>
+                        <tr><td class="heading-text">Images</td><td>249 optimized botanical images</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Cost Analysis -->
+        <section>
+            <h2>Cost Analysis</h2>
+
+            <h3>Actual Costs</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+                    <tbody>
+                        <tr><td class="heading-text">Netlify hosting</td><td class="num">$0 (free tier)</td></tr>
+                        <tr><td class="heading-text">Supabase backend</td><td class="num">$0 (free tier)</td></tr>
+                        <tr><td class="heading-text">Domain</td><td class="num">~$12/yr</td></tr>
+                        <tr><td class="heading-text">Claude Code API</td><td class="num">~$20--50 est.</td></tr>
+                        <tr class="total-row"><td>Total actual spend</td><td class="num">~$20--62</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Contractor-Equivalent Valuation</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Scope</th><th>Hours</th><th>Rate</th><th>Cost</th></tr></thead>
+                    <tbody>
+                        <tr><td class="heading-text">Site architecture + 106 pages</td><td class="num">20--30</td><td class="num">$125/hr</td><td class="num">$2,500--3,750</td></tr>
+                        <tr><td class="heading-text">Design system + 5 themes</td><td class="num">10--15</td><td class="num">$125/hr</td><td class="num">$1,250--1,875</td></tr>
+                        <tr><td class="heading-text">60+ articles (content + layout)</td><td class="num">15--20</td><td class="num">$100/hr</td><td class="num">$1,500--2,000</td></tr>
+                        <tr><td class="heading-text">E-commerce (cart, Stripe)</td><td class="num">8--12</td><td class="num">$150/hr</td><td class="num">$1,200--1,800</td></tr>
+                        <tr><td class="heading-text">Course platform + Supabase</td><td class="num">10--15</td><td class="num">$150/hr</td><td class="num">$1,500--2,250</td></tr>
+                        <tr><td class="heading-text">Interactive labs (3D + 2D)</td><td class="num">8--12</td><td class="num">$150/hr</td><td class="num">$1,200--1,800</td></tr>
+                        <tr><td class="heading-text">Kanban board</td><td class="num">4--6</td><td class="num">$125/hr</td><td class="num">$500--750</td></tr>
+                        <tr><td class="heading-text">Navigation + mega-menu</td><td class="num">4--6</td><td class="num">$125/hr</td><td class="num">$500--750</td></tr>
+                        <tr><td class="heading-text">SEO, search, age verification</td><td class="num">4--6</td><td class="num">$100/hr</td><td class="num">$400--600</td></tr>
+                        <tr><td class="heading-text">Mobile optimization + polish</td><td class="num">6--10</td><td class="num">$125/hr</td><td class="num">$750--1,250</td></tr>
+                        <tr class="total-row"><td>Total</td><td class="num">89--132</td><td class="num"></td><td class="num">$11,300--16,825</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="text-align:center; margin-top: 32px;">
+                <div class="cost-compare">
+                    <div class="cost-box highlight">
+                        <div class="cost-title">Actual Cost</div>
+                        <div class="cost-amount">~$40</div>
+                        <div class="cost-sub">infra + AI tooling</div>
+                    </div>
+                    <div class="cost-box">
+                        <div class="cost-title">Contractor Equivalent</div>
+                        <div class="cost-amount">~$14K</div>
+                        <div class="cost-sub">89--132 hours @ market rate</div>
+                    </div>
+                </div>
+                <div class="savings-badge">99.7% cost efficiency vs. contractor</div>
+            </div>
+        </section>
+
+        <!-- Commit History -->
+        <section>
+            <h2>Commit History</h2>
+
+            <h3>Pure Extracts (87 commits)</h3>
+            <div class="commit-log">
+<span class="c-date">Jan 13</span>  <span class="c-msg">Initial commit: Pure Extracts TX website redesign</span>
+<span class="c-date">Jan 13</span>  <span class="c-msg">Mobile optimization: comprehensive responsive redesign</span>
+<span class="c-date">Jan 14</span>  <span class="c-msg">Add PRD document and visual roadmap page</span>
+<span class="c-date">Jan 14</span>  <span class="c-msg">Add comprehensive SEO/Social automation system</span>
+<span class="c-date">Jan 15</span>  <span class="c-msg">Pivot from hemp/THCA to botanical extracts (kratom, kava, blue lotus)</span>
+<span class="c-date">Jan 15</span>  <span class="c-msg">Add full product catalog with 8 categories and filtering</span>
+<span class="c-date">Jan 15</span>  <span class="c-msg">Add comprehensive SEO infrastructure</span>
+<span class="c-date">Jan 15</span>  <span class="c-msg">Add comprehensive blog/education system</span>
+<span class="c-date">Jan 15</span>  <span class="c-msg">Add e-commerce cart system with Stripe-ready checkout</span>
+<span class="c-date">Jan 16</span>  <span class="c-msg">Add shamanic 3D lab experience with mobile optimization</span>
+<span class="c-date">Jan 16</span>  <span class="c-msg">Add 2D Technical Lab with dual-theme system</span>
+<span class="c-date">Jan 16</span>  <span class="c-msg">Add design index page with project structure overview</span>
+<span class="c-date">Jan 16</span>  <span class="c-msg">Add 3D/2D lab CSS and JS files to design index tree</span>
+<span class="c-date">Jan 16</span>  <span class="c-msg">Add Three.js WebGL labs to design index</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Add Classroom and Ancient Ruins Garden Lab pages</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Add About section with company story</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Improve navigation consistency across pages</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Fix mobile header/zone-nav gap in ancient lab</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Add home buttons to 2D and 3D labs with mobile fixes</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Move About section to Learn/Classroom page</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Fix lab-2d mobile: show all elements, link logo to index</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Add sliding back navigation drawer to 2D and 3D labs</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Fix 2D lab mobile: ensure all science elements are visible</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Mobile UX improvements and 2D lab experience option</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Add library/extract portals and shaman elements to 2D lab mobile</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Improve 2D lab mobile portals and make bubble clickable</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Add library article modals with full content for 2D lab</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Add smooth section transitions to 2D lab navigation</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Add spacing between ruins title and description on mobile</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Site updates: services removal, mobile UX, and 2D lab enhancements</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Reduce ruins title size on mobile to fit inside pillars</span>
+<span class="c-date">Jan 19</span>  <span class="c-msg">Fix homepage scroll, enhance carousel, and fix ancient lab spacing</span>
+<span class="c-date">Jan 20</span>  <span class="c-msg">Fix carousel mobile touch issues and add product info modals</span>
+<span class="c-date">Jan 20</span>  <span class="c-msg">Refactor cart system and remove info buttons</span>
+<span class="c-date">Jan 20</span>  <span class="c-msg">Pivot homepage to education-first email collection funnel</span>
+<span class="c-date">Jan 21</span>  <span class="c-msg">Add project roadmap page and expand PRD phases</span>
+<span class="c-date">Jan 21</span>  <span class="c-msg">Fix carousel blocking vertical page scroll on mobile</span>
+<span class="c-date">Jan 21</span>  <span class="c-msg">Simplify landing page to email-only funnel with welcome redirect</span>
+<span class="c-date">Jan 21</span>  <span class="c-msg">Fix broken product links to point to welcome page</span>
+<span class="c-date">Jan 21</span>  <span class="c-msg">Strengthen launch CTA with paywall-style signup card</span>
+<span class="c-date">Jan 21</span>  <span class="c-msg">Remove 3D lab entry sections from ancient lab page</span>
+<span class="c-date">Jan 21</span>  <span class="c-msg">Make hero two-column layout on desktop</span>
+<span class="c-date">Jan 21</span>  <span class="c-msg">Fix hero two-column layout media query</span>
+<span class="c-date">Jan 22</span>  <span class="c-msg">Simplify landing page to minimal signup-only CTA</span>
+<span class="c-date">Jan 22</span>  <span class="c-msg">Center logo text by removing icon</span>
+<span class="c-date">Jan 22</span>  <span class="c-msg">Add dark mode support based on system preferences</span>
+<span class="c-date">Jan 22</span>  <span class="c-msg">Add 18+ age verification system and update roadmap</span>
+<span class="c-date">Jan 22</span>  <span class="c-msg">Redesign landing page with education-forward approach</span>
+<span class="c-date">Jan 22</span>  <span class="c-msg">Add comprehensive SEO implementation across site</span>
+<span class="c-date">Jan 22</span>  <span class="c-msg">Update age verification from 18+ to 21+</span>
+<span class="c-date">Feb 06</span>  <span class="c-msg">Add complete site expansion: products, contact, classroom hubs, research library, articles, analytics</span>
+<span class="c-date">Feb 06</span>  <span class="c-msg">Add pomegranate advanced cultivation guide article</span>
+<span class="c-date">Feb 06</span>  <span class="c-msg">Add elderberry comprehensive cultivation and processing guide</span>
+<span class="c-date">Feb 06</span>  <span class="c-msg">Fix product cards: add links, hover effects, and reduce blog icon sizes</span>
+<span class="c-date">Feb 06</span>  <span class="c-msg">Update roadmap with all recent features and milestones</span>
+<span class="c-date">Feb 06</span>  <span class="c-msg">Redesign roadmap to emphasize recent work with dates and sprint details</span>
+<span class="c-date">Feb 07</span>  <span class="c-msg">Site-wide batch update: fonts, widgets, blog expansion, footer standardization</span>
+<span class="c-date">Feb 07</span>  <span class="c-msg">Standardize footer grid and widget references across all pages</span>
+<span class="c-date">Feb 07</span>  <span class="c-msg">Fix modal close functionality, update modal title, and fix icon sizes</span>
+<span class="c-date">Feb 13</span>  <span class="c-msg">Remove top bar CTA, simplify modal close logic, and tighten nav/logo sizing</span>
+<span class="c-date">Feb 13</span>  <span class="c-msg">Add plant images and plants directory for botanical content</span>
+<span class="c-date">Feb 13</span>  <span class="c-msg">Fix modal crash, constrain icon sizes, and remove banner gap</span>
+<span class="c-date">Feb 14</span>  <span class="c-msg">Fix homepage nav gap, mobile menu, and icons by loading styles.css</span>
+<span class="c-date">Feb 14</span>  <span class="c-msg">Dark nav background for homepage and center hero CTA button</span>
+<span class="c-date">Feb 15</span>  <span class="c-msg">Replace placeholder video sections with functional classroom links</span>
+<span class="c-date">Feb 15</span>  <span class="c-msg">Add shadow panels, data tables, and key fact boxes to articles</span>
+<span class="c-date">Feb 15</span>  <span class="c-msg">Replace flat $100/class pricing with 4-tier structure on classes page</span>
+<span class="c-date">Feb 15</span>  <span class="c-msg">Add 10 agricultural technique sections to growing classroom</span>
+<span class="c-date">Feb 15</span>  <span class="c-msg">Expand extraction classroom with detailed subtopics and 3 new sections</span>
+<span class="c-date">Feb 15</span>  <span class="c-msg">Update roadmap with Feb 14-15 session additions</span>
+<span class="c-date">Feb 15</span>  <span class="c-msg">Add cross-linked section anchors and new topics to research library</span>
+<span class="c-date">Feb 15</span>  <span class="c-msg">Add inline nav search bar, future vision roadmap, and search index builder</span>
+<span class="c-date">Feb 24</span>  <span class="c-msg">Add course platform, Stripe integration, and seed.com-inspired template</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Add optimized image library with review tool and descriptions</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Phase 1: Replace 3-theme CSS system with single seed green palette</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Phase 2: Strip theme switcher HTML and [data-theme] CSS from all pages</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Phase 3: Replace nav with seed-style design and fullscreen mobile menu</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Phase 4: Replace footer with seed-style dark green footer on all pages</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Phase 5: Rebuild homepage with seed-template design</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Phase 6: Inter-only typography, pill buttons, and teal-to-seedgreen cleanup</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Phase 7: Course pages, teal eradication, and final cleanup</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Add Supabase integration to image library for editing descriptions</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Replace Supabase auth with simple password gate for image editing</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Add missing seed UX features, normalize font weights, fix mobile menu resize bug</span>
+<span class="c-date">Feb 26</span>  <span class="c-msg">Add share links and URL hash routing to image library</span>
+<span class="c-date">Mar 01</span>  <span class="c-msg">Add kanban board with enhanced UX, filters, activity tracking, and dark mode</span>
+<span class="c-date">Mar 01</span>  <span class="c-msg">Use /kanban route, text-based login, rename chris to c</span>
+            </div>
+
+            <h3>Nored Farms (18 commits)</h3>
+            <div class="commit-log">
+<span class="c-date">Mar 02</span>  <span class="c-msg">Initial commit</span>
+<span class="c-date">Mar 02</span>  <span class="c-msg">Add kanban board with Supabase backend and supporting assets</span>
+<span class="c-date">Mar 02</span>  <span class="c-msg">Clone full site from pureextracts, rename to Nored Farms</span>
+<span class="c-date">Mar 03</span>  <span class="c-msg">Apply seed.com aesthetic across entire site</span>
+<span class="c-date">Mar 04</span>  <span class="c-msg">Fix mobile nav, add menu rounded corners, enforce seed.com design cohesion</span>
+<span class="c-date">Mar 04</span>  <span class="c-msg">Fix login form submit, clean up console.logs, fix nav z-index and manifest</span>
+<span class="c-date">Mar 04</span>  <span class="c-msg">Round mobile menu footer bar with frosted glass pill shape</span>
+<span class="c-date">Mar 04</span>  <span class="c-msg">Add console filter to suppress browser extension noise across all pages</span>
+<span class="c-date">Mar 04</span>  <span class="c-msg">Add kanban v3 agent-ready architecture: PRD, MCP server, Supabase edge functions</span>
+<span class="c-date">Mar 04</span>  <span class="c-msg">Redesign nav with floating menu, scroll-reveal pills, and full PETX rebrand</span>
+<span class="c-date">Mar 05</span>  <span class="c-msg">Add product carousel, shrink nav CTA, align cart styles to seed.com tokens</span>
+<span class="c-date">Mar 06</span>  <span class="c-msg">Add 3-theme showcase page with dark green/black color schemes</span>
+<span class="c-date">Mar 07</span>  <span class="c-msg">Make theme switcher button more visible with accent bg and label</span>
+<span class="c-date">Mar 07</span>  <span class="c-msg">Fix SPA fallback redirect that was overriding static HTML files</span>
+<span class="c-date">Mar 07</span>  <span class="c-msg">Remove catch-all redirect that was overriding static HTML file serving</span>
+<span class="c-date">Mar 07</span>  <span class="c-msg">Mega-menu nav, About Us page, kratom removal, nav restructure</span>
+<span class="c-date">Mar 07</span>  <span class="c-msg">Replace themes with 5 moss & slate variations</span>
+<span class="c-date">Mar 07</span>  <span class="c-msg">Replace all themes with 5 Iron Moss variations</span>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section>
+            <h2>Summary</h2>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-val">54</div>
+                    <div class="stat-label">Calendar Days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">~33h</div>
+                    <div class="stat-label">Commit-Based Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">~45h</div>
+                    <div class="stat-label">Realistic Total</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">232K</div>
+                    <div class="stat-label">Lines Written</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val money">~$40</div>
+                    <div class="stat-label">Actual Cost</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val money">~$14K</div>
+                    <div class="stat-label">Contractor Value</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="report-footer">
+        Nored Farms &middot; Internal Report &middot; Generated Mar 7, 2026
+    </div>
+
+</div>
+
+<script>
+function checkPass() {
+    var pw = document.getElementById('pw').value;
+    if (pw === 'bud') {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('report').style.display = 'block';
+        return false;
+    }
+    document.getElementById('gate-error').classList.add('show');
+    document.getElementById('pw').value = '';
+    document.getElementById('pw').focus();
+    return false;
+}
+document.getElementById('pw').addEventListener('keydown', function(e) {
+    document.getElementById('gate-error').classList.remove('show');
+});
+</script>
+
+</body>
+</html>

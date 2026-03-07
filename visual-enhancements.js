@@ -33,7 +33,7 @@
 
     // Related classroom/research content by topic
     var relatedContent = {
-        'kratom': [
+        'kanna': [
             { title: 'Effects on the Human Body', desc: 'How alkaloids interact with neurotransmitters and organ systems', href: '../classroom/effects.html' },
             { title: 'Growing & Harvesting Plants', desc: 'Cultivation techniques for trees and woody botanicals', href: '../classroom/growing.html' }
         ],

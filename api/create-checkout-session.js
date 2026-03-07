@@ -34,7 +34,7 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        const { items, customerEmail } = JSON.parse(event.body);
+        const { items, customerEmail, userId } = JSON.parse(event.body);
 
         // Validate items
         if (!items || !Array.isArray(items) || items.length === 0) {
@@ -74,10 +74,13 @@ exports.handler = async (event, context) => {
                 allowed_countries: ['US'], // Adjust based on your shipping countries
             },
             billing_address_collection: 'required',
-            // Add metadata for order tracking
             metadata: {
                 orderDate: new Date().toISOString(),
-                itemCount: items.reduce((sum, item) => sum + item.quantity, 0),
+                itemCount: String(items.reduce((sum, item) => sum + item.quantity, 0)),
+                user_id: userId || '',
+                items_json: JSON.stringify(items.map(i => ({
+                    id: i.id, name: i.name, qty: i.quantity, price: i.price
+                }))),
             },
             // Automatic tax calculation (if enabled in Stripe)
             // automatic_tax: { enabled: true },

@@ -8,8 +8,9 @@ const Cart = {
     items: [],
     isOpen: false,
     isProcessing: false, // Prevent double-clicks
+    _syncTimer: null,
 
-    // Initialize cart from localStorage
+    // Initialize cart from localStorage, then merge server cart if logged in
     init() {
         const saved = localStorage.getItem('noredfarms-cart');
         if (saved) {
@@ -22,6 +23,20 @@ const Cart = {
         this.render();
         this.updateCartCount();
         this.bindEvents();
+
+        // Attempt server cart merge after auth is ready
+        if (typeof getSupabase === 'function') {
+            setTimeout(() => this._mergeServerCart(), 500);
+            // Listen for auth changes
+            try {
+                const sb = getSupabase();
+                sb.auth.onAuthStateChange((event) => {
+                    if (event === 'SIGNED_IN') {
+                        this._mergeServerCart();
+                    }
+                });
+            } catch (e) { /* supabase not loaded yet */ }
+        }
     },
 
     // Add item to cart (with debounce protection)
@@ -86,9 +101,65 @@ const Cart = {
         return this.items.reduce((count, item) => count + item.quantity, 0);
     },
 
-    // Save to localStorage
+    // Save to localStorage + debounce server sync
     save() {
         localStorage.setItem('noredfarms-cart', JSON.stringify(this.items));
+        this._debounceSyncToServer();
+    },
+
+    // Debounced server sync (500ms)
+    _debounceSyncToServer() {
+        if (this._syncTimer) clearTimeout(this._syncTimer);
+        this._syncTimer = setTimeout(() => this._syncToServer(), 500);
+    },
+
+    // Persist cart to user_carts table
+    async _syncToServer() {
+        if (typeof getUser !== 'function') return;
+        try {
+            const user = await getUser();
+            if (!user) return;
+            const sb = getSupabase();
+            await sb.from('user_carts').upsert({
+                user_id: user.id,
+                cart_data: this.items,
+                updated_at: new Date().toISOString()
+            }, { onConflict: 'user_id' });
+        } catch (e) { /* silently fail */ }
+    },
+
+    // Merge server cart with local cart on login
+    async _mergeServerCart() {
+        if (typeof getUser !== 'function') return;
+        try {
+            const user = await getUser();
+            if (!user) return;
+            const sb = getSupabase();
+            const { data } = await sb
+                .from('user_carts')
+                .select('cart_data')
+                .eq('user_id', user.id)
+                .single();
+
+            if (data && Array.isArray(data.cart_data) && data.cart_data.length > 0) {
+                const serverItems = data.cart_data;
+                // Merge: union of items, take higher quantity for duplicates
+                serverItems.forEach(serverItem => {
+                    const local = this.items.find(i => i.id === serverItem.id);
+                    if (local) {
+                        local.quantity = Math.max(local.quantity, serverItem.quantity);
+                    } else {
+                        this.items.push(serverItem);
+                    }
+                });
+                this.save();
+                this.render();
+                this.updateCartCount();
+            } else if (this.items.length > 0) {
+                // No server cart but local has items — push local to server
+                this._syncToServer();
+            }
+        } catch (e) { /* silently fail */ }
     },
 
     // Clear cart
@@ -362,10 +433,20 @@ const Cart = {
                 throw new Error('Stripe not configured. Please include stripe-config.js');
             }
 
+            // Get current user if logged in
+            let userId = null;
+            if (typeof getUser === 'function') {
+                try {
+                    const user = await getUser();
+                    if (user) userId = user.id;
+                } catch (e) { /* not logged in */ }
+            }
+
             // Create checkout session
             const { sessionId, url } = await window.StripeConfig.createCheckoutSession(
                 this.items,
-                null // Can add customer email here if you collect it
+                null,
+                userId
             );
 
             // Redirect to Stripe Checkout

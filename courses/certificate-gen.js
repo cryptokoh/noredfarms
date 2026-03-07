@@ -20,11 +20,11 @@ function renderCertificate(canvas, data) {
     canvas.height = H;
 
     // Background
-    ctx.fillStyle = '#fefdfb';
+    ctx.fillStyle = '#12181a';
     ctx.fillRect(0, 0, W, H);
 
     // Border
-    ctx.strokeStyle = '#1c3a13';
+    ctx.strokeStyle = '#50e8c0';
     ctx.lineWidth = 3;
     ctx.strokeRect(30, 30, W - 60, H - 60);
 
@@ -41,7 +41,7 @@ function renderCertificate(canvas, data) {
 
     // Header text
     ctx.textAlign = 'center';
-    ctx.fillStyle = '#1c3a13';
+    ctx.fillStyle = '#50e8c0';
     ctx.font = '14px Inter, sans-serif';
     ctx.letterSpacing = '4px';
     ctx.fillText('NORED FARMS', W / 2, 120);
@@ -52,7 +52,7 @@ function renderCertificate(canvas, data) {
     ctx.fillText('Certificate of Completion', W / 2, 190);
 
     // Divider line
-    ctx.strokeStyle = '#1c3a13';
+    ctx.strokeStyle = '#50e8c0';
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(W / 2 - 150, 210);
@@ -84,7 +84,7 @@ function renderCertificate(canvas, data) {
     ctx.fillText('has successfully completed all requirements for', W / 2, 380);
 
     // Course title
-    ctx.fillStyle = '#1c3a13';
+    ctx.fillStyle = '#50e8c0';
     ctx.font = '600 28px Inter, sans-serif';
     wrapText(ctx, data.courseTitle || 'Course', W / 2, 425, W - 200, 36);
 
@@ -165,7 +165,7 @@ function drawCornerAccent(ctx, x, y, rotation) {
 
 function drawDropletLogo(ctx, cx, cy, size) {
     ctx.save();
-    ctx.fillStyle = '#1c3a13';
+    ctx.fillStyle = '#50e8c0';
     ctx.globalAlpha = 0.3;
     ctx.beginPath();
     ctx.moveTo(cx, cy - size);

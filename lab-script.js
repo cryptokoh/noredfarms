@@ -94,7 +94,7 @@ function scrollToContact(product) {
             const messageField = document.querySelector('#message') || document.querySelector('textarea[name="message"]');
             if (messageField && product) {
                 const productNames = {
-                    'kratom': 'Kratom Extract',
+                    'kanna': 'Kanna Extract',
                     'kava': 'Kava Extract',
                     'lotus': 'Blue Lotus Extract',
                     'nootropic': 'Nootropic Blend'
@@ -240,15 +240,15 @@ function handleLabItemClick(itemType, element) {
     // Map lab items to modals - supports multiple naming conventions
     const modalMap = {
         // Original naming
-        'kratom-plant': 'kratom-modal',
+        'kanna-plant': 'kanna-modal',
         'lotus-plant': 'lotus-modal',
-        'kratom-beaker': 'kratom-modal',
+        'kanna-beaker': 'kanna-modal',
         'kava-beaker': 'kava-modal',
         'lotus-beaker': 'lotus-modal',
         'nootropic-beaker': 'nootropic-modal',
         // HTML naming (data-product values)
-        'kratom': 'kratom-modal',
-        'kratom-extract': 'kratom-modal',
+        'kanna': 'kanna-modal',
+        'kanna-extract': 'kanna-modal',
         'kava': 'kava-modal',
         'kava-extract': 'kava-modal',
         'lotus': 'lotus-modal',
@@ -312,7 +312,7 @@ function createBubble(beaker) {
 function showCompoundAnalysis() {
     // Create a temporary overlay with compound information
     const compounds = [
-        { name: 'Mitragynine', color: '#D4A574', percentage: '66%' },
+        { name: 'Mesembrine', color: '#D4A574', percentage: '66%' },
         { name: 'Kavalactones', color: '#10B981', percentage: '82%' },
         { name: 'Aporphine', color: '#8B5CF6', percentage: '45%' },
         { name: 'Alpha-GPC', color: '#06B6D4', percentage: '95%' }

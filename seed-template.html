@@ -18,12 +18,12 @@
 
         :root {
             /* Seed EXACT palette */
-            --color--seedgreen: #1c3a13;
+            --color--seedgreen: #1e2628;
             --color--seedgreen-hover: #334e2b;
             --color--seedgreen-card: #45663c;
-            --color--snowwhite: #fcfcf7;
-            --color--foamwhite: #eff1e4;
-            --color--mossroot: #3d5b34;
+            --color--snowwhite: #12181a;
+            --color--foamwhite: #181e20;
+            --color--mossroot: #2a3638;
             --color--olivegreen: #61735e;
             --color--frostedglass: rgba(87, 94, 85, 0.4);
             --color--frostedglass-t55: rgba(87, 94, 85, 0.55);
@@ -35,8 +35,8 @@
             /* Seed frosted glass */
             --seed-glass: rgba(87, 94, 85, 0.4);
             --seed-blur: blur(38px);
-            --seed-text-on-glass: #fcfcf7;
-            --seed-text-muted-on-glass: rgba(252, 252, 247, 0.5);
+            --seed-text-on-glass: #bccac4;
+            --seed-text-muted-on-glass: rgba(188, 202, 196, 0.5);
             --seed-tab-pill: rgba(255, 255, 255, 0.1);
 
             /* Border radius tokens */
@@ -70,7 +70,7 @@
             overflow-x: hidden;
         }
 
-        ::selection { background: rgba(28, 58, 19, 0.12); }
+        ::selection { background: rgba(80, 232, 192, 0.12); }
         :focus-visible { outline: 2px solid var(--color--seedgreen); outline-offset: 2px; }
 
 
@@ -92,7 +92,7 @@
         }
 
         .seed-nav.scrolled {
-            background: rgba(252, 252, 247, 0.9);
+            background: rgba(18, 24, 26, 0.9);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
@@ -214,7 +214,7 @@
         .hero-label-code {
             font-size: 12px;
             font-weight: 400;
-            color: rgba(252, 252, 247, 0.5);
+            color: rgba(188, 202, 196, 0.5);
             letter-spacing: 0.02em;
         }
 
@@ -238,7 +238,7 @@
         .hero-body {
             font-size: 16px;
             font-weight: 350;
-            color: rgba(252, 252, 247, 0.7);
+            color: rgba(188, 202, 196, 0.7);
             line-height: 1.6;
             max-width: 440px;
             margin-bottom: 28px;
@@ -304,7 +304,7 @@
             width: 220px;
             height: 280px;
             border-radius: 16px 16px 24px 24px;
-            background: linear-gradient(180deg, #3d5b34 0%, #45663c 40%, #2d4a25 100%);
+            background: linear-gradient(180deg, #2a3638 0%, #1e2628 40%, #12181a 100%);
             position: relative;
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
         }
@@ -321,7 +321,7 @@
         }
 
         .hero-jar::after {
-            content: 'KR-01';
+            content: 'NF-01';
             position: absolute;
             bottom: 32px;
             left: 0;
@@ -331,7 +331,7 @@
             font-size: 14px;
             font-weight: 400;
             letter-spacing: 0.08em;
-            color: rgba(252, 252, 247, 0.4);
+            color: rgba(188, 202, 196, 0.4);
         }
 
         .hero-jar-label {
@@ -341,7 +341,7 @@
             transform: translate(-50%, -50%);
             width: 120px;
             height: 80px;
-            border: 1px solid rgba(252, 252, 247, 0.15);
+            border: 1px solid rgba(188, 202, 196, 0.15);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -354,7 +354,7 @@
             font-weight: 400;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: rgba(252, 252, 247, 0.5);
+            color: rgba(188, 202, 196, 0.5);
             text-align: center;
             line-height: 1.5;
         }
@@ -401,7 +401,7 @@
         .products-header-text p {
             font-size: 15px;
             font-weight: 350;
-            color: rgba(252, 252, 247, 0.6);
+            color: rgba(188, 202, 196, 0.6);
             max-width: 400px;
         }
 
@@ -502,7 +502,7 @@
         .product-card-code {
             font-size: 12px;
             font-weight: 400;
-            color: rgba(252, 252, 247, 0.4);
+            color: rgba(188, 202, 196, 0.4);
             letter-spacing: 0.02em;
         }
 
@@ -526,7 +526,7 @@
         .product-card-price {
             font-size: 13px;
             font-weight: 400;
-            color: rgba(252, 252, 247, 0.5);
+            color: rgba(188, 202, 196, 0.5);
             margin-top: 4px;
         }
 
@@ -734,7 +734,7 @@
             font-weight: 350;
             color: var(--color--olivegreen);
             padding: 8px 0;
-            border-bottom: 1px solid rgba(28, 58, 19, 0.08);
+            border-bottom: 1px solid rgba(80, 232, 192, 0.06);
             display: flex;
             align-items: flex-start;
             gap: 10px;
@@ -842,7 +842,7 @@
         .proof-section {
             background: var(--color--snowwhite);
             padding: 64px 24px;
-            border-top: 1px solid rgba(28, 58, 19, 0.06);
+            border-top: 1px solid rgba(80, 232, 192, 0.05);
         }
 
         .proof-inner {
@@ -1061,7 +1061,7 @@
             margin-top: 40px;
             height: 200px;
             border-radius: 20px;
-            background: linear-gradient(135deg, #1c3a13 0%, #2d5a25 30%, #3d7a34 60%, #1c3a13 100%);
+            background: linear-gradient(135deg, #1e2628 0%, #2a3638 30%, #1e2628 60%, #12181a 100%);
             position: relative;
             overflow: hidden;
         }
@@ -1072,7 +1072,7 @@
             inset: 0;
             background:
                 radial-gradient(circle at 20% 50%, rgba(211, 250, 153, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 30%, rgba(252, 252, 247, 0.04) 0%, transparent 40%);
+                radial-gradient(circle at 80% 30%, rgba(188, 202, 196, 0.04) 0%, transparent 40%);
         }
 
         .lab-visual-text {
@@ -1084,7 +1084,7 @@
             font-weight: 400;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: rgba(252, 252, 247, 0.3);
+            color: rgba(188, 202, 196, 0.3);
         }
 
 
@@ -1142,7 +1142,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 48px;
             padding-bottom: 48px;
-            border-bottom: 1px solid rgba(252, 252, 247, 0.08);
+            border-bottom: 1px solid rgba(188, 202, 196, 0.08);
         }
 
         .seed-footer-mission h3 {
@@ -1159,7 +1159,7 @@
         .seed-footer-mission p {
             font-size: 14px;
             font-weight: 350;
-            color: rgba(252, 252, 247, 0.5);
+            color: rgba(188, 202, 196, 0.5);
             max-width: 320px;
             line-height: 1.6;
         }
@@ -1173,7 +1173,7 @@
         .seed-footer-signup p {
             font-size: 14px;
             font-weight: 400;
-            color: rgba(252, 252, 247, 0.6);
+            color: rgba(188, 202, 196, 0.6);
             margin-bottom: 12px;
         }
 
@@ -1188,19 +1188,19 @@
             font-family: var(--font-sans);
             font-size: 14px;
             color: var(--color--snowwhite);
-            background: rgba(252, 252, 247, 0.08);
-            border: 1px solid rgba(252, 252, 247, 0.12);
+            background: rgba(188, 202, 196, 0.08);
+            border: 1px solid rgba(188, 202, 196, 0.12);
             border-radius: 99em;
             outline: none;
             transition: border-color 0.2s ease;
         }
 
         .seed-footer-email::placeholder {
-            color: rgba(252, 252, 247, 0.35);
+            color: rgba(188, 202, 196, 0.35);
         }
 
         .seed-footer-email:focus {
-            border-color: rgba(252, 252, 247, 0.3);
+            border-color: rgba(188, 202, 196, 0.3);
         }
 
         .seed-footer-email-btn {
@@ -1230,7 +1230,7 @@
             grid-template-columns: repeat(6, 1fr);
             gap: 24px;
             padding: 40px 0;
-            border-bottom: 1px solid rgba(252, 252, 247, 0.08);
+            border-bottom: 1px solid rgba(188, 202, 196, 0.08);
         }
 
         .seed-footer-col h4 {
@@ -1239,7 +1239,7 @@
             font-weight: 500;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: rgba(252, 252, 247, 0.35);
+            color: rgba(188, 202, 196, 0.35);
             margin-bottom: 14px;
         }
 
@@ -1256,7 +1256,7 @@
         .seed-footer-col ul li a {
             font-size: 13px;
             font-weight: 350;
-            color: rgba(252, 252, 247, 0.55);
+            color: rgba(188, 202, 196, 0.55);
             text-decoration: none;
             transition: color 0.2s ease;
         }
@@ -1273,7 +1273,7 @@
             padding: 32px 0 0;
             font-size: 11px;
             font-weight: 350;
-            color: rgba(252, 252, 247, 0.25);
+            color: rgba(188, 202, 196, 0.25);
             line-height: 1.7;
             max-width: 800px;
         }
@@ -1285,7 +1285,7 @@
             padding-top: 24px;
             margin-top: 24px;
             font-size: 11px;
-            color: rgba(252, 252, 247, 0.2);
+            color: rgba(188, 202, 196, 0.2);
         }
 
         @media (max-width: 768px) {
@@ -1367,7 +1367,7 @@
             visibility: visible;
         }
 
-        /* --- Top banner — Seed's seedgreen #1c3a13 --- */
+        /* --- Top banner — Deep Iron primary #1e2628 --- */
         .fs-menu-banner {
             flex-shrink: 0;
             background: var(--color--seedgreen);
@@ -1886,7 +1886,7 @@
         }
 
         .login-input::placeholder {
-            color: rgba(252, 252, 247, 0.4);
+            color: rgba(188, 202, 196, 0.4);
         }
 
         .login-input:focus {
@@ -2032,7 +2032,7 @@
 
         <!-- Top promo banner -->
         <a href="#" class="fs-menu-banner">
-            Is KR-01 Kratom Full Spectrum Right For You? <span>&rarr;</span>
+            Is NF-01 Blue Lotus Full Spectrum Right For You? <span>&rarr;</span>
         </a>
 
         <!-- Tab bar: Logo + Tabs + Close -->
@@ -2053,15 +2053,15 @@
                 <a href="#" class="product-row">
                     <div class="product-thumb"><div class="jar green"></div></div>
                     <div class="product-info">
-                        <div class="product-code">KR-01</div>
-                        <div class="product-name">Kratom Full Spectrum</div>
+                        <div class="product-code">BL-T1</div>
+                        <div class="product-name">Blue Lotus Tincture</div>
                     </div>
                 </a>
                 <a href="#" class="product-row">
                     <div class="product-thumb"><div class="jar teal"></div></div>
                     <div class="product-info">
-                        <div class="product-code">KR-02</div>
-                        <div class="product-name">Kratom Enhanced Blend</div>
+                        <div class="product-code">KN-E1</div>
+                        <div class="product-name">Kanna Extract</div>
                     </div>
                 </a>
                 <a href="#" class="product-row">
@@ -2139,8 +2139,8 @@
                 <!-- Reference section -->
                 <div class="panel-group-header">Reference</div>
                 <ul class="ref-list">
-                    <li><a href="#">KR-01 Kratom Full Spectrum</a></li>
-                    <li><a href="#">KR-02 Kratom Enhanced Blend</a></li>
+                    <li><a href="#">BL-T1 Blue Lotus Tincture</a></li>
+                    <li><a href="#">KN-E1 Kanna Extract</a></li>
                     <li><a href="#">KV-01 Kava Noble Extract</a></li>
                     <li><a href="#">BL-01 Blue Lotus Concentrate</a></li>
                     <li><a href="#">BD-01 Hill Country Bundle</a></li>
@@ -2162,7 +2162,7 @@
                     <div class="panel-item-image img-sustainability">&#127807;</div>
                     <div class="panel-item-content">
                         <div class="panel-item-title">Alkaloids 101</div>
-                        <div class="panel-item-desc">How mitragynine, kavalactones and aporphines work.</div>
+                        <div class="panel-item-desc">How kavalactones, aporphines and mesembrine work.</div>
                     </div>
                 </a>
 
@@ -2171,7 +2171,7 @@
                 <a href="#" class="panel-item">
                     <div class="article-thumb article-thumb-1"></div>
                     <div class="panel-item-content">
-                        <div class="panel-item-title">Understanding Kratom Alkaloid Profiles</div>
+                        <div class="panel-item-title">How Adaptogens Work: Stress Response</div>
                         <div class="panel-item-meta">8 min read</div>
                     </div>
                 </a>
@@ -2236,7 +2236,7 @@
 
     <!-- Dual CTA footer (outside menu so it's not hidden by menu opacity) -->
     <div class="fs-menu-footer" id="menuFooter">
-        <a href="#" class="fs-cta-primary">Shop KR-01</a>
+        <a href="#" class="fs-cta-primary">Shop BL-T1</a>
         <a href="#" class="fs-cta-secondary">Take The Quiz &rarr;</a>
     </div>
 
@@ -2246,11 +2246,11 @@
         <div class="hero-inner">
             <div class="hero-text">
                 <div class="hero-label">
-                    <div class="hero-label-code">KR-01</div>
-                    <div class="hero-label-name">Kratom Full Spectrum</div>
+                    <div class="hero-label-code">NF-01</div>
+                    <div class="hero-label-name">Blue Lotus Full Spectrum</div>
                 </div>
                 <h1 class="hero-heading">Science-driven botanicals you can trust.</h1>
-                <p class="hero-body">Lab-tested kratom, kava, and blue lotus extracts. Every alkaloid preserved. Every batch verified. Crafted in Texas Hill Country.</p>
+                <p class="hero-body">Lab-tested kava, blue lotus, and kanna extracts. Every alkaloid preserved. Every batch verified. Crafted in Texas Hill Country.</p>
                 <div class="hero-actions">
                     <a href="#" class="btn-pill btn-pill-light">Shop Now</a>
                     <a href="#" class="btn-text-link">Learn the Science</a>
@@ -2282,8 +2282,8 @@
                 <div class="product-card-visual"><div class="card-jar green"></div></div>
                 <div class="product-card-bottom">
                     <div>
-                        <div class="product-card-code">KR-01</div>
-                        <div class="product-card-name">Kratom Full Spectrum</div>
+                        <div class="product-card-code">NF-01</div>
+                        <div class="product-card-name">Blue Lotus Full Spectrum</div>
                         <div class="product-card-price">From $34.99</div>
                     </div>
                     <span class="product-card-cta">Shop Now</span>
@@ -2294,8 +2294,8 @@
                 <div class="product-card-visual"><div class="card-jar teal"></div></div>
                 <div class="product-card-bottom">
                     <div>
-                        <div class="product-card-code">KR-02</div>
-                        <div class="product-card-name">Kratom Enhanced Blend</div>
+                        <div class="product-card-code">KV-E1</div>
+                        <div class="product-card-name">Kava Kava CO2 Extract</div>
                         <div class="product-card-price">From $44.99</div>
                     </div>
                     <span class="product-card-cta">Shop Now</span>
@@ -2332,7 +2332,7 @@
         <div class="bundle-inner">
             <span class="bundle-badge">Bundle + Save 25%</span>
             <h2 class="bundle-heading">The Hill Country Collection.</h2>
-            <p class="bundle-body">Three signature extracts in one set. Kratom, kava, and blue lotus -- curated for those who want the full botanical spectrum.</p>
+            <p class="bundle-body">Three signature extracts in one set. Kava, blue lotus, and kanna -- curated for those who want the full botanical spectrum.</p>
             <a href="#" class="btn-pill-green">Shop the Bundle</a>
             <div class="bundle-visual">
                 <div class="bundle-jar j1"></div>
@@ -2351,7 +2351,7 @@
             <div class="tech-columns">
                 <div class="tech-col reveal reveal-d2">
                     <p>Most botanical extracts sacrifice compound integrity for yield. High heat, aggressive solvents, and rush-processing destroy the very alkaloids consumers are seeking.</p>
-                    <p style="margin-top: 12px;">Our cold-process extraction preserves the full alkaloid profile -- mitragynine, 7-hydroxymitragynine, kavalactones, aporphines -- exactly as nature intended.</p>
+                    <p style="margin-top: 12px;">Our cold-process extraction preserves the full alkaloid profile -- mesembrine, kavalactones, aporphines, nuciferine -- exactly as nature intended.</p>
                 </div>
                 <div class="tech-col reveal reveal-d3">
                     <ul>
@@ -2375,7 +2375,7 @@
             <div class="education-stat reveal reveal-d1">
                 40+<span class="education-stat-unit"> alkaloids</span>
             </div>
-            <p class="education-stat-desc reveal reveal-d2">A single kratom leaf contains over 40 distinct alkaloids. Most extracts test for just two. We publish the full profile -- because transparency is not optional.</p>
+            <p class="education-stat-desc reveal reveal-d2">Our botanical extracts contain dozens of distinct alkaloids. Most extracts test for just two. We publish the full profile -- because transparency is not optional.</p>
             <a href="#" class="btn-discover reveal reveal-d3">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                 Discover Our Research
@@ -2418,7 +2418,7 @@
                     <div class="story-card-visual v1"><span>&#9878;</span></div>
                     <div class="story-card-body">
                         <div class="story-card-tag">Alkaloid Science</div>
-                        <div class="story-card-title">Understanding Kratom Alkaloid Profiles and Their Effects</div>
+                        <div class="story-card-title">How Adaptogens Work: The Science of Stress Response</div>
                     </div>
                 </a>
                 <a href="#" class="story-card reveal reveal-d1">
@@ -2486,8 +2486,8 @@
                 <div class="seed-footer-col">
                     <h4>Products</h4>
                     <ul>
-                        <li><a href="#">Kratom Full Spectrum</a></li>
-                        <li><a href="#">Kratom Enhanced</a></li>
+                        <li><a href="#">Blue Lotus Full Spectrum</a></li>
+                        
                         <li><a href="#">Kava Noble</a></li>
                         <li><a href="#">Blue Lotus</a></li>
                         <li><a href="#">Bundles</a></li>

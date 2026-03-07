@@ -8,14 +8,14 @@
 // ============================================
 
 const plantData = {
-    kratom: {
-        name: 'Kratom',
-        latin: 'Mitragyna speciosa',
+    kanna: {
+        name: 'Kanna',
+        latin: 'Sceletium tortuosum',
         category: 'Adaptogen',
-        description: 'Kratom is a tropical evergreen tree native to Southeast Asia, belonging to the coffee family (Rubiaceae). Its leaves have been used for centuries by indigenous peoples for their unique properties.',
+        description: 'Kanna is a tropical evergreen tree native to Southeast Asia, belonging to the coffee family (Rubiaceae). Its leaves have been used for centuries by indigenous peoples for their unique properties.',
         history: 'Traditional use dates back hundreds of years in Thailand, Malaysia, and Indonesia. Workers would chew the leaves to enhance endurance and alleviate fatigue during long work days.',
-        alkaloids: ['Mitragynine', '7-Hydroxymitragynine', 'Speciogynine', 'Paynantheine', 'Speciociliatine'],
-        compounds: 'Contains over 40 identified alkaloids, with mitragynine being the most abundant (approximately 66% of alkaloid content). The alkaloid profile varies significantly based on vein color, growing region, and processing method.',
+        alkaloids: ['Mesembrine', '7-Hydroxymesembrine', 'Speciogynine', 'Paynantheine', 'Speciociliatine'],
+        compounds: 'Contains over 40 identified alkaloids, with mesembrine being the most abundant (approximately 66% of alkaloid content). The alkaloid profile varies significantly based on vein color, growing region, and processing method.',
         uses: [
             'Traditional energy support',
             'Natural mood enhancement',
@@ -125,7 +125,7 @@ const equipmentData = {
             'Produces clean, high-purity extracts',
             'Environmentally friendly and sustainable'
         ],
-        applications: 'Ideal for extracting kratom alkaloids, preserving terpene profiles, and creating full-spectrum botanical extracts with precise compound ratios.'
+        applications: 'Ideal for extracting kanna alkaloids, preserving terpene profiles, and creating full-spectrum botanical extracts with precise compound ratios.'
     },
     distillation: {
         name: 'Distillation Apparatus',
@@ -165,7 +165,7 @@ const equipmentData = {
             'Reproducible results',
             'Essential for creating pure isolates'
         ],
-        applications: 'Used to separate and purify individual alkaloids like mitragynine, or to create standardized extracts with specific compound ratios.'
+        applications: 'Used to separate and purify individual alkaloids like mesembrine, or to create standardized extracts with specific compound ratios.'
     },
     testing: {
         name: 'HPLC Analysis System',

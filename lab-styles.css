@@ -14,13 +14,13 @@
     --lab-surface: rgba(17, 24, 39, 0.8);
 
     /* Product Colors — seed palette adapted for dark bg */
-    --kratom-gold: #e9f0ca;
-    --kratom-glow: rgba(233, 240, 202, 0.2);
+    --kanna-gold: #e9f0ca;
+    --kanna-glow: rgba(233, 240, 202, 0.2);
     --kava-green: #d3fa99;
     --kava-glow: rgba(211, 250, 153, 0.2);
-    --lotus-purple: #eff1e4;
+    --lotus-purple: #8e9c98;
     --lotus-glow: rgba(239, 241, 228, 0.15);
-    --nootropic-teal: #fcfcf7;
+    --nootropic-teal: #bccac4;
     --nootropic-glow: rgba(252, 252, 247, 0.15);
 
     /* UI Colors - Enhanced for WCAG AA contrast */
@@ -125,7 +125,7 @@ body::before {
 .molecule:nth-child(1) {
     width: 20px;
     height: 20px;
-    background: var(--kratom-gold);
+    background: var(--kanna-gold);
     top: 10%;
     left: 10%;
     animation-delay: 0s;
@@ -165,7 +165,7 @@ body::before {
 .molecule:nth-child(5) {
     width: 18px;
     height: 18px;
-    background: var(--kratom-gold);
+    background: var(--kanna-gold);
     top: 40%;
     left: 80%;
     animation-delay: -8s;
@@ -735,8 +735,8 @@ body::before {
     --item-glow: var(--kava-glow);
 }
 
-.plant-specimen.kratom {
-    --item-glow: var(--kratom-glow);
+.plant-specimen.kanna {
+    --item-glow: var(--kanna-glow);
 }
 
 .plant-specimen.lotus {
@@ -800,16 +800,16 @@ body::before {
     --item-glow: var(--kava-glow);
 }
 
-.beaker.kratom {
-    --item-glow: var(--kratom-glow);
+.beaker.kanna {
+    --item-glow: var(--kanna-glow);
 }
 
-.beaker.kratom .liquid-fill {
-    fill: var(--kratom-gold);
+.beaker.kanna .liquid-fill {
+    fill: var(--kanna-gold);
 }
 
-.beaker.kratom .bubble-small,
-.beaker.kratom .bubble-medium {
+.beaker.kanna .bubble-small,
+.beaker.kanna .bubble-medium {
     fill: rgba(212, 165, 116, 0.6);
 }
 
@@ -962,7 +962,7 @@ body::before {
    Test Tube Rack
    ============================================ */
 .test-tube-rack {
-    --item-glow: linear-gradient(90deg, var(--kratom-glow), var(--kava-glow), var(--lotus-glow), var(--nootropic-glow));
+    --item-glow: linear-gradient(90deg, var(--kanna-glow), var(--kava-glow), var(--lotus-glow), var(--nootropic-glow));
 }
 
 .rack-svg {
@@ -984,7 +984,7 @@ body::before {
 }
 
 .tube-liquid-1 {
-    fill: var(--kratom-gold);
+    fill: var(--kanna-gold);
     opacity: 0.8;
 }
 
@@ -1097,8 +1097,8 @@ body::before {
     transform: scaleX(1);
 }
 
-.product-card.kratom {
-    --card-accent: var(--kratom-gold);
+.product-card.kanna {
+    --card-accent: var(--kanna-gold);
 }
 
 .product-card.kava {
@@ -1329,7 +1329,7 @@ body::before {
 }
 
 .microscope-card:nth-child(1) .cell-structure {
-    --cell-color: var(--kratom-gold);
+    --cell-color: var(--kanna-gold);
 }
 
 .microscope-card:nth-child(2) .cell-structure {
@@ -1652,8 +1652,8 @@ body::before {
     letter-spacing: 0.15em;
 }
 
-.modal.kratom {
-    --modal-accent: var(--kratom-gold);
+.modal.kanna {
+    --modal-accent: var(--kanna-gold);
 }
 
 .modal.kava {
@@ -2340,7 +2340,7 @@ body::before {
 
 /* Plant Specimen Terrarium */
 .plant-specimen {
-    --item-glow: var(--kratom-glow);
+    --item-glow: var(--kanna-glow);
 }
 
 .terrarium {
@@ -2413,7 +2413,7 @@ body::before {
     animation: leaf-sway 4s ease-in-out infinite;
 }
 
-.kratom-plant .leaf {
+.kanna-plant .leaf {
     background: linear-gradient(135deg, #4ade80, #22c55e);
 }
 

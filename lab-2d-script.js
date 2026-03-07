@@ -577,7 +577,7 @@
                     <div class="preview-categories">
                         <div class="preview-item">
                             <span class="preview-icon">🍃</span>
-                            <span>Kratom Varieties</span>
+                            <span>Kanna Varieties</span>
                         </div>
                         <div class="preview-item">
                             <span class="preview-icon">🥥</span>

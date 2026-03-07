@@ -30,14 +30,14 @@ const StripeConfig = {
     },
 
     // Create checkout session
-    async createCheckoutSession(items, customerEmail = null) {
+    async createCheckoutSession(items, customerEmail = null, userId = null) {
         try {
             const response = await fetch(this.apiEndpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ items, customerEmail }),
+                body: JSON.stringify({ items, customerEmail, userId }),
             });
 
             if (!response.ok) {

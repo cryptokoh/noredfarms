@@ -1,7 +1,7 @@
 # Plant Guides - Content Addition Tracker
 
 **Total new guides added: 44/44 COMPLETE**
-**Existing articles on site: 14** (3 kratom, 2 kava, 2 blue lotus, 3 guides, 4 science)
+**Existing articles on site: 14** (3 kanna, 2 kava, 2 blue lotus, 3 guides, 4 science)
 **Total articles now: 58**
 **Target location:** `articles/` directory
 **Blog listing:** `blog.html` (all cards added)
@@ -11,7 +11,7 @@
 
 ## Categories on `blog.html` filter system
 
-Existing: All, Kratom, Kava, Blue Lotus, Guides, Science
+Existing: All, Kanna, Kava, Blue Lotus, Guides, Science
 Added: **Texas Natives** (`texas-native`), **Cannabis** (`cannabis`)
 
 ---

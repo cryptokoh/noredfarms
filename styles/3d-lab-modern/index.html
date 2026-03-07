@@ -103,7 +103,7 @@
                 <div class="panel-header">
                     <div class="panel-icon" id="panel-icon"></div>
                     <div class="panel-titles">
-                        <span class="panel-label" id="panel-label">KRATOM EXTRACT</span>
+                        <span class="panel-label" id="panel-label">KANNA EXTRACT</span>
                         <h2 class="panel-title" id="panel-title">Gold Reserve</h2>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
         // ============================================
         const CONFIG = {
             colors: {
-                kratom: 0xD4A574,
+                kanna: 0xD4A574,
                 kava: 0x10B981,
                 lotus: 0x8B5CF6,
                 nootropic: 0x06B6D4,
@@ -221,14 +221,14 @@
                 price: 'Lab Equipment',
                 unit: ''
             },
-            beaker_kratom: {
-                type: 'kratom',
-                label: 'KRATOM EXTRACT',
+            beaker_kanna: {
+                type: 'kanna',
+                label: 'KANNA EXTRACT',
                 title: 'Gold Reserve',
-                description: 'Premium Maeng Da kratom extract with optimized alkaloid profile. Water-based extraction preserves the full spectrum of beneficial compounds.',
+                description: 'Premium Maeng Da kanna extract with optimized alkaloid profile. Water-based extraction preserves the full spectrum of beneficial compounds.',
                 compounds: [
-                    { name: 'Mitragynine', effect: 'Primary alkaloid', color: '#D4A574' },
-                    { name: '7-OH-Mitragynine', effect: 'Potent analgesic', color: '#D4A574' },
+                    { name: 'Mesembrine', effect: 'Primary alkaloid', color: '#D4A574' },
+                    { name: '7-OH-Mesembrine', effect: 'Potent analgesic', color: '#D4A574' },
                     { name: 'Speciogynine', effect: 'Muscle relaxant', color: '#D4A574' },
                     { name: 'Paynantheine', effect: 'Relaxation', color: '#D4A574' }
                 ],
@@ -300,11 +300,11 @@
                 price: '$54.99',
                 unit: '30ml'
             },
-            plant_kratom: {
-                type: 'kratom',
+            plant_kanna: {
+                type: 'kanna',
                 label: 'BOTANICAL SOURCE',
-                title: 'Mitragyna Speciosa',
-                description: 'Live kratom specimen from our partner farms in Indonesia. These mature trees produce leaves with optimal alkaloid content.',
+                title: 'Sceletium Tortuosum',
+                description: 'Live kanna specimen from our partner farms in Indonesia. These mature trees produce leaves with optimal alkaloid content.',
                 compounds: [
                     { name: 'Red Vein', effect: 'Relaxation', color: '#D4A574' },
                     { name: 'Green Vein', effect: 'Balanced', color: '#22c55e' },
@@ -363,7 +363,7 @@
                 title: 'Extract Collection',
                 description: 'Our complete line of standardized botanical extracts, ready for wholesale or retail distribution.',
                 compounds: [
-                    { name: 'Kratom', effect: '4 varieties', color: '#D4A574' },
+                    { name: 'Kanna', effect: '4 varieties', color: '#D4A574' },
                     { name: 'Kava', effect: '3 varieties', color: '#10B981' },
                     { name: 'Blue Lotus', effect: '2 varieties', color: '#8B5CF6' },
                     { name: 'Nootropics', effect: '5 blends', color: '#06B6D4' }
@@ -911,7 +911,7 @@
         // Beakers
         // ============================================
         function createBeakers() {
-            createBeaker(-0.5, 0.95, 0.35, 'kratom', 'beaker_kratom');
+            createBeaker(-0.5, 0.95, 0.35, 'kanna', 'beaker_kanna');
             createBeaker(0, 0.95, 0.35, 'kava', 'beaker_kava');
             createBeaker(0.5, 0.95, 0.35, 'lotus', 'beaker_lotus');
             createBeaker(1.0, 0.95, 0.35, 'nootropic', 'beaker_nootropic');
@@ -991,8 +991,8 @@
         // Plants
         // ============================================
         function createPlants() {
-            // Kratom plant on right bench
-            createPottedPlant(3.5, 0.95, -3, 'kratom', 'plant_kratom', 0.5);
+            // Kanna plant on right bench
+            createPottedPlant(3.5, 0.95, -3, 'kanna', 'plant_kanna', 0.5);
 
             // Kava plant
             createPottedPlant(4.5, 0.95, -3, 'kava', 'plant_kava', 0.4);
@@ -1036,7 +1036,7 @@
             plantGroup.add(stem);
 
             // Leaves
-            const leafColor = type === 'kratom' ? 0x2d5016 : 0x166534;
+            const leafColor = type === 'kanna' ? 0x2d5016 : 0x166534;
             const leafMat = new THREE.MeshStandardMaterial({
                 color: leafColor, roughness: 0.5, side: THREE.DoubleSide
             });
@@ -1145,7 +1145,7 @@
             });
 
             // Add product bottles/jars on shelves
-            const bottleColors = [CONFIG.colors.kratom, CONFIG.colors.kava, CONFIG.colors.lotus, CONFIG.colors.nootropic];
+            const bottleColors = [CONFIG.colors.kanna, CONFIG.colors.kava, CONFIG.colors.lotus, CONFIG.colors.nootropic];
             const bottlePositions = [-0.9, -0.45, 0, 0.45, 0.9];
 
             shelfHeights.slice(0, 3).forEach((h, shelfIdx) => {
@@ -1512,7 +1512,7 @@
                 if (obj.userData.id) {
                     const product = PRODUCTS[obj.userData.id];
                     if (product) {
-                        if (product.type === 'kratom') color = 0xD4A574;
+                        if (product.type === 'kanna') color = 0xD4A574;
                         else if (product.type === 'kava') color = 0x10B981;
                         else if (product.type === 'lotus') color = 0x8B5CF6;
                         else if (product.type === 'nootropic') color = 0x06B6D4;
@@ -1709,7 +1709,7 @@
         // ============================================
         function showPanel(product) {
             const colors = {
-                kratom: '#D4A574', kava: '#10B981', lotus: '#8B5CF6',
+                kanna: '#D4A574', kava: '#10B981', lotus: '#8B5CF6',
                 nootropic: '#06B6D4', equipment: '#06B6D4'
             };
             const color = colors[product.type];
@@ -1762,8 +1762,8 @@
                     <div class="coa-details">
                         <h3>Alkaloid Profile</h3>
                         <div class="alkaloid-bars">
-                            <div class="alkaloid-bar"><span class="bar-label">Mitragynine</span><div class="bar-track"><div class="bar-fill" style="width: 85%; background: #D4A574;"></div></div><span class="bar-value">1.8%</span></div>
-                            <div class="alkaloid-bar"><span class="bar-label">7-OH-Mitragynine</span><div class="bar-track"><div class="bar-fill" style="width: 15%; background: #D4A574;"></div></div><span class="bar-value">0.04%</span></div>
+                            <div class="alkaloid-bar"><span class="bar-label">Mesembrine</span><div class="bar-track"><div class="bar-fill" style="width: 85%; background: #D4A574;"></div></div><span class="bar-value">1.8%</span></div>
+                            <div class="alkaloid-bar"><span class="bar-label">7-OH-Mesembrine</span><div class="bar-track"><div class="bar-fill" style="width: 15%; background: #D4A574;"></div></div><span class="bar-value">0.04%</span></div>
                             <div class="alkaloid-bar"><span class="bar-label">Speciogynine</span><div class="bar-track"><div class="bar-fill" style="width: 35%; background: #D4A574;"></div></div><span class="bar-value">0.6%</span></div>
                         </div>
                     </div>

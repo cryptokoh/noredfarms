@@ -10,7 +10,7 @@ DEST = "/home/koh/Documents/noredFarms/images/plants"
 PLANTS = {
     "ginger": "ginger,root",
     "kava": "kava,plant",
-    "kratom": "kratom,leaves",
+    "kanna": "kanna,leaves",
     "blue-lotus": "blue,lotus,flower",
     "egyptian-blue-lotus": "water,lily,blue",
     "moringa": "moringa,tree",

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Nored Farms</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #12181a;
+            --bg-alt: #181e20;
+            --card: #1e2628;
+            --card-hover: #263032;
+            --teal: #50e8c0;
+            --teal-dim: rgba(80,232,192,0.07);
+            --teal-border: rgba(80,232,192,0.08);
+            --teal-border-strong: rgba(80,232,192,0.15);
+            --text: #bccac4;
+            --text-body: #8e9c98;
+            --text-muted: #506460;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 350;
+            background: var(--bg);
+            color: var(--text-body);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            padding: 48px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--teal-border);
+        }
+        .header a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .header a:hover { opacity: 0.6; }
+
+        /* 404 Hero */
+        .hero {
+            padding: 60px 0 48px;
+            text-align: center;
+        }
+        .code {
+            font-size: 72px;
+            font-weight: 500;
+            color: var(--teal);
+            line-height: 1;
+            opacity: 0.3;
+        }
+        .hero h1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text);
+            margin-top: 12px;
+        }
+        .hero p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero .home-btn {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 10px 24px;
+            background: var(--teal);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 99em;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 400;
+            transition: opacity 0.2s ease;
+        }
+        .hero .home-btn:hover { opacity: 0.85; }
+
+        /* Search */
+        .search-wrap {
+            max-width: 420px;
+            margin: 0 auto 40px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            background: var(--card);
+            border: 1px solid var(--teal-border);
+            border-radius: 99em;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 350;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .search-input:focus { border-color: var(--teal-border-strong); }
+        .search-input::placeholder { color: var(--text-muted); }
+
+        /* Site Index */
+        .index-section {
+            padding-bottom: 48px;
+        }
+        .section-title {
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--teal-border);
+        }
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 4px;
+        }
+        .link-grid a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--text-body);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 8px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .link-grid a:hover {
+            background: var(--teal-dim);
+            color: var(--text);
+        }
+        .link-grid a .path {
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+
+        .group { margin-bottom: 32px; }
+        .group:last-child { margin-bottom: 0; }
+
+        .footer {
+            padding: 32px 0;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--teal-border);
+        }
+
+        .hidden { display: none; }
+
+        @media (max-width: 640px) {
+            .code { font-size: 56px; }
+            .hero h1 { font-size: 20px; }
+            .link-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <div class="header">
+        <a href="/">NORED FARMS</a>
+    </div>
+
+    <div class="hero">
+        <div class="code">404</div>
+        <h1>Page not found</h1>
+        <p>The page you're looking for doesn't exist or has been moved. Browse the site index below.</p>
+        <a href="/" class="home-btn">Back to Home</a>
+    </div>
+
+    <div class="search-wrap">
+        <input type="text" class="search-input" id="search" placeholder="Filter pages..." autocomplete="off">
+    </div>
+
+    <div class="index-section" id="index">
+
+        <!-- Main Pages -->
+        <div class="group" data-section="main">
+            <div class="section-title">Main Pages</div>
+            <div class="link-grid">
+                <a href="/">Home</a>
+                <a href="/about-us">About Us</a>
+                <a href="/blog">Blog</a>
+                <a href="/research">Research Library</a>
+                <a href="/classes">Classes</a>
+                <a href="/consulting">Consulting</a>
+                <a href="/contact">Contact</a>
+                <a href="/welcome">Welcome</a>
+            </div>
+        </div>
+
+        <!-- Products -->
+        <div class="group" data-section="products">
+            <div class="section-title">Products</div>
+            <div class="link-grid">
+                <a href="/products/tinctures">Tinctures</a>
+                <a href="/products/gummies">Gummies</a>
+                <a href="/products/extracts">Extracts</a>
+                <a href="/products/dried-botanicals">Dried Botanicals</a>
+                <a href="/products/live-plants">Live Plants</a>
+                <a href="/products/seeds">Seeds</a>
+            </div>
+        </div>
+
+        <!-- Classroom -->
+        <div class="group" data-section="classroom">
+            <div class="section-title">Classroom</div>
+            <div class="link-grid">
+                <a href="/classroom">Classroom Hub</a>
+                <a href="/classroom/growing">Growing</a>
+                <a href="/classroom/extraction">Extraction</a>
+                <a href="/classroom/infrastructure">Infrastructure</a>
+                <a href="/classroom/effects">Effects</a>
+            </div>
+        </div>
+
+        <!-- Courses -->
+        <div class="group" data-section="courses">
+            <div class="section-title">Course Platform</div>
+            <div class="link-grid">
+                <a href="/courses/login">Login</a>
+                <a href="/courses/dashboard">Dashboard</a>
+                <a href="/courses/catalog">Catalog</a>
+                <a href="/courses/course">Course View</a>
+                <a href="/courses/lesson">Lesson View</a>
+                <a href="/courses/profile">Profile</a>
+                <a href="/courses/certificate">Certificate</a>
+            </div>
+        </div>
+
+        <!-- Articles -->
+        <div class="group" data-section="articles">
+            <div class="section-title">Cultivation & Research Articles</div>
+            <div class="link-grid">
+                <a href="/articles/absinthe-wormwood-cultivation-guide">Absinthe Wormwood</a>
+                <a href="/articles/adaptogens-science">Adaptogens Science</a>
+                <a href="/articles/agarita-cultivation-guide">Agarita</a>
+                <a href="/articles/bacopa-monnieri-cultivation-guide">Bacopa Monnieri</a>
+                <a href="/articles/blue-java-banana-cultivation-guide">Blue Java Banana</a>
+                <a href="/articles/blue-lotus-ancient-egypt">Blue Lotus &amp; Ancient Egypt</a>
+                <a href="/articles/blue-lotus-compounds">Blue Lotus Compounds</a>
+                <a href="/articles/dandelion-cultivation-guide">Dandelion</a>
+                <a href="/articles/davis-mountain-yucca-cultivation-guide">Davis Mountain Yucca</a>
+                <a href="/articles/deep-purple-carrot-cultivation-guide">Deep Purple Carrot</a>
+                <a href="/articles/detroit-red-beet-cultivation-guide">Detroit Red Beet</a>
+                <a href="/articles/dragon-fruit-cultivation-guide">Dragon Fruit</a>
+                <a href="/articles/duckweed-cultivation-guide">Duckweed</a>
+                <a href="/articles/egyptian-blue-lotus-cultivation-guide">Egyptian Blue Lotus</a>
+                <a href="/articles/elderberry-cultivation-guide">Elderberry</a>
+                <a href="/articles/extraction-methods">Extraction Methods</a>
+                <a href="/articles/ginger-cultivation-guide">Ginger</a>
+                <a href="/articles/hawaiian-baby-woodrose-guide">Hawaiian Baby Woodrose</a>
+                <a href="/articles/heavenly-blue-morning-glory-guide">Heavenly Blue Morning Glory</a>
+                <a href="/articles/heirloom-quinoa-cultivation-guide">Heirloom Quinoa</a>
+                <a href="/articles/heirloom-sugarcane-cultivation-guide">Heirloom Sugarcane</a>
+                <a href="/articles/high-cbd-hemp-cultivation-guide">High CBD Hemp</a>
+                <a href="/articles/high-thc-cannabis-research-guide">High THC Cannabis Research</a>
+                <a href="/articles/how-to-read-coa">How to Read a COA</a>
+                <a href="/articles/industrial-hemp-cultivation-guide">Industrial Hemp</a>
+                <a href="/articles/jerusalem-artichoke-cultivation-guide">Jerusalem Artichoke</a>
+                <a href="/articles/kanna-cultivation-guide">Kanna</a>
+                <a href="/articles/kava-cultivation-guide">Kava</a>
+                <a href="/articles/kavalactones-explained">Kavalactones Explained</a>
+                <a href="/articles/lions-mane-cultivation-guide">Lion's Mane</a>
+                <a href="/articles/little-bluestem-cultivation-guide">Little Bluestem</a>
+                <a href="/articles/moringa-cultivation-guide">Moringa</a>
+                <a href="/articles/mullein-cultivation-guide">Mullein</a>
+                <a href="/articles/nemaguard-peach-rootstock-guide">Nemaguard Peach Rootstock</a>
+                <a href="/articles/passionflower-cultivation-guide">Passionflower</a>
+                <a href="/articles/pomegranate-cultivation-guide">Pomegranate</a>
+                <a href="/articles/pomegranate-monograph">Pomegranate Monograph</a>
+                <a href="/articles/prickly-pear-cultivation-guide">Prickly Pear</a>
+                <a href="/articles/purple-sweet-potato-cultivation-guide">Purple Sweet Potato</a>
+                <a href="/articles/red-spanish-pineapple-cultivation-guide">Red Spanish Pineapple</a>
+                <a href="/articles/redbor-kale-cultivation-guide">Redbor Kale</a>
+                <a href="/articles/responsible-dosing">Responsible Dosing</a>
+                <a href="/articles/roselle-hibiscus-cultivation-guide">Roselle Hibiscus</a>
+                <a href="/articles/russian-comfrey-cultivation-guide">Russian Comfrey</a>
+                <a href="/articles/san-pedro-cultivation-guide">San Pedro</a>
+                <a href="/articles/san-saba-pecan-cultivation-guide">San Saba Pecan</a>
+                <a href="/articles/santa-rosa-plum-cultivation-guide">Santa Rosa Plum</a>
+                <a href="/articles/sideoats-grama-cultivation-guide">Sideoats Grama</a>
+                <a href="/articles/subterranean-clover-cultivation-guide">Subterranean Clover</a>
+                <a href="/articles/switchgrass-cultivation-guide">Switchgrass</a>
+                <a href="/articles/texas-persimmon-cultivation-guide">Texas Persimmon</a>
+                <a href="/articles/thai-mint-cultivation-guide">Thai Mint</a>
+                <a href="/articles/traditional-kava-preparation">Traditional Kava Preparation</a>
+                <a href="/articles/tropea-onion-cultivation-guide">Tropea Onion</a>
+                <a href="/articles/yaupon-holly-cultivation-guide">Yaupon Holly</a>
+            </div>
+        </div>
+
+        <!-- Labs & Interactive -->
+        <div class="group" data-section="labs">
+            <div class="section-title">Labs & Interactive</div>
+            <div class="link-grid">
+                <a href="/lab">3D Lab</a>
+                <a href="/lab-2d">2D Lab</a>
+                <a href="/ancient-lab">Ancient Ruins Lab</a>
+            </div>
+        </div>
+
+        <!-- Internal / Tools -->
+        <div class="group" data-section="internal">
+            <div class="section-title">Internal Tools</div>
+            <div class="link-grid">
+                <a href="/kanban">Kanban Board</a>
+                <a href="/roadmap">Roadmap</a>
+                <a href="/prd">PRD</a>
+                <a href="/seo">SEO Dashboard</a>
+                <a href="/image-review">Image Library</a>
+                <a href="/theme-showcase">Theme Showcase</a>
+                <a href="/design-index">Design Index</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Nored Farms &middot; Texas Hill Country
+    </div>
+
+</div>
+
+<script>
+var search = document.getElementById('search');
+var links = document.querySelectorAll('.link-grid a');
+var groups = document.querySelectorAll('.group');
+
+search.addEventListener('input', function() {
+    var q = this.value.toLowerCase().trim();
+    if (!q) {
+        links.forEach(function(a) { a.classList.remove('hidden'); });
+        groups.forEach(function(g) { g.classList.remove('hidden'); });
+        return;
+    }
+    groups.forEach(function(g) {
+        var section = g.querySelector('.section-title').textContent.toLowerCase();
+        var groupLinks = g.querySelectorAll('.link-grid a');
+        var visible = 0;
+        groupLinks.forEach(function(a) {
+            var text = a.textContent.toLowerCase();
+            var href = a.getAttribute('href').toLowerCase();
+            if (text.indexOf(q) !== -1 || href.indexOf(q) !== -1 || section.indexOf(q) !== -1) {
+                a.classList.remove('hidden');
+                visible++;
+            } else {
+                a.classList.add('hidden');
+            }
+        });
+        g.classList.toggle('hidden', visible === 0);
+    });
+});
+</script>
+
+</body>
+</html>

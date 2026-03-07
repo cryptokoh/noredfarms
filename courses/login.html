@@ -166,7 +166,7 @@
                     <h4>Science</h4>
                     <ul>
                         <li><a href="../articles/extraction-methods.html">Extraction 101</a></li>
-                        <li><a href="../articles/kratom-alkaloids.html">Kratom Science</a></li>
+                        <li><a href="../articles/adaptogens-science.html">Adaptogens Science</a></li>
                         <li><a href="../articles/kavalactones-explained.html">Kava Science</a></li>
                         <li><a href="../articles/blue-lotus-compounds.html">Blue Lotus</a></li>
                     </ul>
@@ -217,6 +217,14 @@
             const forgotLink = document.getElementById('forgotPasswordLink');
             const backToLogin = document.getElementById('backToLoginLink');
 
+            const params = new URLSearchParams(window.location.search);
+
+            // Store redirect target from query param (e.g. ?redirect=/products/tinctures.html)
+            const redirectParam = params.get('redirect');
+            if (redirectParam) {
+                sessionStorage.setItem('nored_return_to', decodeURIComponent(redirectParam));
+            }
+
             // If already logged in, redirect
             getSession().then(session => {
                 if (session) {
@@ -227,9 +235,16 @@
             });
 
             // Check for password reset mode
-            const params = new URLSearchParams(window.location.search);
             if (params.get('reset') === 'true') {
                 showMessage('Password reset successful. Please log in with your new password.', 'success');
+            }
+
+            // Auto-switch to signup tab if ?mode=signup
+            if (params.get('mode') === 'signup') {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabs[1].classList.add('active');
+                [loginForm, signupForm, resetForm].forEach(f => f.classList.remove('active'));
+                signupForm.classList.add('active');
             }
 
             function showMessage(text, type) {

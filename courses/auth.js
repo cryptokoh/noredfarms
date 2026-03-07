@@ -1,11 +1,14 @@
 /**
- * Auth Module - Nored Farms Course Platform
+ * Auth Module - Nored Farms (Site-Wide)
  *
  * Handles signup, login, magic link, password reset, session guard, and nav state.
+ * Works on both course pages and main site pages.
  * Depends on: supabase-config.js (getSupabase)
  */
 
 /* ── Auth API ── */
+
+const SITE_URL = 'https://noredfarms.netlify.app';
 
 async function signUp(email, password, displayName) {
     const sb = getSupabase();
@@ -34,8 +37,6 @@ async function logIn(email, password) {
     const { data, error } = await sb.auth.signInWithPassword({ email, password });
     return { data, error };
 }
-
-const SITE_URL = 'https://noredfarms.netlify.app';
 
 async function sendMagicLink(email) {
     const sb = getSupabase();
@@ -102,33 +103,49 @@ function updateNavAuthState(user) {
     const navLinks = document.getElementById('navLinks');
     if (!navLinks) return;
 
-    // Remove any previously injected auth links
+    // Remove the static Login link and any previously injected auth links
     navLinks.querySelectorAll('.nav-link-auth').forEach(el => el.remove());
+    // Remove static Login link (present in all page templates)
+    navLinks.querySelectorAll('a').forEach(a => {
+        if (a.textContent.trim() === 'Login' && !a.classList.contains('nav-link-auth')) {
+            a.remove();
+        }
+    });
+
+    const ctaLink = navLinks.querySelector('.nav-cta');
+    const currentPath = window.location.pathname;
+    const redirectParam = encodeURIComponent(currentPath + window.location.search);
 
     if (user) {
-        const dashLink = document.createElement('a');
-        dashLink.href = '/courses/dashboard.html';
-        dashLink.className = 'nav-link nav-link-auth';
-        dashLink.textContent = 'My Courses';
+        // Logged in: show Account link
+        const accountLink = document.createElement('a');
+        accountLink.href = '/account/dashboard.html';
+        accountLink.className = 'nav-link-auth';
+        accountLink.textContent = 'Account';
 
-        // Insert before the CTA link (Contact Us)
-        const ctaLink = navLinks.querySelector('.nav-link-cta');
         if (ctaLink) {
-            navLinks.insertBefore(dashLink, ctaLink);
+            navLinks.insertBefore(accountLink, ctaLink);
         } else {
-            navLinks.appendChild(dashLink);
+            navLinks.appendChild(accountLink);
         }
     } else {
-        const loginLink = document.createElement('a');
-        loginLink.href = '/courses/login.html';
-        loginLink.className = 'nav-link nav-link-auth';
-        loginLink.textContent = 'Login';
+        // Logged out: show Sign In text link + Sign Up pill button
+        const signInLink = document.createElement('a');
+        signInLink.href = '/courses/login.html?redirect=' + redirectParam;
+        signInLink.className = 'nav-link-auth';
+        signInLink.textContent = 'Sign In';
 
-        const ctaLink = navLinks.querySelector('.nav-link-cta');
+        const signUpLink = document.createElement('a');
+        signUpLink.href = '/courses/login.html?mode=signup&redirect=' + redirectParam;
+        signUpLink.className = 'nav-link-auth nav-auth-signup';
+        signUpLink.textContent = 'Sign Up';
+
         if (ctaLink) {
-            navLinks.insertBefore(loginLink, ctaLink);
+            navLinks.insertBefore(signInLink, ctaLink);
+            navLinks.insertBefore(signUpLink, ctaLink);
         } else {
-            navLinks.appendChild(loginLink);
+            navLinks.appendChild(signInLink);
+            navLinks.appendChild(signUpLink);
         }
     }
 }
@@ -143,4 +160,12 @@ function initAuthListener() {
 
     // Set initial state
     getUser().then(user => updateNavAuthState(user));
+}
+
+/**
+ * Lightweight init for public pages (not gated).
+ * Sets up session listener + updates nav auth state.
+ */
+function initSiteAuth() {
+    initAuthListener();
 }

@@ -3,9 +3,9 @@
 ## Agent Identity
 
 **Name**: Botanical Extract SEO Specialist
-**Domain**: Premium Botanical Extracts (Kratom, Kava, Blue Lotus)
+**Domain**: Premium Botanical Extracts (Kanna, Kava, Blue Lotus)
 **Location Focus**: Fredericksburg, Texas (Texas Hill Country)
-**Compliance**: FDA Guidelines, Kratom Consumer Protection Act (KCPA)
+**Compliance**: FDA Guidelines, Kanna Consumer Protection Act (KCPA)
 
 ---
 
@@ -14,7 +14,7 @@
 ### Industry Context
 
 #### Legal Framework
-- **Kratom**: Legal federally, banned in 6 states (AL, AR, IN, RI, VT, WI)
+- **Kanna**: Legal federally, banned in 6 states (AL, AR, IN, RI, VT, WI)
 - **Kava**: Legal nationwide, FDA GRAS status for traditional preparations
 - **Blue Lotus**: Legal, unregulated supplement
 - **Key Requirement**: COA for all products (alkaloid content, heavy metals, microbials)
@@ -22,38 +22,38 @@
 #### Advertising Opportunities (IMPROVED vs Hemp!)
 | Platform | Direct Ads | Organic Content | Notes |
 |----------|-----------|-----------------|-------|
-| Google Ads | ALLOWED* | N/A | Kratom restricted, kava/botanicals OK |
+| Google Ads | ALLOWED* | N/A | Kanna restricted, kava/botanicals OK |
 | Meta (FB/IG) | ALLOWED* | ALLOWED | Wellness positioning, no health claims |
 | TikTok Ads | LIMITED | ALLOWED | Educational content performs well |
 | YouTube Ads | ALLOWED | ALLOWED | Age-gate recommended |
 | X (Twitter) | ALLOWED | ALLOWED | Full access |
 | LinkedIn | ALLOWED | ALLOWED | B2B wholesale focus |
 
-*Some restrictions on kratom-specific ads; position as "botanical wellness"
+*Some restrictions on kanna-specific ads; position as "botanical wellness"
 
 ### SEO Strategy Framework
 
 #### Primary Keywords (Search Intent Mapping)
 ```yaml
 Informational (Top Funnel):
-  - "what is kratom" (74,000/mo)
-  - "kratom effects" (33,100/mo)
-  - "kava vs kratom" (8,100/mo)
+  - "what is kanna" (74,000/mo)
+  - "kanna effects" (33,100/mo)
+  - "kava vs kanna" (8,100/mo)
   - "blue lotus effects" (6,600/mo)
-  - "mitragynine benefits" (1,900/mo)
+  - "mesembrine benefits" (1,900/mo)
   - "kavalactones explained" (880/mo)
 
 Commercial (Mid Funnel):
-  - "best kratom extract" (4,400/mo)
-  - "kratom wholesale bulk" (1,600/mo)
+  - "best kanna extract" (4,400/mo)
+  - "kanna wholesale bulk" (1,600/mo)
   - "kava extract concentrate" (720/mo)
   - "white label botanical extracts" (480/mo)
 
 Transactional (Bottom Funnel):
-  - "buy kratom extract online" (5,400/mo)
+  - "buy kanna extract online" (5,400/mo)
   - "kava extract for sale" (2,900/mo)
   - "blue lotus extract buy" (1,300/mo)
-  - "premium kratom Texas" (390/mo)
+  - "premium kanna Texas" (390/mo)
 
 Local SEO:
   - "botanical extracts Fredericksburg TX" (90/mo)

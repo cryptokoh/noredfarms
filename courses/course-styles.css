@@ -2,7 +2,7 @@
    Nored Farms - Course Platform Styles
    ============================================ */
 
-/* ── Auth Page ── */
+/* -- Auth Page -- */
 .auth-page {
     padding-top: 100px;
     min-height: 100vh;
@@ -20,7 +20,7 @@
     background: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-2xl);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
 }
 
 .auth-header {
@@ -74,7 +74,7 @@
 .auth-tab.active {
     background: var(--color-bg);
     color: var(--color-text);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 /* Forms */
@@ -147,7 +147,7 @@
 
 .auth-btn-primary:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(28, 58, 19, 0.12);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .auth-btn-primary:disabled {
@@ -228,9 +228,9 @@
 }
 
 .auth-message-success {
-    background: var(--color--lemongrass, #e9f0ca);
-    color: var(--color--seedgreen, #1c3a13);
-    border: 1px solid rgba(28, 58, 19, 0.15);
+    background: var(--color--lemongrass, rgba(80, 232, 192, 0.1));
+    color: var(--color--seedgreen, #bccac4);
+    border: 1px solid rgba(80, 232, 192, 0.12);
 }
 
 .auth-message-error {
@@ -239,7 +239,7 @@
     border: 1px solid rgba(196, 92, 75, 0.15);
 }
 
-/* ── Dashboard ── */
+/* -- Dashboard -- */
 .dashboard-page {
     padding-top: 100px;
     min-height: 100vh;
@@ -291,7 +291,7 @@
 
 .course-card:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
     transform: translateY(-2px);
 }
 
@@ -388,7 +388,7 @@
 
 .course-card-btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(28, 58, 19, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .course-card-btn-secondary {
@@ -407,7 +407,7 @@
     height: 16px;
 }
 
-/* ── Catalog ── */
+/* -- Catalog -- */
 .catalog-page {
     padding-top: 100px;
     min-height: 100vh;
@@ -442,7 +442,7 @@
     gap: 1.5rem;
 }
 
-/* ── Course Overview Page ── */
+/* -- Course Overview Page -- */
 .course-overview-page {
     padding-top: 100px;
     min-height: 100vh;
@@ -544,7 +544,7 @@
 }
 
 .lesson-list-item.completed {
-    border-color: var(--color--mossroot, #3d5b34);
+    border-color: var(--color--mossroot, #50e8c0);
 }
 
 .lesson-list-item.locked {
@@ -568,9 +568,9 @@
 }
 
 .lesson-list-item.completed .lesson-number {
-    background: var(--color--lemongrass, #e9f0ca);
-    border-color: var(--color--mossroot, #3d5b34);
-    color: var(--color--mossroot, #3d5b34);
+    background: var(--color--lemongrass, rgba(80, 232, 192, 0.1));
+    border-color: var(--color--mossroot, #50e8c0);
+    color: var(--color--mossroot, #50e8c0);
 }
 
 .lesson-info {
@@ -596,10 +596,10 @@
 }
 
 .lesson-list-item.completed .lesson-status-icon {
-    color: var(--color--mossroot, #3d5b34);
+    color: var(--color--mossroot, #50e8c0);
 }
 
-/* ── Lesson Viewer ── */
+/* -- Lesson Viewer -- */
 .lesson-page {
     padding-top: 80px;
     min-height: 100vh;
@@ -668,7 +668,7 @@
 }
 
 .sidebar-lesson-link.completed {
-    color: var(--color--mossroot, #3d5b34);
+    color: var(--color--mossroot, #50e8c0);
 }
 
 .sidebar-lesson-num {
@@ -686,9 +686,9 @@
 }
 
 .sidebar-lesson-link.completed .sidebar-lesson-num {
-    background: var(--color--lemongrass, #e9f0ca);
-    border-color: var(--color--mossroot, #3d5b34);
-    color: var(--color--mossroot, #3d5b34);
+    background: var(--color--lemongrass, rgba(80, 232, 192, 0.1));
+    border-color: var(--color--mossroot, #50e8c0);
+    color: var(--color--mossroot, #50e8c0);
 }
 
 .sidebar-lesson-link.active .sidebar-lesson-num {
@@ -814,11 +814,11 @@
 
 .mark-complete-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(28, 58, 19, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .mark-complete-btn.completed {
-    background: var(--color--mossroot, #3d5b34);
+    background: var(--color--mossroot, #50e8c0);
     cursor: default;
 }
 
@@ -846,7 +846,7 @@
     height: 16px;
 }
 
-/* ── Content Gating ── */
+/* -- Content Gating -- */
 .gated-content {
     text-align: center;
     padding: 4rem 2rem;
@@ -875,7 +875,7 @@
     line-height: 1.6;
 }
 
-/* ── Certificate ── */
+/* -- Certificate -- */
 .certificate-page {
     padding-top: 100px;
     min-height: 100vh;
@@ -893,7 +893,7 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
 }
 
 .certificate-canvas-wrapper canvas {
@@ -909,7 +909,7 @@
     flex-wrap: wrap;
 }
 
-/* ── Profile Page ── */
+/* -- Profile Page -- */
 .profile-page {
     padding-top: 100px;
     min-height: 100vh;
@@ -985,7 +985,7 @@
     font-weight: 500;
 }
 
-/* ── Empty States ── */
+/* -- Empty States -- */
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
@@ -1014,7 +1014,7 @@
     line-height: 1.6;
 }
 
-/* ── Success Banner ── */
+/* -- Success Banner -- */
 .success-banner {
     max-width: 1100px;
     margin: 0 auto 1rem;
@@ -1026,10 +1026,10 @@
     align-items: center;
     gap: 0.75rem;
     padding: 1rem 1.25rem;
-    background: var(--color--lemongrass, #e9f0ca);
-    border: 1px solid rgba(28, 58, 19, 0.15);
+    background: var(--color--lemongrass, rgba(80, 232, 192, 0.1));
+    border: 1px solid rgba(80, 232, 192, 0.12);
     border-radius: var(--radius-xl);
-    color: var(--color--seedgreen, #1c3a13);
+    color: var(--color--seedgreen, #bccac4);
     font-size: var(--text-sm);
     font-weight: 500;
 }
@@ -1040,7 +1040,7 @@
     flex-shrink: 0;
 }
 
-/* ── Responsive ── */
+/* -- Responsive -- */
 @media (max-width: 900px) {
     .lesson-layout {
         grid-template-columns: 1fr;

@@ -8,7 +8,7 @@
     gap: 0.4rem;
     font-family: var(--font-sans, 'Inter', sans-serif);
     font-size: 0.8125rem;
-    color: var(--color-primary, #1c3a13);
+    color: var(--color-primary, #50e8c0);
     background: none;
     border: none;
     cursor: pointer;
@@ -31,9 +31,9 @@
 .shipping-overlay.open { opacity: 1; visibility: visible; }
 
 .shipping-modal {
-    background: var(--color-bg, #ffffff);
+    background: var(--color-bg, #1e2628);
     border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(28,58,19,0.12);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
     max-width: 460px; width: 100%;
     max-height: calc(100vh - 2rem);
     overflow-y: auto;
@@ -47,23 +47,23 @@
 .shipping-modal-header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid var(--color-border, #e5e7eb);
+    border-bottom: 1px solid var(--color-border, rgba(80, 232, 192, 0.12));
 }
 .shipping-modal-header h3 {
     margin: 0;
     font-family: var(--font-display, 'Inter', sans-serif);
     font-size: 1.1rem; font-weight: 500;
-    color: var(--color-text, #111827);
+    color: var(--color-text, #bccac4);
 }
 .shipping-modal-close {
     width: 32px; height: 32px;
     border-radius: 50%; border: none;
-    background: var(--color-bg-muted, #f3f4f6);
-    color: var(--color-text-muted, #6b7280);
+    background: var(--color-bg-muted, #263032);
+    color: var(--color-text-muted, #506460);
     cursor: pointer; display: flex; align-items: center; justify-content: center;
     transition: background 0.2s ease;
 }
-.shipping-modal-close:hover { background: var(--color-border, #e5e7eb); }
+.shipping-modal-close:hover { background: var(--color-border, rgba(80, 232, 192, 0.12)); }
 .shipping-modal-close svg { width: 18px; height: 18px; }
 
 .shipping-modal-body { padding: 1.5rem; }
@@ -71,30 +71,30 @@
 .shipping-form-group { margin-bottom: 1rem; }
 .shipping-form-group label {
     display: block; font-size: 0.8rem; font-weight: 500;
-    color: var(--color-text-muted, #6b7280);
+    color: var(--color-text-muted, #506460);
     margin-bottom: 0.375rem; text-transform: uppercase; letter-spacing: 0.03em;
 }
 .shipping-form-group input,
 .shipping-form-group select {
     width: 100%; padding: 0.625rem 0.875rem;
-    border: 1.5px solid var(--color-border, #e5e7eb);
+    border: 1.5px solid var(--color-border, rgba(80, 232, 192, 0.12));
     border-radius: 8px; font-family: var(--font-sans, 'Inter', sans-serif);
-    font-size: 0.9rem; background: var(--color-bg, #fff);
-    color: var(--color-text, #111827);
+    font-size: 0.9rem; background: var(--color-bg, #1e2628);
+    color: var(--color-text, #bccac4);
     box-sizing: border-box;
     transition: border-color 0.2s ease;
 }
 .shipping-form-group input:focus,
 .shipping-form-group select:focus {
     outline: none;
-    border-color: var(--color-primary, #1c3a13);
-    box-shadow: 0 0 0 3px rgba(28, 58, 19, 0.12);
+    border-color: var(--color-primary, #50e8c0);
+    box-shadow: 0 0 0 3px rgba(80, 232, 192, 0.12);
 }
 
 .shipping-calc-btn {
     width: 100%; padding: 0.75rem;
-    background: var(--color-primary, #1c3a13);
-    color: white; border: none; border-radius: 8px;
+    background: var(--color-primary, #50e8c0);
+    color: #12181a; border: none; border-radius: 8px;
     font-family: var(--font-sans, 'Inter', sans-serif);
     font-size: 0.9rem; font-weight: 500; cursor: pointer;
     transition: filter 0.2s ease;
@@ -106,7 +106,7 @@
 .shipping-results h4 {
     font-family: var(--font-sans, 'Inter', sans-serif);
     font-size: 0.85rem; font-weight: 500;
-    color: var(--color-text-muted, #6b7280);
+    color: var(--color-text-muted, #506460);
     text-transform: uppercase; letter-spacing: 0.03em;
     margin: 0 0 0.75rem;
 }
@@ -114,33 +114,33 @@
 .shipping-option {
     display: flex; justify-content: space-between; align-items: center;
     padding: 0.875rem 1rem;
-    border: 1.5px solid var(--color-border, #e5e7eb);
+    border: 1.5px solid var(--color-border, rgba(80, 232, 192, 0.12));
     border-radius: 10px; margin-bottom: 0.5rem;
     transition: border-color 0.2s ease;
 }
-.shipping-option:first-of-type { border-color: var(--color-primary, #1c3a13); }
+.shipping-option:first-of-type { border-color: var(--color-primary, #50e8c0); }
 .shipping-option-info h5 {
     margin: 0; font-size: 0.9rem; font-weight: 500;
-    color: var(--color-text, #111827);
+    color: var(--color-text, #bccac4);
 }
 .shipping-option-info p {
     margin: 0.125rem 0 0; font-size: 0.75rem;
-    color: var(--color-text-muted, #6b7280);
+    color: var(--color-text-muted, #506460);
 }
 .shipping-option-price {
     font-size: 1.1rem; font-weight: 500;
-    color: var(--color-primary, #1c3a13);
+    color: var(--color-primary, #50e8c0);
     white-space: nowrap;
 }
 .shipping-option-price.free {
-    color: var(--color-success, #3d5b34);
+    color: var(--color-success, #50e8c0);
 }
 
 .shipping-note {
     margin-top: 0.75rem; padding: 0.75rem;
-    background: var(--color-primary-subtle, rgba(28,58,19,0.08));
+    background: var(--color-primary-subtle, rgba(80, 232, 192, 0.08));
     border-radius: 8px; font-size: 0.8rem;
-    color: var(--color-text-secondary, #475569);
+    color: var(--color-text-secondary, #8e9c98);
     line-height: 1.5;
 }
 

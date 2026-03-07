@@ -46,7 +46,7 @@ async function testStripeIntegration() {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                            name: 'Test Product - Kratom Extract',
+                            name: 'Test Product - Kanna Extract',
                             description: 'Premium botanical extract',
                         },
                         unit_amount: 4999, // $49.99

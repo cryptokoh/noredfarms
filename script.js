@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     initMobileEnhancements();
     initProductFiltering();
-    initFeaturedCarousel();
+    initScrollLockCarousel();
     initViewAllProducts();
 
     // Global auth nav state (only runs if Supabase is loaded)
@@ -161,21 +161,46 @@ function initDesktopDropdowns(nav) {
     // Dropdown data matching fullscreen menu structure
     var dropdownData = {
         'products': {
+            wide: true,
             col1Title: 'Categories',
             col1Links: [
-                { text: 'Seeds', href: 'products/seeds.html' },
-                { text: 'Live Plants', href: 'products/live-plants.html' },
-                { text: 'Gummies', href: 'products/gummies.html' },
-                { text: 'Tinctures', href: 'products/tinctures.html' },
-                { text: 'Extracts', href: 'products/extracts.html' },
-                { text: 'Dried Botanicals', href: 'products/dried-botanicals.html' }
+                { text: 'Tinctures', href: 'products/tinctures.html', icon: '&#128167;' },
+                { text: 'Gummies', href: 'products/gummies.html', icon: '&#127852;' },
+                { text: 'Extracts', href: 'products/extracts.html', icon: '&#9878;' },
+                { text: 'Dried Botanicals', href: 'products/dried-botanicals.html', icon: '&#127807;' },
+                { text: 'Live Plants', href: 'products/live-plants.html', icon: '&#127811;' },
+                { text: 'Seeds', href: 'products/seeds.html', icon: '&#127793;' }
             ],
-            col2Title: 'Featured',
-            col2Links: [
-                { text: '5000mg Blue Lotus Tincture', href: 'products/tinctures.html', price: '$60' },
-                { text: 'High Potency Kanna Extract', href: 'products/extracts.html', price: '$40' },
-                { text: 'Kanna Gummies 500mg', href: 'products/gummies.html', price: '$40' },
-                { text: 'Heirloom Sugarcane Seeds', href: 'products/seeds.html', price: '$20' }
+            col2Title: 'Products',
+            col2Groups: [
+                { heading: 'Tinctures', items: [
+                    { text: '5000mg Blue Lotus Tincture', href: 'products/tinctures.html', price: '$60' },
+                    { text: '3000mg Kanna Tincture', href: 'products/tinctures.html', price: '$80' }
+                ]},
+                { heading: 'Gummies', items: [
+                    { text: '500mg Kanna Gummies', href: 'products/gummies.html', price: '$40' },
+                    { text: '2500mg Blue Lotus Gummies', href: 'products/gummies.html', price: '$40' }
+                ]},
+                { heading: 'Extracts', items: [
+                    { text: '1g Blue Lotus Resin Extract', href: 'products/extracts.html', price: '$30' },
+                    { text: '1g High Potency Kanna Extract', href: 'products/extracts.html', price: '$40' },
+                    { text: 'Kava Kava CO2 Extract', href: 'products/extracts.html', price: '$30' }
+                ]},
+                { heading: 'Dried Botanicals', items: [
+                    { text: 'Dried Blue Lotus (1 oz)', href: 'products/dried-botanicals.html', price: '$30' },
+                    { text: 'Dried Kanna (1 oz)', href: 'products/dried-botanicals.html', price: '$30' }
+                ]},
+                { heading: 'Live Plants', items: [
+                    { text: 'Purple Dragon Fruit 12-16"', href: 'products/live-plants.html', price: '$20' },
+                    { text: 'Bob Gordon Elderberry 12-16"', href: 'products/live-plants.html', price: '$20' },
+                    { text: 'Central TX Prickly Pear', href: 'products/live-plants.html', price: '$20' },
+                    { text: 'Davis Mountain Yucca 6"', href: 'products/live-plants.html', price: '$25' }
+                ]},
+                { heading: 'Seeds', items: [
+                    { text: 'Heirloom Sugarcane Seeds', href: 'products/seeds.html', price: '$20' },
+                    { text: 'Hibiscus Seeds', href: 'products/seeds.html', price: '$20' },
+                    { text: 'Nicotiana Rustica (Hape) Seeds', href: 'products/seeds.html', price: '$40' }
+                ]}
             ],
             footerText: 'Shop All Products',
             footerHref: 'index.html#products'
@@ -183,49 +208,52 @@ function initDesktopDropdowns(nav) {
         'articles': {
             col1Title: 'Categories',
             col1Links: [
-                { text: 'Garden / Farm Design', href: 'blog.html' },
-                { text: 'Plant Articles', href: 'blog.html' },
-                { text: 'Extraction Methods', href: 'articles/extraction-methods.html' },
-                { text: 'Compounds', href: 'articles/blue-lotus-compounds.html' },
-                { text: 'Studies', href: 'research.html' }
+                { text: 'Garden / Farm Design', href: 'blog.html', icon: '&#127793;' },
+                { text: 'Plant Articles', href: 'blog.html', icon: '&#127807;' },
+                { text: 'Extract Methods', href: 'articles/extraction-methods.html', icon: '&#9878;' },
+                { text: 'Compounds', href: 'articles/blue-lotus-compounds.html', icon: '&#128300;' },
+                { text: 'Studies', href: 'research.html', icon: '&#128200;' }
             ],
             col2Title: 'Featured Articles',
             col2Links: [
-                { text: 'Complete Kratom Guide', href: 'articles/complete-kratom-guide.html', meta: '8 min read' },
-                { text: 'Kavalactones Explained', href: 'articles/kavalactones-explained.html', meta: '6 min read' },
-                { text: 'Extraction Methods Compared', href: 'articles/extraction-methods.html', meta: '10 min read' },
-                { text: 'Blue Lotus Compounds', href: 'articles/blue-lotus-compounds.html', meta: '12 min read' }
+                { text: 'Adaptogens: The Science', href: 'articles/adaptogens-science.html', meta: '8 min' },
+                { text: 'Kavalactones Explained', href: 'articles/kavalactones-explained.html', meta: '6 min' },
+                { text: 'Extraction Methods Compared', href: 'articles/extraction-methods.html', meta: '10 min' },
+                { text: 'Blue Lotus Compounds', href: 'articles/blue-lotus-compounds.html', meta: '12 min' }
             ],
-            footerText: 'All Articles',
+            footerText: 'All 50+ Articles',
             footerHref: 'blog.html'
         },
         'classes': {
-            col1Title: 'Classroom',
+            col1Title: 'Growing Classes',
             col1Links: [
-                { text: 'All Classes', href: 'classes.html' },
-                { text: 'Classroom Portal', href: 'classroom.html' },
-                { text: 'Growing Classes', href: 'classroom/growing.html' },
-                { text: 'Extraction Classes', href: 'classroom/extraction.html' }
+                { text: 'Cultivation Techniques', href: 'classroom/growing.html', icon: '&#127793;' },
+                { text: 'Infrastructure & Equipment', href: 'classroom/infrastructure.html', icon: '&#128296;' },
+                { text: 'Browse All Classes', href: 'classes.html', icon: '&#128218;' }
             ],
-            col2Title: 'More Topics',
+            col2Title: 'Extraction Classes',
             col2Links: [
+                { text: 'Extraction Methods', href: 'classroom/extraction.html' },
                 { text: 'Effects & Alkaloids', href: 'classroom/effects.html' },
-                { text: 'Infrastructure & Equipment', href: 'classroom/infrastructure.html' }
+                { text: 'Classroom Portal', href: 'classroom.html' },
+                { text: 'Course Login', href: 'courses/login.html' }
             ],
-            footerText: 'Browse All Classes',
-            footerHref: 'classes.html'
+            footerText: null,
+            footerHref: null
         },
         'company': {
-            col1Title: 'Company',
+            col1Title: 'About Us',
             col1Links: [
-                { text: 'About Us', href: 'about-us.html' },
-                { text: 'Contact Us', href: 'contact.html' },
-                { text: 'Sustainability', href: 'research.html#growing' }
+                { text: 'Our Story & Mission', href: 'about-us.html', icon: '&#127807;' },
+                { text: 'Sustainability', href: 'about-us.html#sustainability', icon: '&#127811;' },
+                { text: 'Research & Labs', href: 'research.html', icon: '&#128300;' },
+                { text: 'Consulting', href: 'consulting.html', icon: '&#128200;' }
             ],
-            col2Title: 'Connect',
+            col2Title: 'Contact Us',
             col2Links: [
-                { text: 'Research & Labs', href: 'research.html' },
-                { text: 'Consulting', href: 'consulting.html' }
+                { text: 'Get in Touch', href: 'contact.html' },
+                { text: 'Wholesale Inquiries', href: 'contact.html' },
+                { text: 'Partnerships', href: 'consulting.html' }
             ],
             footerText: null,
             footerHref: null
@@ -247,26 +275,43 @@ function initDesktopDropdowns(nav) {
 
         // Build dropdown HTML
         var dropdown = document.createElement('div');
-        dropdown.className = 'nav-dropdown';
+        dropdown.className = 'nav-dropdown' + (data.wide ? ' nav-dropdown-wide' : '');
 
         var inner = '<div class="nav-dropdown-inner">';
         // Column 1
         inner += '<div class="nav-dropdown-col">';
         inner += '<div class="nav-dropdown-heading">' + data.col1Title + '</div>';
         data.col1Links.forEach(function(item) {
-            inner += '<a href="' + item.href + '" class="nav-dropdown-link">' + item.text + '</a>';
+            inner += '<a href="' + item.href + '" class="nav-dropdown-link">';
+            if (item.icon) inner += '<span class="nav-dropdown-icon">' + item.icon + '</span>';
+            inner += '<span>' + item.text + '</span>';
+            inner += '</a>';
         });
         inner += '</div>';
         // Column 2
         inner += '<div class="nav-dropdown-col">';
         inner += '<div class="nav-dropdown-heading">' + data.col2Title + '</div>';
-        data.col2Links.forEach(function(item) {
-            inner += '<a href="' + item.href + '" class="nav-dropdown-link">';
-            inner += '<span>' + item.text + '</span>';
-            if (item.price) inner += '<span class="nav-dropdown-meta">' + item.price + '</span>';
-            if (item.meta) inner += '<span class="nav-dropdown-meta">' + item.meta + '</span>';
-            inner += '</a>';
-        });
+        if (data.col2Groups) {
+            // Grouped product listing
+            data.col2Groups.forEach(function(group) {
+                inner += '<div class="nav-dropdown-group-label">' + group.heading + '</div>';
+                group.items.forEach(function(item) {
+                    inner += '<a href="' + item.href + '" class="nav-dropdown-link nav-dropdown-product">';
+                    inner += '<span>' + item.text + '</span>';
+                    if (item.price) inner += '<span class="nav-dropdown-meta">' + item.price + '</span>';
+                    inner += '</a>';
+                });
+            });
+        } else if (data.col2Links) {
+            data.col2Links.forEach(function(item) {
+                inner += '<a href="' + item.href + '" class="nav-dropdown-link">';
+                if (item.icon) inner += '<span class="nav-dropdown-icon">' + item.icon + '</span>';
+                inner += '<span>' + item.text + '</span>';
+                if (item.price) inner += '<span class="nav-dropdown-meta">' + item.price + '</span>';
+                if (item.meta) inner += '<span class="nav-dropdown-meta">' + item.meta + '</span>';
+                inner += '</a>';
+            });
+        }
         inner += '</div>';
         inner += '</div>';
         // Footer
@@ -333,19 +378,48 @@ function initFullscreenMenu(hamburger) {
         '<div class="fs-panel active" data-panel="products">' +
         '<div class="panel-group-header" style="padding-top:0.25rem">Categories</div>' +
         '<div class="category-grid">' +
-        '<a href="' + p + 'products/seeds.html" class="category-pill-link"><span class="category-pill-icon">&#127793;</span><span>Seeds</span></a>' +
-        '<a href="' + p + 'products/live-plants.html" class="category-pill-link"><span class="category-pill-icon">&#127811;</span><span>Live Plants</span></a>' +
-        '<a href="' + p + 'products/gummies.html" class="category-pill-link"><span class="category-pill-icon">&#127852;</span><span>Gummies</span></a>' +
         '<a href="' + p + 'products/tinctures.html" class="category-pill-link"><span class="category-pill-icon">&#128167;</span><span>Tinctures</span></a>' +
+        '<a href="' + p + 'products/gummies.html" class="category-pill-link"><span class="category-pill-icon">&#127852;</span><span>Gummies</span></a>' +
         '<a href="' + p + 'products/extracts.html" class="category-pill-link"><span class="category-pill-icon">&#9878;</span><span>Extracts</span></a>' +
         '<a href="' + p + 'products/dried-botanicals.html" class="category-pill-link"><span class="category-pill-icon">&#127807;</span><span>Dried Botanicals</span></a>' +
+        '<a href="' + p + 'products/live-plants.html" class="category-pill-link"><span class="category-pill-icon">&#127811;</span><span>Live Plants</span></a>' +
+        '<a href="' + p + 'products/seeds.html" class="category-pill-link"><span class="category-pill-icon">&#127793;</span><span>Seeds</span></a>' +
         '</div>' +
-        '<div class="panel-group-header">Featured Products</div>' +
-        '<a href="' + p + 'products/tinctures.html" class="product-row"><div class="product-thumb"><div class="jar blue"></div></div><div class="product-info"><div class="product-code">BL-T1</div><div class="product-name">5000mg Blue Lotus Tincture</div></div><div class="product-price">$60</div></a>' +
-        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-code">KN-E1</div><div class="product-name">High Potency Kanna Extract</div></div><div class="product-price">$40</div></a>' +
-        '<a href="' + p + 'products/gummies.html" class="product-row"><div class="product-thumb"><div class="jar amber"></div></div><div class="product-info"><div class="product-code">KN-G1</div><div class="product-name">Kanna Gummies 500mg</div></div><div class="product-price">$40</div></a>' +
-        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar teal"></div></div><div class="product-info"><div class="product-code">KV-E1</div><div class="product-name">Kava Kava CO2 Extract</div></div><div class="product-price">$30</div></a>' +
-        '<a href="' + p + 'products/seeds.html" class="product-row"><div class="product-thumb"><div class="jar rose"></div></div><div class="product-info"><div class="product-code">SC-S1</div><div class="product-name">Heirloom Sugarcane Seeds</div></div><div class="product-price">$20</div></a>' +
+
+        // Tinctures
+        '<div class="panel-group-header">Tinctures</div>' +
+        '<a href="' + p + 'products/tinctures.html" class="product-row"><div class="product-thumb"><div class="jar blue"></div></div><div class="product-info"><div class="product-name">5000mg Blue Lotus Tincture</div></div><div class="product-price">$60</div></a>' +
+        '<a href="' + p + 'products/tinctures.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-name">3000mg Kanna Tincture</div></div><div class="product-price">$80</div></a>' +
+
+        // Gummies
+        '<div class="panel-group-header">Gummies</div>' +
+        '<a href="' + p + 'products/gummies.html" class="product-row"><div class="product-thumb"><div class="jar amber"></div></div><div class="product-info"><div class="product-name">500mg Kanna Gummies</div></div><div class="product-price">$40</div></a>' +
+        '<a href="' + p + 'products/gummies.html" class="product-row"><div class="product-thumb"><div class="jar blue"></div></div><div class="product-info"><div class="product-name">2500mg Blue Lotus Gummies</div></div><div class="product-price">$40</div></a>' +
+
+        // Extracts
+        '<div class="panel-group-header">Extracts</div>' +
+        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar blue"></div></div><div class="product-info"><div class="product-name">1g Blue Lotus Resin Extract</div></div><div class="product-price">$30</div></a>' +
+        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-name">1g High Potency Kanna Extract</div></div><div class="product-price">$40</div></a>' +
+        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar teal"></div></div><div class="product-info"><div class="product-name">High Potency Kava Kava CO2 Extract</div></div><div class="product-price">$30</div></a>' +
+
+        // Dried Botanicals
+        '<div class="panel-group-header">Dried Botanicals</div>' +
+        '<a href="' + p + 'products/dried-botanicals.html" class="product-row"><div class="product-thumb"><div class="jar blue"></div></div><div class="product-info"><div class="product-name">Dried Blue Lotus (1 oz)</div></div><div class="product-price">$30</div></a>' +
+        '<a href="' + p + 'products/dried-botanicals.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-name">Dried Kanna (1 oz)</div></div><div class="product-price">$30</div></a>' +
+
+        // Live Plants
+        '<div class="panel-group-header">Live Plants</div>' +
+        '<a href="' + p + 'products/live-plants.html" class="product-row"><div class="product-thumb"><div class="jar teal"></div></div><div class="product-info"><div class="product-name">Purple Dragon Fruit, rooted 12-16&quot;</div></div><div class="product-price">$20</div></a>' +
+        '<a href="' + p + 'products/live-plants.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-name">Bob Gordon Elderberry, 12-16&quot;</div></div><div class="product-price">$20</div></a>' +
+        '<a href="' + p + 'products/live-plants.html" class="product-row"><div class="product-thumb"><div class="jar amber"></div></div><div class="product-info"><div class="product-name">Central Texas Prickly Pear, 2 pads</div></div><div class="product-price">$20</div></a>' +
+        '<a href="' + p + 'products/live-plants.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-name">Davis Mountain Yucca, 6&quot;</div></div><div class="product-price">$25</div></a>' +
+
+        // Seeds
+        '<div class="panel-group-header">Seeds</div>' +
+        '<a href="' + p + 'products/seeds.html" class="product-row"><div class="product-thumb"><div class="jar amber"></div></div><div class="product-info"><div class="product-name">Heirloom Sugarcane Seeds</div></div><div class="product-price">$20</div></a>' +
+        '<a href="' + p + 'products/seeds.html" class="product-row"><div class="product-thumb"><div class="jar teal"></div></div><div class="product-info"><div class="product-name">Hibiscus Seeds</div></div><div class="product-price">$20</div></a>' +
+        '<a href="' + p + 'products/seeds.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-name">Nicotiana Rustica (Hape) Seeds</div></div><div class="product-price">$40</div></a>' +
+
         '<a href="' + p + 'index.html#products" class="shop-all-link">Shop All Products &rarr;</a>' +
         '</div>' +
 
@@ -360,7 +434,7 @@ function initFullscreenMenu(hamburger) {
         '<a href="' + p + 'research.html" class="category-pill-link"><span class="category-pill-icon">&#128200;</span><span>Studies</span></a>' +
         '</div>' +
         '<div class="panel-group-header">Featured Articles</div>' +
-        '<a href="' + p + 'articles/complete-kratom-guide.html" class="panel-item"><div class="article-thumb article-thumb-1"></div><div class="panel-item-content"><div class="panel-item-title">Complete Kratom Guide</div><div class="panel-item-meta">8 min read</div></div></a>' +
+        '<a href="' + p + 'articles/adaptogens-science.html" class="panel-item"><div class="article-thumb article-thumb-1"></div><div class="panel-item-content"><div class="panel-item-title">Adaptogens: The Science</div><div class="panel-item-meta">8 min read</div></div></a>' +
         '<a href="' + p + 'articles/kavalactones-explained.html" class="panel-item"><div class="article-thumb article-thumb-2"></div><div class="panel-item-content"><div class="panel-item-title">Kavalactones Explained</div><div class="panel-item-meta">6 min read</div></div></a>' +
         '<a href="' + p + 'articles/extraction-methods.html" class="panel-item"><div class="article-thumb article-thumb-3"></div><div class="panel-item-content"><div class="panel-item-title">Extraction Methods Compared</div><div class="panel-item-meta">10 min read</div></div></a>' +
         '<a href="' + p + 'articles/blue-lotus-compounds.html" class="panel-item"><div class="article-thumb article-thumb-4"></div><div class="panel-item-content"><div class="panel-item-title">Blue Lotus Compounds & Research</div><div class="panel-item-meta">12 min read</div></div></a>' +
@@ -369,10 +443,14 @@ function initFullscreenMenu(hamburger) {
 
         // ---- CLASSES panel ----
         '<div class="fs-panel" data-panel="classes">' +
-        '<a href="' + p + 'classroom/growing.html" class="panel-item"><div class="panel-item-image img-sustainability">&#127793;</div><div class="panel-item-content"><div class="panel-item-title">Growing Classes</div><div class="panel-item-desc">Cultivation techniques for botanicals and food forests.</div></div></a>' +
-        '<a href="' + p + 'classroom/extraction.html" class="panel-item"><div class="panel-item-image img-approach">&#9752;</div><div class="panel-item-content"><div class="panel-item-title">Extraction Classes</div><div class="panel-item-desc">The science of isolating active plant compounds.</div></div></a>' +
-        '<a href="' + p + 'classroom/effects.html" class="panel-item"><div class="panel-item-image img-labs">&#128300;</div><div class="panel-item-content"><div class="panel-item-title">Effects & Alkaloids</div><div class="panel-item-desc">How mitragynine, kavalactones and aporphines work.</div></div></a>' +
-        '<a href="' + p + 'classroom/infrastructure.html" class="panel-item"><div class="panel-item-image img-scientists">&#128200;</div><div class="panel-item-content"><div class="panel-item-title">Infrastructure & Equipment</div><div class="panel-item-desc">Tools and systems for sustainable growing.</div></div></a>' +
+        '<div class="panel-group-header" style="padding-top:0.25rem">Growing Classes</div>' +
+        '<a href="' + p + 'classroom/growing.html" class="panel-item"><div class="panel-item-image img-sustainability">&#127793;</div><div class="panel-item-content"><div class="panel-item-title">Cultivation Techniques</div><div class="panel-item-desc">Soil preparation, planting, harvesting, and food forest design.</div></div></a>' +
+        '<a href="' + p + 'classroom/infrastructure.html" class="panel-item"><div class="panel-item-image img-scientists">&#128296;</div><div class="panel-item-content"><div class="panel-item-title">Infrastructure & Equipment</div><div class="panel-item-desc">Tools, irrigation, structures, and systems for sustainable growing.</div></div></a>' +
+
+        '<div class="panel-group-header">Extraction Classes</div>' +
+        '<a href="' + p + 'classroom/extraction.html" class="panel-item"><div class="panel-item-image img-approach">&#9878;</div><div class="panel-item-content"><div class="panel-item-title">Extraction Methods</div><div class="panel-item-desc">Water, ethanol, CO2, and cold-process extraction techniques.</div></div></a>' +
+        '<a href="' + p + 'classroom/effects.html" class="panel-item"><div class="panel-item-image img-labs">&#128300;</div><div class="panel-item-content"><div class="panel-item-title">Effects & Alkaloids</div><div class="panel-item-desc">How kavalactones, aporphines, and mesembrine work in the body.</div></div></a>' +
+
         '<div class="panel-group-header">Quick Links</div>' +
         '<ul class="ref-list">' +
         '<li><a href="' + p + 'classes.html">Browse All Classes</a></li>' +
@@ -383,14 +461,14 @@ function initFullscreenMenu(hamburger) {
 
         // ---- COMPANY panel ----
         '<div class="fs-panel" data-panel="company">' +
-        '<a href="' + p + 'about-us.html" class="panel-item"><div class="panel-item-image img-approach">&#127807;</div><div class="panel-item-content"><div class="panel-item-title">About Us</div><div class="panel-item-desc">Our story, mission, and the team behind Nored Farms.</div></div></a>' +
-        '<a href="' + p + 'contact.html" class="panel-item"><div class="panel-item-image img-labs">&#9993;</div><div class="panel-item-content"><div class="panel-item-title">Contact Us</div><div class="panel-item-desc">Get in touch for orders, questions, or partnerships.</div></div></a>' +
-        '<a href="' + p + 'research.html#growing" class="panel-item"><div class="panel-item-image img-sustainability">&#127811;</div><div class="panel-item-content"><div class="panel-item-title">Sustainability</div><div class="panel-item-desc">Our commitment to ecological responsibility.</div></div></a>' +
-        '<div class="panel-group-header">More</div>' +
-        '<ul class="ref-list">' +
-        '<li><a href="' + p + 'research.html">Research & Labs</a></li>' +
-        '<li><a href="' + p + 'consulting.html">Consulting</a></li>' +
-        '</ul>' +
+        '<div class="panel-group-header" style="padding-top:0.25rem">About Us</div>' +
+        '<a href="' + p + 'about-us.html" class="panel-item"><div class="panel-item-image img-approach">&#127807;</div><div class="panel-item-content"><div class="panel-item-title">Our Story & Mission</div><div class="panel-item-desc">15+ years of ethnobotanical research from Texas Hill Country.</div></div></a>' +
+        '<a href="' + p + 'about-us.html#sustainability" class="panel-item"><div class="panel-item-image img-sustainability">&#127811;</div><div class="panel-item-content"><div class="panel-item-title">Sustainability</div><div class="panel-item-desc">Our commitment to ecological responsibility and ethical sourcing.</div></div></a>' +
+        '<a href="' + p + 'research.html" class="panel-item"><div class="panel-item-image img-labs">&#128300;</div><div class="panel-item-content"><div class="panel-item-title">Research & Labs</div><div class="panel-item-desc">GMP-compliant facility, third-party testing, and COAs.</div></div></a>' +
+
+        '<div class="panel-group-header">Contact Us</div>' +
+        '<a href="' + p + 'contact.html" class="panel-item"><div class="panel-item-image img-labs">&#9993;</div><div class="panel-item-content"><div class="panel-item-title">Get in Touch</div><div class="panel-item-desc">Questions, orders, wholesale inquiries, or partnerships.</div></div></a>' +
+        '<a href="' + p + 'consulting.html" class="panel-item"><div class="panel-item-image img-scientists">&#128200;</div><div class="panel-item-content"><div class="panel-item-title">Consulting Services</div><div class="panel-item-desc">Extraction consulting, farm design, and botanical sourcing.</div></div></a>' +
         '</div>' +
 
         // ---- LOGIN panel ----
@@ -1052,329 +1130,244 @@ function filterProducts(category, productCards) {
 }
 
 /**
- * Featured Products Carousel
+ * Scroll-Lock Carousel (Wheel-hijack approach)
+ * When the products section is in view and user scrolls, the wheel event
+ * is intercepted to advance the carousel horizontally. Once all cards
+ * have been shown, normal page scroll resumes.
  */
-function initFeaturedCarousel() {
-    const track = document.getElementById('carouselTrack');
-    const prevBtn = document.getElementById('carouselPrev');
-    const nextBtn = document.getElementById('carouselNext');
-    const dotsContainer = document.getElementById('carouselDots');
+function initScrollLockCarousel() {
+    var carousel = document.getElementById('productsCarousel');
+    var viewport = document.getElementById('carouselViewport');
+    var section = carousel ? carousel.closest('section') : null;
+    if (!carousel || !section) return;
 
-    if (!track || !prevBtn || !nextBtn) {
-        return;
-    }
+    var cards = carousel.querySelectorAll('.product-card');
+    var totalCards = cards.length;
+    var isMobile = window.innerWidth <= 768;
 
-    const cards = track.querySelectorAll('.featured-card');
-    const totalCards = cards.length;
-    let currentIndex = 0;
-    let cardsPerView = getCardsPerView();
-
-    // Create dots
-    function createDots() {
-        dotsContainer.innerHTML = '';
-        const totalDots = Math.ceil(totalCards / cardsPerView);
-
-        for (let i = 0; i < totalDots; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
-    }
-
-    // Get cards per view based on screen width
     function getCardsPerView() {
         if (window.innerWidth <= 768) return 1;
         if (window.innerWidth <= 1024) return 2;
         return 3;
     }
 
-    // Calculate slide width
-    function getSlideWidth() {
-        if (!cards.length) return 0;
-        const card = cards[0];
-        const style = window.getComputedStyle(card);
-        const width = card.offsetWidth;
-        const marginRight = parseFloat(style.marginRight) || 0;
-        const gap = 24; // var(--spacing-lg)
-        return width + gap;
+    var cardsPerView = getCardsPerView();
+    // On mobile: only allow 2 scroll advances before releasing
+    var MOBILE_MAX_SCROLLS = 2;
+    var maxIndex = isMobile
+        ? Math.min(MOBILE_MAX_SCROLLS, Math.max(0, totalCards - cardsPerView))
+        : Math.max(0, totalCards - cardsPerView);
+    if (maxIndex === 0) return;
+
+    var currentIndex = 0;
+    var isLocked = false;
+    var lockCooldown = false;
+    var accumulatedDelta = 0;
+    var SCROLL_PER_CARD = isMobile ? 80 : 150; // less scroll needed on mobile
+
+    // Override carousel CSS for transform-based scrolling
+    carousel.style.overflow = 'visible';
+    carousel.style.scrollSnapType = 'none';
+    carousel.style.scrollBehavior = 'auto';
+    carousel.style.flexWrap = 'nowrap';
+    if (viewport) viewport.style.overflow = 'hidden';
+
+    function getCardWidth() {
+        if (!cards[0]) return 300;
+        var style = window.getComputedStyle(carousel);
+        var gap = parseFloat(style.gap) || 16;
+        return cards[0].offsetWidth + gap;
     }
 
-    // Go to specific slide
-    function goToSlide(index) {
-        const maxIndex = Math.max(0, totalCards - cardsPerView);
-        currentIndex = Math.min(Math.max(0, index * cardsPerView), maxIndex);
-        updateCarousel();
+    function slideToIndex(index) {
+        var cardWidth = getCardWidth();
+        carousel.style.transition = 'transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)';
+        carousel.style.transform = 'translateX(' + (-index * cardWidth) + 'px)';
     }
 
-    // Check if mobile (using native scroll)
-    function isMobile() {
-        return window.innerWidth <= 768;
+    function updateControls(index) {
+        var dotsContainer = document.getElementById('carouselDots');
+        if (dotsContainer) {
+            var dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach(function(dot, i) {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        var prev = document.getElementById('carouselPrev');
+        var next = document.getElementById('carouselNext');
+        if (prev) prev.disabled = index === 0;
+        if (next) next.disabled = index >= maxIndex;
     }
 
-    // Update carousel position
-    function updateCarousel() {
-        // On mobile, use native scroll instead of transform
-        if (isMobile()) {
-            track.style.transform = 'none';
-            // Scroll to current card
-            const card = cards[currentIndex];
-            if (card) {
-                card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    // Track hover state (desktop only)
+    var isHovering = false;
+    if (!isMobile) {
+        section.addEventListener('mouseenter', function() { isHovering = true; });
+        section.addEventListener('mouseleave', function() { isHovering = false; });
+    }
+
+    function isSectionInView() {
+        if (isHovering) return true;
+        var rect = section.getBoundingClientRect();
+        var viewH = window.innerHeight;
+        return rect.top < viewH * 0.4 && rect.bottom > viewH * 0.5;
+    }
+
+    function releaseLock() {
+        isLocked = false;
+        accumulatedDelta = 0;
+        lockCooldown = true;
+        setTimeout(function() { lockCooldown = false; }, 600);
+    }
+
+    // ---- DESKTOP: Wheel event hijack ----
+    function onWheel(e) {
+        if (lockCooldown) return;
+        if (!isSectionInView()) {
+            if (isLocked) releaseLock();
+            return;
+        }
+
+        var delta = e.deltaY;
+
+        if (delta > 0 && currentIndex < maxIndex) {
+            e.preventDefault();
+            isLocked = true;
+            accumulatedDelta += delta;
+            if (accumulatedDelta >= SCROLL_PER_CARD) {
+                var steps = Math.floor(accumulatedDelta / SCROLL_PER_CARD);
+                accumulatedDelta = accumulatedDelta % SCROLL_PER_CARD;
+                currentIndex = Math.min(currentIndex + steps, maxIndex);
+                slideToIndex(currentIndex);
+                updateControls(currentIndex);
+            }
+            return;
+        }
+
+        if (delta < 0 && currentIndex > 0) {
+            e.preventDefault();
+            isLocked = true;
+            accumulatedDelta += Math.abs(delta);
+            if (accumulatedDelta >= SCROLL_PER_CARD) {
+                var steps = Math.floor(accumulatedDelta / SCROLL_PER_CARD);
+                accumulatedDelta = accumulatedDelta % SCROLL_PER_CARD;
+                currentIndex = Math.max(currentIndex - steps, 0);
+                slideToIndex(currentIndex);
+                updateControls(currentIndex);
+            }
+            return;
+        }
+
+        if (isLocked) releaseLock();
+    }
+
+    // ---- MOBILE: Touch-based scroll hijack ----
+    var touchStartY = 0;
+    var touchStartTime = 0;
+    var touchLocked = false;
+
+    function onTouchStart(e) {
+        if (lockCooldown) return;
+        if (!isSectionInView()) return;
+        touchStartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
+        // Only lock if we have room to scroll the carousel
+        if ((currentIndex < maxIndex) || (currentIndex > 0)) {
+            touchLocked = true;
+        }
+    }
+
+    function onTouchMove(e) {
+        if (!touchLocked || lockCooldown) return;
+        if (!isSectionInView()) {
+            touchLocked = false;
+            return;
+        }
+
+        var touchY = e.touches[0].clientY;
+        var deltaY = touchStartY - touchY; // positive = scrolling down
+
+        // Only hijack if vertical movement exceeds threshold
+        if (Math.abs(deltaY) < 30) return;
+
+        if (deltaY > 0 && currentIndex < maxIndex) {
+            e.preventDefault();
+            isLocked = true;
+            currentIndex++;
+            slideToIndex(currentIndex);
+            updateControls(currentIndex);
+            touchStartY = touchY; // reset for next swipe
+            // If we've hit the mobile max, release
+            if (currentIndex >= maxIndex) {
+                touchLocked = false;
+                releaseLock();
+            }
+        } else if (deltaY < 0 && currentIndex > 0) {
+            e.preventDefault();
+            isLocked = true;
+            currentIndex--;
+            slideToIndex(currentIndex);
+            updateControls(currentIndex);
+            touchStartY = touchY;
+            if (currentIndex <= 0) {
+                touchLocked = false;
+                releaseLock();
             }
         } else {
-            const slideWidth = getSlideWidth();
-            const translateX = -currentIndex * slideWidth;
-            track.style.transform = `translateX(${translateX}px)`;
+            // At boundary, release
+            touchLocked = false;
+            if (isLocked) releaseLock();
         }
+    }
 
-        // Update buttons
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex >= totalCards - cardsPerView;
+    function onTouchEnd() {
+        touchLocked = false;
+    }
 
-        // Update dots
-        const dots = dotsContainer.querySelectorAll('.carousel-dot');
-        const activeDotIndex = Math.floor(currentIndex / cardsPerView);
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === activeDotIndex);
+    // Attach listeners based on device
+    if (isMobile) {
+        section.addEventListener('touchstart', onTouchStart, { passive: true });
+        section.addEventListener('touchmove', onTouchMove, { passive: false });
+        section.addEventListener('touchend', onTouchEnd, { passive: true });
+    } else {
+        window.addEventListener('wheel', onWheel, { passive: false });
+    }
+
+    // Arrow buttons (both desktop + mobile)
+    var prevBtn = document.getElementById('carouselPrev');
+    var nextBtn = document.getElementById('carouselNext');
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                slideToIndex(currentIndex);
+                updateControls(currentIndex);
+            }
+        });
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                slideToIndex(currentIndex);
+                updateControls(currentIndex);
+            }
         });
     }
 
-    // Next slide
-    function nextSlide() {
-        const maxIndex = totalCards - cardsPerView;
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateCarousel();
+    // Handle resize
+    window.addEventListener('resize', function() {
+        var nowMobile = window.innerWidth <= 768;
+        cardsPerView = getCardsPerView();
+        maxIndex = nowMobile
+            ? Math.min(MOBILE_MAX_SCROLLS, Math.max(0, totalCards - cardsPerView))
+            : Math.max(0, totalCards - cardsPerView);
+        if (currentIndex > maxIndex) {
+            currentIndex = maxIndex;
+            slideToIndex(currentIndex);
         }
-    }
-
-    // Previous slide
-    function prevSlide() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
-        }
-    }
-
-    // Event listeners
-    prevBtn.addEventListener('click', prevSlide);
-    nextBtn.addEventListener('click', nextSlide);
-
-    // Keyboard navigation
-    track.parentElement.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            prevSlide();
-        } else if (e.key === 'ArrowRight') {
-            nextSlide();
-        }
+        updateControls(currentIndex);
     });
-
-    // Touch/swipe support for mobile
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchEndX = 0;
-    let touchEndY = 0;
-    let touchStartTime = 0;
-    let touchTarget = null;
-
-    track.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-        touchStartTime = Date.now();
-        touchTarget = e.target;
-    }, { passive: true });
-
-    track.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        touchEndY = e.changedTouches[0].screenY;
-
-        // Don't trigger swipe if the touch started on an interactive element
-        const interactiveElements = ['BUTTON', 'A', 'INPUT', 'SELECT'];
-        const clickedInteractive = touchTarget && (
-            interactiveElements.includes(touchTarget.tagName) ||
-            touchTarget.closest('button') ||
-            touchTarget.closest('a') ||
-            touchTarget.closest('.add-to-cart-btn')
-        );
-
-        if (clickedInteractive) {
-            return; // Let the click happen naturally
-        }
-
-        handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-        const swipeThreshold = 80; // Increased threshold to reduce accidental swipes
-        const verticalThreshold = 50; // If vertical movement is significant, it's a scroll not swipe
-        const maxSwipeTime = 500; // Swipe must complete within 500ms
-
-        const diffX = touchStartX - touchEndX;
-        const diffY = Math.abs(touchStartY - touchEndY);
-        const swipeTime = Date.now() - touchStartTime;
-
-        // Only trigger swipe if:
-        // 1. Horizontal movement exceeds threshold
-        // 2. Vertical movement is minimal (not a scroll)
-        // 3. Swipe completed quickly (intentional gesture)
-        if (Math.abs(diffX) > swipeThreshold &&
-            diffY < verticalThreshold &&
-            swipeTime < maxSwipeTime) {
-            if (diffX > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
-    }
-
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            const newCardsPerView = getCardsPerView();
-            if (newCardsPerView !== cardsPerView) {
-                cardsPerView = newCardsPerView;
-                currentIndex = 0;
-                createDots();
-                updateCarousel();
-            }
-        }, 250);
-    });
-
-    // Auto-advance (every 5 seconds with gentle transition) - disabled on mobile
-    let autoAdvance;
-
-    function startAutoAdvance() {
-        // Don't auto-advance on mobile - let users control via native scroll
-        if (isMobile()) return;
-
-        stopAutoAdvance(); // Clear any existing interval
-        autoAdvance = setInterval(() => {
-            if (currentIndex < totalCards - cardsPerView) {
-                nextSlide();
-            } else {
-                currentIndex = 0;
-                updateCarousel();
-            }
-        }, 5000); // Increased to 5 seconds for less aggressive advancement
-    }
-
-    function stopAutoAdvance() {
-        if (autoAdvance) {
-            clearInterval(autoAdvance);
-            autoAdvance = null;
-        }
-    }
-
-    // Pause on hover/touch, resume after (desktop only)
-    track.addEventListener('mouseenter', stopAutoAdvance);
-    track.addEventListener('mouseleave', () => {
-        if (!isMobile()) startAutoAdvance();
-    });
-    // Touch events - stop auto-advance but don't resume on mobile
-    track.addEventListener('touchstart', stopAutoAdvance, { passive: true });
-
-    // Sync dots with native scroll on mobile
-    let scrollTimeout;
-    track.addEventListener('scroll', () => {
-        if (!isMobile()) return;
-
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            // Find which card is most visible
-            const trackRect = track.getBoundingClientRect();
-            const trackCenter = trackRect.left + trackRect.width / 2;
-
-            let closestCard = 0;
-            let closestDistance = Infinity;
-
-            cards.forEach((card, i) => {
-                const cardRect = card.getBoundingClientRect();
-                const cardCenter = cardRect.left + cardRect.width / 2;
-                const distance = Math.abs(cardCenter - trackCenter);
-
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestCard = i;
-                }
-            });
-
-            currentIndex = closestCard;
-
-            // Update dots without scrolling
-            const dots = dotsContainer.querySelectorAll('.carousel-dot');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentIndex);
-            });
-        }, 100);
-    }, { passive: true });
-
-    // Create overlay navigation arrows
-    function createOverlayArrows() {
-        const container = track.parentElement;
-
-        // Create left arrow
-        const leftArrow = document.createElement('button');
-        leftArrow.className = 'carousel-overlay-arrow carousel-overlay-left';
-        leftArrow.setAttribute('aria-label', 'Previous');
-        leftArrow.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M15 19l-7-7 7-7"/>
-            </svg>
-        `;
-        leftArrow.addEventListener('click', (e) => {
-            e.stopPropagation();
-            prevSlide();
-            stopAutoAdvance();
-            setTimeout(startAutoAdvance, 3000);
-        });
-
-        // Create right arrow
-        const rightArrow = document.createElement('button');
-        rightArrow.className = 'carousel-overlay-arrow carousel-overlay-right';
-        rightArrow.setAttribute('aria-label', 'Next');
-        rightArrow.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 5l7 7-7 7"/>
-            </svg>
-        `;
-        rightArrow.addEventListener('click', (e) => {
-            e.stopPropagation();
-            nextSlide();
-            stopAutoAdvance();
-            setTimeout(startAutoAdvance, 3000);
-        });
-
-        container.appendChild(leftArrow);
-        container.appendChild(rightArrow);
-
-        // Update arrow visibility based on position
-        function updateOverlayArrows() {
-            leftArrow.classList.toggle('hidden', currentIndex === 0);
-            rightArrow.classList.toggle('hidden', currentIndex >= totalCards - cardsPerView);
-        }
-
-        // Hook into updateCarousel
-        const originalUpdate = updateCarousel;
-        updateCarousel = function() {
-            originalUpdate();
-            updateOverlayArrows();
-        };
-
-        updateOverlayArrows();
-    }
-
-    // Initialize
-    createDots();
-    createOverlayArrows();
-    updateCarousel();
-    startAutoAdvance();
-
 }
 
 /**

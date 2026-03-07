@@ -48,46 +48,86 @@ exports.handler = async (event) => {
 
     if (stripeEvent.type === 'checkout.session.completed') {
         const session = stripeEvent.data.object;
-        const { tier_id, user_id, course_slug } = session.metadata;
-        const tierId = parseInt(tier_id, 10);
+        const metadata = session.metadata || {};
 
         try {
-            // 1. Upgrade tier (only if new tier > current)
-            const { data: profile } = await supabaseAdmin
-                .from('profiles')
-                .select('tier_level')
-                .eq('id', user_id)
+            // --- Course enrollment flow (existing) ---
+            if (metadata.tier_id && metadata.user_id) {
+                const tierId = parseInt(metadata.tier_id, 10);
+                const userId = metadata.user_id;
+
+                const { data: profile } = await supabaseAdmin
+                    .from('profiles')
+                    .select('tier_level')
+                    .eq('id', userId)
+                    .single();
+
+                if (!profile || tierId > profile.tier_level) {
+                    await supabaseAdmin
+                        .from('profiles')
+                        .update({ tier_level: tierId, updated_at: new Date().toISOString() })
+                        .eq('id', userId);
+                }
+
+                const { data: courses } = await supabaseAdmin
+                    .from('courses')
+                    .select('id, slug')
+                    .eq('is_published', true)
+                    .lte('min_tier', tierId);
+
+                if (courses && courses.length > 0) {
+                    const enrollments = courses.map(course => ({
+                        user_id: userId,
+                        course_id: course.id,
+                        tier_level: tierId,
+                        stripe_session_id: session.id,
+                        is_active: true
+                    }));
+                    await supabaseAdmin
+                        .from('enrollments')
+                        .upsert(enrollments, { onConflict: 'user_id,course_id' });
+                }
+                console.log(`Enrolled user ${userId} at tier ${tierId} in ${courses ? courses.length : 0} courses`);
+            }
+
+            // --- Product order recording (new) ---
+            const totalCents = session.amount_total || 0;
+            const userId = metadata.user_id || null;
+
+            // Insert order
+            const { data: order, error: orderErr } = await supabaseAdmin
+                .from('orders')
+                .insert({
+                    user_id: userId || null,
+                    stripe_session_id: session.id,
+                    stripe_payment_intent: session.payment_intent || null,
+                    total_cents: totalCents,
+                    currency: session.currency || 'usd',
+                    shipping_info: session.shipping_details || {}
+                })
+                .select('id')
                 .single();
 
-            if (!profile || tierId > profile.tier_level) {
-                await supabaseAdmin
-                    .from('profiles')
-                    .update({ tier_level: tierId, updated_at: new Date().toISOString() })
-                    .eq('id', user_id);
+            if (orderErr) {
+                console.error('Order insert error:', orderErr);
+            } else if (order && metadata.items_json) {
+                // Insert line items from metadata
+                try {
+                    const items = JSON.parse(metadata.items_json);
+                    const orderItems = items.map(item => ({
+                        order_id: order.id,
+                        product_id: item.id,
+                        product_name: item.name,
+                        quantity: item.qty,
+                        unit_price_cents: Math.round(item.price * 100)
+                    }));
+                    await supabaseAdmin.from('order_items').insert(orderItems);
+                } catch (parseErr) {
+                    console.error('Items parse error:', parseErr);
+                }
             }
 
-            // 2. Enroll in all published courses at purchased tier and below
-            const { data: courses } = await supabaseAdmin
-                .from('courses')
-                .select('id, slug')
-                .eq('is_published', true)
-                .lte('min_tier', tierId);
-
-            if (courses && courses.length > 0) {
-                const enrollments = courses.map(course => ({
-                    user_id,
-                    course_id: course.id,
-                    tier_level: tierId,
-                    stripe_session_id: session.id,
-                    is_active: true
-                }));
-
-                await supabaseAdmin
-                    .from('enrollments')
-                    .upsert(enrollments, { onConflict: 'user_id,course_id' });
-            }
-
-            console.log(`Enrolled user ${user_id} at tier ${tierId} in ${courses ? courses.length : 0} courses`);
+            console.log(`Order recorded: session=${session.id}, user=${userId}, total=${totalCents}`);
 
         } catch (err) {
             console.error('Webhook processing error:', err);

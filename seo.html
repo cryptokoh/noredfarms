@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://noredfarms.netlify.app/seo.html">
 
     <!-- Theme Colors -->
-    <meta name="theme-color" content="#1c3a13">
+    <meta name="theme-color" content="#12181a">
 
     <!-- Open Graph -->
     <meta property="og:type" content="article">
@@ -45,9 +45,9 @@
             --color-text: #1a1a1a;
             --color-text-secondary: #6b7280;
             --color-text-muted: #9ca3af;
-            --color-primary: #1c3a13;
+            --color-primary: #1e2628;
             --color-primary-dark: #142d0e;
-            --color-primary-subtle: rgba(28, 58, 19, 0.1);
+            --color-primary-subtle: rgba(80, 232, 192, 0.1);
             --color-border: #e5e7eb;
             --color-accent: #d97706;
             --color-success: #10b981;
@@ -197,7 +197,7 @@
 
         .strategy-card:hover {
             border-color: var(--color-primary);
-            box-shadow: 0 8px 30px rgba(28, 58, 19, 0.06);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.24);
         }
 
         .strategy-card-icon {
@@ -547,7 +547,7 @@
                 </div>
                 <h2>Our SEO Philosophy</h2>
                 <p>We don't chase algorithms. We focus on creating genuinely useful content that helps people make informed decisions about botanical wellness. When you prioritize education and transparency, search engines naturally reward that.</p>
-                <p>Our approach is simple: <strong>be the most helpful resource</strong> for anyone researching kratom, kava, blue lotus, and ethnobotanicals. No tricks, no keyword stuffing, no black-hat tactics - just quality content backed by 30+ years of real research.</p>
+                <p>Our approach is simple: <strong>be the most helpful resource</strong> for anyone researching kava, blue lotus, kanna, and ethnobotanicals. No tricks, no keyword stuffing, no black-hat tactics - just quality content backed by 30+ years of real research.</p>
 
                 <div class="strategy-grid">
                     <div class="strategy-card">
@@ -719,7 +719,7 @@
   "foundingDate": "1995",
   "areaServed": "US",
   "slogan": "Ancient Wisdom. Modern Science.",
-  "knowsAbout": ["Kratom", "Kava", "Blue Lotus"]
+  "knowsAbout": ["Kava", "Blue Lotus", "Kanna"]
 }</pre></code>
                 </div>
             </section>
@@ -745,7 +745,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="keyword-tag">kratom extract texas</span></td>
+                            <td><span class="keyword-tag">kava extract texas</span></td>
                             <td>Commercial</td>
                             <td>Homepage</td>
                         </tr>
@@ -760,12 +760,12 @@
                             <td>Classroom</td>
                         </tr>
                         <tr>
-                            <td><span class="keyword-tag">lab tested kratom</span></td>
+                            <td><span class="keyword-tag">lab tested botanicals</span></td>
                             <td>Commercial</td>
                             <td>Homepage</td>
                         </tr>
                         <tr>
-                            <td><span class="keyword-tag">kratom alkaloids guide</span></td>
+                            <td><span class="keyword-tag">botanical alkaloids guide</span></td>
                             <td>Educational</td>
                             <td>Classroom</td>
                         </tr>
@@ -783,7 +783,7 @@
                 <div class="strategy-grid">
                     <div class="strategy-card">
                         <h4>1. Product Education</h4>
-                        <p>Deep dives into kratom strains, kava varieties, and ethnobotanical origins.</p>
+                        <p>Deep dives into kava varieties, kanna preparations, and ethnobotanical origins.</p>
                     </div>
                     <div class="strategy-card">
                         <h4>2. Science & Research</h4>
@@ -935,7 +935,7 @@
                     <h4>Science</h4>
                     <ul>
                         <li><a href="articles/extraction-methods.html">Extraction 101</a></li>
-                        <li><a href="articles/kratom-alkaloids.html">Kratom Science</a></li>
+                        <li><a href="articles/adaptogens-science.html">Adaptogens Science</a></li>
                         <li><a href="articles/kavalactones-explained.html">Kava Science</a></li>
                         <li><a href="articles/blue-lotus-compounds.html">Blue Lotus</a></li>
                     </ul>
@@ -976,5 +976,10 @@
     </footer>
 
     <script src="age-verification.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="courses/supabase-config.js"></script>
+    <script src="courses/auth.js"></script>
+    <script src="favorites.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', () => initSiteAuth());</script>
 </body>
 </html>
