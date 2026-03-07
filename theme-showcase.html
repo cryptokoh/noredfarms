@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="deep-forest">
+<head>
+    <script src="/dev-console-filter.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Theme Showcase | Nored Farms</title>
+    <meta name="theme-color" content="#1c3a13">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           THEME SYSTEM - 3 Themes via CSS Custom Props
+           ============================================ */
+
+        :root {
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --transition-theme: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ---- THEME 1: DEEP FOREST ---- */
+        [data-theme="deep-forest"] {
+            --th-bg:            #0f1f0b;
+            --th-bg-alt:        #162812;
+            --th-bg-card:       #1c3518;
+            --th-bg-elevated:   #234220;
+            --th-surface:       #1a3015;
+            --th-surface-hover: #234220;
+
+            --th-text:          #c8d8c0;
+            --th-text-heading:  #e2eedd;
+            --th-text-muted:    #7a9470;
+            --th-text-inverse:  #0f1f0b;
+
+            --th-accent:        #8bd450;
+            --th-accent-muted:  rgba(139, 212, 80, 0.15);
+            --th-accent-text:   #0f1f0b;
+
+            --th-border:        rgba(139, 212, 80, 0.1);
+            --th-border-strong: rgba(139, 212, 80, 0.2);
+
+            --th-nav-bg:        rgba(15, 31, 11, 0.85);
+            --th-nav-blur:      blur(16px);
+
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.3);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.25);
+
+            --th-gradient-hero: linear-gradient(180deg, #162812 0%, #0f1f0b 100%);
+            --th-gradient-section: linear-gradient(180deg, #1a3015 0%, #0f1f0b 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #3d6a30 0%, #2a4d20 40%, #1c3518 100%);
+
+            --th-product-bg:    #142d0e;
+            --th-product-card:  #1c3a18;
+            --th-product-card-hover: #234a20;
+
+            --th-dot-color:     #8bd450;
+            --th-badge-bg:      #8bd450;
+            --th-badge-text:    #0f1f0b;
+        }
+
+        /* ---- THEME 2: MIDNIGHT LAB ---- */
+        [data-theme="midnight-lab"] {
+            --th-bg:            #080c08;
+            --th-bg-alt:        #0e140e;
+            --th-bg-card:       #141e14;
+            --th-bg-elevated:   #1a261a;
+            --th-surface:       #121a12;
+            --th-surface-hover: #1a261a;
+
+            --th-text:          #9aaa90;
+            --th-text-heading:  #d0e0c8;
+            --th-text-muted:    #5a6a52;
+            --th-text-inverse:  #080c08;
+
+            --th-accent:        #00ff6a;
+            --th-accent-muted:  rgba(0, 255, 106, 0.08);
+            --th-accent-text:   #080c08;
+
+            --th-border:        rgba(0, 255, 106, 0.06);
+            --th-border-strong: rgba(0, 255, 106, 0.15);
+
+            --th-nav-bg:        rgba(8, 12, 8, 0.9);
+            --th-nav-blur:      blur(20px);
+
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.5);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.4);
+
+            --th-gradient-hero: linear-gradient(180deg, #0e140e 0%, #080c08 100%);
+            --th-gradient-section: linear-gradient(180deg, #121a12 0%, #080c08 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #1a4030 0%, #103020 40%, #0a1a10 100%);
+
+            --th-product-bg:    #0a120a;
+            --th-product-card:  #141e14;
+            --th-product-card-hover: #1e2e1e;
+
+            --th-dot-color:     #00ff6a;
+            --th-badge-bg:      #00ff6a;
+            --th-badge-text:    #080c08;
+        }
+
+        /* ---- THEME 3: MOSS & SLATE ---- */
+        [data-theme="moss-slate"] {
+            --th-bg:            #1e2822;
+            --th-bg-alt:        #252f28;
+            --th-bg-card:       #2c382f;
+            --th-bg-elevated:   #344038;
+            --th-surface:       #283230;
+            --th-surface-hover: #344038;
+
+            --th-text:          #b8c4b0;
+            --th-text-heading:  #dce6d6;
+            --th-text-muted:    #6e7e68;
+            --th-text-inverse:  #1e2822;
+
+            --th-accent:        #a4cc78;
+            --th-accent-muted:  rgba(164, 204, 120, 0.12);
+            --th-accent-text:   #1e2822;
+
+            --th-border:        rgba(164, 204, 120, 0.1);
+            --th-border-strong: rgba(164, 204, 120, 0.2);
+
+            --th-nav-bg:        rgba(30, 40, 34, 0.88);
+            --th-nav-blur:      blur(16px);
+
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.2);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.18);
+
+            --th-gradient-hero: linear-gradient(180deg, #252f28 0%, #1e2822 100%);
+            --th-gradient-section: linear-gradient(180deg, #283230 0%, #1e2822 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #4a6a40 0%, #3a5430 40%, #2c3c28 100%);
+
+            --th-product-bg:    #222e26;
+            --th-product-card:  #2c3a30;
+            --th-product-card-hover: #384840;
+
+            --th-dot-color:     #a4cc78;
+            --th-badge-bg:      #a4cc78;
+            --th-badge-text:    #1e2822;
+        }
+
+
+        /* ============================================
+           BASE RESET & GLOBALS
+           ============================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            font-weight: 350;
+            background: var(--th-bg);
+            color: var(--th-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background var(--transition-theme), color var(--transition-theme);
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; }
+
+
+        /* ============================================
+           THEME SWITCHER WIDGET
+           ============================================ */
+        .theme-switcher {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .theme-switcher-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--th-border-strong);
+            background: var(--th-bg-card);
+            color: var(--th-accent);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: var(--th-shadow-card);
+        }
+
+        .theme-switcher-toggle:hover {
+            background: var(--th-bg-elevated);
+            transform: scale(1.05);
+        }
+
+        .theme-switcher-toggle svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .theme-panel {
+            background: var(--th-bg-card);
+            border: 1px solid var(--th-border-strong);
+            border-radius: 16px;
+            padding: 16px;
+            min-width: 220px;
+            box-shadow: var(--th-shadow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px) scale(0.96);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .theme-panel-title {
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--th-text-muted);
+            margin-bottom: 12px;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            transition: all 0.15s ease;
+            margin-bottom: 4px;
+        }
+
+        .theme-option:last-child { margin-bottom: 0; }
+
+        .theme-option:hover {
+            background: var(--th-accent-muted);
+            border-color: var(--th-border);
+        }
+
+        .theme-option.active {
+            background: var(--th-accent-muted);
+            border-color: var(--th-accent);
+        }
+
+        .theme-swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-swatch-forest {
+            background: linear-gradient(135deg, #0f1f0b 50%, #234220 50%);
+        }
+        .theme-swatch-forest::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #8bd450;
+            border-radius: 50% 0 0 0;
+        }
+
+        .theme-swatch-midnight {
+            background: linear-gradient(135deg, #080c08 50%, #141e14 50%);
+        }
+        .theme-swatch-midnight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #00ff6a;
+            border-radius: 50% 0 0 0;
+        }
+
+        .theme-swatch-moss {
+            background: linear-gradient(135deg, #1e2822 50%, #2c382f 50%);
+        }
+        .theme-swatch-moss::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #a4cc78;
+            border-radius: 50% 0 0 0;
+        }
+
+        .theme-option-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .theme-option-name {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--th-text-heading);
+        }
+
+        .theme-option-desc {
+            font-size: 11px;
+            color: var(--th-text-muted);
+            margin-top: 1px;
+        }
+
+
+        /* ============================================
+           NAV
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: transparent;
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: var(--th-nav-bg);
+            backdrop-filter: var(--th-nav-blur);
+            -webkit-backdrop-filter: var(--th-nav-blur);
+        }
+
+        .nav-logo {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--th-text-heading);
+            letter-spacing: -0.3px;
+            transition: color var(--transition-theme);
+        }
+
+        .nav-logo .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--th-accent);
+            border-radius: 50%;
+            margin-left: 2px;
+            vertical-align: super;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 350;
+            color: var(--th-text-muted);
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--th-text-heading); }
+
+        .nav-cta {
+            background: var(--th-accent);
+            color: var(--th-accent-text) !important;
+            padding: 8px 16px;
+            border-radius: 99em;
+            font-weight: 400 !important;
+            transition: opacity 0.2s ease !important;
+        }
+
+        .nav-cta:hover { opacity: 0.85; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--th-text-heading);
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero-section {
+            background: var(--th-gradient-hero);
+            padding: 120px 24px 100px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: background var(--transition-theme);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--th-accent-muted) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-label { margin-bottom: 12px; }
+
+        .hero-label-code {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--th-text-muted);
+            letter-spacing: 0.06em;
+        }
+
+        .hero-label-name {
+            font-size: 24px;
+            font-weight: 350;
+            color: var(--th-accent);
+            letter-spacing: -0.5px;
+        }
+
+        .hero-heading {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 350;
+            letter-spacing: -0.8px;
+            color: var(--th-text-heading);
+            line-height: 1.08;
+            margin-bottom: 20px;
+            transition: color var(--transition-theme);
+        }
+
+        .hero-body {
+            font-size: 16px;
+            font-weight: 350;
+            color: var(--th-text-muted);
+            line-height: 1.6;
+            max-width: 440px;
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 350;
+            border-radius: 99em;
+            padding: 10px 20px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-pill-primary {
+            background: var(--th-accent);
+            color: var(--th-accent-text);
+        }
+
+        .btn-pill-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        .btn-text-link {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 350;
+            color: var(--th-text);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            background: none;
+            border: none;
+        }
+
+        .btn-text-link:hover { opacity: 0.6; }
+
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-jar {
+            width: clamp(120px, 18vw, 220px);
+            height: clamp(150px, 23vw, 280px);
+            border-radius: 16px 16px 24px 24px;
+            background: var(--th-gradient-jar);
+            position: relative;
+            box-shadow: var(--th-shadow);
+            transition: background var(--transition-theme), box-shadow var(--transition-theme);
+        }
+
+        .hero-jar::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 30px;
+            right: 30px;
+            height: 20px;
+            background: var(--th-bg-elevated);
+            border-radius: 6px 6px 0 0;
+        }
+
+        .hero-jar::after {
+            content: 'NF-01';
+            position: absolute;
+            bottom: 32px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--th-text-muted);
+            opacity: 0.4;
+        }
+
+        .hero-jar-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 80px;
+            border: 1px solid var(--th-border-strong);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-jar-label span {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--th-text-muted);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+
+        /* ============================================
+           PRODUCTS CAROUSEL
+           ============================================ */
+        .products-section {
+            background: var(--th-product-bg);
+            padding: 56px 0 80px;
+            overflow: hidden;
+            transition: background var(--transition-theme);
+        }
+
+        .products-header {
+            max-width: 1200px;
+            margin: 0 auto 32px;
+            padding: 0 24px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .products-header-text h2 {
+            font-size: clamp(28px, 3.5vw, 38px);
+            font-weight: 350;
+            letter-spacing: -0.8px;
+            color: var(--th-text-heading);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .products-header-text p {
+            font-size: 15px;
+            font-weight: 350;
+            color: var(--th-text-muted);
+            max-width: 400px;
+        }
+
+        .products-header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .products-shopall {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--th-accent);
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity 0.2s ease;
+        }
+
+        .products-shopall:hover { opacity: 0.6; }
+
+        .carousel-arrows { display: flex; gap: 8px; }
+
+        .carousel-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--th-border-strong);
+            background: var(--th-accent-muted);
+            color: var(--th-text-heading);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .carousel-arrow:hover {
+            background: var(--th-accent);
+            color: var(--th-accent-text);
+            border-color: var(--th-accent);
+        }
+
+        .carousel-arrow:disabled { opacity: 0.25; cursor: default; }
+        .carousel-arrow:disabled:hover {
+            background: var(--th-accent-muted);
+            color: var(--th-text-heading);
+            border-color: var(--th-border-strong);
+        }
+
+        .carousel-arrow svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2;
+            fill: none;
+            stroke: currentColor;
+        }
+
+        .carousel-viewport { position: relative; }
+
+        .products-carousel {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 0 24px 4px;
+        }
+
+        .products-carousel::-webkit-scrollbar { display: none; }
+
+        .product-card {
+            background: var(--th-product-card);
+            border: 1px solid var(--th-border);
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+            min-width: 280px;
+            flex: 0 0 calc(25% - 12px);
+            scroll-snap-align: start;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--th-shadow-card);
+            background: var(--th-product-card-hover);
+            border-color: var(--th-border-strong);
+        }
+
+        .product-card-badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 99em;
+            background: var(--th-badge-bg);
+            color: var(--th-badge-text);
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+
+        .product-card-visual {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 16px 0;
+        }
+
+        .card-jar {
+            width: 56px;
+            height: 68px;
+            border-radius: 6px 6px 10px 10px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .card-jar { transform: scale(1.08); }
+
+        .card-jar::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 8px;
+            right: 8px;
+            height: 10px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .card-jar.green { background: linear-gradient(180deg, #5a8a5e, #3d6a40); }
+        .card-jar.green::before { background: #6b9a6e; }
+        .card-jar.teal { background: linear-gradient(180deg, #3d7a6f, #2d6a5f); }
+        .card-jar.teal::before { background: #4d8a7f; }
+        .card-jar.blue { background: linear-gradient(180deg, #4a7a9a, #3a6a8a); }
+        .card-jar.blue::before { background: #5a8aaa; }
+        .card-jar.amber { background: linear-gradient(180deg, #9b8a34, #8b7a24); }
+        .card-jar.amber::before { background: #ab9a44; }
+
+        .product-card-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .product-card-code {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--th-text-muted);
+            letter-spacing: 0.02em;
+            opacity: 0.6;
+        }
+
+        .product-card-name {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--th-text-heading);
+            margin-top: 2px;
+        }
+
+        .product-card-price {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--th-text-muted);
+            margin-top: 4px;
+        }
+
+        .product-card-cta {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--th-accent-text);
+            background: var(--th-accent);
+            border-radius: 99em;
+            padding: 8px 14px;
+            white-space: nowrap;
+            transition: opacity 0.2s ease;
+        }
+
+        .product-card:hover .product-card-cta { opacity: 0.85; }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 0 24px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 99em;
+            background: var(--th-border-strong);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .carousel-dot.active {
+            width: 24px;
+            background: var(--th-accent);
+        }
+
+        .carousel-viewport::before,
+        .carousel-viewport::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 4px;
+            width: 24px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .carousel-viewport::before {
+            left: 0;
+            background: linear-gradient(to right, var(--th-product-bg), transparent);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .carousel-viewport::after {
+            right: 0;
+            background: linear-gradient(to left, var(--th-product-bg), transparent);
+        }
+
+        .carousel-viewport.scrolled::before { opacity: 1; }
+        .carousel-viewport.at-end::after { opacity: 0; }
+
+
+        /* ============================================
+           BUNDLE SECTION
+           ============================================ */
+        .bundle-section {
+            background: var(--th-bg-alt);
+            padding: 80px 16px;
+            transition: background var(--transition-theme);
+        }
+
+        .bundle-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .bundle-badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 99em;
+            background: var(--th-accent);
+            color: var(--th-accent-text);
+            margin-bottom: 20px;
+        }
+
+        .bundle-heading {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 350;
+            letter-spacing: -0.8px;
+            color: var(--th-text-heading);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .bundle-body {
+            font-size: 16px;
+            font-weight: 350;
+            color: var(--th-text-muted);
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto 28px;
+        }
+
+        .btn-pill-accent {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 350;
+            border-radius: 99em;
+            padding: 10px 20px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            background: var(--th-accent);
+            color: var(--th-accent-text);
+            transition: all 0.2s ease;
+        }
+
+        .btn-pill-accent:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        .bundle-visual {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .bundle-jar {
+            width: 80px;
+            height: 100px;
+            border-radius: 8px 8px 12px 12px;
+            position: relative;
+        }
+
+        .bundle-jar::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 14px;
+            right: 14px;
+            height: 12px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .bundle-jar.j1 { background: linear-gradient(180deg, #5a8a5e, #3d6a40); }
+        .bundle-jar.j1::before { background: #6b9a6e; }
+        .bundle-jar.j2 { background: linear-gradient(180deg, #3d7a6f, #2d6a5f); }
+        .bundle-jar.j2::before { background: #4d8a7f; }
+        .bundle-jar.j3 { background: linear-gradient(180deg, #4a7a9a, #3a6a8a); }
+        .bundle-jar.j3::before { background: #5a8aaa; }
+
+
+        /* ============================================
+           TECH / APPROACH SECTION
+           ============================================ */
+        .tech-section {
+            background: var(--th-bg);
+            padding: 80px 24px;
+            border-top: 1px solid var(--th-border);
+            transition: background var(--transition-theme);
+        }
+
+        .tech-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .green-dot-label {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--th-accent);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .green-dot-label::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--th-dot-color);
+            flex-shrink: 0;
+        }
+
+        .tech-heading {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 350;
+            letter-spacing: -0.8px;
+            color: var(--th-text-heading);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            max-width: 600px;
+        }
+
+        .tech-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .tech-col p {
+            font-size: 15px;
+            font-weight: 350;
+            color: var(--th-text);
+            line-height: 1.7;
+        }
+
+        .tech-col ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 16px;
+        }
+
+        .tech-col ul li {
+            font-size: 15px;
+            font-weight: 350;
+            color: var(--th-text);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--th-border);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .tech-col ul li::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--th-accent);
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+
+        /* ============================================
+           EDUCATION SECTION
+           ============================================ */
+        .education-section {
+            background: var(--th-bg-alt);
+            padding: 80px 24px;
+            transition: background var(--transition-theme);
+        }
+
+        .education-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .education-heading {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 350;
+            letter-spacing: -0.8px;
+            color: var(--th-text-heading);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .education-stat {
+            font-size: clamp(52px, 8vw, 96px);
+            font-weight: 300;
+            letter-spacing: -2px;
+            color: var(--th-accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .education-stat-unit {
+            font-size: clamp(20px, 3vw, 32px);
+            font-weight: 350;
+            letter-spacing: -0.5px;
+        }
+
+        .education-stat-desc {
+            font-size: 16px;
+            font-weight: 350;
+            color: var(--th-text-muted);
+            max-width: 520px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        .education-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 350;
+            border-radius: 99em;
+            padding: 10px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid var(--th-border-strong);
+            background: transparent;
+            color: var(--th-text);
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--th-accent);
+            background: var(--th-accent-muted);
+            color: var(--th-text-heading);
+        }
+
+
+        /* ============================================
+           SOCIAL PROOF
+           ============================================ */
+        .proof-section {
+            background: var(--th-bg);
+            padding: 64px 24px;
+            border-top: 1px solid var(--th-border);
+            transition: background var(--transition-theme);
+        }
+
+        .proof-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .proof-heading {
+            font-size: clamp(24px, 3.5vw, 36px);
+            font-weight: 350;
+            letter-spacing: -0.8px;
+            color: var(--th-text-heading);
+            line-height: 1.15;
+            margin-bottom: 40px;
+        }
+
+        .proof-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .proof-stat { padding: 24px 16px; }
+
+        .proof-stat-number {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 300;
+            letter-spacing: -1px;
+            color: var(--th-accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .proof-stat-label {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--th-text-muted);
+        }
+
+
+        /* ============================================
+           STORIES / ARTICLES
+           ============================================ */
+        .stories-section {
+            background: var(--th-bg-alt);
+            padding: 64px 24px;
+            transition: background var(--transition-theme);
+        }
+
+        .stories-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stories-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            gap: 16px;
+        }
+
+        .stories-heading {
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 350;
+            letter-spacing: -0.5px;
+            color: var(--th-text-heading);
+            line-height: 1.2;
+            max-width: 500px;
+        }
+
+        .stories-link {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--th-accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            white-space: nowrap;
+            transition: opacity 0.2s ease;
+        }
+
+        .stories-link:hover { opacity: 0.6; }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .story-card {
+            border-radius: 16px;
+            overflow: hidden;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            background: var(--th-bg-card);
+            border: 1px solid var(--th-border);
+        }
+
+        .story-card:hover { transform: translateY(-2px); }
+
+        .story-card-visual {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-card-visual.v1 { background: linear-gradient(135deg, #2d4a3e, #4a7a5e); }
+        .story-card-visual.v2 { background: linear-gradient(135deg, #3a5a2d, #6b8e4a); }
+        .story-card-visual.v3 { background: linear-gradient(135deg, #1a3a4a, #4a7a8a); }
+
+        .story-card-visual span {
+            font-size: 40px;
+            opacity: 0.3;
+        }
+
+        .story-card-body { padding: 16px; }
+
+        .story-card-tag {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--th-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+        }
+
+        .story-card-title {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--th-text-heading);
+            line-height: 1.35;
+        }
+
+
+        /* ============================================
+           LAB TEASER
+           ============================================ */
+        .lab-section {
+            background: var(--th-bg);
+            padding: 80px 24px;
+            border-top: 1px solid var(--th-border);
+            transition: background var(--transition-theme);
+        }
+
+        .lab-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .lab-dot-label {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--th-text-muted);
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lab-dot-label::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--th-accent);
+            flex-shrink: 0;
+        }
+
+        .lab-heading {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 350;
+            letter-spacing: -1px;
+            color: var(--th-text-heading);
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .lab-heading-bracket { color: var(--th-accent); }
+
+        .lab-body {
+            font-size: 16px;
+            font-weight: 350;
+            color: var(--th-text-muted);
+            margin: 0 auto 24px;
+            max-width: 460px;
+            line-height: 1.6;
+        }
+
+        .lab-visual {
+            margin-top: 40px;
+            height: 200px;
+            border-radius: 20px;
+            background: var(--th-gradient-jar);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--th-border);
+        }
+
+        .lab-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, var(--th-accent-muted) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(255,255,255,0.02) 0%, transparent 40%);
+        }
+
+        .lab-visual-text {
+            position: absolute;
+            bottom: 20px;
+            left: 24px;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--th-text-muted);
+            opacity: 0.4;
+        }
+
+
+        /* ============================================
+           FINAL CTA
+           ============================================ */
+        .cta-section {
+            background: var(--th-bg-alt);
+            padding: 80px 24px 96px;
+            transition: background var(--transition-theme);
+        }
+
+        .cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-heading {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 350;
+            letter-spacing: -0.8px;
+            color: var(--th-text-heading);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .cta-body {
+            font-size: 16px;
+            font-weight: 350;
+            color: var(--th-text-muted);
+            margin: 0 auto 28px;
+            max-width: 440px;
+            line-height: 1.6;
+        }
+
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .seed-footer {
+            background: var(--th-bg);
+            border-top: 1px solid var(--th-border);
+            padding: 64px 24px 32px;
+            transition: background var(--transition-theme);
+        }
+
+        .seed-footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .seed-footer-top {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .seed-footer-mission h3 {
+            font-size: 22px;
+            font-weight: 350;
+            color: var(--th-text-heading);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .seed-footer-mission p {
+            font-size: 14px;
+            color: var(--th-text-muted);
+            line-height: 1.6;
+        }
+
+        .seed-footer-signup p {
+            font-size: 14px;
+            color: var(--th-text-muted);
+            margin-bottom: 12px;
+        }
+
+        .seed-footer-email-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .seed-footer-email {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 99em;
+            border: 1px solid var(--th-border-strong);
+            background: var(--th-bg-card);
+            color: var(--th-text);
+            font-family: var(--font-sans);
+            font-size: 14px;
+        }
+
+        .seed-footer-email::placeholder { color: var(--th-text-muted); }
+        .seed-footer-email:focus {
+            outline: none;
+            border-color: var(--th-accent);
+        }
+
+        .seed-footer-email-btn {
+            padding: 10px 18px;
+            border-radius: 99em;
+            border: none;
+            background: var(--th-accent);
+            color: var(--th-accent-text);
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .seed-footer-email-btn:hover { opacity: 0.85; }
+
+        .seed-footer-links {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .seed-footer-col h4 {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--th-text-heading);
+            margin-bottom: 12px;
+        }
+
+        .seed-footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .seed-footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .seed-footer-col ul li a {
+            font-size: 13px;
+            color: var(--th-text-muted);
+            transition: color 0.2s ease;
+        }
+
+        .seed-footer-col ul li a:hover { color: var(--th-accent); }
+
+        .seed-footer-disclaimer {
+            font-size: 11px;
+            color: var(--th-text-muted);
+            opacity: 0.6;
+            line-height: 1.5;
+            padding: 16px 0;
+            border-top: 1px solid var(--th-border);
+        }
+
+        .seed-footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            font-size: 12px;
+            color: var(--th-text-muted);
+            opacity: 0.5;
+        }
+
+
+        /* ============================================
+           SCROLL REVEAL
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .product-card { flex: 0 0 calc(33.333% - 11px); min-width: 260px; }
+            .hero-inner { grid-template-columns: 2fr 1fr; gap: 32px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+
+            .hero-section { padding: 100px 16px 60px; min-height: auto; }
+            .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+            .hero-visual { order: -1; }
+            .hero-heading { font-size: 32px; }
+
+            .products-section { padding: 40px 0 56px; }
+            .products-header { flex-direction: column; align-items: flex-start; padding: 0 16px; }
+            .products-header-right { align-self: flex-end; margin-top: -8px; }
+            .products-carousel { padding: 0 16px 4px; gap: 12px; }
+            .product-card { flex: 0 0 75vw; min-width: 240px; min-height: 260px; }
+
+            .tech-section { padding: 56px 16px; }
+            .tech-columns { grid-template-columns: 1fr; gap: 24px; }
+
+            .proof-stats { grid-template-columns: 1fr; gap: 8px; }
+            .proof-stat { padding: 16px; }
+
+            .stories-header { flex-direction: column; align-items: flex-start; }
+            .stories-grid { grid-template-columns: 1fr; }
+            .story-card-visual { height: 140px; }
+
+            .seed-footer-top { grid-template-columns: 1fr; gap: 32px; }
+            .seed-footer-links { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .seed-footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+            .theme-switcher { bottom: 16px; right: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .product-card { flex: 0 0 80vw; }
+            .carousel-arrows { display: none; }
+            .seed-footer-links { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html#products">Shop</a>
+            <a href="research.html">Science</a>
+            <a href="blog.html">Learn</a>
+            <a href="courses/login.html">Login</a>
+            <a href="contact.html" class="nav-cta">Get Started</a>
+        </div>
+        <button class="hamburger" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+
+    <!-- ========== HERO ========== -->
+    <section class="hero-section">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-label">
+                    <div class="hero-label-code">NORED-2026</div>
+                    <div class="hero-label-name">Botanical Research</div>
+                </div>
+                <h1 class="hero-heading">Ancient Wisdom. Modern Science.</h1>
+                <p class="hero-body">Lab-tested kratom, kava, and blue lotus extracts. Every alkaloid preserved. Every batch verified. Crafted in Texas Hill Country with 15+ years of research.</p>
+                <div class="hero-actions">
+                    <button class="btn-pill btn-pill-primary">Get Early Access</button>
+                    <a href="classroom.html" class="btn-text-link">Explore Classroom</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-jar">
+                    <div class="hero-jar-label">
+                        <span>Nored Farms<br>Full Spectrum</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== PRODUCT CAROUSEL ========== -->
+    <section class="products-section" id="products">
+        <div class="products-header">
+            <div class="products-header-text">
+                <h2>Botanical science for every need.</h2>
+                <p>Precision-extracted compounds. Full alkaloid profiles. Third-party verified.</p>
+            </div>
+            <div class="products-header-right">
+                <a href="blog.html" class="products-shopall">Shop All &rarr;</a>
+                <div class="carousel-arrows">
+                    <button class="carousel-arrow" id="carouselPrev" aria-label="Previous product" disabled>
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button class="carousel-arrow" id="carouselNext" aria-label="Next product">
+                        <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-viewport" id="carouselViewport">
+            <div class="products-carousel" id="productsCarousel">
+                <a href="products/gummies.html" class="product-card">
+                    <span class="product-card-badge">Popular</span>
+                    <div class="product-card-visual"><div class="card-jar green"></div></div>
+                    <div class="product-card-bottom">
+                        <div>
+                            <div class="product-card-code">GM-01</div>
+                            <div class="product-card-name">Botanical Gummies</div>
+                            <div class="product-card-price">From $40</div>
+                        </div>
+                        <span class="product-card-cta">View</span>
+                    </div>
+                </a>
+                <a href="products/tinctures.html" class="product-card">
+                    <span class="product-card-badge">New</span>
+                    <div class="product-card-visual"><div class="card-jar teal"></div></div>
+                    <div class="product-card-bottom">
+                        <div>
+                            <div class="product-card-code">TN-01</div>
+                            <div class="product-card-name">Full Spectrum Tinctures</div>
+                            <div class="product-card-price">From $60</div>
+                        </div>
+                        <span class="product-card-cta">View</span>
+                    </div>
+                </a>
+                <a href="products/extracts.html" class="product-card">
+                    <span class="product-card-badge">Lab Tested</span>
+                    <div class="product-card-visual"><div class="card-jar amber"></div></div>
+                    <div class="product-card-bottom">
+                        <div>
+                            <div class="product-card-code">EX-01</div>
+                            <div class="product-card-name">Botanical Extracts</div>
+                            <div class="product-card-price">From $30</div>
+                        </div>
+                        <span class="product-card-cta">View</span>
+                    </div>
+                </a>
+                <a href="products/dried-botanicals.html" class="product-card">
+                    <span class="product-card-badge">New</span>
+                    <div class="product-card-visual"><div class="card-jar green"></div></div>
+                    <div class="product-card-bottom">
+                        <div>
+                            <div class="product-card-code">DB-01</div>
+                            <div class="product-card-name">Dried Botanicals</div>
+                            <div class="product-card-price">From $30</div>
+                        </div>
+                        <span class="product-card-cta">View</span>
+                    </div>
+                </a>
+                <a href="products/live-plants.html" class="product-card">
+                    <span class="product-card-badge">Seasonal</span>
+                    <div class="product-card-visual"><div class="card-jar blue"></div></div>
+                    <div class="product-card-bottom">
+                        <div>
+                            <div class="product-card-code">LP-01</div>
+                            <div class="product-card-name">Live Plants</div>
+                            <div class="product-card-price">From $20</div>
+                        </div>
+                        <span class="product-card-cta">View</span>
+                    </div>
+                </a>
+                <a href="products/seeds.html" class="product-card">
+                    <span class="product-card-badge">Heirloom</span>
+                    <div class="product-card-visual"><div class="card-jar teal"></div></div>
+                    <div class="product-card-bottom">
+                        <div>
+                            <div class="product-card-code">SD-01</div>
+                            <div class="product-card-name">Heirloom Seeds</div>
+                            <div class="product-card-price">From $20</div>
+                        </div>
+                        <span class="product-card-cta">View</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+
+    <!-- ========== BUNDLE ========== -->
+    <section class="bundle-section">
+        <div class="bundle-inner">
+            <span class="bundle-badge">Bundle + Save 25%</span>
+            <h2 class="bundle-heading">The Hill Country Collection.</h2>
+            <p class="bundle-body">Three signature extracts in one set. Kratom, kava, and blue lotus -- curated for those who want the full botanical spectrum.</p>
+            <a href="products/extracts.html" class="btn-pill-accent">Shop the Bundle</a>
+            <div class="bundle-visual">
+                <div class="bundle-jar j1"></div>
+                <div class="bundle-jar j2"></div>
+                <div class="bundle-jar j3"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== TECH / APPROACH ========== -->
+    <section class="tech-section">
+        <div class="tech-inner">
+            <div class="green-dot-label reveal">Our Approach</div>
+            <h2 class="tech-heading reveal reveal-d1">From plant to extract, every alkaloid preserved.</h2>
+            <div class="tech-columns">
+                <div class="tech-col reveal reveal-d2">
+                    <p>Most botanical extracts sacrifice compound integrity for yield. High heat, aggressive solvents, and rush-processing destroy the very alkaloids consumers are seeking.</p>
+                    <p style="margin-top: 12px;">Our cold-process extraction preserves the full alkaloid profile -- mitragynine, 7-hydroxymitragynine, kavalactones, aporphines -- exactly as nature intended.</p>
+                </div>
+                <div class="tech-col reveal reveal-d3">
+                    <ul>
+                        <li>Cold-process extraction below 40C</li>
+                        <li>Single-origin plant material with full traceability</li>
+                        <li>Third-party COA for every batch</li>
+                        <li>GMP-compliant facility in Texas</li>
+                        <li>Heavy metal and microbial screening</li>
+                        <li>Alkaloid content verified by HPLC</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== EDUCATION ========== -->
+    <section class="education-section">
+        <div class="education-inner">
+            <h2 class="education-heading reveal">You deserve to know what is in your extract.</h2>
+            <div class="education-stat reveal reveal-d1">
+                58+<span class="education-stat-unit"> articles</span>
+            </div>
+            <p class="education-stat-desc reveal reveal-d2">From alkaloid profiles to extraction methods, our research library covers the science behind every botanical we offer. Because transparency is not optional.</p>
+            <div class="education-actions reveal reveal-d3">
+                <a href="blog.html" class="btn-pill btn-pill-primary">
+                    Explore Research Library
+                </a>
+                <a href="classroom.html" class="btn-outline">Enter Classroom</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== SOCIAL PROOF ========== -->
+    <section class="proof-section">
+        <div class="proof-inner">
+            <h2 class="proof-heading reveal">Rooted in research. Trusted by the community.</h2>
+            <div class="proof-stats">
+                <div class="proof-stat reveal">
+                    <div class="proof-stat-number">15+</div>
+                    <div class="proof-stat-label">Years of botanical research</div>
+                </div>
+                <div class="proof-stat reveal reveal-d1">
+                    <div class="proof-stat-number">100%</div>
+                    <div class="proof-stat-label">Batches third-party lab tested</div>
+                </div>
+                <div class="proof-stat reveal reveal-d2">
+                    <div class="proof-stat-number">45+</div>
+                    <div class="proof-stat-label">Products in development</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== STORIES ========== -->
+    <section class="stories-section">
+        <div class="stories-inner">
+            <div class="stories-header">
+                <h2 class="stories-heading reveal">Research from our extraction lab.</h2>
+                <a href="blog.html" class="stories-link reveal">All Articles</a>
+            </div>
+            <div class="stories-grid">
+                <a href="articles/kratom-alkaloids.html" class="story-card reveal">
+                    <div class="story-card-visual v1"><span>&#9878;</span></div>
+                    <div class="story-card-body">
+                        <div class="story-card-tag">Alkaloid Science</div>
+                        <div class="story-card-title">Understanding Kratom Alkaloid Profiles and Their Effects</div>
+                    </div>
+                </a>
+                <a href="articles/kavalactones-explained.html" class="story-card reveal reveal-d1">
+                    <div class="story-card-visual v2"><span>&#127807;</span></div>
+                    <div class="story-card-body">
+                        <div class="story-card-tag">Kava Science</div>
+                        <div class="story-card-title">Kavalactones Explained: The Science Behind Kava</div>
+                    </div>
+                </a>
+                <a href="articles/extraction-methods.html" class="story-card reveal reveal-d2">
+                    <div class="story-card-visual v3"><span>&#128300;</span></div>
+                    <div class="story-card-body">
+                        <div class="story-card-tag">Extraction Methods</div>
+                        <div class="story-card-title">Water vs Ethanol: Comparing Extraction Solvents</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== LAB TEASER ========== -->
+    <section class="lab-section">
+        <div class="lab-inner">
+            <div class="lab-dot-label reveal">Texas Hill Country</div>
+            <h2 class="lab-heading reveal reveal-d1">Nored<span class="lab-heading-bracket">[</span>Labs<span class="lab-heading-bracket">]</span></h2>
+            <p class="lab-body reveal reveal-d2">Because quality is not just a claim. Our extraction lab operates under GMP standards with full traceability from source material to finished product.</p>
+            <a href="lab-2d.html" class="btn-text-link reveal reveal-d3">Enter the Lab</a>
+            <div class="lab-visual reveal">
+                <span class="lab-visual-text">Nored Labs -- Est. 2010</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== FINAL CTA ========== -->
+    <section class="cta-section">
+        <div class="cta-inner">
+            <h2 class="cta-heading reveal">Experience botanical extracts done right.</h2>
+            <p class="cta-body reveal reveal-d1">Lab-tested. GMP compliant. Rooted in evidence. Join 500+ people who trust Nored Farms.</p>
+            <button class="btn-pill btn-pill-primary reveal reveal-d2">Get Early Access</button>
+        </div>
+    </section>
+
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="seed-footer">
+        <div class="seed-footer-inner">
+            <div class="seed-footer-top">
+                <div class="seed-footer-mission">
+                    <h3>Pioneering botanical science for human wellness since 2010.</h3>
+                    <p>Precision extraction. Full transparency. Crafted in Texas Hill Country for those who demand evidence over marketing.</p>
+                </div>
+                <div class="seed-footer-signup">
+                    <p>Science with Nored &mdash; research updates for your inbox.</p>
+                    <div class="seed-footer-email-row">
+                        <input type="email" placeholder="Your email" class="seed-footer-email">
+                        <button class="seed-footer-email-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="seed-footer-links">
+                <div class="seed-footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products/extracts.html">Botanical Extracts</a></li>
+                        <li><a href="products/tinctures.html">Tinctures</a></li>
+                        <li><a href="products/gummies.html">Gummies</a></li>
+                        <li><a href="products/dried-botanicals.html">Dried Botanicals</a></li>
+                        <li><a href="products/live-plants.html">Live Plants</a></li>
+                        <li><a href="products/seeds.html">Seeds</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="blog.html">Education</a></li>
+                        <li><a href="classes.html">Classes</a></li>
+                        <li><a href="classroom.html">Classroom</a></li>
+                        <li><a href="research.html">Research Library</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Science</h4>
+                    <ul>
+                        <li><a href="articles/extraction-methods.html">Extraction 101</a></li>
+                        <li><a href="articles/kratom-alkaloids.html">Kratom Science</a></li>
+                        <li><a href="articles/kavalactones-explained.html">Kava Science</a></li>
+                        <li><a href="articles/blue-lotus-compounds.html">Blue Lotus</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="consulting.html">Consulting</a></li>
+                        <li><a href="courses/login.html">Course Login</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="seo.html">Transparency</a></li>
+                        <li><a href="welcome.html">Welcome</a></li>
+                    </ul>
+                </div>
+                <div class="seed-footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="contact.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="seed-footer-disclaimer">
+                *These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use. Must be 21+ to purchase. Not for sale where prohibited by law.
+            </div>
+            <div class="seed-footer-bottom">
+                <span>&copy; 2026 Nored Farms. All rights reserved.</span>
+                <span>Crafted in Texas Hill Country</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ========== THEME SWITCHER ========== -->
+    <div class="theme-switcher">
+        <div class="theme-panel" id="themePanel">
+            <div class="theme-panel-title">Choose Theme</div>
+            <button class="theme-option active" data-theme="deep-forest">
+                <div class="theme-swatch theme-swatch-forest"></div>
+                <div class="theme-option-text">
+                    <span class="theme-option-name">Deep Forest</span>
+                    <span class="theme-option-desc">Rich greens, organic warmth</span>
+                </div>
+            </button>
+            <button class="theme-option" data-theme="midnight-lab">
+                <div class="theme-swatch theme-swatch-midnight"></div>
+                <div class="theme-option-text">
+                    <span class="theme-option-name">Midnight Lab</span>
+                    <span class="theme-option-desc">Near-black, neon green accents</span>
+                </div>
+            </button>
+            <button class="theme-option" data-theme="moss-slate">
+                <div class="theme-swatch theme-swatch-moss"></div>
+                <div class="theme-option-text">
+                    <span class="theme-option-name">Moss & Slate</span>
+                    <span class="theme-option-desc">Earthy grey-green tones</span>
+                </div>
+            </button>
+        </div>
+        <button class="theme-switcher-toggle" id="themeSwitcherToggle" aria-label="Change theme">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+        </button>
+    </div>
+
+
+    <script>
+        // Theme Switcher
+        (function() {
+            var toggle = document.getElementById('themeSwitcherToggle');
+            var panel = document.getElementById('themePanel');
+            var options = document.querySelectorAll('.theme-option');
+            var root = document.documentElement;
+
+            // Load saved theme
+            var saved = localStorage.getItem('nf-theme');
+            if (saved) {
+                root.setAttribute('data-theme', saved);
+                options.forEach(function(opt) {
+                    opt.classList.toggle('active', opt.getAttribute('data-theme') === saved);
+                });
+            }
+
+            toggle.addEventListener('click', function() {
+                panel.classList.toggle('open');
+            });
+
+            options.forEach(function(opt) {
+                opt.addEventListener('click', function() {
+                    var theme = this.getAttribute('data-theme');
+                    root.setAttribute('data-theme', theme);
+                    localStorage.setItem('nf-theme', theme);
+                    options.forEach(function(o) { o.classList.remove('active'); });
+                    this.classList.add('active');
+                });
+            });
+
+            // Close panel on outside click
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.theme-switcher')) {
+                    panel.classList.remove('open');
+                }
+            });
+        })();
+
+        // Nav scroll effect
+        (function() {
+            var nav = document.getElementById('nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 40) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            }, { passive: true });
+        })();
+
+        // Product Carousel
+        (function() {
+            var carousel = document.getElementById('productsCarousel');
+            var viewport = document.getElementById('carouselViewport');
+            var dotsContainer = document.getElementById('carouselDots');
+            var prevBtn = document.getElementById('carouselPrev');
+            var nextBtn = document.getElementById('carouselNext');
+            var cards = carousel.querySelectorAll('.product-card');
+            var cardCount = cards.length;
+
+            cards.forEach(function(_, i) {
+                var dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', 'Go to product ' + (i + 1));
+                dot.addEventListener('click', function() { scrollToCard(i); });
+                dotsContainer.appendChild(dot);
+            });
+
+            var dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+            function getCardWidth() {
+                return cards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap);
+            }
+
+            function scrollToCard(index) {
+                var gap = parseInt(getComputedStyle(carousel).gap);
+                carousel.scrollTo({ left: index * (cards[0].offsetWidth + gap), behavior: 'smooth' });
+            }
+
+            function getActiveIndex() {
+                return Math.round(carousel.scrollLeft / getCardWidth());
+            }
+
+            function updateState() {
+                var index = getActiveIndex();
+                var maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                var atStart = carousel.scrollLeft < 10;
+                var atEnd = carousel.scrollLeft >= maxScroll - 10;
+
+                prevBtn.disabled = atStart;
+                nextBtn.disabled = atEnd;
+
+                viewport.classList.toggle('scrolled', carousel.scrollLeft > 10);
+                viewport.classList.toggle('at-end', atEnd);
+
+                dots.forEach(function(dot, i) {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            prevBtn.addEventListener('click', function() {
+                var i = getActiveIndex();
+                if (i > 0) scrollToCard(i - 1);
+            });
+
+            nextBtn.addEventListener('click', function() {
+                var i = getActiveIndex();
+                if (i < cardCount - 1) scrollToCard(i + 1);
+            });
+
+            carousel.addEventListener('scroll', updateState, { passive: true });
+            window.addEventListener('resize', updateState);
+            updateState();
+        })();
+
+        // Scroll reveal
+        (function() {
+            var els = document.querySelectorAll('.reveal');
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            els.forEach(function(el) { observer.observe(el); });
+        })();
+
+        // Mobile nav toggle
+        (function() {
+            var toggle = document.getElementById('navToggle');
+            var links = document.getElementById('navLinks');
+            if (toggle && links) {
+                toggle.addEventListener('click', function() {
+                    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
