@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Botanical Tinctures | Nored Farms</title>
-    <meta name="description" content="Premium botanical tinctures with precise alkaloid profiles. Lab-tested kratom, kava, and ethnobotanical extracts. Coming soon from Nored Farms.">
+    <meta name="description" content="Premium botanical tinctures — 5000mg Blue Lotus and 3000mg Kanna. Full spectrum sublingual extracts crafted in Texas Hill Country.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://noredfarms.netlify.app/products/tinctures.html">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -21,72 +21,79 @@
         .product-page { padding-top: calc(var(--nav-height) + var(--spacing-3xl, 2.5rem)); min-height: 100vh; }
         .product-container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 4rem; }
         .product-badge {
-            position: static; top: auto; right: auto;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: var(--color-primary-subtle); color: var(--color-primary);
-            padding: 0.375rem 1rem; border-radius: var(--radius-full);
+            position: static; display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--color--lemongrass); color: var(--color--seedgreen);
+            padding: 0.375rem 1rem; border-radius: var(--bdrs-pill, 99em);
             font-size: var(--text-sm); font-weight: 500; text-transform: uppercase;
             letter-spacing: 0.05em; margin-bottom: 1.5rem;
         }
         .product-badge svg { width: 16px; height: 16px; }
         .product-title {
-            font-family: var(--font-serif); font-size: clamp(2.25rem, 5vw, 3.5rem);
-            line-height: 1.15; color: var(--color-text); margin-bottom: 1.5rem;
+            font-family: var(--font-sans); font-size: clamp(2.25rem, 5vw, 3.5rem);
+            line-height: 1.15; color: var(--color--seedgreen); margin-bottom: 1.5rem;
         }
         .product-subtitle {
-            font-size: var(--text-xl); color: var(--color-text-muted); line-height: 1.7;
+            font-size: var(--text-xl); color: var(--color--olivegreen); line-height: 1.7;
             margin-bottom: 3rem; max-width: 700px;
         }
-        .product-visual {
-            background: var(--color-surface-alt, var(--color-bg-secondary)); border: 1px solid var(--color-border);
-            border-radius: var(--radius-2xl); padding: 3rem; text-align: center; margin-bottom: 3rem;
-        }
-        .product-icon-large { width: 120px; height: 120px; margin: 0 auto 1.5rem; color: var(--color-primary); }
-        .product-coming { font-family: var(--font-serif); font-size: var(--text-2xl); color: var(--color-text); margin-bottom: 0.5rem; }
-        .product-coming-sub { color: var(--color-text-muted); font-size: var(--text-base); }
         .product-details { margin-bottom: 3rem; }
-        .product-details h2 { font-family: var(--font-serif); font-size: var(--text-2xl); color: var(--color-text); margin-bottom: 1rem; }
-        .product-details p { color: var(--color-text-muted); line-height: 1.8; margin-bottom: 1rem; }
+        .product-details h2 { font-family: var(--font-sans); font-size: var(--text-2xl); color: var(--color--seedgreen); margin-bottom: 1rem; }
+        .product-details p { color: var(--color--olivegreen); line-height: 1.8; margin-bottom: 1rem; }
         .product-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
-        .feature-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 1.5rem; }
-        .feature-card h3 { font-size: var(--text-base); font-weight: 500; color: var(--color-text); margin-bottom: 0.5rem; }
-        .feature-card p { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; }
+        .feature-card { background: var(--color--snowwhite); border: 1px solid rgba(28, 58, 19, 0.1); border-radius: var(--radius-xl); padding: 1.5rem; }
+        .feature-card h3 { font-size: var(--text-base); font-weight: 500; color: var(--color--seedgreen); margin-bottom: 0.5rem; }
+        .feature-card p { color: var(--color--olivegreen); font-size: var(--text-sm); line-height: 1.6; }
         .product-cta-section {
-            background: var(--color-surface-alt, var(--color-bg-secondary)); border: 1px solid var(--color-border);
+            background: var(--color--foamwhite); border: 1px solid rgba(28, 58, 19, 0.1);
             border-radius: var(--radius-2xl); padding: 2.5rem; text-align: center;
         }
-        .product-cta-section h2 { font-family: var(--font-serif); font-size: var(--text-2xl); color: var(--color-text); margin-bottom: 0.75rem; }
-        .product-cta-section p { color: var(--color-text-muted); margin-bottom: 1.5rem; }
-        .btn-waitlist {
+        .product-cta-section h2 { font-family: var(--font-sans); font-size: var(--text-2xl); color: var(--color--seedgreen); margin-bottom: 0.75rem; }
+        .product-cta-section p { color: var(--color--olivegreen); margin-bottom: 1.5rem; }
+        .btn-order {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.875rem 2rem; background: var(--color-primary); color: white;
-            border: none; border-radius: var(--radius-full); font-weight: 500;
-            font-size: var(--text-base); text-decoration: none; transition: var(--transition-base); cursor: pointer;
+            padding: 0.75rem 1.75rem; background: var(--color--seedgreen); color: white;
+            border: none; border-radius: var(--bdrs-pill, 99em); font-weight: 350;
+            font-size: var(--text-sm); text-decoration: none; transition: 0.2s ease; cursor: pointer;
         }
-        .btn-waitlist:hover { background: var(--color-primary-dark); transform: translateY(-1px); }
-        .btn-waitlist svg { width: 18px; height: 18px; }
+        .btn-order:hover { background: var(--color--seedgreen-hover); transform: translateY(-1px); }
+        .btn-order svg { width: 16px; height: 16px; }
         .back-link {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            color: var(--color-primary); font-weight: 500; text-decoration: none;
+            color: var(--color--seedgreen); font-weight: 500; text-decoration: none;
             margin-bottom: 2rem; font-size: var(--text-sm);
         }
         .back-link:hover { text-decoration: underline; }
         .back-link svg { width: 16px; height: 16px; }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .product-card-item {
+            background: var(--color--snowwhite); border: 1px solid rgba(28, 58, 19, 0.08);
+            border-radius: var(--radius-2xl); padding: 2rem; display: flex; flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .product-card-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(28, 58, 19, 0.08); }
+        .product-card-item h3 { font-family: var(--font-sans); font-size: var(--text-lg); font-weight: 500; color: var(--color--seedgreen); margin-bottom: 0.5rem; }
+        .product-card-item .item-desc { color: var(--color--olivegreen); font-size: var(--text-sm); line-height: 1.6; margin-bottom: 1.25rem; flex: 1; }
+        .product-card-item .item-meta { font-size: var(--text-xs); color: var(--color--olivegreen); opacity: 0.7; margin-bottom: 1rem; }
+        .item-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .item-price { font-family: var(--font-sans); font-size: var(--text-2xl); font-weight: 500; color: var(--color--seedgreen); }
     </style>
     <link rel="stylesheet" href="../chat-widget.css">
     <link rel="stylesheet" href="../shipping-estimator.css">
     <link rel="stylesheet" href="../site-enhancements.css">
     <link rel="stylesheet" href="../site-search.css">
     <link rel="stylesheet" href="../visual-enhancements.css">
+    <link rel="stylesheet" href="../cart-styles.css">
 </head>
 <body>
 
     <nav class="nav" id="nav">
         <a href="../index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
         <div class="nav-links" id="navLinks">
-            <a href="../index.html#products">Shop</a>
-            <a href="../research.html">Science</a>
-            <a href="../blog.html">Learn</a>
+            <a href="../index.html#products">Products</a>
+            <a href="../blog.html">Articles</a>
+            <a href="../classes.html">Classes</a>
+            <a href="../about-us.html">Company</a>
             <a href="../courses/login.html">Login</a>
             <a href="../contact.html" class="nav-cta">Get Started</a>
         </div>
@@ -103,8 +110,8 @@
             </a>
 
             <span class="product-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                Coming Soon
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Available Now
             </span>
 
             <h1 class="product-title">Botanical Tinctures</h1>
@@ -112,29 +119,34 @@
                 Concentrated liquid extracts crafted using traditional and modern extraction methods. Fast-acting sublingual delivery with precise dropper dosing for full control.
             </p>
 
-            <div class="product-visual">
-                <div class="product-icon-large">
-                    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="45" y="15" width="30" height="10" rx="3" opacity="0.3" fill="currentColor"/>
-                        <path d="M50 25v10l-15 35v25a8 8 0 008 8h34a8 8 0 008-8V70L70 35V25" opacity="0.15" fill="currentColor"/>
-                        <path d="M50 25v10l-15 35v25a8 8 0 008 8h34a8 8 0 008-8V70L70 35V25"/>
-                        <path d="M35 70h50" stroke-dasharray="4 3" opacity="0.4"/>
-                        <circle cx="50" cy="82" r="3" opacity="0.3" fill="currentColor"/>
-                        <circle cx="65" cy="78" r="2" opacity="0.3" fill="currentColor"/>
-                        <circle cx="58" cy="88" r="2.5" opacity="0.3" fill="currentColor"/>
-                    </svg>
+            <div class="product-grid">
+                <div class="product-card-item" data-product-id="blue-lotus-tincture-5000" data-price="60" data-category="Tinctures">
+                    <h3>5000mg Blue Lotus Tincture</h3>
+                    <p class="item-desc">Full spectrum Nymphaea caerulea extract. Rich in aporphine and nuciferine alkaloids, extracted using ethanol-water methods for maximum bioavailability.</p>
+                    <p class="item-meta">5000mg total alkaloids &middot; 50ml bottle &middot; Glass dropper included</p>
+                    <div class="item-footer">
+                        <span class="item-price">$60</span>
+                        <button class="add-to-cart-btn btn-order">Add to Cart</button>
+                    </div>
                 </div>
-                <p class="product-coming">Launching Soon</p>
-                <p class="product-coming-sub">Join the waitlist to be first in line</p>
+                <div class="product-card-item" data-product-id="kanna-tincture-3000" data-price="80" data-category="Tinctures">
+                    <h3>3000mg Kanna Tincture</h3>
+                    <p class="item-desc">Concentrated Sceletium tortuosum extract with standardized mesembrine content. Traditional South African botanical prepared with modern precision.</p>
+                    <p class="item-meta">3000mg total alkaloids &middot; 50ml bottle &middot; Glass dropper included</p>
+                    <div class="item-footer">
+                        <span class="item-price">$80</span>
+                        <button class="add-to-cart-btn btn-order">Add to Cart</button>
+                    </div>
+                </div>
             </div>
 
             <div class="product-details">
-                <h2>What to Expect</h2>
+                <h2>About Our Tinctures</h2>
                 <p>
                     Our tinctures use a combination of ethanol and water-based extraction to capture the full spectrum of beneficial plant compounds. Each bottle comes with a calibrated glass dropper for precise, repeatable dosing.
                 </p>
                 <p>
-                    Sublingual absorption means faster onset compared to edibles. Available in kratom, kava, blue lotus, and custom botanical blends developed from over 30 years of formulation research.
+                    Sublingual absorption means faster onset compared to edibles. Developed from over 30 years of formulation research right here in Texas Hill Country.
                 </p>
             </div>
 
@@ -158,10 +170,10 @@
             </div>
 
             <div class="product-cta-section">
-                <h2>Be the First to Try Our Tinctures</h2>
-                <p>Join the waitlist for exclusive early access and founding member pricing.</p>
-                <a href="../index.html" class="btn-waitlist">
-                    Join the Waitlist
+                <h2>Ready to Order?</h2>
+                <p>Contact us to place your order or ask questions about our tincture formulations.</p>
+                <a href="../contact.html" class="btn-order">
+                    Contact Us
                     <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
                 </a>
             </div>
@@ -191,7 +203,9 @@
                         <li><a href="../products/extracts.html">Botanical Extracts</a></li>
                         <li><a href="../products/tinctures.html">Tinctures</a></li>
                         <li><a href="../products/gummies.html">Gummies</a></li>
+                        <li><a href="../products/dried-botanicals.html">Dried Botanicals</a></li>
                         <li><a href="../products/live-plants.html">Live Plants</a></li>
+                        <li><a href="../products/seeds.html">Seeds</a></li>
                     </ul>
                 </div>
                 <div class="seed-footer-col">
@@ -247,6 +261,41 @@
         </div>
     </footer>
 
+    <!-- Cart Toggle Button -->
+    <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count">0</span>
+    </button>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Your Cart</h2>
+            <button class="cart-close" id="cartClose" aria-label="Close cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="cart-body">
+            <div id="cartEmpty" class="cart-empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <h3>Your cart is empty</h3>
+                <p>Browse our products to get started</p>
+            </div>
+            <div id="cartItems"></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="cart-summary-row total"><span>Total</span><span id="cartTotal">$0.00</span></div>
+            </div>
+            <button class="cart-checkout-btn" id="checkoutBtn" disabled>Checkout</button>
+            <div class="cart-security">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Secure checkout powered by Stripe
+            </div>
+        </div>
+    </div>
+
     <script src="../script.js"></script>
     <script src="../age-verification.js"></script>
     <script src="../chat-widget.js"></script>
@@ -254,5 +303,8 @@
     <script src="../site-enhancements.js"></script>
     <script src="../site-search.js"></script>
     <script src="../visual-enhancements.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="../stripe-config.js"></script>
+    <script src="../cart.js"></script>
 </body>
 </html>

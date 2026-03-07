@@ -31,9 +31,10 @@
     <nav class="nav" id="nav">
         <a href="../index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
         <div class="nav-links" id="navLinks">
-            <a href="../index.html#products">Shop</a>
-            <a href="../research.html">Science</a>
-            <a href="../blog.html">Learn</a>
+            <a href="../index.html#products">Products</a>
+            <a href="../blog.html">Articles</a>
+            <a href="../classes.html">Classes</a>
+            <a href="../about-us.html">Company</a>
             <a href="../courses/login.html">Login</a>
             <a href="../contact.html" class="nav-cta">Get Started</a>
         </div>
@@ -77,11 +78,6 @@
                     <span class="auth-btn-loading" hidden>
                         <svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.42" stroke-dashoffset="10"/></svg>
                     </span>
-                </button>
-                <div class="auth-divider"><span>or</span></div>
-                <button type="button" id="magicLinkBtn" class="auth-btn auth-btn-secondary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    Send Magic Link
                 </button>
                 <div class="auth-links">
                     <a href="#" id="forgotPasswordLink">Forgot password?</a>
@@ -218,7 +214,6 @@
             const resetForm = document.getElementById('resetForm');
             const tabs = document.querySelectorAll('.auth-tab');
             const msgEl = document.getElementById('authMessage');
-            const magicLinkBtn = document.getElementById('magicLinkBtn');
             const forgotLink = document.getElementById('forgotPasswordLink');
             const backToLogin = document.getElementById('backToLoginLink');
 
@@ -312,23 +307,6 @@
                 } else {
                     showMessage('Account created! Check your email to confirm, then log in.', 'success');
                     tabs[0].click();
-                }
-            });
-
-            // Magic link
-            magicLinkBtn.addEventListener('click', async () => {
-                const email = document.getElementById('loginEmail').value;
-                if (!email) {
-                    showMessage('Enter your email above first.', 'error');
-                    return;
-                }
-                magicLinkBtn.disabled = true;
-                const { error } = await sendMagicLink(email);
-                magicLinkBtn.disabled = false;
-                if (error) {
-                    showMessage(error.message, 'error');
-                } else {
-                    showMessage('Magic link sent! Check your email.', 'success');
                 }
             });
 

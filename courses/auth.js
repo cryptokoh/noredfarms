@@ -9,13 +9,23 @@
 
 async function signUp(email, password, displayName) {
     const sb = getSupabase();
+    const name = displayName || email.split('@')[0];
     const { data, error } = await sb.auth.signUp({
         email,
         password,
         options: {
-            data: { display_name: displayName || email.split('@')[0] }
+            data: { display_name: name },
+            emailRedirectTo: SITE_URL + '/courses/dashboard.html'
         }
     });
+    // Fallback: upsert profile in case the DB trigger didn't run
+    if (data?.user && !error) {
+        await sb.from('profiles').upsert({
+            id: data.user.id,
+            email: email,
+            display_name: name
+        }, { onConflict: 'id' }).select();
+    }
     return { data, error };
 }
 
@@ -25,11 +35,13 @@ async function logIn(email, password) {
     return { data, error };
 }
 
+const SITE_URL = 'https://noredfarms.netlify.app';
+
 async function sendMagicLink(email) {
     const sb = getSupabase();
     const { data, error } = await sb.auth.signInWithOtp({
         email,
-        options: { emailRedirectTo: window.location.origin + '/courses/dashboard.html' }
+        options: { emailRedirectTo: SITE_URL + '/courses/dashboard.html' }
     });
     return { data, error };
 }
@@ -37,7 +49,7 @@ async function sendMagicLink(email) {
 async function resetPassword(email) {
     const sb = getSupabase();
     const { data, error } = await sb.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin + '/courses/login.html?reset=true'
+        redirectTo: SITE_URL + '/courses/login.html?reset=true'
     });
     return { data, error };
 }

@@ -309,9 +309,9 @@ const Cart = {
         });
     },
 
-    // Get product data from card (supports both .product-card and .featured-card)
+    // Get product data from card (supports .product-card-item, .product-card, and .featured-card)
     getProductFromCard(button) {
-        // Try featured card first
+        // Try featured card first (homepage carousel)
         const featuredCard = button.closest('.featured-card');
         if (featuredCard) {
             const name = featuredCard.querySelector('.featured-name')?.textContent || 'Product';
@@ -322,26 +322,25 @@ const Cart = {
             return { id, name, category, price };
         }
 
-        // Fall back to product card
+        // Try product-card-item (product detail pages)
+        const cardItem = button.closest('.product-card-item');
+        if (cardItem) {
+            const name = cardItem.querySelector('h3')?.textContent || 'Product';
+            const category = cardItem.dataset.category || 'Botanical';
+            const id = cardItem.dataset.productId || name.toLowerCase().replace(/\s+/g, '-');
+            const price = parseFloat(cardItem.dataset.price) || 0;
+
+            return { id, name, category, price };
+        }
+
+        // Fall back to product card (homepage grid)
         const card = button.closest('.product-card');
         if (!card) return null;
 
         const title = card.querySelector('.product-title')?.textContent || 'Product';
         const category = card.querySelector('.product-category')?.textContent || 'Botanical';
         const id = card.dataset.productId || title.toLowerCase().replace(/\s+/g, '-');
-
-        const priceMap = {
-            'gummies': 29.99,
-            'tinctures': 39.99,
-            'extracts': 49.99,
-            'nutrients': 24.99,
-            'dried': 19.99,
-            'live': 34.99,
-            'seeds': 14.99
-        };
-
-        const categoryKey = card.dataset.category || 'extracts';
-        const price = priceMap[categoryKey] || 29.99;
+        const price = parseFloat(card.dataset.price) || 29.99;
 
         return { id, name: title, category, price };
     },
@@ -503,13 +502,10 @@ const Cart = {
     }
 };
 
-// Cart disabled for pre-launch phase
-// To re-enable: uncomment Cart.init() below and restore cart HTML in index.html
-//
 // Initialize cart when DOM is ready
-// document.addEventListener('DOMContentLoaded', () => {
-//     Cart.init();
-// });
+document.addEventListener('DOMContentLoaded', () => {
+    Cart.init();
+});
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {

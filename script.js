@@ -62,7 +62,7 @@ function initNavigation() {
     var hamburgerEl = nav.querySelector('.hamburger');
 
     // Wrap logo + main links in .nav-left pill (seed.com pattern)
-    // On desktop scroll: single glass pill with logo + Shop/Science/Learn
+    // On desktop scroll: single glass pill with logo + Products/Articles/Classes/Company
     if (container && navLinks && !nav.querySelector('.nav-left')) {
         var logo = nav.querySelector('.nav-logo');
         var navLeft = document.createElement('div');
@@ -101,6 +101,9 @@ function initNavigation() {
         mobileCta.classList.add('nav-cta-mobile');
         container.insertBefore(mobileCta, hamburgerEl);
     }
+
+    // Initialize desktop dropdown menus
+    initDesktopDropdowns(nav);
 
     // Scroll effect: at top → plain text nav, on first scroll → glass pills appear
     var scrollThreshold = 10; // activate immediately on first scroll
@@ -145,6 +148,161 @@ function initNavigation() {
 }
 
 /**
+ * Desktop Dropdown Menus (Seed Pattern)
+ * Mega-menu dropdowns for nav links on desktop with 2-column layout
+ */
+function initDesktopDropdowns(nav) {
+    // Only on desktop
+    if (window.innerWidth <= 768) return;
+
+    var mainLinks = nav.querySelector('.nav-main-links');
+    if (!mainLinks) return;
+
+    // Dropdown data matching fullscreen menu structure
+    var dropdownData = {
+        'products': {
+            col1Title: 'Categories',
+            col1Links: [
+                { text: 'Seeds', href: 'products/seeds.html' },
+                { text: 'Live Plants', href: 'products/live-plants.html' },
+                { text: 'Gummies', href: 'products/gummies.html' },
+                { text: 'Tinctures', href: 'products/tinctures.html' },
+                { text: 'Extracts', href: 'products/extracts.html' },
+                { text: 'Dried Botanicals', href: 'products/dried-botanicals.html' }
+            ],
+            col2Title: 'Featured',
+            col2Links: [
+                { text: '5000mg Blue Lotus Tincture', href: 'products/tinctures.html', price: '$60' },
+                { text: 'High Potency Kanna Extract', href: 'products/extracts.html', price: '$40' },
+                { text: 'Kanna Gummies 500mg', href: 'products/gummies.html', price: '$40' },
+                { text: 'Heirloom Sugarcane Seeds', href: 'products/seeds.html', price: '$20' }
+            ],
+            footerText: 'Shop All Products',
+            footerHref: 'index.html#products'
+        },
+        'articles': {
+            col1Title: 'Categories',
+            col1Links: [
+                { text: 'Garden / Farm Design', href: 'blog.html' },
+                { text: 'Plant Articles', href: 'blog.html' },
+                { text: 'Extraction Methods', href: 'articles/extraction-methods.html' },
+                { text: 'Compounds', href: 'articles/blue-lotus-compounds.html' },
+                { text: 'Studies', href: 'research.html' }
+            ],
+            col2Title: 'Featured Articles',
+            col2Links: [
+                { text: 'Complete Kratom Guide', href: 'articles/complete-kratom-guide.html', meta: '8 min read' },
+                { text: 'Kavalactones Explained', href: 'articles/kavalactones-explained.html', meta: '6 min read' },
+                { text: 'Extraction Methods Compared', href: 'articles/extraction-methods.html', meta: '10 min read' },
+                { text: 'Blue Lotus Compounds', href: 'articles/blue-lotus-compounds.html', meta: '12 min read' }
+            ],
+            footerText: 'All Articles',
+            footerHref: 'blog.html'
+        },
+        'classes': {
+            col1Title: 'Classroom',
+            col1Links: [
+                { text: 'All Classes', href: 'classes.html' },
+                { text: 'Classroom Portal', href: 'classroom.html' },
+                { text: 'Growing Classes', href: 'classroom/growing.html' },
+                { text: 'Extraction Classes', href: 'classroom/extraction.html' }
+            ],
+            col2Title: 'More Topics',
+            col2Links: [
+                { text: 'Effects & Alkaloids', href: 'classroom/effects.html' },
+                { text: 'Infrastructure & Equipment', href: 'classroom/infrastructure.html' }
+            ],
+            footerText: 'Browse All Classes',
+            footerHref: 'classes.html'
+        },
+        'company': {
+            col1Title: 'Company',
+            col1Links: [
+                { text: 'About Us', href: 'about-us.html' },
+                { text: 'Contact Us', href: 'contact.html' },
+                { text: 'Sustainability', href: 'research.html#growing' }
+            ],
+            col2Title: 'Connect',
+            col2Links: [
+                { text: 'Research & Labs', href: 'research.html' },
+                { text: 'Consulting', href: 'consulting.html' }
+            ],
+            footerText: null,
+            footerHref: null
+        }
+    };
+
+    // Attach dropdowns to matching nav links
+    var links = mainLinks.querySelectorAll('a');
+    links.forEach(function(link) {
+        var text = link.textContent.trim().toLowerCase();
+        var data = dropdownData[text];
+        if (!data) return;
+
+        // Wrap the link in a container for positioning
+        var wrapper = document.createElement('div');
+        wrapper.className = 'nav-dropdown-wrap';
+        link.parentNode.insertBefore(wrapper, link);
+        wrapper.appendChild(link);
+
+        // Build dropdown HTML
+        var dropdown = document.createElement('div');
+        dropdown.className = 'nav-dropdown';
+
+        var inner = '<div class="nav-dropdown-inner">';
+        // Column 1
+        inner += '<div class="nav-dropdown-col">';
+        inner += '<div class="nav-dropdown-heading">' + data.col1Title + '</div>';
+        data.col1Links.forEach(function(item) {
+            inner += '<a href="' + item.href + '" class="nav-dropdown-link">' + item.text + '</a>';
+        });
+        inner += '</div>';
+        // Column 2
+        inner += '<div class="nav-dropdown-col">';
+        inner += '<div class="nav-dropdown-heading">' + data.col2Title + '</div>';
+        data.col2Links.forEach(function(item) {
+            inner += '<a href="' + item.href + '" class="nav-dropdown-link">';
+            inner += '<span>' + item.text + '</span>';
+            if (item.price) inner += '<span class="nav-dropdown-meta">' + item.price + '</span>';
+            if (item.meta) inner += '<span class="nav-dropdown-meta">' + item.meta + '</span>';
+            inner += '</a>';
+        });
+        inner += '</div>';
+        inner += '</div>';
+        // Footer
+        if (data.footerText) {
+            inner += '<div class="nav-dropdown-footer"><a href="' + data.footerHref + '">' + data.footerText + ' &rarr;</a></div>';
+        }
+
+        dropdown.innerHTML = inner;
+        wrapper.appendChild(dropdown);
+
+        // Show/hide on hover
+        var hideTimer = null;
+        wrapper.addEventListener('mouseenter', function() {
+            clearTimeout(hideTimer);
+            // Close any other open dropdowns
+            document.querySelectorAll('.nav-dropdown-wrap.active').forEach(function(w) {
+                if (w !== wrapper) w.classList.remove('active');
+            });
+            wrapper.classList.add('active');
+        });
+        wrapper.addEventListener('mouseleave', function() {
+            hideTimer = setTimeout(function() {
+                wrapper.classList.remove('active');
+            }, 150);
+        });
+    });
+
+    // Close dropdowns on scroll
+    window.addEventListener('scroll', function() {
+        document.querySelectorAll('.nav-dropdown-wrap.active').forEach(function(w) {
+            w.classList.remove('active');
+        });
+    }, { passive: true });
+}
+
+/**
  * Fullscreen Takeover Menu (Seed Pattern)
  * Injected via JS to avoid touching 80 HTML pages
  */
@@ -162,49 +320,80 @@ function initFullscreenMenu(hamburger) {
         '<div class="fs-menu" id="fsMenu">' +
         '<div class="fs-menu-tabs">' +
         '<div class="fs-menu-logo"></div>' +
-        '<button class="fs-tab active" data-tab="shop">Shop</button>' +
-        '<button class="fs-tab" data-tab="science">Science</button>' +
-        '<button class="fs-tab" data-tab="learn">Learn</button>' +
+        '<button class="fs-tab active" data-tab="products">Products</button>' +
+        '<button class="fs-tab" data-tab="articles">Articles</button>' +
+        '<button class="fs-tab" data-tab="classes">Classes</button>' +
+        '<button class="fs-tab" data-tab="company">Company</button>' +
         '<button class="fs-tab" data-tab="login">Login</button>' +
         '<button class="fs-menu-close" id="menuClose" aria-label="Close">&times;</button>' +
         '</div>' +
         '<div class="fs-menu-scroll">' +
-        // SHOP panel
-        '<div class="fs-panel active" data-panel="shop">' +
-        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-code">KR-01</div><div class="product-name">Kratom Full Spectrum</div></div></a>' +
-        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar teal"></div></div><div class="product-info"><div class="product-code">KR-02</div><div class="product-name">Kratom Enhanced Blend</div></div></a>' +
-        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-code">KV-01</div><div class="product-name">Kava Noble Extract</div></div></a>' +
-        '<a href="' + p + 'products/tinctures.html" class="product-row"><div class="product-thumb"><div class="jar blue"></div></div><div class="product-info"><div class="product-code">BL-01</div><div class="product-name">Blue Lotus Concentrate</div></div></a>' +
-        '<a href="' + p + 'products/gummies.html" class="product-row"><div class="product-thumb"><div class="jar amber"></div></div><div class="product-info"><div class="product-code">BD-01</div><div class="product-name">Hill Country Bundle</div></div></a>' +
-        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar purple"></div></div><div class="product-info"><div class="product-code">ET-01</div><div class="product-name">Ethnobotanical Sampler</div></div></a>' +
+
+        // ---- PRODUCTS panel ----
+        '<div class="fs-panel active" data-panel="products">' +
+        '<div class="panel-group-header" style="padding-top:0.25rem">Categories</div>' +
+        '<div class="category-grid">' +
+        '<a href="' + p + 'products/seeds.html" class="category-pill-link"><span class="category-pill-icon">&#127793;</span><span>Seeds</span></a>' +
+        '<a href="' + p + 'products/live-plants.html" class="category-pill-link"><span class="category-pill-icon">&#127811;</span><span>Live Plants</span></a>' +
+        '<a href="' + p + 'products/gummies.html" class="category-pill-link"><span class="category-pill-icon">&#127852;</span><span>Gummies</span></a>' +
+        '<a href="' + p + 'products/tinctures.html" class="category-pill-link"><span class="category-pill-icon">&#128167;</span><span>Tinctures</span></a>' +
+        '<a href="' + p + 'products/extracts.html" class="category-pill-link"><span class="category-pill-icon">&#9878;</span><span>Extracts</span></a>' +
+        '<a href="' + p + 'products/dried-botanicals.html" class="category-pill-link"><span class="category-pill-icon">&#127807;</span><span>Dried Botanicals</span></a>' +
+        '</div>' +
+        '<div class="panel-group-header">Featured Products</div>' +
+        '<a href="' + p + 'products/tinctures.html" class="product-row"><div class="product-thumb"><div class="jar blue"></div></div><div class="product-info"><div class="product-code">BL-T1</div><div class="product-name">5000mg Blue Lotus Tincture</div></div><div class="product-price">$60</div></a>' +
+        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-code">KN-E1</div><div class="product-name">High Potency Kanna Extract</div></div><div class="product-price">$40</div></a>' +
+        '<a href="' + p + 'products/gummies.html" class="product-row"><div class="product-thumb"><div class="jar amber"></div></div><div class="product-info"><div class="product-code">KN-G1</div><div class="product-name">Kanna Gummies 500mg</div></div><div class="product-price">$40</div></a>' +
+        '<a href="' + p + 'products/extracts.html" class="product-row"><div class="product-thumb"><div class="jar teal"></div></div><div class="product-info"><div class="product-code">KV-E1</div><div class="product-name">Kava Kava CO2 Extract</div></div><div class="product-price">$30</div></a>' +
+        '<a href="' + p + 'products/seeds.html" class="product-row"><div class="product-thumb"><div class="jar rose"></div></div><div class="product-info"><div class="product-code">SC-S1</div><div class="product-name">Heirloom Sugarcane Seeds</div></div><div class="product-price">$20</div></a>' +
         '<a href="' + p + 'index.html#products" class="shop-all-link">Shop All Products &rarr;</a>' +
         '</div>' +
-        // SCIENCE panel
-        '<div class="fs-panel" data-panel="science">' +
-        '<a href="' + p + 'index.html#about" class="panel-item"><div class="panel-item-image img-approach">&#128300;</div><div class="panel-item-content"><div class="panel-item-title">Approach</div><div class="panel-item-desc">Botanical science for human wellness</div></div></a>' +
-        '<a href="' + p + 'research.html" class="panel-item"><div class="panel-item-image img-labs">&#9878;</div><div class="panel-item-content"><div class="panel-item-title">Nored[Labs]</div><div class="panel-item-desc">Frontier extraction science</div></div></a>' +
-        '<a href="' + p + 'consulting.html" class="panel-item"><div class="panel-item-image img-scientists">&#128200;</div><div class="panel-item-content"><div class="panel-item-title">Researchers</div><div class="panel-item-desc">Leading ethnobotanical experts</div></div></a>' +
-        '<a href="' + p + 'research.html#growing" class="panel-item"><div class="panel-item-image img-sustainability">&#127807;</div><div class="panel-item-content"><div class="panel-item-title">Sustainability</div><div class="panel-item-desc">Sourcing impact on ecological health</div></div></a>' +
-        '<div class="panel-group-header">Reference</div>' +
-        '<ul class="ref-list">' +
-        '<li><a href="' + p + 'articles/complete-kratom-guide.html">KR-01 Kratom Full Spectrum</a></li>' +
-        '<li><a href="' + p + 'articles/kratom-alkaloid-profiles.html">KR-02 Kratom Enhanced Blend</a></li>' +
-        '<li><a href="' + p + 'articles/kava-noble-vs-tudei.html">KV-01 Kava Noble Extract</a></li>' +
-        '<li><a href="' + p + 'articles/blue-lotus-guide.html">BL-01 Blue Lotus Concentrate</a></li>' +
-        '</ul>' +
+
+        // ---- ARTICLES panel ----
+        '<div class="fs-panel" data-panel="articles">' +
+        '<div class="panel-group-header" style="padding-top:0.25rem">Categories</div>' +
+        '<div class="category-grid">' +
+        '<a href="' + p + 'blog.html" class="category-pill-link"><span class="category-pill-icon">&#127793;</span><span>Garden / Farm Design</span></a>' +
+        '<a href="' + p + 'blog.html" class="category-pill-link"><span class="category-pill-icon">&#127807;</span><span>Plant Articles</span></a>' +
+        '<a href="' + p + 'articles/extraction-methods.html" class="category-pill-link"><span class="category-pill-icon">&#9878;</span><span>Extract Methods</span></a>' +
+        '<a href="' + p + 'articles/blue-lotus-compounds.html" class="category-pill-link"><span class="category-pill-icon">&#128300;</span><span>Compounds</span></a>' +
+        '<a href="' + p + 'research.html" class="category-pill-link"><span class="category-pill-icon">&#128200;</span><span>Studies</span></a>' +
         '</div>' +
-        // LEARN panel
-        '<div class="fs-panel" data-panel="learn">' +
-        '<a href="' + p + 'classroom/extraction.html" class="panel-item"><div class="panel-item-image img-approach">&#9752;</div><div class="panel-item-content"><div class="panel-item-title">Extraction 101</div><div class="panel-item-desc">The science of isolating active plant compounds.</div></div></a>' +
-        '<a href="' + p + 'classroom/effects.html" class="panel-item"><div class="panel-item-image img-sustainability">&#127807;</div><div class="panel-item-content"><div class="panel-item-title">Alkaloids 101</div><div class="panel-item-desc">How mitragynine, kavalactones and aporphines work.</div></div></a>' +
         '<div class="panel-group-header">Featured Articles</div>' +
-        '<a href="' + p + 'articles/kratom-alkaloid-profiles.html" class="panel-item"><div class="article-thumb article-thumb-1"></div><div class="panel-item-content"><div class="panel-item-title">Understanding Kratom Alkaloid Profiles</div><div class="panel-item-meta">8 min read</div></div></a>' +
-        '<a href="' + p + 'articles/kava-noble-vs-tudei.html" class="panel-item"><div class="article-thumb article-thumb-2"></div><div class="panel-item-content"><div class="panel-item-title">Kava Noble vs Tudei: Why It Matters</div><div class="panel-item-meta">6 min read</div></div></a>' +
-        '<a href="' + p + 'articles/water-vs-ethanol-extraction.html" class="panel-item"><div class="article-thumb article-thumb-3"></div><div class="panel-item-content"><div class="panel-item-title">Water vs Ethanol Extraction Methods</div><div class="panel-item-meta">10 min read</div></div></a>' +
-        '<a href="' + p + 'articles/blue-lotus-guide.html" class="panel-item"><div class="article-thumb article-thumb-4"></div><div class="panel-item-content"><div class="panel-item-title">Blue Lotus in Ancient Egyptian Medicine</div><div class="panel-item-meta">12 min read</div></div></a>' +
+        '<a href="' + p + 'articles/complete-kratom-guide.html" class="panel-item"><div class="article-thumb article-thumb-1"></div><div class="panel-item-content"><div class="panel-item-title">Complete Kratom Guide</div><div class="panel-item-meta">8 min read</div></div></a>' +
+        '<a href="' + p + 'articles/kavalactones-explained.html" class="panel-item"><div class="article-thumb article-thumb-2"></div><div class="panel-item-content"><div class="panel-item-title">Kavalactones Explained</div><div class="panel-item-meta">6 min read</div></div></a>' +
+        '<a href="' + p + 'articles/extraction-methods.html" class="panel-item"><div class="article-thumb article-thumb-3"></div><div class="panel-item-content"><div class="panel-item-title">Extraction Methods Compared</div><div class="panel-item-meta">10 min read</div></div></a>' +
+        '<a href="' + p + 'articles/blue-lotus-compounds.html" class="panel-item"><div class="article-thumb article-thumb-4"></div><div class="panel-item-content"><div class="panel-item-title">Blue Lotus Compounds & Research</div><div class="panel-item-meta">12 min read</div></div></a>' +
         '<a href="' + p + 'blog.html" class="all-articles-link">All Articles &rarr;</a>' +
         '</div>' +
-        // LOGIN panel
+
+        // ---- CLASSES panel ----
+        '<div class="fs-panel" data-panel="classes">' +
+        '<a href="' + p + 'classroom/growing.html" class="panel-item"><div class="panel-item-image img-sustainability">&#127793;</div><div class="panel-item-content"><div class="panel-item-title">Growing Classes</div><div class="panel-item-desc">Cultivation techniques for botanicals and food forests.</div></div></a>' +
+        '<a href="' + p + 'classroom/extraction.html" class="panel-item"><div class="panel-item-image img-approach">&#9752;</div><div class="panel-item-content"><div class="panel-item-title">Extraction Classes</div><div class="panel-item-desc">The science of isolating active plant compounds.</div></div></a>' +
+        '<a href="' + p + 'classroom/effects.html" class="panel-item"><div class="panel-item-image img-labs">&#128300;</div><div class="panel-item-content"><div class="panel-item-title">Effects & Alkaloids</div><div class="panel-item-desc">How mitragynine, kavalactones and aporphines work.</div></div></a>' +
+        '<a href="' + p + 'classroom/infrastructure.html" class="panel-item"><div class="panel-item-image img-scientists">&#128200;</div><div class="panel-item-content"><div class="panel-item-title">Infrastructure & Equipment</div><div class="panel-item-desc">Tools and systems for sustainable growing.</div></div></a>' +
+        '<div class="panel-group-header">Quick Links</div>' +
+        '<ul class="ref-list">' +
+        '<li><a href="' + p + 'classes.html">Browse All Classes</a></li>' +
+        '<li><a href="' + p + 'classroom.html">Classroom Portal</a></li>' +
+        '<li><a href="' + p + 'courses/login.html">Course Login</a></li>' +
+        '</ul>' +
+        '</div>' +
+
+        // ---- COMPANY panel ----
+        '<div class="fs-panel" data-panel="company">' +
+        '<a href="' + p + 'about-us.html" class="panel-item"><div class="panel-item-image img-approach">&#127807;</div><div class="panel-item-content"><div class="panel-item-title">About Us</div><div class="panel-item-desc">Our story, mission, and the team behind Nored Farms.</div></div></a>' +
+        '<a href="' + p + 'contact.html" class="panel-item"><div class="panel-item-image img-labs">&#9993;</div><div class="panel-item-content"><div class="panel-item-title">Contact Us</div><div class="panel-item-desc">Get in touch for orders, questions, or partnerships.</div></div></a>' +
+        '<a href="' + p + 'research.html#growing" class="panel-item"><div class="panel-item-image img-sustainability">&#127811;</div><div class="panel-item-content"><div class="panel-item-title">Sustainability</div><div class="panel-item-desc">Our commitment to ecological responsibility.</div></div></a>' +
+        '<div class="panel-group-header">More</div>' +
+        '<ul class="ref-list">' +
+        '<li><a href="' + p + 'research.html">Research & Labs</a></li>' +
+        '<li><a href="' + p + 'consulting.html">Consulting</a></li>' +
+        '</ul>' +
+        '</div>' +
+
+        // ---- LOGIN panel ----
         '<div class="fs-panel" data-panel="login">' +
         '<div class="login-brand">[ Nored Farms ]</div>' +
         '<h2 class="login-heading">Login</h2>' +
@@ -215,8 +404,12 @@ function initFullscreenMenu(hamburger) {
         '<div class="login-field"><input type="password" placeholder="Password" class="login-input" autocomplete="current-password"></div>' +
         '<div class="login-actions"><a href="' + p + 'courses/login.html" class="login-forgot">Forgot password?</a><button type="submit" class="login-submit">Sign In</button></div>' +
         '</form>' +
+        '<div class="login-divider" style="margin-top:1.25rem"><span>WHOLESALE</span></div>' +
+        '<a href="' + p + 'courses/login.html" class="wholesale-login-link">Wholesale Login &rarr;</a>' +
+        '<p class="wholesale-desc">Authorized retailers and distributors can access bulk pricing, lab reports, and wholesale ordering.</p>' +
         '</div>' +
-        '<a href="' + p + 'articles/complete-kratom-guide.html" class="fs-menu-promo">Is KR-01 Right For You? &rarr;</a>' +
+
+        '<a href="' + p + 'products/extracts.html" class="fs-menu-promo">Explore Our Extracts &rarr;</a>' +
         '</div>' + // /fs-menu-scroll
         '</div>'; // /fs-menu
 
@@ -363,7 +556,7 @@ function initFullscreenMenu(hamburger) {
     var touchStartX = 0;
     var touchStartY = 0;
     var scrollEl = document.querySelector('.fs-menu-scroll');
-    var tabOrder = ['shop', 'science', 'learn', 'login'];
+    var tabOrder = ['products', 'articles', 'classes', 'company', 'login'];
 
     if (scrollEl) {
         scrollEl.addEventListener('touchstart', function(e) {
@@ -375,7 +568,9 @@ function initFullscreenMenu(hamburger) {
             var dx = e.changedTouches[0].clientX - touchStartX;
             var dy = e.changedTouches[0].clientY - touchStartY;
             if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-                var current = document.querySelector('.fs-tab.active').dataset.tab;
+                var activeTab = document.querySelector('.fs-tab.active');
+                if (!activeTab) return;
+                var current = activeTab.dataset.tab;
                 var i = tabOrder.indexOf(current);
                 if (dx < 0 && i < tabOrder.length - 1) switchTab(tabOrder[i + 1]);
                 else if (dx > 0 && i > 0) switchTab(tabOrder[i - 1]);
@@ -384,7 +579,7 @@ function initFullscreenMenu(hamburger) {
     }
 
     // Close on link click inside menu
-    fsMenu.querySelectorAll('.product-row, .panel-item, .fs-cta-primary, .fs-cta-secondary, .shop-all-link, .ref-list a, .all-articles-link').forEach(function(el) {
+    fsMenu.querySelectorAll('.product-row, .panel-item, .fs-cta-primary, .fs-cta-secondary, .shop-all-link, .ref-list a, .all-articles-link, .category-pill-link, .wholesale-login-link').forEach(function(el) {
         el.addEventListener('click', closeMenu);
     });
 

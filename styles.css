@@ -901,6 +901,20 @@ ul, ol {
     transition: opacity 0.2s ease;
 }
 
+/* 5-tab layout: tighter spacing on small screens */
+@media (max-width: 400px) {
+    .fs-tab {
+        padding: 7px 6px;
+        font-size: 0.75rem;
+    }
+    .fs-menu-tabs {
+        margin: 8px 10px 0;
+    }
+    .fs-menu-scroll {
+        margin: 0.5rem 10px;
+    }
+}
+
 .fs-panel { display: none; }
 .fs-panel.active { display: block; animation: panelFadeIn 0.3s var(--ease-out); }
 
@@ -1299,6 +1313,249 @@ ul, ol {
 }
 
 .fs-cta-secondary:hover { opacity: 0.6; }
+
+/* ============================================
+   Desktop Nav Dropdowns (Seed Pattern)
+   Mega-menu with 2-column layout
+   ============================================ */
+
+.nav-dropdown-wrap {
+    position: relative;
+    display: inline-flex;
+}
+
+.nav-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    min-width: 420px;
+    background: var(--color--snowwhite);
+    border-radius: 16px;
+    border: 1px solid rgba(28, 58, 19, 0.08);
+    box-shadow: 0 12px 40px rgba(28, 58, 19, 0.08),
+                0 4px 12px rgba(28, 58, 19, 0.04);
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 900;
+}
+
+.nav-dropdown-wrap.active .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Arrow indicator */
+.nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: var(--color--snowwhite);
+    border-left: 1px solid rgba(28, 58, 19, 0.08);
+    border-top: 1px solid rgba(28, 58, 19, 0.08);
+    border-radius: 2px 0 0 0;
+}
+
+.nav-dropdown-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 20px 0 12px;
+}
+
+.nav-dropdown-col {
+    padding: 0 20px;
+}
+
+.nav-dropdown-col:first-child {
+    border-right: 1px solid rgba(28, 58, 19, 0.06);
+}
+
+.nav-dropdown-heading {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color--olivegreen);
+    padding: 0 0 8px;
+    margin-bottom: 4px;
+}
+
+.nav-dropdown-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 0;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 350;
+    color: var(--color--seedgreen);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    line-height: 1.3;
+}
+
+.nav-dropdown-link:hover {
+    opacity: 0.6;
+}
+
+.nav-dropdown-meta {
+    font-size: 0.75rem;
+    font-weight: 350;
+    color: var(--color--olivegreen);
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.nav-dropdown-footer {
+    border-top: 1px solid rgba(28, 58, 19, 0.06);
+    padding: 10px 20px;
+}
+
+.nav-dropdown-footer a {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color--mossroot);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s ease;
+}
+
+.nav-dropdown-footer a:hover {
+    opacity: 0.6;
+}
+
+/* Scrolled state: dark glass dropdown */
+.nav.scrolled .nav-dropdown {
+    background: rgba(28, 58, 19, 0.88);
+    backdrop-filter: blur(40px) saturate(1.4);
+    -webkit-backdrop-filter: blur(40px) saturate(1.4);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.nav.scrolled .nav-dropdown::before {
+    background: rgba(28, 58, 19, 0.88);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav.scrolled .nav-dropdown-heading {
+    color: rgba(252, 252, 247, 0.5);
+}
+
+.nav.scrolled .nav-dropdown-link {
+    color: var(--color--snowwhite);
+}
+
+.nav.scrolled .nav-dropdown-meta {
+    color: rgba(252, 252, 247, 0.5);
+}
+
+.nav.scrolled .nav-dropdown-col:first-child {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav.scrolled .nav-dropdown-footer {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav.scrolled .nav-dropdown-footer a {
+    color: var(--color-guidance-fluorescent-green);
+}
+
+/* Hide dropdowns on mobile */
+@media (max-width: 768px) {
+    .nav-dropdown { display: none !important; }
+}
+
+/* ============================================
+   Mobile Menu Enhancements
+   Category pills + wholesale + product price
+   ============================================ */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 4px 0 8px;
+}
+
+.category-pill-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 99em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    color: var(--color--snowwhite);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.category-pill-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.category-pill-icon {
+    font-size: 1rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.product-price {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-guidance-fluorescent-green);
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+.wholesale-login-link {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    margin-top: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color--snowwhite);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 99em;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.wholesale-login-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.wholesale-desc {
+    font-size: 0.75rem;
+    color: var(--seed-text-muted-on-glass);
+    margin-top: 0.625rem;
+    line-height: 1.5;
+    text-align: center;
+}
 
 /* ============================================
    Hero Section
