@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="moss-slate">
+<html lang="en" data-theme="iron-moss">
 <head>
     <script src="/dev-console-filter.js"></script>
     <meta charset="UTF-8">
@@ -21,87 +21,7 @@
             --transition-theme: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ---- THEME 1: MOSS & SLATE (Original) ---- */
-        [data-theme="moss-slate"] {
-            --th-bg:            #1e2822;
-            --th-bg-alt:        #252f28;
-            --th-bg-card:       #2c382f;
-            --th-bg-elevated:   #344038;
-            --th-surface:       #283230;
-            --th-surface-hover: #344038;
-
-            --th-text:          #b8c4b0;
-            --th-text-heading:  #dce6d6;
-            --th-text-muted:    #6e7e68;
-            --th-text-inverse:  #1e2822;
-
-            --th-accent:        #a4cc78;
-            --th-accent-muted:  rgba(164, 204, 120, 0.12);
-            --th-accent-text:   #1e2822;
-
-            --th-border:        rgba(164, 204, 120, 0.1);
-            --th-border-strong: rgba(164, 204, 120, 0.2);
-
-            --th-nav-bg:        rgba(30, 40, 34, 0.88);
-            --th-nav-blur:      blur(16px);
-
-            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.2);
-            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.18);
-
-            --th-gradient-hero: linear-gradient(180deg, #252f28 0%, #1e2822 100%);
-            --th-gradient-section: linear-gradient(180deg, #283230 0%, #1e2822 100%);
-            --th-gradient-jar:  linear-gradient(180deg, #4a6a40 0%, #3a5430 40%, #2c3c28 100%);
-
-            --th-product-bg:    #222e26;
-            --th-product-card:  #2c3a30;
-            --th-product-card-hover: #384840;
-
-            --th-dot-color:     #a4cc78;
-            --th-badge-bg:      #a4cc78;
-            --th-badge-text:    #1e2822;
-        }
-
-        /* ---- THEME 2: LICHEN — lighter, warmer grey-green ---- */
-        [data-theme="lichen"] {
-            --th-bg:            #2a3028;
-            --th-bg-alt:        #323a30;
-            --th-bg-card:       #3a4438;
-            --th-bg-elevated:   #434e40;
-            --th-surface:       #354035;
-            --th-surface-hover: #434e40;
-
-            --th-text:          #c5ccb8;
-            --th-text-heading:  #e8eedc;
-            --th-text-muted:    #8a957e;
-            --th-text-inverse:  #2a3028;
-
-            --th-accent:        #c8e6a0;
-            --th-accent-muted:  rgba(200, 230, 160, 0.12);
-            --th-accent-text:   #1e2618;
-
-            --th-border:        rgba(200, 230, 160, 0.1);
-            --th-border-strong: rgba(200, 230, 160, 0.18);
-
-            --th-nav-bg:        rgba(42, 48, 40, 0.88);
-            --th-nav-blur:      blur(16px);
-
-            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.18);
-            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.14);
-
-            --th-gradient-hero: linear-gradient(180deg, #323a30 0%, #2a3028 100%);
-            --th-gradient-section: linear-gradient(180deg, #354035 0%, #2a3028 100%);
-            --th-gradient-jar:  linear-gradient(180deg, #5a7a4a 0%, #4a6438 40%, #3a4c30 100%);
-
-            --th-product-bg:    #2e362c;
-            --th-product-card:  #3a4438;
-            --th-product-card-hover: #465242;
-
-            --th-dot-color:     #c8e6a0;
-            --th-badge-bg:      #c8e6a0;
-            --th-badge-text:    #1e2618;
-        }
-
-        /* ---- THEME 3: IRON MOSS — cool steel-green, more grey ---- */
+        /* ---- THEME 1: IRON MOSS (Original) — cool steel-green, teal accent ---- */
         [data-theme="iron-moss"] {
             --th-bg:            #1c2220;
             --th-bg-alt:        #232a28;
@@ -141,84 +61,164 @@
             --th-badge-text:    #121a18;
         }
 
-        /* ---- THEME 4: PEAT — deep brown-green, organic warmth ---- */
-        [data-theme="peat"] {
-            --th-bg:            #1e2218;
-            --th-bg-alt:        #262a1e;
-            --th-bg-card:       #2e3424;
-            --th-bg-elevated:   #383e2e;
-            --th-surface:       #282e20;
-            --th-surface-hover: #383e2e;
+        /* ---- THEME 2: VERDIGRIS — lighter iron moss, oxidized copper feel ---- */
+        [data-theme="verdigris"] {
+            --th-bg:            #222c2a;
+            --th-bg-alt:        #2a3432;
+            --th-bg-card:       #323e3a;
+            --th-bg-elevated:   #3c4844;
+            --th-surface:       #2c3634;
+            --th-surface-hover: #3c4844;
 
-            --th-text:          #bcc0a8;
-            --th-text-heading:  #e0e4cc;
-            --th-text-muted:    #7e8468;
-            --th-text-inverse:  #1e2218;
+            --th-text:          #b4c0b8;
+            --th-text-heading:  #d8e4dc;
+            --th-text-muted:    #748880;
+            --th-text-inverse:  #222c2a;
 
-            --th-accent:        #d4c870;
-            --th-accent-muted:  rgba(212, 200, 112, 0.1);
-            --th-accent-text:   #1a1e12;
+            --th-accent:        #68d4b0;
+            --th-accent-muted:  rgba(104, 212, 176, 0.1);
+            --th-accent-text:   #162420;
 
-            --th-border:        rgba(212, 200, 112, 0.08);
-            --th-border-strong: rgba(212, 200, 112, 0.16);
+            --th-border:        rgba(104, 212, 176, 0.09);
+            --th-border-strong: rgba(104, 212, 176, 0.18);
 
-            --th-nav-bg:        rgba(30, 34, 24, 0.9);
+            --th-nav-bg:        rgba(34, 44, 42, 0.88);
+            --th-nav-blur:      blur(18px);
+
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.2);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.16);
+
+            --th-gradient-hero: linear-gradient(180deg, #2a3432 0%, #222c2a 100%);
+            --th-gradient-section: linear-gradient(180deg, #2c3634 0%, #222c2a 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #3e7a68 0%, #326458 40%, #284e44 100%);
+
+            --th-product-bg:    #263230;
+            --th-product-card:  #323e3a;
+            --th-product-card-hover: #3e4c46;
+
+            --th-dot-color:     #68d4b0;
+            --th-badge-bg:      #68d4b0;
+            --th-badge-text:    #162420;
+        }
+
+        /* ---- THEME 3: GUNMETAL — darker, bluer steel, sharper contrast ---- */
+        [data-theme="gunmetal"] {
+            --th-bg:            #161c1e;
+            --th-bg-alt:        #1c2426;
+            --th-bg-card:       #242e30;
+            --th-bg-elevated:   #2c383a;
+            --th-surface:       #202829;
+            --th-surface-hover: #2c383a;
+
+            --th-text:          #9caaae;
+            --th-text-heading:  #c4d0d4;
+            --th-text-muted:    #5c6e72;
+            --th-text-inverse:  #161c1e;
+
+            --th-accent:        #5ec8c8;
+            --th-accent-muted:  rgba(94, 200, 200, 0.08);
+            --th-accent-text:   #0e1618;
+
+            --th-border:        rgba(94, 200, 200, 0.06);
+            --th-border-strong: rgba(94, 200, 200, 0.15);
+
+            --th-nav-bg:        rgba(22, 28, 30, 0.92);
+            --th-nav-blur:      blur(20px);
+
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.3);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.25);
+
+            --th-gradient-hero: linear-gradient(180deg, #1c2426 0%, #161c1e 100%);
+            --th-gradient-section: linear-gradient(180deg, #202829 0%, #161c1e 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #2e5a60 0%, #244a50 40%, #1c3840 100%);
+
+            --th-product-bg:    #1a2224;
+            --th-product-card:  #242e30;
+            --th-product-card-hover: #303c3e;
+
+            --th-dot-color:     #5ec8c8;
+            --th-badge-bg:      #5ec8c8;
+            --th-badge-text:    #0e1618;
+        }
+
+        /* ---- THEME 4: WEATHERED — warm grey-green, sage accent ---- */
+        [data-theme="weathered"] {
+            --th-bg:            #1e2422;
+            --th-bg-alt:        #262c28;
+            --th-bg-card:       #2e3630;
+            --th-bg-elevated:   #384038;
+            --th-surface:       #282e2a;
+            --th-surface-hover: #384038;
+
+            --th-text:          #b0b8a8;
+            --th-text-heading:  #d4dcc8;
+            --th-text-muted:    #6a7a66;
+            --th-text-inverse:  #1e2422;
+
+            --th-accent:        #94c490;
+            --th-accent-muted:  rgba(148, 196, 144, 0.1);
+            --th-accent-text:   #141c14;
+
+            --th-border:        rgba(148, 196, 144, 0.08);
+            --th-border-strong: rgba(148, 196, 144, 0.17);
+
+            --th-nav-bg:        rgba(30, 36, 34, 0.9);
             --th-nav-blur:      blur(16px);
 
             --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.22);
             --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.18);
 
-            --th-gradient-hero: linear-gradient(180deg, #262a1e 0%, #1e2218 100%);
-            --th-gradient-section: linear-gradient(180deg, #282e20 0%, #1e2218 100%);
-            --th-gradient-jar:  linear-gradient(180deg, #5a6a30 0%, #4a5828 40%, #363e22 100%);
+            --th-gradient-hero: linear-gradient(180deg, #262c28 0%, #1e2422 100%);
+            --th-gradient-section: linear-gradient(180deg, #282e2a 0%, #1e2422 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #4a6a48 0%, #3c5840 40%, #2e4432 100%);
 
-            --th-product-bg:    #222820;
-            --th-product-card:  #2e3424;
-            --th-product-card-hover: #3a4230;
+            --th-product-bg:    #222a24;
+            --th-product-card:  #2e3630;
+            --th-product-card-hover: #38423a;
 
-            --th-dot-color:     #d4c870;
-            --th-badge-bg:      #d4c870;
-            --th-badge-text:    #1a1e12;
+            --th-dot-color:     #94c490;
+            --th-badge-bg:      #94c490;
+            --th-badge-text:    #141c14;
         }
 
-        /* ---- THEME 5: BASALT — darkest, high contrast, mineral ---- */
-        [data-theme="basalt"] {
-            --th-bg:            #141816;
-            --th-bg-alt:        #1a1e1c;
-            --th-bg-card:       #222824;
-            --th-bg-elevated:   #2a322c;
-            --th-surface:       #1c221e;
-            --th-surface-hover: #2a322c;
+        /* ---- THEME 5: DEEP IRON — near-black with bright teal pop ---- */
+        [data-theme="deep-iron"] {
+            --th-bg:            #12181a;
+            --th-bg-alt:        #181e20;
+            --th-bg-card:       #1e2628;
+            --th-bg-elevated:   #263032;
+            --th-surface:       #1a2022;
+            --th-surface-hover: #263032;
 
-            --th-text:          #98a694;
-            --th-text-heading:  #c8d4c0;
-            --th-text-muted:    #566050;
-            --th-text-inverse:  #141816;
+            --th-text:          #8e9c98;
+            --th-text-heading:  #bccac4;
+            --th-text-muted:    #506460;
+            --th-text-inverse:  #12181a;
 
-            --th-accent:        #6ae8b0;
-            --th-accent-muted:  rgba(106, 232, 176, 0.08);
-            --th-accent-text:   #0e1210;
+            --th-accent:        #50e8c0;
+            --th-accent-muted:  rgba(80, 232, 192, 0.07);
+            --th-accent-text:   #0a1210;
 
-            --th-border:        rgba(106, 232, 176, 0.06);
-            --th-border-strong: rgba(106, 232, 176, 0.14);
+            --th-border:        rgba(80, 232, 192, 0.05);
+            --th-border-strong: rgba(80, 232, 192, 0.12);
 
-            --th-nav-bg:        rgba(20, 24, 22, 0.92);
-            --th-nav-blur:      blur(20px);
+            --th-nav-bg:        rgba(18, 24, 26, 0.94);
+            --th-nav-blur:      blur(22px);
 
-            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.35);
-            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.3);
+            --th-shadow:        0 8px 32px rgba(0, 0, 0, 0.4);
+            --th-shadow-card:   0 4px 16px rgba(0, 0, 0, 0.35);
 
-            --th-gradient-hero: linear-gradient(180deg, #1a1e1c 0%, #141816 100%);
-            --th-gradient-section: linear-gradient(180deg, #1c221e 0%, #141816 100%);
-            --th-gradient-jar:  linear-gradient(180deg, #2e5a48 0%, #204438 40%, #183028 100%);
+            --th-gradient-hero: linear-gradient(180deg, #181e20 0%, #12181a 100%);
+            --th-gradient-section: linear-gradient(180deg, #1a2022 0%, #12181a 100%);
+            --th-gradient-jar:  linear-gradient(180deg, #28584e 0%, #1e4640 40%, #163430 100%);
 
-            --th-product-bg:    #181e1a;
-            --th-product-card:  #222a24;
-            --th-product-card-hover: #2c362e;
+            --th-product-bg:    #161e20;
+            --th-product-card:  #1e2828;
+            --th-product-card-hover: #283432;
 
-            --th-dot-color:     #6ae8b0;
-            --th-badge-bg:      #6ae8b0;
-            --th-badge-text:    #0e1210;
+            --th-dot-color:     #50e8c0;
+            --th-badge-bg:      #50e8c0;
+            --th-badge-text:    #0a1210;
         }
 
 
@@ -352,34 +352,6 @@
             overflow: hidden;
         }
 
-        .theme-swatch-moss {
-            background: linear-gradient(135deg, #1e2822 50%, #2c382f 50%);
-        }
-        .theme-swatch-moss::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 12px;
-            height: 12px;
-            background: #a4cc78;
-            border-radius: 50% 0 0 0;
-        }
-
-        .theme-swatch-lichen {
-            background: linear-gradient(135deg, #2a3028 50%, #3a4438 50%);
-        }
-        .theme-swatch-lichen::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 12px;
-            height: 12px;
-            background: #c8e6a0;
-            border-radius: 50% 0 0 0;
-        }
-
         .theme-swatch-iron {
             background: linear-gradient(135deg, #1c2220 50%, #2a3230 50%);
         }
@@ -394,31 +366,59 @@
             border-radius: 50% 0 0 0;
         }
 
-        .theme-swatch-peat {
-            background: linear-gradient(135deg, #1e2218 50%, #2e3424 50%);
+        .theme-swatch-verdigris {
+            background: linear-gradient(135deg, #222c2a 50%, #323e3a 50%);
         }
-        .theme-swatch-peat::after {
+        .theme-swatch-verdigris::after {
             content: '';
             position: absolute;
             bottom: 0;
             right: 0;
             width: 12px;
             height: 12px;
-            background: #d4c870;
+            background: #68d4b0;
             border-radius: 50% 0 0 0;
         }
 
-        .theme-swatch-basalt {
-            background: linear-gradient(135deg, #141816 50%, #222824 50%);
+        .theme-swatch-gunmetal {
+            background: linear-gradient(135deg, #161c1e 50%, #242e30 50%);
         }
-        .theme-swatch-basalt::after {
+        .theme-swatch-gunmetal::after {
             content: '';
             position: absolute;
             bottom: 0;
             right: 0;
             width: 12px;
             height: 12px;
-            background: #6ae8b0;
+            background: #5ec8c8;
+            border-radius: 50% 0 0 0;
+        }
+
+        .theme-swatch-weathered {
+            background: linear-gradient(135deg, #1e2422 50%, #2e3630 50%);
+        }
+        .theme-swatch-weathered::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #94c490;
+            border-radius: 50% 0 0 0;
+        }
+
+        .theme-swatch-deep-iron {
+            background: linear-gradient(135deg, #12181a 50%, #1e2628 50%);
+        }
+        .theme-swatch-deep-iron::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #50e8c0;
             border-radius: 50% 0 0 0;
         }
 
@@ -2072,39 +2072,39 @@
     <div class="theme-switcher">
         <div class="theme-panel" id="themePanel">
             <div class="theme-panel-title">Choose Theme</div>
-            <button class="theme-option active" data-theme="moss-slate">
-                <div class="theme-swatch theme-swatch-moss"></div>
-                <div class="theme-option-text">
-                    <span class="theme-option-name">Moss & Slate</span>
-                    <span class="theme-option-desc">The original -- earthy grey-green</span>
-                </div>
-            </button>
-            <button class="theme-option" data-theme="lichen">
-                <div class="theme-swatch theme-swatch-lichen"></div>
-                <div class="theme-option-text">
-                    <span class="theme-option-name">Lichen</span>
-                    <span class="theme-option-desc">Lighter, warmer grey-green</span>
-                </div>
-            </button>
-            <button class="theme-option" data-theme="iron-moss">
+            <button class="theme-option active" data-theme="iron-moss">
                 <div class="theme-swatch theme-swatch-iron"></div>
                 <div class="theme-option-text">
                     <span class="theme-option-name">Iron Moss</span>
-                    <span class="theme-option-desc">Cool steel-green, teal accent</span>
+                    <span class="theme-option-desc">The original -- steel-green, teal</span>
                 </div>
             </button>
-            <button class="theme-option" data-theme="peat">
-                <div class="theme-swatch theme-swatch-peat"></div>
+            <button class="theme-option" data-theme="verdigris">
+                <div class="theme-swatch theme-swatch-verdigris"></div>
                 <div class="theme-option-text">
-                    <span class="theme-option-name">Peat</span>
-                    <span class="theme-option-desc">Warm olive-brown, gold accent</span>
+                    <span class="theme-option-name">Verdigris</span>
+                    <span class="theme-option-desc">Lighter, oxidized copper green</span>
                 </div>
             </button>
-            <button class="theme-option" data-theme="basalt">
-                <div class="theme-swatch theme-swatch-basalt"></div>
+            <button class="theme-option" data-theme="gunmetal">
+                <div class="theme-swatch theme-swatch-gunmetal"></div>
                 <div class="theme-option-text">
-                    <span class="theme-option-name">Basalt</span>
-                    <span class="theme-option-desc">Darkest, mint-green accent</span>
+                    <span class="theme-option-name">Gunmetal</span>
+                    <span class="theme-option-desc">Blue-steel, cyan accent</span>
+                </div>
+            </button>
+            <button class="theme-option" data-theme="weathered">
+                <div class="theme-swatch theme-swatch-weathered"></div>
+                <div class="theme-option-text">
+                    <span class="theme-option-name">Weathered</span>
+                    <span class="theme-option-desc">Warm grey-green, sage accent</span>
+                </div>
+            </button>
+            <button class="theme-option" data-theme="deep-iron">
+                <div class="theme-swatch theme-swatch-deep-iron"></div>
+                <div class="theme-option-text">
+                    <span class="theme-option-name">Deep Iron</span>
+                    <span class="theme-option-desc">Near-black, bright teal pop</span>
                 </div>
             </button>
         </div>
