@@ -16,11 +16,11 @@
   to = "/kanban.html"
   status = 200
 
-# SPA fallback for client-side routing (if needed)
+# Custom 404 page (static site, no SPA fallback needed)
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
+  status = 404
   force = false
 
 # Headers for security and performance
@@ -39,14 +39,25 @@
     Access-Control-Allow-Methods = "GET, POST, OPTIONS"
     Access-Control-Allow-Headers = "Content-Type"
 
-# Cache static assets
+# Cache static assets (short cache since filenames aren't fingerprinted)
 [[headers]]
   for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# Long cache for images/fonts (rarely change)
+[[headers]]
+  for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.css"
+  for = "/*.woff2"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
