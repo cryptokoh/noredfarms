@@ -128,6 +128,9 @@ function updateNavAuthState(user) {
         } else {
             navLinks.appendChild(accountLink);
         }
+
+        // Add role-based links (async, non-blocking)
+        _injectRoleLinks(navLinks, ctaLink);
     } else {
         // Logged out: show Sign In text link + Sign Up pill button
         const signInLink = document.createElement('a');
@@ -150,16 +153,113 @@ function updateNavAuthState(user) {
     }
 }
 
+/* ── Role-Based Nav Links ── */
+
+let _roleLinksInjected = false;
+
+async function _injectRoleLinks(navLinks, ctaLink) {
+    if (_roleLinksInjected) return;
+    try {
+        const profile = await getProfile();
+        if (!profile) return;
+        _roleLinksInjected = true;
+
+        // Remove any existing role links
+        navLinks.querySelectorAll('.nav-link-role').forEach(el => el.remove());
+
+        const insertBefore = ctaLink || null;
+
+        if (profile.role === 'wholesale' || profile.role === 'admin') {
+            const wsLink = document.createElement('a');
+            wsLink.href = '/wholesale/dashboard.html';
+            wsLink.className = 'nav-link-auth nav-link-role';
+            wsLink.textContent = 'Wholesale';
+            if (insertBefore) navLinks.insertBefore(wsLink, insertBefore);
+            else navLinks.appendChild(wsLink);
+        }
+
+        if (profile.role === 'admin') {
+            const adminLink = document.createElement('a');
+            adminLink.href = '/admin/';
+            adminLink.className = 'nav-link-auth nav-link-role';
+            adminLink.textContent = 'Admin';
+            if (insertBefore) navLinks.insertBefore(adminLink, insertBefore);
+            else navLinks.appendChild(adminLink);
+        }
+    } catch (e) {
+        // Profile fetch failed — skip role links silently
+    }
+}
+
 /* ── Auth State Listener ── */
 
 function initAuthListener() {
     const sb = getSupabase();
     sb.auth.onAuthStateChange((event, session) => {
+        _roleLinksInjected = false;
         updateNavAuthState(session ? session.user : null);
     });
 
     // Set initial state
     getUser().then(user => updateNavAuthState(user));
+}
+
+/* ── Wholesale & Admin Guards ── */
+
+/**
+ * Require wholesale access: logged in + role=wholesale + account approved + active.
+ * Redirects to login or wholesale application if not qualified.
+ */
+async function requireWholesaleAuth() {
+    const session = await requireAuth('/wholesale/index.html');
+    if (!session) return null;
+
+    const profile = await getProfile();
+    if (!profile || (profile.role !== 'wholesale' && profile.role !== 'admin')) {
+        window.location.href = '/wholesale/index.html';
+        return null;
+    }
+
+    const account = await getWholesaleAccount();
+    if (!account || account.application_status !== 'approved') {
+        window.location.href = '/wholesale/index.html';
+        return null;
+    }
+
+    return { session, profile, account };
+}
+
+/**
+ * Require admin access: logged in + role=admin.
+ * Redirects to homepage if not admin.
+ */
+async function requireAdminAuth() {
+    const session = await requireAuth('/courses/login.html');
+    if (!session) return null;
+
+    const profile = await getProfile();
+    if (!profile || profile.role !== 'admin') {
+        window.location.href = '/';
+        return null;
+    }
+
+    return { session, profile };
+}
+
+/**
+ * Fetch the wholesale_accounts row for the current user.
+ * Returns null if not found or not logged in.
+ */
+async function getWholesaleAccount() {
+    const user = await getUser();
+    if (!user) return null;
+    const sb = getSupabase();
+    const { data } = await sb
+        .from('wholesale_accounts')
+        .select('*')
+        .eq('user_id', user.id)
+        .single();
+    return data;
 }
 
 /**

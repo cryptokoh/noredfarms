@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Wholesale Dashboard | Nored Farms</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@350;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="wholesale-styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../courses/supabase-config.js"></script>
+    <script src="../courses/auth.js"></script>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="../index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html#products">Products</a>
+            <a href="../blog.html">Articles</a>
+            <a href="../classes.html">Classes</a>
+            <a href="../about-us.html">Company</a>
+            <a href="../contact.html" class="nav-cta">Get Started</a>
+        </div>
+        <button class="hamburger" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main class="wholesale-page">
+        <div class="ws-dashboard">
+            <div class="wholesale-header">
+                <h1>Wholesale Dashboard</h1>
+                <p id="wsGreeting"></p>
+            </div>
+
+            <div class="ws-tabs">
+                <button class="ws-tab active" data-tab="overview">Overview</button>
+                <button class="ws-tab" data-tab="catalog">Catalog</button>
+                <button class="ws-tab" data-tab="orders">Orders</button>
+                <button class="ws-tab" data-tab="invoices">Invoices</button>
+                <button class="ws-tab" data-tab="account">Account</button>
+            </div>
+
+            <!-- Overview Panel -->
+            <div class="ws-panel active" data-panel="overview">
+                <div class="ws-stats" id="wsStats">
+                    <div class="ws-stat-card">
+                        <div class="ws-stat-label">Discount Tier</div>
+                        <div class="ws-stat-value accent" id="statTier">—</div>
+                    </div>
+                    <div class="ws-stat-card">
+                        <div class="ws-stat-label">Total Orders</div>
+                        <div class="ws-stat-value" id="statOrders">0</div>
+                    </div>
+                    <div class="ws-stat-card">
+                        <div class="ws-stat-label">Total Spent</div>
+                        <div class="ws-stat-value" id="statSpent">$0</div>
+                    </div>
+                    <div class="ws-stat-card">
+                        <div class="ws-stat-label">Open Invoices</div>
+                        <div class="ws-stat-value" id="statInvoices">0</div>
+                    </div>
+                </div>
+
+                <h3 style="font-size:1rem;font-weight:500;color:#bccac4;margin-bottom:12px">Recent Orders</h3>
+                <div class="ws-table-wrap">
+                    <table class="ws-table">
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentOrdersBody">
+                            <tr><td colspan="5" class="ws-loading">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Catalog Panel -->
+            <div class="ws-panel" data-panel="catalog">
+                <div class="ws-catalog-layout">
+                    <div>
+                        <div class="ws-catalog-grid" id="catalogGrid">
+                            <div class="ws-loading">Loading products...</div>
+                        </div>
+                    </div>
+                    <div class="ws-cart-summary" id="cartSummary">
+                        <div class="ws-cart-title">Wholesale Cart</div>
+                        <div class="ws-cart-items" id="wsCartItems">
+                            <div class="ws-empty">
+                                <div class="ws-empty-icon">&#128722;</div>
+                                <p>Cart is empty</p>
+                            </div>
+                        </div>
+                        <hr class="ws-cart-divider" id="cartDivider" style="display:none">
+                        <div id="cartTotals" style="display:none">
+                            <div class="ws-cart-row">
+                                <span class="ws-cart-row-label">Subtotal</span>
+                                <span class="ws-cart-row-value" id="cartSubtotal">$0.00</span>
+                            </div>
+                            <div class="ws-cart-row">
+                                <span class="ws-cart-row-label">Discount</span>
+                                <span class="ws-cart-row-value" id="cartDiscount">—</span>
+                            </div>
+                            <hr class="ws-cart-divider">
+                            <div class="ws-cart-row">
+                                <span class="ws-cart-row-label" style="font-weight:500">Total</span>
+                                <span class="ws-cart-total" id="cartTotal">$0.00</span>
+                            </div>
+                        </div>
+                        <div class="ws-cart-min-warning" id="minWarning" style="display:none">
+                            Minimum order of <span id="minOrderAmt">$500</span> required.
+                        </div>
+                        <div class="ws-po-field">
+                            <label>PO Number (optional)</label>
+                            <input type="text" id="poNumber" placeholder="PO-12345">
+                        </div>
+                        <button class="ws-checkout-btn" id="wsCheckoutBtn" disabled>Place Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Panel -->
+            <div class="ws-panel" data-panel="orders">
+                <div class="ws-table-wrap">
+                    <table class="ws-table">
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>PO #</th>
+                                <th>Date</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Tracking</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allOrdersBody">
+                            <tr><td colspan="6" class="ws-loading">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Invoices Panel -->
+            <div class="ws-panel" data-panel="invoices">
+                <div class="ws-table-wrap">
+                    <table class="ws-table">
+                        <thead>
+                            <tr>
+                                <th>Invoice #</th>
+                                <th>Order #</th>
+                                <th>Amount</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoicesBody">
+                            <tr><td colspan="5" class="ws-loading">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Account Panel -->
+            <div class="ws-panel" data-panel="account">
+                <div id="accountInfo">
+                    <div class="ws-loading">Loading account...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Order Detail Modal -->
+    <div class="ws-modal-overlay" id="wsModal" style="display:none">
+        <div class="ws-modal" id="wsModalContent"></div>
+    </div>
+
+    <footer class="seed-footer">
+        <div class="seed-footer-inner">
+            <div class="seed-footer-bottom">
+                <span>&copy; 2026 Nored Farms. All rights reserved.</span>
+                <span>Crafted in Texas Hill Country</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="wholesale-cart.js"></script>
+    <script src="wholesale-app.js"></script>
+</body>
+</html>

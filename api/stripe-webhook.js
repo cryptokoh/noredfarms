@@ -90,7 +90,74 @@ exports.handler = async (event) => {
                 console.log(`Enrolled user ${userId} at tier ${tierId} in ${courses ? courses.length : 0} courses`);
             }
 
-            // --- Product order recording (new) ---
+            // --- Wholesale order recording ---
+            if (metadata.order_type === 'wholesale' && metadata.account_id) {
+                const wsItems = JSON.parse(metadata.items_json || '[]');
+
+                const subtotalCents = wsItems.reduce((sum, i) =>
+                    sum + Math.round(i.wholesale_price * 100) * i.qty, 0);
+
+                const { data: wsOrder, error: wsOrderErr } = await supabaseAdmin
+                    .from('wholesale_orders')
+                    .insert({
+                        account_id: metadata.account_id,
+                        user_id: metadata.user_id,
+                        po_number: metadata.po_number || null,
+                        status: 'confirmed',
+                        payment_method: 'prepaid',
+                        stripe_session_id: session.id,
+                        stripe_payment_intent: session.payment_intent || null,
+                        subtotal_cents: subtotalCents,
+                        total_cents: subtotalCents,
+                        shipping_address: session.shipping_details || null
+                    })
+                    .select('id, order_number')
+                    .single();
+
+                if (wsOrderErr) {
+                    console.error('Wholesale order insert error:', wsOrderErr);
+                } else if (wsOrder) {
+                    const wsOrderItems = wsItems.map(item => ({
+                        order_id: wsOrder.id,
+                        product_id: item.id,
+                        product_name: item.name,
+                        quantity: item.qty,
+                        unit_price_cents: Math.round(item.wholesale_price * 100),
+                        total_cents: Math.round(item.wholesale_price * 100) * item.qty
+                    }));
+                    await supabaseAdmin.from('wholesale_order_items').insert(wsOrderItems);
+                    console.log(`Wholesale order ${wsOrder.order_number} created for account ${metadata.account_id}`);
+
+                    // Send order confirmation email (non-blocking)
+                    const { data: wsAccount } = await supabaseAdmin
+                        .from('wholesale_accounts')
+                        .select('contact_email')
+                        .eq('id', metadata.account_id)
+                        .single();
+
+                    if (wsAccount) {
+                        const baseUrl = process.env.URL || 'https://noredfarms.netlify.app';
+                        fetch(baseUrl + '/api/send-notification', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                template: 'order-confirmed',
+                                to: wsAccount.contact_email,
+                                data: {
+                                    order_number: wsOrder.order_number,
+                                    po_number: metadata.po_number || null,
+                                    item_count: wsItems.length,
+                                    total_cents: subtotalCents
+                                }
+                            })
+                        }).catch(e => console.error('Order email error:', e));
+                    }
+                }
+                // Skip regular order recording for wholesale
+                return { statusCode: 200, headers, body: JSON.stringify({ received: true }) };
+            }
+
+            // --- Product order recording (retail) ---
             const totalCents = session.amount_total || 0;
             const userId = metadata.user_id || null;
 

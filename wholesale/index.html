@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Wholesale Portal | Nored Farms</title>
+    <meta name="description" content="Apply for wholesale access to Nored Farms botanicals. Bulk pricing, net terms, and dedicated support for retailers and distributors.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@350;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="wholesale-styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../courses/supabase-config.js"></script>
+    <script src="../courses/auth.js"></script>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="../index.html" class="nav-logo">Nored Farms<span class="dot"></span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html#products">Products</a>
+            <a href="../blog.html">Articles</a>
+            <a href="../classes.html">Classes</a>
+            <a href="../about-us.html">Company</a>
+            <a href="../contact.html" class="nav-cta">Get Started</a>
+        </div>
+        <button class="hamburger" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main class="wholesale-page">
+        <div class="wholesale-container">
+            <div class="wholesale-header">
+                <h1>Wholesale Portal</h1>
+                <p>Partner with Nored Farms for premium botanicals at wholesale pricing. Retailers, distributors, and practitioners welcome.</p>
+            </div>
+
+            <!-- Status banner (shown if application exists) -->
+            <div id="statusBanner" style="display:none"></div>
+
+            <!-- Application Form -->
+            <div id="applicationForm" class="ws-application" style="display:none">
+                <div class="ws-step-indicators">
+                    <div class="ws-step-dot active" data-step="1"></div>
+                    <div class="ws-step-dot" data-step="2"></div>
+                    <div class="ws-step-dot" data-step="3"></div>
+                    <div class="ws-step-dot" data-step="4"></div>
+                </div>
+
+                <form id="wsApplicationForm" novalidate>
+                    <!-- Step 1: Company Info -->
+                    <div class="ws-form-step active" data-step="1">
+                        <h3 class="ws-step-title">Company Information</h3>
+                        <p class="ws-step-desc">Tell us about your business.</p>
+
+                        <div class="ws-field">
+                            <label>Company Name <span class="required">*</span></label>
+                            <input type="text" name="company_name" required placeholder="Your Business Name">
+                        </div>
+                        <div class="ws-field">
+                            <label>Business Type <span class="required">*</span></label>
+                            <select name="business_type" required>
+                                <option value="">Select type...</option>
+                                <option value="retailer">Retailer</option>
+                                <option value="distributor">Distributor</option>
+                                <option value="manufacturer">Manufacturer</option>
+                                <option value="practitioner">Health Practitioner</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="ws-field">
+                            <label>Tax ID / EIN</label>
+                            <input type="text" name="tax_id" placeholder="XX-XXXXXXX">
+                        </div>
+                        <div class="ws-field">
+                            <label>Website</label>
+                            <input type="url" name="website_url" placeholder="https://yoursite.com">
+                        </div>
+
+                        <div class="ws-form-actions">
+                            <span></span>
+                            <button type="button" class="ws-btn ws-btn-primary" onclick="wsApp.nextStep()">Continue</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Contact Info -->
+                    <div class="ws-form-step" data-step="2">
+                        <h3 class="ws-step-title">Contact Information</h3>
+                        <p class="ws-step-desc">Who should we contact about your account?</p>
+
+                        <div class="ws-field">
+                            <label>Full Name <span class="required">*</span></label>
+                            <input type="text" name="contact_name" required placeholder="Jane Smith">
+                        </div>
+                        <div class="ws-field">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" name="contact_email" required placeholder="jane@company.com">
+                        </div>
+                        <div class="ws-field">
+                            <label>Phone</label>
+                            <input type="tel" name="contact_phone" placeholder="(555) 123-4567">
+                        </div>
+
+                        <div class="ws-field">
+                            <label>Shipping Address</label>
+                            <textarea name="shipping_address" placeholder="Street, City, State, ZIP"></textarea>
+                        </div>
+
+                        <div class="ws-form-actions">
+                            <button type="button" class="ws-btn ws-btn-back" onclick="wsApp.prevStep()">Back</button>
+                            <button type="button" class="ws-btn ws-btn-primary" onclick="wsApp.nextStep()">Continue</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Documents -->
+                    <div class="ws-form-step" data-step="3">
+                        <h3 class="ws-step-title">Documents</h3>
+                        <p class="ws-step-desc">Upload your resale certificate or business license (optional but speeds approval).</p>
+
+                        <div class="ws-field">
+                            <label>Resale Certificate</label>
+                            <div class="ws-file-upload" id="fileUploadZone">
+                                <input type="file" id="resaleCertFile" accept=".pdf,.jpg,.jpeg,.png">
+                                <div class="ws-file-upload-text">
+                                    <strong>Click to upload</strong> or drag and drop<br>
+                                    PDF, JPG, PNG up to 5MB
+                                </div>
+                                <div class="ws-file-name" id="fileName"></div>
+                            </div>
+                        </div>
+
+                        <div class="ws-field">
+                            <label>Additional Notes</label>
+                            <textarea name="notes" placeholder="Tell us about your business, expected order volume, or any questions."></textarea>
+                        </div>
+
+                        <div class="ws-form-actions">
+                            <button type="button" class="ws-btn ws-btn-back" onclick="wsApp.prevStep()">Back</button>
+                            <button type="button" class="ws-btn ws-btn-primary" onclick="wsApp.nextStep()">Review</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Review & Submit -->
+                    <div class="ws-form-step" data-step="4">
+                        <h3 class="ws-step-title">Review Application</h3>
+                        <p class="ws-step-desc">Please confirm your details are correct.</p>
+
+                        <div id="reviewContent"></div>
+
+                        <div class="ws-form-actions">
+                            <button type="button" class="ws-btn ws-btn-back" onclick="wsApp.prevStep()">Back</button>
+                            <button type="submit" class="ws-btn ws-btn-primary" id="submitBtn">Submit Application</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Login prompt for unauthenticated visitors -->
+            <div id="loginPrompt" style="display:none">
+                <div class="ws-status-banner">
+                    <div class="ws-status-icon">&#128274;</div>
+                    <h2>Sign In to Apply</h2>
+                    <p>You need an account to apply for wholesale access.</p>
+                    <div style="margin-top:20px; display:flex; gap:12px; justify-content:center">
+                        <a href="/courses/login.html?redirect=/wholesale/index.html" class="ws-btn ws-btn-primary" style="text-decoration:none">Sign In</a>
+                        <a href="/courses/login.html?mode=signup&redirect=/wholesale/index.html" class="ws-btn ws-btn-secondary" style="text-decoration:none">Create Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="seed-footer">
+        <div class="seed-footer-inner">
+            <div class="seed-footer-bottom">
+                <span>&copy; 2026 Nored Farms. All rights reserved.</span>
+                <span>Crafted in Texas Hill Country</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+    const wsApp = {
+        currentStep: 1,
+        totalSteps: 4,
+        uploadedFileUrl: null,
+
+        async init() {
+            initSiteAuth();
+
+            const user = await getUser();
+            if (!user) {
+                document.getElementById('loginPrompt').style.display = 'block';
+                return;
+            }
+
+            // Check existing application
+            const account = await getWholesaleAccount();
+            if (account) {
+                this.showStatus(account);
+                return;
+            }
+
+            // Pre-fill email from profile
+            const profile = await getProfile();
+            if (profile) {
+                const emailField = document.querySelector('[name="contact_email"]');
+                if (emailField && profile.email) emailField.value = profile.email;
+                const nameField = document.querySelector('[name="contact_name"]');
+                if (nameField && profile.display_name) nameField.value = profile.display_name;
+            }
+
+            document.getElementById('applicationForm').style.display = 'block';
+            this.bindForm();
+        },
+
+        showStatus(account) {
+            const banner = document.getElementById('statusBanner');
+            const statusMap = {
+                pending: { icon: '&#9203;', title: 'Application Under Review', desc: 'We received your application and will review it shortly. You\'ll receive an email once approved.' },
+                approved: { icon: '&#9989;', title: 'Application Approved!', desc: 'Your wholesale account is active.', action: '<a href="/wholesale/dashboard.html" class="ws-btn ws-btn-primary" style="margin-top:16px;display:inline-block;text-decoration:none">Go to Dashboard</a>' },
+                rejected: { icon: '&#10060;', title: 'Application Not Approved', desc: 'Unfortunately your application was not approved at this time. Please contact us for more info.' },
+                suspended: { icon: '&#9888;', title: 'Account Suspended', desc: 'Your wholesale account has been suspended. Please contact support.' }
+            };
+
+            const s = statusMap[account.application_status] || statusMap.pending;
+            banner.innerHTML = `
+                <div class="ws-status-banner">
+                    <div class="ws-status-icon">${s.icon}</div>
+                    <h2>${s.title}</h2>
+                    <p>${s.desc}</p>
+                    ${s.action || ''}
+                </div>
+            `;
+            banner.style.display = 'block';
+        },
+
+        bindForm() {
+            const form = document.getElementById('wsApplicationForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.submitApplication();
+            });
+
+            // File upload with validation
+            const fileInput = document.getElementById('resaleCertFile');
+            fileInput.addEventListener('change', () => {
+                const file = fileInput.files[0];
+                if (!file) return;
+
+                const maxSize = 5 * 1024 * 1024; // 5MB
+                const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+                const allowedExts = ['.pdf', '.jpg', '.jpeg', '.png'];
+                const ext = '.' + file.name.split('.').pop().toLowerCase();
+
+                if (!allowedTypes.includes(file.type) && !allowedExts.includes(ext)) {
+                    alert('Please upload a PDF, JPG, or PNG file.');
+                    fileInput.value = '';
+                    document.getElementById('fileName').textContent = '';
+                    return;
+                }
+
+                if (file.size > maxSize) {
+                    alert('File must be under 5MB.');
+                    fileInput.value = '';
+                    document.getElementById('fileName').textContent = '';
+                    return;
+                }
+
+                document.getElementById('fileName').textContent = `${file.name} (${(file.size / 1024).toFixed(0)} KB)`;
+            });
+        },
+
+        nextStep() {
+            // Validate current step
+            const currentStepEl = document.querySelector(`.ws-form-step[data-step="${this.currentStep}"]`);
+            const requiredFields = currentStepEl.querySelectorAll('[required]');
+            let valid = true;
+            requiredFields.forEach(f => {
+                if (!f.value.trim()) {
+                    f.style.borderColor = '#c45c4b';
+                    valid = false;
+                } else {
+                    f.style.borderColor = '';
+                }
+            });
+            if (!valid) return;
+
+            if (this.currentStep === 3) this.buildReview();
+            if (this.currentStep < this.totalSteps) {
+                this.currentStep++;
+                this.updateSteps();
+            }
+        },
+
+        prevStep() {
+            if (this.currentStep > 1) {
+                this.currentStep--;
+                this.updateSteps();
+            }
+        },
+
+        updateSteps() {
+            document.querySelectorAll('.ws-form-step').forEach(s => s.classList.remove('active'));
+            document.querySelector(`.ws-form-step[data-step="${this.currentStep}"]`).classList.add('active');
+
+            document.querySelectorAll('.ws-step-dot').forEach(d => {
+                const step = parseInt(d.dataset.step);
+                d.classList.toggle('active', step === this.currentStep);
+                d.classList.toggle('completed', step < this.currentStep);
+            });
+        },
+
+        buildReview() {
+            const form = document.getElementById('wsApplicationForm');
+            const fd = new FormData(form);
+            const data = Object.fromEntries(fd.entries());
+
+            const file = document.getElementById('resaleCertFile').files[0];
+
+            document.getElementById('reviewContent').innerHTML = `
+                <div class="ws-review-section">
+                    <h4>Company</h4>
+                    <div class="ws-review-row"><span class="ws-review-label">Name</span><span class="ws-review-value">${data.company_name || '—'}</span></div>
+                    <div class="ws-review-row"><span class="ws-review-label">Type</span><span class="ws-review-value">${data.business_type || '—'}</span></div>
+                    <div class="ws-review-row"><span class="ws-review-label">Tax ID</span><span class="ws-review-value">${data.tax_id || '—'}</span></div>
+                    <div class="ws-review-row"><span class="ws-review-label">Website</span><span class="ws-review-value">${data.website_url || '—'}</span></div>
+                </div>
+                <div class="ws-review-section">
+                    <h4>Contact</h4>
+                    <div class="ws-review-row"><span class="ws-review-label">Name</span><span class="ws-review-value">${data.contact_name || '—'}</span></div>
+                    <div class="ws-review-row"><span class="ws-review-label">Email</span><span class="ws-review-value">${data.contact_email || '—'}</span></div>
+                    <div class="ws-review-row"><span class="ws-review-label">Phone</span><span class="ws-review-value">${data.contact_phone || '—'}</span></div>
+                </div>
+                <div class="ws-review-section">
+                    <h4>Documents</h4>
+                    <div class="ws-review-row"><span class="ws-review-label">Certificate</span><span class="ws-review-value">${file ? file.name : 'None uploaded'}</span></div>
+                    <div class="ws-review-row"><span class="ws-review-label">Notes</span><span class="ws-review-value">${data.notes || '—'}</span></div>
+                </div>
+            `;
+        },
+
+        async submitApplication() {
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
+            try {
+                const sb = getSupabase();
+                const user = await getUser();
+                const form = document.getElementById('wsApplicationForm');
+                const fd = new FormData(form);
+                const data = Object.fromEntries(fd.entries());
+
+                // Upload file if present
+                const file = document.getElementById('resaleCertFile').files[0];
+                let certificateUrl = null;
+                if (file) {
+                    const ext = file.name.split('.').pop();
+                    const path = `${user.id}/resale-certificate.${ext}`;
+                    const { data: uploadData, error: uploadError } = await sb.storage
+                        .from('wholesale-documents')
+                        .upload(path, file, { upsert: true });
+
+                    if (uploadError) console.error('Upload error:', uploadError);
+                    else certificateUrl = uploadData.path;
+                }
+
+                // Build shipping addresses JSONB
+                const shippingAddresses = data.shipping_address
+                    ? [{ label: 'Primary', address: data.shipping_address }]
+                    : [];
+
+                const { error } = await sb.from('wholesale_accounts').insert({
+                    user_id: user.id,
+                    company_name: data.company_name,
+                    contact_name: data.contact_name,
+                    contact_email: data.contact_email,
+                    contact_phone: data.contact_phone || null,
+                    tax_id: data.tax_id || null,
+                    business_type: data.business_type,
+                    website_url: data.website_url || null,
+                    resale_certificate_url: certificateUrl,
+                    shipping_addresses: shippingAddresses,
+                    notes: data.notes || null
+                });
+
+                if (error) throw error;
+
+                // Show pending status
+                this.showStatus({ application_status: 'pending' });
+                document.getElementById('applicationForm').style.display = 'none';
+
+            } catch (err) {
+                console.error('Application error:', err);
+                btn.textContent = 'Submit Application';
+                btn.disabled = false;
+                alert('Error submitting application: ' + err.message);
+            }
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => wsApp.init());
+    </script>
+</body>
+</html>

@@ -62,6 +62,22 @@
   to = "/.netlify/functions/stripe-webhook"
   status = 200
 
+# Wholesale API endpoints
+[[redirects]]
+  from = "/api/wholesale-checkout"
+  to = "/.netlify/functions/wholesale-checkout"
+  status = 200
+
+[[redirects]]
+  from = "/api/approve-wholesale"
+  to = "/.netlify/functions/approve-wholesale"
+  status = 200
+
+[[redirects]]
+  from = "/api/send-notification"
+  to = "/.netlify/functions/send-notification"
+  status = 200
+
 # Environment variables (set these in Netlify UI)
 # STRIPE_SECRET_KEY = sk_test_...
 # STRIPE_PUBLISHABLE_KEY = pk_test_...

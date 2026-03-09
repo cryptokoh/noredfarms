@@ -1,0 +1,913 @@
+/* Wholesale Portal Styles - Dark Iron Theme */
+
+/* ── Layout ── */
+.wholesale-page {
+    min-height: 100vh;
+    padding: 100px 20px 60px;
+    background: var(--color--snowwhite, #12181a);
+}
+
+.wholesale-container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.wholesale-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.wholesale-header h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--color--seedgreen, #bccac4);
+    margin-bottom: 8px;
+}
+
+.wholesale-header p {
+    color: var(--color--olivegreen, #8e9c98);
+    font-weight: 350;
+    font-size: 1rem;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* ── Application Form ── */
+.ws-application {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.ws-step-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+.ws-step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(80, 232, 192, 0.12);
+    transition: background 0.2s ease;
+}
+
+.ws-step-dot.active {
+    background: #50e8c0;
+}
+
+.ws-step-dot.completed {
+    background: rgba(80, 232, 192, 0.5);
+}
+
+.ws-form-step {
+    display: none;
+}
+
+.ws-form-step.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ws-step-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color--seedgreen, #bccac4);
+    margin-bottom: 4px;
+}
+
+.ws-step-desc {
+    color: var(--color--olivegreen, #8e9c98);
+    font-size: 0.875rem;
+    margin-bottom: 24px;
+}
+
+/* ── Form Fields ── */
+.ws-field {
+    margin-bottom: 16px;
+}
+
+.ws-field label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--color--olivegreen, #8e9c98);
+    margin-bottom: 6px;
+}
+
+.ws-field label .required {
+    color: #c45c4b;
+}
+
+.ws-field input,
+.ws-field select,
+.ws-field textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--color--foamwhite, #181e20);
+    border: 1px solid rgba(80, 232, 192, 0.08);
+    border-radius: 8px;
+    color: var(--color--seedgreen, #bccac4);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 350;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.ws-field input:focus,
+.ws-field select:focus,
+.ws-field textarea:focus {
+    outline: none;
+    border-color: rgba(80, 232, 192, 0.3);
+}
+
+.ws-field input::placeholder,
+.ws-field textarea::placeholder {
+    color: var(--color-text-muted, #506460);
+}
+
+.ws-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.ws-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238e9c98' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+.ws-field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.ws-file-upload {
+    position: relative;
+    padding: 24px;
+    border: 2px dashed rgba(80, 232, 192, 0.12);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.ws-file-upload:hover {
+    border-color: rgba(80, 232, 192, 0.25);
+}
+
+.ws-file-upload input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ws-file-upload-text {
+    color: var(--color--olivegreen, #8e9c98);
+    font-size: 0.875rem;
+}
+
+.ws-file-upload-text strong {
+    color: #50e8c0;
+    font-weight: 400;
+}
+
+.ws-file-name {
+    margin-top: 8px;
+    font-size: 0.8125rem;
+    color: #50e8c0;
+}
+
+/* ── Form Actions ── */
+.ws-form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    gap: 12px;
+}
+
+.ws-btn {
+    padding: 10px 24px;
+    border-radius: 99em;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 350;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    border: none;
+}
+
+.ws-btn:hover {
+    opacity: 0.8;
+}
+
+.ws-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.ws-btn-primary {
+    background: #50e8c0;
+    color: #12181a;
+}
+
+.ws-btn-secondary {
+    background: transparent;
+    color: var(--color--olivegreen, #8e9c98);
+    border: 1px solid rgba(80, 232, 192, 0.12);
+}
+
+.ws-btn-back {
+    background: transparent;
+    color: var(--color--olivegreen, #8e9c98);
+    padding: 10px 16px;
+}
+
+/* ── Review Step ── */
+.ws-review-section {
+    background: var(--color--seedgreen-card, #1e2628);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+}
+
+.ws-review-section h4 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color--olivegreen, #8e9c98);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.ws-review-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 0.875rem;
+}
+
+.ws-review-label {
+    color: var(--color--olivegreen, #8e9c98);
+}
+
+.ws-review-value {
+    color: var(--color--seedgreen, #bccac4);
+    font-weight: 400;
+}
+
+/* ── Application Status Banner ── */
+.ws-status-banner {
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--color--seedgreen-card, #1e2628);
+    border-radius: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.ws-status-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+.ws-status-banner h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color--seedgreen, #bccac4);
+    margin-bottom: 8px;
+}
+
+.ws-status-banner p {
+    color: var(--color--olivegreen, #8e9c98);
+    font-size: 0.9375rem;
+}
+
+/* ── Dashboard ── */
+.ws-dashboard {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.ws-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid rgba(80, 232, 192, 0.08);
+    margin-bottom: 24px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ws-tab {
+    padding: 10px 18px;
+    background: none;
+    border: none;
+    color: var(--color--olivegreen, #8e9c98);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 350;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.ws-tab:hover {
+    color: var(--color--seedgreen, #bccac4);
+}
+
+.ws-tab.active {
+    color: #50e8c0;
+    border-bottom-color: #50e8c0;
+}
+
+.ws-panel {
+    display: none;
+}
+
+.ws-panel.active {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+/* ── Overview Tab ── */
+.ws-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.ws-stat-card {
+    background: var(--color--seedgreen-card, #1e2628);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(80, 232, 192, 0.05);
+}
+
+.ws-stat-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--color--olivegreen, #8e9c98);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.ws-stat-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color--seedgreen, #bccac4);
+}
+
+.ws-stat-value.accent {
+    color: #50e8c0;
+}
+
+/* ── Catalog / Product Grid ── */
+.ws-catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.ws-product-card {
+    background: var(--color--seedgreen-card, #1e2628);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(80, 232, 192, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.ws-product-card:hover {
+    transform: translateY(-2px);
+}
+
+.ws-product-name {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color--seedgreen, #bccac4);
+    margin-bottom: 4px;
+}
+
+.ws-product-category {
+    font-size: 0.75rem;
+    color: var(--color--olivegreen, #8e9c98);
+    margin-bottom: 12px;
+}
+
+.ws-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.ws-price-wholesale {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #50e8c0;
+}
+
+.ws-price-retail {
+    font-size: 0.875rem;
+    color: var(--color-text-muted, #506460);
+    text-decoration: line-through;
+}
+
+.ws-price-savings {
+    font-size: 0.75rem;
+    color: #50e8c0;
+    background: rgba(80, 232, 192, 0.07);
+    padding: 2px 8px;
+    border-radius: 99em;
+}
+
+.ws-product-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ws-qty-input {
+    width: 64px;
+    padding: 6px 8px;
+    background: var(--color--foamwhite, #181e20);
+    border: 1px solid rgba(80, 232, 192, 0.08);
+    border-radius: 6px;
+    color: var(--color--seedgreen, #bccac4);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.ws-add-btn {
+    flex: 1;
+    padding: 8px 14px;
+    background: rgba(80, 232, 192, 0.07);
+    border: 1px solid rgba(80, 232, 192, 0.12);
+    border-radius: 99em;
+    color: #50e8c0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 350;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.ws-add-btn:hover {
+    background: rgba(80, 232, 192, 0.12);
+}
+
+.ws-min-qty-note {
+    font-size: 0.6875rem;
+    color: var(--color-text-muted, #506460);
+    margin-top: 4px;
+}
+
+/* ── Table Styles ── */
+.ws-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ws-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.ws-table th {
+    text-align: left;
+    padding: 10px 14px;
+    color: var(--color--olivegreen, #8e9c98);
+    font-weight: 400;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(80, 232, 192, 0.08);
+    white-space: nowrap;
+}
+
+.ws-table td {
+    padding: 12px 14px;
+    color: var(--color--seedgreen, #bccac4);
+    border-bottom: 1px solid rgba(80, 232, 192, 0.04);
+    vertical-align: middle;
+}
+
+.ws-table tbody tr:hover {
+    background: rgba(80, 232, 192, 0.02);
+}
+
+/* ── Status Badges ── */
+.ws-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 99em;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.ws-badge-pending { background: rgba(255, 193, 7, 0.12); color: #ffc107; }
+.ws-badge-confirmed,
+.ws-badge-approved { background: rgba(80, 232, 192, 0.1); color: #50e8c0; }
+.ws-badge-processing { background: rgba(100, 180, 255, 0.1); color: #64b4ff; }
+.ws-badge-shipped { background: rgba(160, 130, 255, 0.1); color: #a082ff; }
+.ws-badge-delivered { background: rgba(80, 232, 192, 0.15); color: #50e8c0; }
+.ws-badge-cancelled { background: rgba(196, 92, 75, 0.12); color: #c45c4b; }
+.ws-badge-paid { background: rgba(80, 232, 192, 0.1); color: #50e8c0; }
+.ws-badge-unpaid { background: rgba(255, 193, 7, 0.12); color: #ffc107; }
+.ws-badge-overdue { background: rgba(196, 92, 75, 0.12); color: #c45c4b; }
+
+/* ── Cart Sidebar (wholesale) ── */
+.ws-cart-summary {
+    background: var(--color--seedgreen-card, #1e2628);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(80, 232, 192, 0.05);
+    position: sticky;
+    top: 100px;
+}
+
+.ws-cart-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color--seedgreen, #bccac4);
+    margin-bottom: 16px;
+}
+
+.ws-cart-items {
+    margin-bottom: 16px;
+}
+
+.ws-cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(80, 232, 192, 0.04);
+}
+
+.ws-cart-item-name {
+    font-size: 0.8125rem;
+    color: var(--color--seedgreen, #bccac4);
+}
+
+.ws-cart-item-qty {
+    font-size: 0.75rem;
+    color: var(--color--olivegreen, #8e9c98);
+}
+
+.ws-cart-item-price {
+    font-size: 0.875rem;
+    color: #50e8c0;
+    font-weight: 400;
+}
+
+.ws-cart-item-remove {
+    background: none;
+    border: none;
+    color: var(--color-text-muted, #506460);
+    cursor: pointer;
+    padding: 4px;
+    font-size: 0.75rem;
+    transition: color 0.2s ease;
+}
+
+.ws-cart-item-remove:hover {
+    color: #c45c4b;
+}
+
+.ws-cart-divider {
+    border: none;
+    border-top: 1px solid rgba(80, 232, 192, 0.08);
+    margin: 12px 0;
+}
+
+.ws-cart-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    padding: 4px 0;
+}
+
+.ws-cart-row-label {
+    color: var(--color--olivegreen, #8e9c98);
+}
+
+.ws-cart-row-value {
+    color: var(--color--seedgreen, #bccac4);
+    font-weight: 400;
+}
+
+.ws-cart-total {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #50e8c0;
+}
+
+.ws-cart-min-warning {
+    font-size: 0.75rem;
+    color: #c45c4b;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(196, 92, 75, 0.08);
+    border-radius: 6px;
+}
+
+.ws-checkout-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 16px;
+    background: #50e8c0;
+    color: #12181a;
+    border: none;
+    border-radius: 99em;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.ws-checkout-btn:hover {
+    opacity: 0.85;
+}
+
+.ws-checkout-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ── Catalog + Cart Layout ── */
+.ws-catalog-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+    align-items: start;
+}
+
+/* ── Empty States ── */
+.ws-empty {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--color--olivegreen, #8e9c98);
+}
+
+.ws-empty-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    opacity: 0.4;
+}
+
+/* ── Account Settings Tab ── */
+.ws-account-card {
+    background: var(--color--seedgreen-card, #1e2628);
+    border-radius: 10px;
+    padding: 24px;
+    border: 1px solid rgba(80, 232, 192, 0.05);
+    margin-bottom: 16px;
+}
+
+.ws-account-card h3 {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color--seedgreen, #bccac4);
+    margin-bottom: 16px;
+}
+
+.ws-info-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 8px 16px;
+    font-size: 0.875rem;
+}
+
+.ws-info-label {
+    color: var(--color--olivegreen, #8e9c98);
+}
+
+.ws-info-value {
+    color: var(--color--seedgreen, #bccac4);
+}
+
+/* ── Loading ── */
+.ws-loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--color--olivegreen, #8e9c98);
+}
+
+/* ── PO number field ── */
+.ws-po-field {
+    margin-bottom: 12px;
+}
+
+.ws-po-field input {
+    width: 100%;
+    padding: 8px 12px;
+    background: var(--color--foamwhite, #181e20);
+    border: 1px solid rgba(80, 232, 192, 0.08);
+    border-radius: 6px;
+    color: var(--color--seedgreen, #bccac4);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    box-sizing: border-box;
+}
+
+.ws-po-field label {
+    font-size: 0.75rem;
+    color: var(--color--olivegreen, #8e9c98);
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* ── Order Detail Modal ── */
+.ws-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.ws-modal {
+    background: var(--color--seedgreen-card, #1e2628);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 640px;
+    max-height: 85vh;
+    overflow-y: auto;
+    border: 1px solid rgba(80, 232, 192, 0.08);
+}
+
+.ws-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(80, 232, 192, 0.06);
+}
+
+.ws-modal-header h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #50e8c0;
+    margin: 0;
+}
+
+.ws-modal-close {
+    background: none;
+    border: none;
+    color: var(--color--olivegreen, #8e9c98);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.ws-modal-close:hover {
+    color: var(--color--seedgreen, #bccac4);
+}
+
+.ws-modal-body {
+    padding: 20px 24px 24px;
+}
+
+/* ── Order Timeline ── */
+.ws-timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding: 0 8px;
+}
+
+.ws-timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    position: relative;
+}
+
+.ws-timeline-step::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: calc(-50% + 6px);
+    right: calc(50% + 6px);
+    height: 2px;
+    background: rgba(80, 232, 192, 0.1);
+}
+
+.ws-timeline-step:first-child::before {
+    display: none;
+}
+
+.ws-timeline-step.completed::before {
+    background: #50e8c0;
+}
+
+.ws-timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(80, 232, 192, 0.12);
+    border: 2px solid rgba(80, 232, 192, 0.2);
+    z-index: 1;
+}
+
+.ws-timeline-step.completed .ws-timeline-dot {
+    background: #50e8c0;
+    border-color: #50e8c0;
+}
+
+.ws-timeline-step.cancelled .ws-timeline-dot {
+    background: #c45c4b;
+    border-color: #c45c4b;
+}
+
+.ws-timeline-step span {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted, #506460);
+}
+
+.ws-timeline-step.completed span {
+    color: var(--color--olivegreen, #8e9c98);
+}
+
+/* ── Detail Grid ── */
+.ws-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.ws-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.875rem;
+    color: var(--color--seedgreen, #bccac4);
+}
+
+.ws-detail-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color--olivegreen, #8e9c98);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .wholesale-page {
+        padding: 80px 16px 40px;
+    }
+
+    .ws-catalog-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .ws-cart-summary {
+        position: static;
+    }
+
+    .ws-field-row {
+        grid-template-columns: 1fr;
+    }
+
+    .ws-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ws-catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ws-info-grid {
+        grid-template-columns: 1fr;
+    }
+}

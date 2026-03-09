@@ -252,7 +252,7 @@ function initDesktopDropdowns(nav) {
             col2Title: 'Contact Us',
             col2Links: [
                 { text: 'Get in Touch', href: 'contact.html' },
-                { text: 'Wholesale Inquiries', href: 'contact.html' },
+                { text: 'Wholesale Portal', href: 'wholesale/index.html' },
                 { text: 'Partnerships', href: 'consulting.html' }
             ],
             footerText: null,
@@ -483,7 +483,7 @@ function initFullscreenMenu(hamburger) {
         '<div class="login-actions"><a href="' + p + 'courses/login.html" class="login-forgot">Forgot password?</a><button type="submit" class="login-submit">Sign In</button></div>' +
         '</form>' +
         '<div class="login-divider" style="margin-top:1.25rem"><span>WHOLESALE</span></div>' +
-        '<a href="' + p + 'courses/login.html" class="wholesale-login-link">Wholesale Login &rarr;</a>' +
+        '<a href="' + p + 'wholesale/index.html" class="wholesale-login-link">Wholesale Portal &rarr;</a>' +
         '<p class="wholesale-desc">Authorized retailers and distributors can access bulk pricing, lab reports, and wholesale ordering.</p>' +
         '</div>' +
 
@@ -888,56 +888,51 @@ function initMobileEnhancements() {
     // Check if we're on mobile
     const isMobile = () => window.innerWidth <= 768;
 
-    // Mobile CTA visibility
-    if (mobileCta && heroSection) {
-        let ctaVisible = false;
+    // Combined scroll handler for mobile CTA + scroll-to-top
+    let ctaVisible = false;
+    let scrollTopVisible = false;
 
-        const updateMobileCtaVisibility = () => {
+    const updateMobileScrollElements = () => {
+        const scrollY = window.scrollY;
+
+        if (mobileCta && heroSection) {
             if (!isMobile()) {
                 mobileCta.classList.remove('visible');
-                return;
+            } else {
+                const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+                const scrollPosition = scrollY + window.innerHeight;
+
+                if (scrollPosition > heroBottom + 100 && !ctaVisible) {
+                    mobileCta.classList.add('visible');
+                    ctaVisible = true;
+                } else if (scrollPosition <= heroBottom && ctaVisible) {
+                    mobileCta.classList.remove('visible');
+                    ctaVisible = false;
+                }
             }
+        }
 
-            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-            const scrollPosition = window.scrollY + window.innerHeight;
-
-            if (scrollPosition > heroBottom + 100 && !ctaVisible) {
-                mobileCta.classList.add('visible');
-                ctaVisible = true;
-            } else if (scrollPosition <= heroBottom && ctaVisible) {
-                mobileCta.classList.remove('visible');
-                ctaVisible = false;
-            }
-        };
-
-        window.addEventListener('scroll', throttle(updateMobileCtaVisibility, 100));
-        window.addEventListener('resize', debounce(updateMobileCtaVisibility, 150));
-        updateMobileCtaVisibility();
-    }
-
-    // Scroll to top button
-    if (scrollTop) {
-        let scrollTopVisible = false;
-
-        const updateScrollTopVisibility = () => {
-            if (window.scrollY > 500 && !scrollTopVisible) {
+        if (scrollTop) {
+            if (scrollY > 500 && !scrollTopVisible) {
                 scrollTop.classList.add('visible');
                 scrollTopVisible = true;
-            } else if (window.scrollY <= 500 && scrollTopVisible) {
+            } else if (scrollY <= 500 && scrollTopVisible) {
                 scrollTop.classList.remove('visible');
                 scrollTopVisible = false;
             }
-        };
+        }
+    };
 
+    if (mobileCta || scrollTop) {
+        window.addEventListener('scroll', throttle(updateMobileScrollElements, 100), { passive: true });
+        if (mobileCta) window.addEventListener('resize', debounce(updateMobileScrollElements, 150));
+        updateMobileScrollElements();
+    }
+
+    if (scrollTop) {
         scrollTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-        window.addEventListener('scroll', throttle(updateScrollTopVisibility, 100));
-        updateScrollTopVisibility();
     }
 
     // Hide swipe hints after first interaction
@@ -961,11 +956,6 @@ function initMobileEnhancements() {
         }, { passive: true });
     });
 
-    // Improve touch scrolling performance
-    document.querySelectorAll('.research-grid, .trust-grid').forEach(el => {
-        el.style.willChange = 'scroll-position';
-    });
-
     // Handle orientation changes
     window.addEventListener('orientationchange', () => {
         // Small delay to allow for orientation change to complete
@@ -985,8 +975,6 @@ function initMobileEnhancements() {
     }, { passive: true });
 
     document.addEventListener('touchmove', (e) => {
-        if (!e.cancelable) return;
-
         const touchX = e.touches[0].clientX;
         const touchY = e.touches[0].clientY;
         const deltaX = Math.abs(touchX - touchStartX);
@@ -996,11 +984,10 @@ function initMobileEnhancements() {
         if (deltaX > deltaY * 1.5) {
             const target = e.target.closest('.research-grid, .trust-grid');
             if (target) {
-                // Allow horizontal scrolling
                 e.stopPropagation();
             }
         }
-    }, { passive: false });
+    }, { passive: true });
 
     /* Theme color meta handled statically */
 
@@ -1026,14 +1013,6 @@ function initMobileEnhancements() {
         });
     }
 
-    // Add haptic feedback for supported devices (optional)
-    if ('vibrate' in navigator) {
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                navigator.vibrate(10);
-            });
-        });
-    }
 
 }
 
