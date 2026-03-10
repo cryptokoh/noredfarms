@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Board | Nored Farms</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #12181a;
+            --bg-alt: #181e20;
+            --bg-card: #1e2628;
+            --bg-hover: #263032;
+            --text: #bccac4;
+            --text-dim: #8e9c98;
+            --text-muted: #506460;
+            --accent: #50e8c0;
+            --accent-dim: rgba(80,232,192,0.07);
+            --accent-border: rgba(80,232,192,0.12);
+            --accent-border-strong: rgba(80,232,192,0.25);
+            --error: #c45c4b;
+            --warning: #d4a843;
+            --success: #50e8c0;
+            --radius: 12px;
+            --font: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            font-weight: 350;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* --- NAV --- */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(18,24,26,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--accent-border);
+            padding: 0 24px;
+        }
+        .top-bar-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .top-bar-logo {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .top-bar-logo svg { color: var(--accent); }
+        .top-bar-sep {
+            width: 1px;
+            height: 20px;
+            background: var(--accent-border);
+        }
+        .top-bar-title {
+            font-size: 14px;
+            color: var(--text-dim);
+            font-weight: 350;
+        }
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-bar-link {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 99em;
+            transition: all 0.2s ease;
+        }
+        .top-bar-link:hover {
+            color: var(--text);
+            background: var(--accent-dim);
+        }
+
+        /* --- STATS BAR --- */
+        .stats-bar {
+            background: var(--bg-alt);
+            border-bottom: 1px solid rgba(80,232,192,0.05);
+            padding: 12px 24px;
+        }
+        .stats-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+        .stat-count {
+            font-weight: 500;
+            color: var(--text);
+            font-size: 16px;
+        }
+        .stat-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .stat-dot.needs { background: var(--error); }
+        .stat-dot.placeholder { background: var(--warning); }
+        .stat-dot.ready { background: var(--success); }
+        .stat-dot.missing { background: var(--text-muted); }
+
+        /* --- BOARD --- */
+        .board {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .board { grid-template-columns: 1fr; }
+        }
+
+        .column {
+            min-height: 200px;
+        }
+        .column-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--accent-border);
+            position: sticky;
+            top: 56px;
+            background: var(--bg);
+            z-index: 10;
+        }
+        .column-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .column-dot.needs { background: var(--error); }
+        .column-dot.placeholder { background: var(--warning); }
+        .column-dot.ready { background: var(--success); }
+
+        .column-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .column-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            background: var(--bg-alt);
+            padding: 2px 8px;
+            border-radius: 99em;
+        }
+
+        /* --- CARD --- */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 12px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .card:hover {
+            border-color: var(--accent-border-strong);
+            transform: translateY(-1px);
+        }
+        .card-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #1a3028, #28584e 50%, #1e4640);
+        }
+        .card-img-missing {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2a1a1a, #3a2020 50%, #2a1515);
+            color: var(--error);
+            font-size: 12px;
+            font-weight: 400;
+        }
+        .card-body {
+            padding: 12px 14px;
+        }
+        .card-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .card-location {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .card-location code {
+            background: var(--bg-alt);
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+        .card-desc {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .tag {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 99em;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .tag-page {
+            background: rgba(80,232,192,0.08);
+            color: var(--accent);
+        }
+        .tag-hero {
+            background: rgba(59,130,246,0.12);
+            color: #6baaff;
+        }
+        .tag-card {
+            background: rgba(139,92,246,0.12);
+            color: #b49cfa;
+        }
+        .tag-section {
+            background: rgba(249,115,22,0.12);
+            color: #f9a366;
+        }
+        .tag-meta {
+            background: rgba(107,114,128,0.15);
+            color: #9ca3af;
+        }
+        .tag-product {
+            background: rgba(234,179,8,0.12);
+            color: #eab308;
+        }
+
+        .card-current {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(80,232,192,0.05);
+        }
+        .card-current strong {
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        /* --- FOOTER --- */
+        .board-footer {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(80,232,192,0.05);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<header class="top-bar">
+    <div class="top-bar-inner">
+        <div class="top-bar-left">
+            <a href="index.html" class="top-bar-logo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1.5 0 3-.3 4.3-.9C13.1 19.5 11 16 11 12s2.1-7.5 5.3-9.1C15 2.3 13.5 2 12 2z"/></svg>
+                Nored Farms
+            </a>
+            <div class="top-bar-sep"></div>
+            <span class="top-bar-title">Image Board</span>
+        </div>
+        <div class="top-bar-right">
+            <a href="index.html" class="top-bar-link">Home</a>
+            <a href="kanban.html" class="top-bar-link">Kanban</a>
+            <a href="image-review.html" class="top-bar-link">Image Review</a>
+        </div>
+    </div>
+</header>
+
+<!-- Stats -->
+<div class="stats-bar">
+    <div class="stats-inner">
+        <div class="stat">
+            <span class="stat-dot needs"></span>
+            <span class="stat-count" id="countNeeds">0</span> Need real photo
+        </div>
+        <div class="stat">
+            <span class="stat-dot placeholder"></span>
+            <span class="stat-count" id="countPlaceholder">0</span> Has placeholder
+        </div>
+        <div class="stat">
+            <span class="stat-dot ready"></span>
+            <span class="stat-count" id="countReady">0</span> Ready
+        </div>
+        <div class="stat">
+            <span class="stat-dot missing"></span>
+            <span class="stat-count" id="countMissing">0</span> File missing
+        </div>
+    </div>
+</div>
+
+<!-- Board -->
+<div class="board" id="board">
+
+    <!-- COLUMN: Needs Real Photo -->
+    <div class="column" id="colNeeds">
+        <div class="column-head">
+            <span class="column-dot needs"></span>
+            <span class="column-label">Needs Real Photo</span>
+            <span class="column-count" id="colNeedsCount">0</span>
+        </div>
+    </div>
+
+    <!-- COLUMN: Has Placeholder -->
+    <div class="column" id="colPlaceholder">
+        <div class="column-head">
+            <span class="column-dot placeholder"></span>
+            <span class="column-label">Has Placeholder</span>
+            <span class="column-count" id="colPlaceholderCount">0</span>
+        </div>
+    </div>
+
+    <!-- COLUMN: Ready / Done -->
+    <div class="column" id="colReady">
+        <div class="column-head">
+            <span class="column-dot ready"></span>
+            <span class="column-label">Ready</span>
+            <span class="column-count" id="colReadyCount">0</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="board-footer">
+    Replace placeholder images by saving new files with the same filename in <code>/images/</code> — the site will update automatically on next deploy.
+</div>
+
+<script>
+const IMAGE_DATA = [
+    // ── Homepage ──
+    {
+        name: "Hero — Main Banner",
+        file: "hill-country-landscape.jpg",
+        pages: ["index.html"],
+        tags: ["hero", "page-home"],
+        location: "Homepage hero section",
+        needs: "Flagship brand photo — aerial farm shot, product lineup, or botanical close-up",
+        status: "placeholder"
+    },
+    {
+        name: "Product Card — Gummies",
+        file: "gummies-product.jpg",
+        pages: ["index.html", "products/gummies.html"],
+        tags: ["card", "product"],
+        location: "Homepage carousel + Gummies page hero",
+        needs: "Close-up of actual Kanna/Blue Lotus gummies in packaging or on surface",
+        status: "placeholder"
+    },
+    {
+        name: "Product Card — Tinctures",
+        file: "tinctures-product.jpg",
+        pages: ["index.html"],
+        tags: ["card", "product"],
+        location: "Homepage carousel",
+        needs: "Tincture dropper bottles — Blue Lotus & Kanna labels visible",
+        status: "placeholder"
+    },
+    {
+        name: "Product Hero — Tinctures",
+        file: "tinctures-hero.jpg",
+        pages: ["products/tinctures.html"],
+        tags: ["hero", "product"],
+        location: "Tinctures page hero",
+        needs: "Wide shot of tincture bottles with botanicals — banner format",
+        status: "placeholder"
+    },
+    {
+        name: "Product Card — Extracts",
+        file: "extracts-product.jpg",
+        pages: ["index.html", "products/extracts.html"],
+        tags: ["card", "product"],
+        location: "Homepage carousel + Extracts page hero",
+        needs: "Extract jars/containers — Blue Lotus resin, Kanna extract, Kava CO2",
+        status: "placeholder"
+    },
+    {
+        name: "Product Card — Dried Botanicals",
+        file: "dried-botanicals-product.jpg",
+        pages: ["index.html", "products/dried-botanicals.html"],
+        tags: ["card", "product"],
+        location: "Homepage carousel + Dried Botanicals page hero",
+        needs: "Dried Blue Lotus flowers and Kanna herb — in jars or loose on surface",
+        status: "placeholder"
+    },
+    {
+        name: "Product Card — Live Plants",
+        file: "live-plants-product.jpg",
+        pages: ["index.html", "products/live-plants.html"],
+        tags: ["card", "product"],
+        location: "Homepage carousel + Live Plants page hero",
+        needs: "Dragon Fruit, Elderberry, Prickly Pear, or Yucca — potted live plants",
+        status: "placeholder"
+    },
+    {
+        name: "Product Card — Seeds",
+        file: "seeds-product.jpg",
+        pages: ["index.html", "products/seeds.html"],
+        tags: ["card", "product"],
+        location: "Homepage carousel + Seeds page hero",
+        needs: "Glass vials of heirloom seeds — Sugarcane, Hibiscus, Nicotiana Rustica",
+        status: "placeholder"
+    },
+    {
+        name: "Interstitial — Extraction Lab",
+        file: "extraction-lab.jpg",
+        pages: ["index.html"],
+        tags: ["section", "page-home"],
+        location: "Homepage mid-page divider",
+        needs: "Clean shot of extraction equipment in action — evaporators, columns, flasks",
+        status: "placeholder"
+    },
+    {
+        name: "About Section — Farm",
+        file: "farm-herb-garden.jpg",
+        pages: ["index.html"],
+        tags: ["section", "page-home"],
+        location: "Homepage about section",
+        needs: "Farm photo — raised beds, greenhouse, or wide field shot",
+        status: "placeholder"
+    },
+
+    // ── About Page ──
+    {
+        name: "About — Texas Landscape",
+        file: "texas-sunset.jpg",
+        pages: ["about-us.html"],
+        tags: ["section", "page-about"],
+        location: "About page photo strip",
+        needs: "Texas Hill Country landscape — farm vista, sunset over fields",
+        status: "placeholder"
+    },
+    {
+        name: "About — Extraction Rack",
+        file: "extraction-rack.jpg",
+        pages: ["about-us.html", "classroom/extraction.html"],
+        tags: ["section", "page-about"],
+        location: "About page photo strip + Classroom extraction page",
+        needs: "Professional extraction rack — stainless columns, lab equipment",
+        status: "placeholder"
+    },
+
+    // ── Classroom ──
+    {
+        name: "Classroom — Extraction Facility",
+        file: "extraction-facility.jpg",
+        pages: ["classroom/extraction.html"],
+        tags: ["hero", "page-classroom"],
+        location: "Extraction classroom page",
+        needs: "Wide shot of full extraction facility — workbenches, equipment, safety gear",
+        status: "placeholder"
+    },
+
+    // ── Site-wide ──
+    {
+        name: "Logo (SVG)",
+        file: "logo.svg",
+        pages: ["50+ pages"],
+        tags: ["meta"],
+        location: "Navigation bar on all pages",
+        needs: "Nored Farms logo — current SVG may need professional redesign",
+        status: "ready"
+    },
+
+    // ── OG / Social Meta ──
+    {
+        name: "OG Image — Homepage",
+        file: "og-image.jpg",
+        pages: ["index.html", "seo.html"],
+        tags: ["meta"],
+        location: "Open Graph meta tag — social share preview",
+        needs: "1200x630 branded card — logo, tagline, product collage on dark bg",
+        status: "missing"
+    },
+    {
+        name: "OG Image — Blog",
+        file: "blog-og.jpg",
+        pages: ["blog.html"],
+        tags: ["meta"],
+        location: "Blog page Open Graph meta",
+        needs: "1200x630 branded card — 'Nored Farms Journal' with botanical imagery",
+        status: "missing"
+    },
+    {
+        name: "OG Image — Classroom",
+        file: "classroom-og.jpg",
+        pages: ["classroom.html"],
+        tags: ["meta"],
+        location: "Classroom page Open Graph meta",
+        needs: "1200x630 branded card — 'Nored Farms Academy' with lab/botanical imagery",
+        status: "missing"
+    },
+
+    // ── Individual Product Images (for product detail cards) ──
+    {
+        name: "Blue Lotus Tincture — 5000mg",
+        file: "products/blue-lotus-tincture-5000mg.jpg",
+        pages: ["products/tinctures.html"],
+        tags: ["product"],
+        location: "Tinctures product listing card",
+        needs: "Individual product shot — 5000mg Blue Lotus tincture bottle with label",
+        status: "missing"
+    },
+    {
+        name: "Kanna Tincture — 3000mg",
+        file: "products/kanna-tincture-3000mg.jpg",
+        pages: ["products/tinctures.html"],
+        tags: ["product"],
+        location: "Tinctures product listing card",
+        needs: "Individual product shot — 3000mg Kanna tincture bottle with label",
+        status: "missing"
+    },
+    {
+        name: "Kanna Gummies — 500mg",
+        file: "products/kanna-gummies-500mg.jpg",
+        pages: ["products/gummies.html"],
+        tags: ["product"],
+        location: "Gummies product listing card",
+        needs: "Individual product shot — 500mg Kanna gummies package",
+        status: "missing"
+    },
+    {
+        name: "Blue Lotus Gummies — 2500mg",
+        file: "products/blue-lotus-gummies-2500mg.jpg",
+        pages: ["products/gummies.html"],
+        tags: ["product"],
+        location: "Gummies product listing card",
+        needs: "Individual product shot — 2500mg Blue Lotus gummies package",
+        status: "missing"
+    },
+    {
+        name: "Blue Lotus Resin Extract — 1g",
+        file: "products/blue-lotus-resin-1g.jpg",
+        pages: ["products/extracts.html"],
+        tags: ["product"],
+        location: "Extracts product listing card",
+        needs: "Individual product shot — Blue Lotus resin extract jar",
+        status: "missing"
+    },
+    {
+        name: "Kanna Extract — 1g High Potency",
+        file: "products/kanna-extract-1g.jpg",
+        pages: ["products/extracts.html"],
+        tags: ["product"],
+        location: "Extracts product listing card",
+        needs: "Individual product shot — Kanna extract jar with label",
+        status: "missing"
+    },
+    {
+        name: "Kava Kava CO2 Extract",
+        file: "products/kava-co2-extract.jpg",
+        pages: ["products/extracts.html"],
+        tags: ["product"],
+        location: "Extracts product listing card",
+        needs: "Individual product shot — Kava CO2 extract container",
+        status: "missing"
+    },
+    {
+        name: "Dried Blue Lotus — 1oz",
+        file: "products/dried-blue-lotus-1oz.jpg",
+        pages: ["products/dried-botanicals.html"],
+        tags: ["product"],
+        location: "Dried Botanicals product listing card",
+        needs: "Individual product shot — dried Blue Lotus flowers in jar or bag",
+        status: "missing"
+    },
+    {
+        name: "Dried Kanna — 1oz",
+        file: "products/dried-kanna-1oz.jpg",
+        pages: ["products/dried-botanicals.html"],
+        tags: ["product"],
+        location: "Dried Botanicals product listing card",
+        needs: "Individual product shot — dried Kanna herb in jar or bag",
+        status: "missing"
+    },
+    {
+        name: "Purple Dragon Fruit Plant",
+        file: "products/purple-dragon-fruit.jpg",
+        pages: ["products/live-plants.html"],
+        tags: ["product"],
+        location: "Live Plants product listing card",
+        needs: "Rooted 12-16\" Purple Dragon Fruit cutting in pot",
+        status: "missing"
+    },
+    {
+        name: "Bob Gordon Elderberry",
+        file: "products/bob-gordon-elderberry.jpg",
+        pages: ["products/live-plants.html"],
+        tags: ["product"],
+        location: "Live Plants product listing card",
+        needs: "12-16\" Bob Gordon Elderberry plant in nursery pot",
+        status: "missing"
+    },
+    {
+        name: "Central Texas Prickly Pear",
+        file: "products/prickly-pear.jpg",
+        pages: ["products/live-plants.html"],
+        tags: ["product"],
+        location: "Live Plants product listing card",
+        needs: "2-pad Prickly Pear, 10\" wide, potted",
+        status: "missing"
+    },
+    {
+        name: "Davis Mountain Yucca",
+        file: "products/davis-mountain-yucca.jpg",
+        pages: ["products/live-plants.html"],
+        tags: ["product"],
+        location: "Live Plants product listing card",
+        needs: "6\" tall Davis Mountain Yucca (soapweed) in pot",
+        status: "missing"
+    },
+    {
+        name: "Heirloom Sugarcane Seeds",
+        file: "products/sugarcane-seeds.jpg",
+        pages: ["products/seeds.html"],
+        tags: ["product"],
+        location: "Seeds product listing card",
+        needs: "Glass vial with sugarcane seeds, 10-20yr shelf life label",
+        status: "missing"
+    },
+    {
+        name: "Hibiscus Seeds",
+        file: "products/hibiscus-seeds.jpg",
+        pages: ["products/seeds.html"],
+        tags: ["product"],
+        location: "Seeds product listing card",
+        needs: "Hibiscus seed packet or vial",
+        status: "missing"
+    },
+    {
+        name: "Nicotiana Rustica Seeds",
+        file: "products/nicotiana-rustica-seeds.jpg",
+        pages: ["products/seeds.html"],
+        tags: ["product"],
+        location: "Seeds product listing card",
+        needs: "Nicotiana Rustica (Hape) seed vial with label",
+        status: "missing"
+    }
+];
+
+// Tag display names
+const TAG_MAP = {
+    "hero": { label: "Hero", cls: "tag-hero" },
+    "card": { label: "Card", cls: "tag-card" },
+    "section": { label: "Section", cls: "tag-section" },
+    "product": { label: "Product", cls: "tag-product" },
+    "meta": { label: "Meta", cls: "tag-meta" },
+    "page-home": { label: "Home", cls: "tag-page" },
+    "page-about": { label: "About", cls: "tag-page" },
+    "page-classroom": { label: "Classroom", cls: "tag-page" },
+};
+
+function renderBoard() {
+    const cols = {
+        missing: document.getElementById('colNeeds'),
+        placeholder: document.getElementById('colPlaceholder'),
+        ready: document.getElementById('colReady')
+    };
+
+    const counts = { missing: 0, placeholder: 0, ready: 0 };
+
+    IMAGE_DATA.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // Image preview
+        let imgHtml;
+        if (item.status === 'missing') {
+            imgHtml = `<div class="card-img-missing">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity:0.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>`;
+        } else {
+            const imgPath = item.file;
+            imgHtml = `<img class="card-img" src="images/${imgPath}" alt="${item.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'card-img-missing\\'>File not found</div>'">`;
+        }
+
+        // Tags
+        const tagsHtml = item.tags.map(t => {
+            const info = TAG_MAP[t] || { label: t, cls: 'tag-page' };
+            return `<span class="tag ${info.cls}">${info.label}</span>`;
+        }).join('');
+
+        // Pages
+        const pagesHtml = item.pages.map(p => `<code>${p}</code>`).join(' ');
+
+        card.innerHTML = `
+            ${imgHtml}
+            <div class="card-body">
+                <div class="card-name">${item.name}</div>
+                <div class="card-location">${pagesHtml}</div>
+                <div class="card-desc">${item.needs}</div>
+                <div class="card-tags">${tagsHtml}</div>
+                <div class="card-current"><strong>File:</strong> images/${item.file}</div>
+            </div>
+        `;
+
+        // Route to column
+        const colKey = item.status === 'missing' ? 'missing' : item.status;
+        cols[colKey].appendChild(card);
+        counts[colKey]++;
+    });
+
+    // Update counts
+    document.getElementById('countNeeds').textContent = counts.missing;
+    document.getElementById('countPlaceholder').textContent = counts.placeholder;
+    document.getElementById('countReady').textContent = counts.ready;
+    document.getElementById('countMissing').textContent = counts.missing;
+    document.getElementById('colNeedsCount').textContent = counts.missing;
+    document.getElementById('colPlaceholderCount').textContent = counts.placeholder;
+    document.getElementById('colReadyCount').textContent = counts.ready;
+}
+
+renderBoard();
+</script>
+
+</body>
+</html>

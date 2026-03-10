@@ -16,6 +16,12 @@
   to = "/kanban.html"
   status = 200
 
+# Clean URL for image kanban
+[[redirects]]
+  from = "/image-kanban"
+  to = "/image-kanban.html"
+  status = 200
+
 # No catch-all redirect - static site serves files directly
 
 # Headers for security and performance
