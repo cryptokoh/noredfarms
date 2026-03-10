@@ -203,7 +203,7 @@ function initDesktopDropdowns(nav) {
                 ]}
             ],
             footerText: 'Shop All Products',
-            footerHref: 'index.html#products'
+            footerHref: 'marketplace.html'
         },
         'articles': {
             col1Title: 'Categories',
@@ -331,6 +331,23 @@ function initDesktopDropdowns(nav) {
                 if (w !== wrapper) w.classList.remove('active');
             });
             wrapper.classList.add('active');
+
+            // Keep dropdown within viewport
+            dropdown.style.left = '0';
+            var rect = dropdown.getBoundingClientRect();
+            var shift = 0;
+            if (rect.left < 8) {
+                shift = 8 - rect.left;
+            } else if (rect.right > window.innerWidth - 8) {
+                shift = window.innerWidth - 8 - rect.right;
+            }
+            if (shift) {
+                dropdown.style.left = shift + 'px';
+            }
+            // Keep arrow pointing at the link center
+            var linkRect = link.getBoundingClientRect();
+            var arrowLeft = (linkRect.left + linkRect.width / 2) - rect.left - shift;
+            dropdown.style.setProperty('--arrow-left', arrowLeft + 'px');
         });
         wrapper.addEventListener('mouseleave', function() {
             hideTimer = setTimeout(function() {
@@ -420,7 +437,7 @@ function initFullscreenMenu(hamburger) {
         '<a href="' + p + 'products/seeds.html" class="product-row"><div class="product-thumb"><div class="jar teal"></div></div><div class="product-info"><div class="product-name">Hibiscus Seeds</div></div><div class="product-price">$20</div></a>' +
         '<a href="' + p + 'products/seeds.html" class="product-row"><div class="product-thumb"><div class="jar green"></div></div><div class="product-info"><div class="product-name">Nicotiana Rustica (Hape) Seeds</div></div><div class="product-price">$40</div></a>' +
 
-        '<a href="' + p + 'index.html#products" class="shop-all-link">Shop All Products &rarr;</a>' +
+        '<a href="' + p + 'marketplace.html" class="shop-all-link">Shop All Products &rarr;</a>' +
         '</div>' +
 
         // ---- ARTICLES panel ----

@@ -1469,7 +1469,7 @@ ul, ol {
     content: '';
     position: absolute;
     top: -6px;
-    left: 24px;
+    left: var(--arrow-left, 24px);
     transform: rotate(45deg);
     width: 12px;
     height: 12px;
