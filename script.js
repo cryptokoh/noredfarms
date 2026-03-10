@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     initMobileEnhancements();
     initProductFiltering();
-    initScrollLockCarousel();
+    initProductCarousel();
     initViewAllProducts();
 
     // Global auth nav state (only runs if Supabase is loaded)
@@ -482,6 +482,10 @@ function initFullscreenMenu(hamburger) {
         '<div class="login-field"><input type="password" placeholder="Password" class="login-input" autocomplete="current-password"></div>' +
         '<div class="login-actions"><a href="' + p + 'courses/login.html" class="login-forgot">Forgot password?</a><button type="submit" class="login-submit">Sign In</button></div>' +
         '</form>' +
+        '<div class="login-signup-cta">' +
+        '<p class="login-signup-text">Don\'t have an account?</p>' +
+        '<a href="' + p + 'courses/login.html?mode=signup" class="login-signup-btn">Create Account</a>' +
+        '</div>' +
         '<div class="login-divider" style="margin-top:1.25rem"><span>WHOLESALE</span></div>' +
         '<a href="' + p + 'wholesale/index.html" class="wholesale-login-link">Wholesale Portal &rarr;</a>' +
         '<p class="wholesale-desc">Authorized retailers and distributors can access bulk pricing, lab reports, and wholesale ordering.</p>' +
@@ -1118,280 +1122,62 @@ function filterProducts(category, productCards) {
 }
 
 /**
- * Scroll-Lock Carousel (Wheel-hijack approach)
- * When the products section is in view and user scrolls, the wheel event
- * is intercepted to advance the carousel horizontally. Once all cards
- * have been shown, normal page scroll resumes.
+ * Product Carousel (Embla Carousel)
+ * Fluid, physics-based carousel with no scroll hijacking.
  */
-function initScrollLockCarousel() {
-    var carousel = document.getElementById('productsCarousel');
-    var viewport = document.getElementById('carouselViewport');
-    var section = carousel ? carousel.closest('section') : null;
-    if (!carousel || !section) return;
+function initProductCarousel() {
+    var emblaNode = document.getElementById('productsEmbla');
+    if (!emblaNode || typeof EmblaCarousel === 'undefined') return;
 
-    var cards = carousel.querySelectorAll('.product-card');
-    var totalCards = cards.length;
-    var isMobile = window.innerWidth <= 768;
-
-    function getCardsPerView() {
-        if (window.innerWidth <= 768) return 1;
-        if (window.innerWidth <= 900) return 2;
-        if (window.innerWidth <= 1024) return 3;
-        return 4;
-    }
-
-    var cardsPerView = getCardsPerView();
-    var MOBILE_MAX_SCROLLS = 2;
-    var maxIndex = isMobile
-        ? Math.min(MOBILE_MAX_SCROLLS, Math.max(0, totalCards - cardsPerView))
-        : Math.max(0, totalCards - cardsPerView);
-    if (maxIndex === 0) return;
-
-    var currentIndex = 0;
-    var isLocked = false;
-    var lockCooldown = false;
-    var accumulatedDelta = 0;
-    var SCROLL_PER_CARD = isMobile ? 100 : (window.innerWidth <= 900 ? 150 : 280);
-
-    function applyDesktopOverrides() {
-        carousel.style.overflow = 'visible';
-        carousel.style.scrollSnapType = 'none';
-        carousel.style.scrollBehavior = 'auto';
-        carousel.style.flexWrap = 'nowrap';
-        if (viewport) viewport.style.overflow = 'hidden';
-    }
-
-    function clearDesktopOverrides() {
-        carousel.style.overflow = '';
-        carousel.style.scrollSnapType = '';
-        carousel.style.scrollBehavior = '';
-        carousel.style.flexWrap = '';
-        carousel.style.transform = '';
-        carousel.style.transition = '';
-        if (viewport) viewport.style.overflow = '';
-    }
-
-    // Apply initial overrides based on current mode
-    if (!isMobile) {
-        applyDesktopOverrides();
-    }
-
-    function getCardWidth() {
-        if (!cards[0]) return 300;
-        var style = window.getComputedStyle(carousel);
-        var gap = parseFloat(style.gap) || 16;
-        return cards[0].offsetWidth + gap;
-    }
-
-    function slideToIndex(index) {
-        var cardWidth = getCardWidth();
-        carousel.style.transition = 'transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)';
-        carousel.style.transform = 'translateX(' + (-index * cardWidth) + 'px)';
-    }
-
-    function updateControls(index) {
-        var dotsContainer = document.getElementById('carouselDots');
-        if (dotsContainer) {
-            var dots = dotsContainer.querySelectorAll('.carousel-dot');
-            dots.forEach(function(dot, i) {
-                dot.classList.toggle('active', i === index);
-            });
-        }
-        var prev = document.getElementById('carouselPrev');
-        var next = document.getElementById('carouselNext');
-        if (prev) prev.disabled = index === 0;
-        if (next) next.disabled = index >= maxIndex;
-    }
-
-    // Track hover state (works for desktop mode)
-    var isHovering = false;
-    section.addEventListener('mouseenter', function() { isHovering = true; });
-    section.addEventListener('mouseleave', function() { isHovering = false; });
-
-    function isSectionInView() {
-        if (isHovering) return true;
-        var rect = section.getBoundingClientRect();
-        var viewH = window.innerHeight;
-        return rect.top < viewH * 0.7 && rect.bottom > viewH * 0.3;
-    }
-
-    function releaseLock() {
-        isLocked = false;
-        accumulatedDelta = 0;
-        lockCooldown = true;
-        setTimeout(function() { lockCooldown = false; }, 600);
-    }
-
-    // ---- DESKTOP: Wheel event hijack ----
-    function onWheel(e) {
-        if (lockCooldown || isMobile) return;
-        if (!isSectionInView()) {
-            if (isLocked) releaseLock();
-            return;
-        }
-
-        var delta = e.deltaY;
-
-        if (delta > 0 && currentIndex < maxIndex) {
-            e.preventDefault();
-            isLocked = true;
-            accumulatedDelta += delta;
-            if (accumulatedDelta >= SCROLL_PER_CARD) {
-                var steps = Math.floor(accumulatedDelta / SCROLL_PER_CARD);
-                accumulatedDelta = accumulatedDelta % SCROLL_PER_CARD;
-                currentIndex = Math.min(currentIndex + steps, maxIndex);
-                slideToIndex(currentIndex);
-                updateControls(currentIndex);
-            }
-            return;
-        }
-
-        if (delta < 0 && currentIndex > 0) {
-            e.preventDefault();
-            isLocked = true;
-            accumulatedDelta += Math.abs(delta);
-            if (accumulatedDelta >= SCROLL_PER_CARD) {
-                var steps = Math.floor(accumulatedDelta / SCROLL_PER_CARD);
-                accumulatedDelta = accumulatedDelta % SCROLL_PER_CARD;
-                currentIndex = Math.max(currentIndex - steps, 0);
-                slideToIndex(currentIndex);
-                updateControls(currentIndex);
-            }
-            return;
-        }
-
-        if (isLocked) releaseLock();
-    }
-
-    // ---- MOBILE: Touch-based scroll hijack ----
-    var touchStartY = 0;
-    var touchStartTime = 0;
-    var touchLocked = false;
-
-    function onTouchStart(e) {
-        if (lockCooldown || !isMobile) return;
-        if (!isSectionInView()) return;
-        touchStartY = e.touches[0].clientY;
-        touchStartTime = Date.now();
-        if ((currentIndex < maxIndex) || (currentIndex > 0)) {
-            touchLocked = true;
-        }
-    }
-
-    function onTouchMove(e) {
-        if (!touchLocked || lockCooldown || !isMobile) return;
-        if (!isSectionInView()) {
-            touchLocked = false;
-            return;
-        }
-
-        var touchY = e.touches[0].clientY;
-        var deltaY = touchStartY - touchY;
-
-        if (Math.abs(deltaY) < 30) return;
-
-        if (deltaY > 0 && currentIndex < maxIndex) {
-            e.preventDefault();
-            isLocked = true;
-            currentIndex++;
-            slideToIndex(currentIndex);
-            updateControls(currentIndex);
-            touchStartY = touchY;
-            if (currentIndex >= maxIndex) {
-                touchLocked = false;
-                releaseLock();
-            }
-        } else if (deltaY < 0 && currentIndex > 0) {
-            e.preventDefault();
-            isLocked = true;
-            currentIndex--;
-            slideToIndex(currentIndex);
-            updateControls(currentIndex);
-            touchStartY = touchY;
-            if (currentIndex <= 0) {
-                touchLocked = false;
-                releaseLock();
-            }
-        } else {
-            touchLocked = false;
-            if (isLocked) releaseLock();
-        }
-    }
-
-    function onTouchEnd() {
-        touchLocked = false;
-    }
-
-    // Attach BOTH listener sets — mode gating done inside handlers
-    window.addEventListener('wheel', onWheel, { passive: false });
-    section.addEventListener('touchstart', onTouchStart, { passive: true });
-    section.addEventListener('touchmove', onTouchMove, { passive: false });
-    section.addEventListener('touchend', onTouchEnd, { passive: true });
+    var viewportNode = emblaNode.querySelector('.embla__viewport');
+    var embla = EmblaCarousel(viewportNode, {
+        loop: false,
+        align: 'start',
+        slidesToScroll: 1,
+        containScroll: 'trimSnaps'
+    });
 
     // Arrow buttons
     var prevBtn = document.getElementById('carouselPrev');
     var nextBtn = document.getElementById('carouselNext');
-    if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                slideToIndex(currentIndex);
-                updateControls(currentIndex);
-            }
+
+    if (prevBtn) prevBtn.addEventListener('click', function() { embla.scrollPrev(); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { embla.scrollNext(); });
+
+    // Dots
+    var dotsContainer = document.getElementById('carouselDots');
+
+    function setupDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        var scrollSnaps = embla.scrollSnapList();
+        scrollSnaps.forEach(function(_, i) {
+            var dot = document.createElement('button');
+            dot.className = 'carousel-dot';
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.addEventListener('click', function() { embla.scrollTo(i); });
+            dotsContainer.appendChild(dot);
         });
     }
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                slideToIndex(currentIndex);
-                updateControls(currentIndex);
-            }
+
+    function updateState() {
+        if (!prevBtn || !nextBtn) return;
+        prevBtn.disabled = !embla.canScrollPrev();
+        nextBtn.disabled = !embla.canScrollNext();
+
+        // Update dots
+        if (!dotsContainer) return;
+        var selected = embla.selectedScrollSnap();
+        var dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach(function(dot, i) {
+            dot.classList.toggle('active', i === selected);
         });
     }
 
-    // Handle resize — dynamically switch modes when crossing 768px boundary
-    var resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            var nowMobile = window.innerWidth <= 768;
-
-            if (nowMobile !== isMobile) {
-                // Mode changed — reset carousel state
-                isMobile = nowMobile;
-                currentIndex = 0;
-                accumulatedDelta = 0;
-                isLocked = false;
-                lockCooldown = false;
-                touchLocked = false;
-
-                if (nowMobile) {
-                    // Switched to mobile: remove JS overrides, let CSS handle native scroll
-                    clearDesktopOverrides();
-                    SCROLL_PER_CARD = 100;
-                } else {
-                    // Switched to desktop: apply JS overrides for transform scrolling
-                    applyDesktopOverrides();
-                    slideToIndex(0);
-                    SCROLL_PER_CARD = window.innerWidth <= 900 ? 150 : 280;
-                }
-            }
-
-            cardsPerView = getCardsPerView();
-            if (!isMobile) {
-                SCROLL_PER_CARD = window.innerWidth <= 900 ? 150 : 280;
-            }
-            maxIndex = isMobile
-                ? Math.min(MOBILE_MAX_SCROLLS, Math.max(0, totalCards - cardsPerView))
-                : Math.max(0, totalCards - cardsPerView);
-            if (currentIndex > maxIndex) {
-                currentIndex = maxIndex;
-                if (!isMobile) slideToIndex(currentIndex);
-            }
-            updateControls(currentIndex);
-        }, 150);
-    });
+    setupDots();
+    updateState();
+    embla.on('select', updateState);
+    embla.on('reInit', function() { setupDots(); updateState(); });
 }
 
 /**

@@ -507,25 +507,26 @@
             stroke: currentColor;
         }
 
-        /* Carousel track */
-        .carousel-viewport {
+        /* Embla Carousel */
+        .embla {
             position: relative;
-            overflow: hidden;
             max-width: 100%;
+            padding: 0 24px;
         }
 
-        .products-carousel {
+        .embla__viewport {
+            overflow: hidden;
+        }
+
+        .embla__container {
             display: flex;
             gap: 16px;
-            overflow: visible;
-            scrollbar-width: none;
-            padding: 0 24px 4px;
-            flex-wrap: nowrap;
-            transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-            -webkit-overflow-scrolling: touch;
         }
 
-        .products-carousel::-webkit-scrollbar { display: none; }
+        .embla__slide {
+            flex: 0 0 calc(25% - 12px);
+            min-width: 0;
+        }
 
         .product-card {
             background: #1a2226;
@@ -537,9 +538,6 @@
             flex-direction: column;
             justify-content: space-between;
             min-height: 280px;
-            min-width: 0;
-            flex: 0 0 calc(25% - 12px);
-            scroll-snap-align: start;
             border: 1px solid rgba(80, 232, 192, 0.06);
             transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
@@ -665,46 +663,17 @@
             background: var(--color-guidance-fluorescent-green);
         }
 
-        /* Edge fades */
-        .carousel-viewport::before,
-        .carousel-viewport::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 4px;
-            width: 24px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .carousel-viewport::before {
-            left: 0;
-            background: linear-gradient(to right, #0e1214, transparent);
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .carousel-viewport::after {
-            right: 0;
-            background: linear-gradient(to left, #0e1214, transparent);
-        }
-
-        .carousel-viewport.scrolled::before { opacity: 1; }
-        .carousel-viewport.at-end::after { opacity: 0; }
-
         /* Responsive carousel */
         @media (min-width: 1200px) {
-            .products-carousel { padding: 0 calc((100vw - 1200px) / 2 + 24px) 4px; }
-            .carousel-viewport::before { left: 0; width: calc((100vw - 1200px) / 2); }
-            .carousel-viewport::after { right: 0; width: calc((100vw - 1200px) / 2); }
+            .embla { padding: 0 calc((100vw - 1200px) / 2 + 24px); }
         }
 
         @media (max-width: 1024px) {
-            .product-card { flex: 0 0 calc(33.333% - 11px); }
+            .embla__slide { flex: 0 0 calc(33.333% - 11px); }
         }
 
         @media (max-width: 900px) {
-            .product-card { flex: 0 0 calc(50% - 8px); }
+            .embla__slide { flex: 0 0 calc(50% - 8px); }
         }
 
         @media (max-width: 768px) {
@@ -715,27 +684,14 @@
                 padding: 0 16px;
             }
             .products-header-right { align-self: flex-end; margin-top: -8px; }
-            .carousel-viewport { overflow: visible; }
-            .products-carousel {
-                padding: 0 16px 4px;
-                gap: 12px;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                transition: none;
-            }
-            .product-card {
-                flex: 0 0 75vw;
-                min-height: 260px;
-                scroll-snap-align: start;
-            }
+            .embla { padding: 0 16px; }
+            .embla__container { gap: 12px; }
+            .embla__slide { flex: 0 0 80vw; }
+            .product-card { min-height: 260px; }
             .carousel-dots { margin-top: 20px; }
-            .carousel-viewport::before { width: 16px; }
-            .carousel-viewport::after { width: 16px; }
         }
 
         @media (max-width: 480px) {
-            .product-card { flex: 0 0 80vw; }
             .carousel-arrows { display: none; }
         }
 
@@ -1716,6 +1672,7 @@
     <link rel="stylesheet" href="visual-enhancements.css">
     <link rel="stylesheet" href="trippy-backgrounds.css">
     <link rel="stylesheet" href="cart-styles.css">
+    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
 </head>
 <body>
     <nav class="nav" id="nav">
@@ -1782,80 +1739,94 @@
                 </div>
             </div>
         </div>
-        <div class="carousel-viewport" id="carouselViewport">
-            <div class="products-carousel" id="productsCarousel">
-                <a href="products/gummies.html" class="product-card">
-                    <span class="product-card-badge">Popular</span>
-                    <div class="product-card-visual"><img src="images/gummies-product.jpg" alt="Botanical extract gummies" class="product-card-img" loading="lazy"></div>
-                    <div class="product-card-bottom">
-                        <div>
-                            <div class="product-card-code">GM-01</div>
-                            <div class="product-card-name">Botanical Gummies</div>
-                            <div class="product-card-price">From $40</div>
-                        </div>
-                        <span class="product-card-cta">View</span>
+        <div class="embla" id="productsEmbla">
+            <div class="embla__viewport">
+                <div class="embla__container">
+                    <div class="embla__slide">
+                        <a href="products/gummies.html" class="product-card">
+                            <span class="product-card-badge">Popular</span>
+                            <div class="product-card-visual"><img src="images/gummies-product.jpg" alt="Botanical extract gummies" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-bottom">
+                                <div>
+                                    <div class="product-card-code">GM-01</div>
+                                    <div class="product-card-name">Botanical Gummies</div>
+                                    <div class="product-card-price">From $40</div>
+                                </div>
+                                <span class="product-card-cta">View</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="products/tinctures.html" class="product-card">
-                    <span class="product-card-badge">New</span>
-                    <div class="product-card-visual"><img src="images/tinctures-product.jpg" alt="Full spectrum botanical tinctures" class="product-card-img" loading="lazy"></div>
-                    <div class="product-card-bottom">
-                        <div>
-                            <div class="product-card-code">TN-01</div>
-                            <div class="product-card-name">Full Spectrum Tinctures</div>
-                            <div class="product-card-price">From $60</div>
-                        </div>
-                        <span class="product-card-cta">View</span>
+                    <div class="embla__slide">
+                        <a href="products/tinctures.html" class="product-card">
+                            <span class="product-card-badge">New</span>
+                            <div class="product-card-visual"><img src="images/tinctures-product.jpg" alt="Full spectrum botanical tinctures" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-bottom">
+                                <div>
+                                    <div class="product-card-code">TN-01</div>
+                                    <div class="product-card-name">Full Spectrum Tinctures</div>
+                                    <div class="product-card-price">From $60</div>
+                                </div>
+                                <span class="product-card-cta">View</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="products/extracts.html" class="product-card">
-                    <span class="product-card-badge">Lab Tested</span>
-                    <div class="product-card-visual"><img src="images/extracts-product.jpg" alt="Premium botanical extracts" class="product-card-img" loading="lazy"></div>
-                    <div class="product-card-bottom">
-                        <div>
-                            <div class="product-card-code">EX-01</div>
-                            <div class="product-card-name">Botanical Extracts</div>
-                            <div class="product-card-price">From $30</div>
-                        </div>
-                        <span class="product-card-cta">View</span>
+                    <div class="embla__slide">
+                        <a href="products/extracts.html" class="product-card">
+                            <span class="product-card-badge">Lab Tested</span>
+                            <div class="product-card-visual"><img src="images/extracts-product.jpg" alt="Premium botanical extracts" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-bottom">
+                                <div>
+                                    <div class="product-card-code">EX-01</div>
+                                    <div class="product-card-name">Botanical Extracts</div>
+                                    <div class="product-card-price">From $30</div>
+                                </div>
+                                <span class="product-card-cta">View</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="products/dried-botanicals.html" class="product-card">
-                    <span class="product-card-badge">New</span>
-                    <div class="product-card-visual"><img src="images/dried-botanicals-product.jpg" alt="Dried botanical specimens" class="product-card-img" loading="lazy"></div>
-                    <div class="product-card-bottom">
-                        <div>
-                            <div class="product-card-code">DB-01</div>
-                            <div class="product-card-name">Dried Botanicals</div>
-                            <div class="product-card-price">From $30</div>
-                        </div>
-                        <span class="product-card-cta">View</span>
+                    <div class="embla__slide">
+                        <a href="products/dried-botanicals.html" class="product-card">
+                            <span class="product-card-badge">New</span>
+                            <div class="product-card-visual"><img src="images/dried-botanicals-product.jpg" alt="Dried botanical specimens" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-bottom">
+                                <div>
+                                    <div class="product-card-code">DB-01</div>
+                                    <div class="product-card-name">Dried Botanicals</div>
+                                    <div class="product-card-price">From $30</div>
+                                </div>
+                                <span class="product-card-cta">View</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="products/live-plants.html" class="product-card">
-                    <span class="product-card-badge">Seasonal</span>
-                    <div class="product-card-visual"><img src="images/live-plants-product.jpg" alt="Live botanical plants" class="product-card-img" loading="lazy"></div>
-                    <div class="product-card-bottom">
-                        <div>
-                            <div class="product-card-code">LP-01</div>
-                            <div class="product-card-name">Live Plants</div>
-                            <div class="product-card-price">From $20</div>
-                        </div>
-                        <span class="product-card-cta">View</span>
+                    <div class="embla__slide">
+                        <a href="products/live-plants.html" class="product-card">
+                            <span class="product-card-badge">Seasonal</span>
+                            <div class="product-card-visual"><img src="images/live-plants-product.jpg" alt="Live botanical plants" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-bottom">
+                                <div>
+                                    <div class="product-card-code">LP-01</div>
+                                    <div class="product-card-name">Live Plants</div>
+                                    <div class="product-card-price">From $20</div>
+                                </div>
+                                <span class="product-card-cta">View</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="products/seeds.html" class="product-card">
-                    <span class="product-card-badge">Heirloom</span>
-                    <div class="product-card-visual"><img src="images/seeds-product.jpg" alt="Heirloom botanical seeds" class="product-card-img" loading="lazy"></div>
-                    <div class="product-card-bottom">
-                        <div>
-                            <div class="product-card-code">SD-01</div>
-                            <div class="product-card-name">Heirloom Seeds</div>
-                            <div class="product-card-price">From $20</div>
-                        </div>
-                        <span class="product-card-cta">View</span>
+                    <div class="embla__slide">
+                        <a href="products/seeds.html" class="product-card">
+                            <span class="product-card-badge">Heirloom</span>
+                            <div class="product-card-visual"><img src="images/seeds-product.jpg" alt="Heirloom botanical seeds" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-bottom">
+                                <div>
+                                    <div class="product-card-code">SD-01</div>
+                                    <div class="product-card-name">Heirloom Seeds</div>
+                                    <div class="product-card-price">From $20</div>
+                                </div>
+                                <span class="product-card-cta">View</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
         <div class="carousel-dots" id="carouselDots"></div>
@@ -2240,27 +2211,6 @@
     </div>
 
     <script>
-        // Product Carousel — handled by script.js (initScrollLockCarousel)
-        // Just set up dots + arrow button wiring here
-        (function() {
-            var carousel = document.getElementById('productsCarousel');
-            var dotsContainer = document.getElementById('carouselDots');
-            if (!carousel || !dotsContainer) return;
-            var cards = carousel.querySelectorAll('.product-card');
-
-            // Create dots
-            cards.forEach(function(_, i) {
-                var dot = document.createElement('button');
-                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-                dot.setAttribute('aria-label', 'Go to product ' + (i + 1));
-                dotsContainer.appendChild(dot);
-            });
-
-            // Keyboard navigation
-            carousel.setAttribute('tabindex', '0');
-            carousel.setAttribute('role', 'region');
-            carousel.setAttribute('aria-label', 'Product carousel');
-        })();
 
         // Modal functionality
         const modal = document.getElementById('signupModal');
