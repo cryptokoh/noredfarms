@@ -1331,6 +1331,40 @@ ul, ol {
 
 .login-submit:hover { background: rgba(80, 232, 192, 0.2); border-color: rgba(80, 232, 192, 0.4); }
 
+/* Sign-up CTA in mobile login panel */
+.login-signup-cta {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    text-align: center;
+    background: rgba(80, 232, 192, 0.04);
+    border: 1px solid rgba(80, 232, 192, 0.08);
+    border-radius: 12px;
+}
+
+.login-signup-text {
+    font-size: 0.8125rem;
+    color: #8e9c98;
+    margin-bottom: 0.625rem;
+}
+
+.login-signup-btn {
+    display: inline-block;
+    padding: 0.625rem 1.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #12181a;
+    background: #50e8c0;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.login-signup-btn:hover {
+    background: #5eedc8;
+    box-shadow: 0 0 16px rgba(80, 232, 192, 0.25);
+}
+
 /* Menu footer CTAs */
 .fs-menu-footer {
     position: fixed;
@@ -1407,8 +1441,8 @@ ul, ol {
 .nav-dropdown {
     position: absolute;
     top: calc(100% + 12px);
-    left: 50%;
-    transform: translateX(-50%) translateY(4px);
+    left: 0;
+    transform: translateY(4px);
     min-width: 420px;
     background: var(--color--snowwhite);
     border-radius: 16px;
@@ -1427,7 +1461,7 @@ ul, ol {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
 }
 
 /* Arrow indicator */
@@ -1435,8 +1469,8 @@ ul, ol {
     content: '';
     position: absolute;
     top: -6px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
+    left: 24px;
+    transform: rotate(45deg);
     width: 12px;
     height: 12px;
     background: var(--color--snowwhite);
