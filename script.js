@@ -1179,26 +1179,14 @@ function initProductCarousel() {
     embla.on('select', updateState);
     embla.on('reInit', function() { setupDots(); updateState(); });
 
-    // Wheel-to-scroll: mouse wheel / trackpad scrolls the carousel horizontally
-    var wheelCooldown = false;
-    viewportNode.addEventListener('wheel', function(e) {
-        if (wheelCooldown) { e.preventDefault(); return; }
-        var dy = Math.abs(e.deltaY);
-        var dx = Math.abs(e.deltaX);
-        var delta = dy > dx ? e.deltaY : e.deltaX;
-        var magnitude = Math.max(dy, dx);
-        if (magnitude < 5) return; // ignore tiny movements
-
-        var canGo = delta > 0 ? embla.canScrollNext() : embla.canScrollPrev();
-        if (!canGo) return; // let the page scroll naturally at edges
-
-        e.preventDefault();
-        if (delta > 0) { embla.scrollNext(); } else { embla.scrollPrev(); }
-
-        // Debounce to prevent rapid-fire on trackpads
-        wheelCooldown = true;
-        setTimeout(function() { wheelCooldown = false; }, 300);
-    }, { passive: false });
+    // Keyboard navigation when carousel is focused
+    emblaNode.setAttribute('tabindex', '0');
+    emblaNode.setAttribute('role', 'region');
+    emblaNode.setAttribute('aria-label', 'Featured products');
+    emblaNode.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight') { embla.scrollNext(); e.preventDefault(); }
+        if (e.key === 'ArrowLeft') { embla.scrollPrev(); e.preventDefault(); }
+    });
 }
 
 /**
