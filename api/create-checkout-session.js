@@ -1,6 +1,7 @@
 /**
  * Stripe Checkout Session Creator
  * Serverless function for creating Stripe checkout sessions
+ * Supports guest checkout with pre-collected shipping info
  * Deploy to: Netlify Functions, Vercel, AWS Lambda, etc.
  */
 
@@ -34,7 +35,7 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        const { items, customerEmail, userId } = JSON.parse(event.body);
+        const { items, customerEmail, userId, shippingAddress } = JSON.parse(event.body);
 
         // Validate items
         if (!items || !Array.isArray(items) || items.length === 0) {
@@ -60,18 +61,90 @@ exports.handler = async (event, context) => {
             quantity: item.quantity,
         }));
 
+        // Calculate subtotal for free shipping threshold
+        const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+        // Build shipping options: free over $100, flat $8 otherwise
+        const shippingOptions = [];
+        if (subtotal >= 100) {
+            shippingOptions.push({
+                shipping_rate_data: {
+                    type: 'fixed_amount',
+                    fixed_amount: {
+                        amount: 0,
+                        currency: 'usd',
+                    },
+                    display_name: 'Free Shipping',
+                    delivery_estimate: {
+                        minimum: { unit: 'business_day', value: 5 },
+                        maximum: { unit: 'business_day', value: 7 },
+                    },
+                },
+            });
+        } else {
+            shippingOptions.push(
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount: {
+                            amount: 800, // $8.00
+                            currency: 'usd',
+                        },
+                        display_name: 'Standard Shipping',
+                        delivery_estimate: {
+                            minimum: { unit: 'business_day', value: 5 },
+                            maximum: { unit: 'business_day', value: 7 },
+                        },
+                    },
+                },
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount: {
+                            amount: 0,
+                            currency: 'usd',
+                        },
+                        display_name: 'Free Shipping (orders over $100)',
+                        delivery_estimate: {
+                            minimum: { unit: 'business_day', value: 5 },
+                            maximum: { unit: 'business_day', value: 7 },
+                        },
+                    },
+                }
+            );
+            // Only show the free option as informational if under $100
+            // Actually just show standard shipping as the only real option
+            shippingOptions.length = 0;
+            shippingOptions.push({
+                shipping_rate_data: {
+                    type: 'fixed_amount',
+                    fixed_amount: {
+                        amount: 800,
+                        currency: 'usd',
+                    },
+                    display_name: 'Standard Shipping',
+                    delivery_estimate: {
+                        minimum: { unit: 'business_day', value: 5 },
+                        maximum: { unit: 'business_day', value: 7 },
+                    },
+                },
+            });
+        }
+
         // Determine success/cancel URLs based on environment
         const baseUrl = process.env.URL || 'https://noredfarms.netlify.app';
 
-        const session = await stripe.checkout.sessions.create({
+        // Build session configuration
+        const sessionConfig = {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
             success_url: `${baseUrl}/success.html?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${baseUrl}/cancel.html`,
-            customer_email: customerEmail || undefined,
+            shipping_options: shippingOptions,
+            // Allow Stripe to collect/confirm shipping address as fallback
             shipping_address_collection: {
-                allowed_countries: ['US'], // Adjust based on your shipping countries
+                allowed_countries: ['US'],
             },
             billing_address_collection: 'required',
             metadata: {
@@ -84,7 +157,25 @@ exports.handler = async (event, context) => {
             },
             // Automatic tax calculation (if enabled in Stripe)
             // automatic_tax: { enabled: true },
-        });
+        };
+
+        // Set customer email for guest checkout (no Stripe login required)
+        if (customerEmail) {
+            sessionConfig.customer_email = customerEmail;
+        }
+
+        // If shipping address was pre-collected, store it in metadata
+        // so the Stripe checkout page can pre-fill shipping fields
+        if (shippingAddress) {
+            sessionConfig.metadata.shipping_name = shippingAddress.name || '';
+            sessionConfig.metadata.shipping_line1 = shippingAddress.address_line1 || '';
+            sessionConfig.metadata.shipping_city = shippingAddress.city || '';
+            sessionConfig.metadata.shipping_state = shippingAddress.state || '';
+            sessionConfig.metadata.shipping_zip = shippingAddress.postal_code || '';
+            sessionConfig.metadata.shipping_country = shippingAddress.country || 'US';
+        }
+
+        const session = await stripe.checkout.sessions.create(sessionConfig);
 
         return {
             statusCode: 200,

@@ -3749,6 +3749,38 @@ ul, ol {
     max-width: 800px;
 }
 
+.seed-footer-social {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(80, 232, 192, 0.05);
+    margin-top: 16px;
+}
+.seed-footer-social .social-follow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.seed-footer-social .social-follow a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(80, 232, 192, 0.12);
+    color: var(--color--olivegreen);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.seed-footer-social .social-follow a:hover {
+    border-color: #50e8c0;
+    color: #50e8c0;
+    background: rgba(80, 232, 192, 0.08);
+}
+.seed-footer-social .social-follow a svg { width: 16px; height: 16px; }
+
 .seed-footer-bottom {
     display: flex;
     justify-content: space-between;

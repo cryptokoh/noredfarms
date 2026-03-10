@@ -8,6 +8,7 @@ const Cart = {
     items: [],
     isOpen: false,
     isProcessing: false, // Prevent double-clicks
+    isCheckoutView: false, // Track if checkout form is showing
     _syncTimer: null,
 
     // Initialize cart from localStorage, then merge server cart if logged in
@@ -184,11 +185,14 @@ const Cart = {
     // Close cart sidebar
     close() {
         this.isOpen = false;
+        this.isCheckoutView = false;
         const sidebar = document.getElementById('cartSidebar');
         const overlay = document.getElementById('cartOverlay');
         if (sidebar) sidebar.classList.remove('open');
         if (overlay) overlay.classList.remove('visible');
         document.body.style.overflow = '';
+        // Restore cart view when closing
+        this.render();
     },
 
     // Toggle cart
@@ -349,7 +353,11 @@ const Cart = {
         // Escape key to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
-                this.close();
+                if (this.isCheckoutView) {
+                    this.showCartView();
+                } else {
+                    this.close();
+                }
             }
         });
 
@@ -358,7 +366,7 @@ const Cart = {
         if (checkoutBtn) {
             checkoutBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.checkout();
+                this.showCheckoutForm();
             });
         }
 
@@ -416,19 +424,348 @@ const Cart = {
         return { id, name: title, category, price };
     },
 
-    // Checkout process - Real Stripe Integration
-    async checkout() {
-        if (this.items.length === 0 || this.isProcessing) return;
+    // Show checkout form inside the cart sidebar
+    showCheckoutForm() {
+        if (this.items.length === 0) return;
+        this.isCheckoutView = true;
+
+        const cartBody = document.querySelector('.cart-sidebar .cart-body');
+        const cartFooter = document.querySelector('.cart-sidebar .cart-footer');
+        const cartHeader = document.querySelector('.cart-sidebar .cart-header h2');
+
+        if (!cartBody) return;
+
+        // Update header
+        if (cartHeader) {
+            cartHeader.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                    <line x1="1" y1="10" x2="23" y2="10"/>
+                </svg>
+                Checkout
+            `;
+        }
+
+        // Calculate shipping display
+        const subtotal = this.getTotal();
+        const shippingText = subtotal >= 100 ? 'Free' : '$8.00';
+        const total = subtotal >= 100 ? subtotal : subtotal + 8;
+
+        // Build checkout form
+        cartBody.innerHTML = `
+            <form class="checkout-form" id="checkoutForm" novalidate>
+                <div class="checkout-form-summary">
+                    <h3 class="checkout-form-section-title">Order Summary</h3>
+                    <div class="checkout-form-items">
+                        ${this.items.map(item => `
+                            <div class="checkout-form-item">
+                                <span class="checkout-form-item-name">${item.name} <span class="checkout-form-item-qty">&times; ${item.quantity}</span></span>
+                                <span class="checkout-form-item-price">$${(item.price * item.quantity).toFixed(2)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="checkout-form-totals">
+                        <div class="checkout-form-row">
+                            <span>Subtotal</span>
+                            <span>$${subtotal.toFixed(2)}</span>
+                        </div>
+                        <div class="checkout-form-row">
+                            <span>Shipping</span>
+                            <span>${shippingText}</span>
+                        </div>
+                        <div class="checkout-form-row checkout-form-row-total">
+                            <span>Total</span>
+                            <span>$${total.toFixed(2)}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="checkout-form-section-title">Contact</h3>
+                <div class="checkout-form-group">
+                    <label class="checkout-label" for="checkout-email">Email</label>
+                    <input
+                        class="checkout-input"
+                        type="email"
+                        id="checkout-email"
+                        name="email"
+                        placeholder="your@email.com"
+                        required
+                        autocomplete="email"
+                    />
+                    <span class="checkout-field-error" id="error-email"></span>
+                </div>
+
+                <h3 class="checkout-form-section-title">Shipping Address</h3>
+                <div class="checkout-form-group">
+                    <label class="checkout-label" for="checkout-name">Full Name</label>
+                    <input
+                        class="checkout-input"
+                        type="text"
+                        id="checkout-name"
+                        name="name"
+                        placeholder="Jane Doe"
+                        required
+                        autocomplete="name"
+                    />
+                    <span class="checkout-field-error" id="error-name"></span>
+                </div>
+
+                <div class="checkout-form-group">
+                    <label class="checkout-label" for="checkout-address">Street Address</label>
+                    <input
+                        class="checkout-input"
+                        type="text"
+                        id="checkout-address"
+                        name="address_line1"
+                        placeholder="123 Main St"
+                        required
+                        autocomplete="address-line1"
+                    />
+                    <span class="checkout-field-error" id="error-address"></span>
+                </div>
+
+                <div class="checkout-form-row-inputs">
+                    <div class="checkout-form-group checkout-form-group-flex">
+                        <label class="checkout-label" for="checkout-city">City</label>
+                        <input
+                            class="checkout-input"
+                            type="text"
+                            id="checkout-city"
+                            name="city"
+                            placeholder="Austin"
+                            required
+                            autocomplete="address-level2"
+                        />
+                        <span class="checkout-field-error" id="error-city"></span>
+                    </div>
+                    <div class="checkout-form-group checkout-form-group-small">
+                        <label class="checkout-label" for="checkout-state">State</label>
+                        <input
+                            class="checkout-input"
+                            type="text"
+                            id="checkout-state"
+                            name="state"
+                            placeholder="TX"
+                            maxlength="2"
+                            required
+                            autocomplete="address-level1"
+                        />
+                        <span class="checkout-field-error" id="error-state"></span>
+                    </div>
+                    <div class="checkout-form-group checkout-form-group-small">
+                        <label class="checkout-label" for="checkout-zip">ZIP</label>
+                        <input
+                            class="checkout-input"
+                            type="text"
+                            id="checkout-zip"
+                            name="zip"
+                            placeholder="78701"
+                            maxlength="10"
+                            required
+                            autocomplete="postal-code"
+                        />
+                        <span class="checkout-field-error" id="error-zip"></span>
+                    </div>
+                </div>
+
+                <div class="checkout-form-notice">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    <span>Payment is handled securely by Stripe. We never see your card details.</span>
+                </div>
+
+                <div class="checkout-form-actions">
+                    <button type="button" class="checkout-back-btn" id="checkoutBackBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"/>
+                        </svg>
+                        Back
+                    </button>
+                    <button type="submit" class="checkout-submit-btn" id="checkoutSubmitBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <span>Pay with Stripe</span>
+                    </button>
+                </div>
+            </form>
+        `;
+
+        // Hide the cart footer
+        if (cartFooter) {
+            cartFooter.style.display = 'none';
+        }
+
+        // Bind form events
+        this._bindCheckoutFormEvents();
+
+        // Focus the email field
+        const emailInput = document.getElementById('checkout-email');
+        if (emailInput) {
+            setTimeout(() => emailInput.focus(), 100);
+        }
+    },
+
+    // Restore the normal cart view from checkout form
+    showCartView() {
+        this.isCheckoutView = false;
+
+        const cartFooter = document.querySelector('.cart-sidebar .cart-footer');
+        const cartHeader = document.querySelector('.cart-sidebar .cart-header h2');
+
+        // Restore header
+        if (cartHeader) {
+            cartHeader.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                Your Cart
+            `;
+        }
+
+        // Show footer again
+        if (cartFooter) {
+            cartFooter.style.display = '';
+        }
+
+        // Re-render cart items
+        this.render();
+    },
+
+    // Bind checkout form submission and back button
+    _bindCheckoutFormEvents() {
+        const form = document.getElementById('checkoutForm');
+        const backBtn = document.getElementById('checkoutBackBtn');
+
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showCartView();
+            });
+        }
+
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this._handleCheckoutSubmit();
+            });
+        }
+    },
+
+    // Validate a single field and show/clear its error
+    _validateField(name, value) {
+        const errorEl = document.getElementById(`error-${name}`);
+        let message = '';
+
+        switch (name) {
+            case 'email':
+                if (!value) {
+                    message = 'Email is required';
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    message = 'Enter a valid email address';
+                }
+                break;
+            case 'name':
+                if (!value) {
+                    message = 'Full name is required';
+                } else if (value.length < 2) {
+                    message = 'Enter your full name';
+                }
+                break;
+            case 'address':
+                if (!value) {
+                    message = 'Street address is required';
+                }
+                break;
+            case 'city':
+                if (!value) {
+                    message = 'City is required';
+                }
+                break;
+            case 'state':
+                if (!value) {
+                    message = 'State is required';
+                } else if (!/^[A-Za-z]{2}$/.test(value)) {
+                    message = 'Use 2-letter code (e.g. TX)';
+                }
+                break;
+            case 'zip':
+                if (!value) {
+                    message = 'ZIP code is required';
+                } else if (!/^\d{5}(-\d{4})?$/.test(value)) {
+                    message = 'Enter a valid ZIP code';
+                }
+                break;
+        }
+
+        if (errorEl) {
+            errorEl.textContent = message;
+        }
+
+        // Toggle error class on the input
+        const inputMap = {
+            email: 'checkout-email',
+            name: 'checkout-name',
+            address: 'checkout-address',
+            city: 'checkout-city',
+            state: 'checkout-state',
+            zip: 'checkout-zip'
+        };
+        const input = document.getElementById(inputMap[name]);
+        if (input) {
+            if (message) {
+                input.classList.add('checkout-input-error');
+            } else {
+                input.classList.remove('checkout-input-error');
+            }
+        }
+
+        return !message;
+    },
+
+    // Handle checkout form submission
+    async _handleCheckoutSubmit() {
+        if (this.isProcessing) return;
+
+        // Gather values
+        const email = (document.getElementById('checkout-email')?.value || '').trim();
+        const name = (document.getElementById('checkout-name')?.value || '').trim();
+        const address = (document.getElementById('checkout-address')?.value || '').trim();
+        const city = (document.getElementById('checkout-city')?.value || '').trim();
+        const state = (document.getElementById('checkout-state')?.value || '').trim().toUpperCase();
+        const zip = (document.getElementById('checkout-zip')?.value || '').trim();
+
+        // Validate all fields
+        const validations = [
+            this._validateField('email', email),
+            this._validateField('name', name),
+            this._validateField('address', address),
+            this._validateField('city', city),
+            this._validateField('state', state),
+            this._validateField('zip', zip)
+        ];
+
+        if (validations.some(v => !v)) {
+            // Focus first invalid field
+            const firstError = document.querySelector('.checkout-input-error');
+            if (firstError) firstError.focus();
+            return;
+        }
+
         this.isProcessing = true;
+        const submitBtn = document.getElementById('checkoutSubmitBtn');
+        const originalHTML = submitBtn ? submitBtn.innerHTML : '';
 
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        const originalText = checkoutBtn.innerHTML;
-
-        checkoutBtn.innerHTML = '<span>Processing...</span>';
-        checkoutBtn.disabled = true;
+        if (submitBtn) {
+            submitBtn.innerHTML = '<span class="checkout-spinner"></span><span>Processing...</span>';
+            submitBtn.disabled = true;
+        }
 
         try {
-            // Check if Stripe is configured
             if (!window.StripeConfig) {
                 throw new Error('Stripe not configured. Please include stripe-config.js');
             }
@@ -439,22 +776,44 @@ const Cart = {
                 try {
                     const user = await getUser();
                     if (user) userId = user.id;
-                } catch (e) { /* not logged in */ }
+                } catch (e) { /* not logged in - guest checkout */ }
             }
 
-            // Create checkout session
-            const { sessionId, url } = await window.StripeConfig.createCheckoutSession(
-                this.items,
-                null,
-                userId
-            );
+            // Build shipping address object
+            const shippingAddress = {
+                name: name,
+                address_line1: address,
+                city: city,
+                state: state,
+                postal_code: zip,
+                country: 'US'
+            };
+
+            // Call the checkout session endpoint with shipping info
+            const response = await fetch(window.StripeConfig.apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    items: this.items,
+                    customerEmail: email,
+                    userId: userId,
+                    shippingAddress: shippingAddress
+                }),
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || 'Failed to create checkout session');
+            }
+
+            const { sessionId, url } = await response.json();
 
             // Redirect to Stripe Checkout
             if (url) {
-                // Direct redirect (Stripe Checkout hosted page)
                 window.location.href = url;
             } else if (sessionId) {
-                // Use Stripe.js redirect
                 await window.StripeConfig.redirectToCheckout(sessionId);
             } else {
                 throw new Error('No checkout URL received');
@@ -463,21 +822,67 @@ const Cart = {
         } catch (error) {
             console.error('Checkout error:', error);
 
-            // Show user-friendly error message
             const errorMsg = error.message.includes('fetch')
                 ? 'Unable to connect to payment processor. Please check your internet connection and try again.'
                 : error.message || 'There was an error processing your checkout. Please try again.';
 
-            alert(errorMsg);
+            // Show inline error instead of alert
+            this._showCheckoutError(errorMsg);
 
             // Reset button
-            checkoutBtn.innerHTML = originalText;
-            checkoutBtn.disabled = false;
+            if (submitBtn) {
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+            }
             this.isProcessing = false;
         }
     },
 
-    // Show checkout modal (demo)
+    // Show an inline error message on the checkout form
+    _showCheckoutError(message) {
+        // Remove existing error banner
+        const existing = document.querySelector('.checkout-form-error-banner');
+        if (existing) existing.remove();
+
+        const banner = document.createElement('div');
+        banner.className = 'checkout-form-error-banner';
+        banner.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="15" y1="9" x2="9" y2="15"/>
+                <line x1="9" y1="9" x2="15" y2="15"/>
+            </svg>
+            <span>${message}</span>
+        `;
+
+        const form = document.getElementById('checkoutForm');
+        if (form) {
+            // Insert before the actions row
+            const actions = form.querySelector('.checkout-form-actions');
+            if (actions) {
+                form.insertBefore(banner, actions);
+            } else {
+                form.appendChild(banner);
+            }
+        }
+
+        // Auto-dismiss after 8 seconds
+        setTimeout(() => {
+            if (banner.parentNode) {
+                banner.classList.add('checkout-form-error-banner-fade');
+                setTimeout(() => banner.remove(), 300);
+            }
+        }, 8000);
+    },
+
+    // Checkout process - Real Stripe Integration (kept as fallback)
+    async checkout() {
+        if (this.items.length === 0 || this.isProcessing) return;
+        // Redirect to the inline checkout form
+        this.showCheckoutForm();
+    },
+
+    // Show checkout modal (demo - legacy, kept for reference)
     showCheckoutModal() {
         if (document.querySelector('.checkout-modal')) return;
 
@@ -506,7 +911,7 @@ const Cart = {
                     <div class="checkout-items">
                         ${this.items.map(item => `
                             <div class="checkout-item">
-                                <span>${item.name} × ${item.quantity}</span>
+                                <span>${item.name} x ${item.quantity}</span>
                                 <span>$${(item.price * item.quantity).toFixed(2)}</span>
                             </div>
                         `).join('')}
