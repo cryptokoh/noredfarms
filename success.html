@@ -10,178 +10,1076 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@350;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/courses/supabase-config.js"></script>
+    <script src="/courses/auth.js"></script>
+
     <style>
+        /* ── Layout ── */
         .success-page {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, var(--color-primary-subtle) 0%, var(--color-bg) 100%);
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Subtle background glow */
+        .success-page::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(80, 232, 192, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
         .success-container {
-            max-width: 600px;
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-2xl);
-            padding: 3rem;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
         }
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 2rem;
-            background: var(--color-success, #10b981);
+
+        /* ── Confirmation Card ── */
+        .confirmation-card {
+            background: var(--color--seedgreen-card, #1e2628);
+            border: 1px solid rgba(80, 232, 192, 0.08);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Animated check icon */
+        .check-ring {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .check-ring svg {
+            width: 72px;
+            height: 72px;
+        }
+
+        .check-ring .circle {
+            stroke: var(--color--mossroot, #50e8c0);
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: drawCircle 0.6s ease-out 0.2s forwards;
+        }
+
+        .check-ring .check {
+            stroke: var(--color--mossroot, #50e8c0);
+            stroke-width: 2.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 40;
+            stroke-dashoffset: 40;
+            animation: drawCheck 0.4s ease-out 0.7s forwards;
+        }
+
+        @keyframes drawCircle {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .confirmation-card h1 {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--color--seedgreen, #bccac4);
+            margin: 0 0 0.5rem;
+        }
+
+        .confirmation-card .subtitle {
+            font-size: 0.875rem;
+            font-weight: 350;
+            color: var(--color--olivegreen, #8e9c98);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ── Order Summary ── */
+        .order-summary {
+            margin-top: 1.75rem;
+            background: rgba(18, 24, 26, 0.5);
+            border: 1px solid rgba(80, 232, 192, 0.05);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .order-summary-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.875rem 1.25rem;
+            border-bottom: 1px solid rgba(80, 232, 192, 0.05);
+        }
+
+        .order-summary-header span {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--color--olivegreen, #8e9c98);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .order-date {
+            font-size: 0.75rem;
+            font-weight: 350;
+            color: var(--color-text-muted, #506460);
+        }
+
+        .order-items {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.25rem;
+            border-bottom: 1px solid rgba(80, 232, 192, 0.03);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-name {
+            font-size: 0.875rem;
+            font-weight: 350;
+            color: var(--color--seedgreen, #bccac4);
+        }
+
+        .order-item-qty {
+            font-size: 0.75rem;
+            color: var(--color-text-muted, #506460);
+            margin-left: 0.375rem;
+        }
+
+        .order-item-price {
+            font-size: 0.875rem;
+            font-weight: 350;
+            color: var(--color--olivegreen, #8e9c98);
+            white-space: nowrap;
+        }
+
+        .order-total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.875rem 1.25rem;
+            background: rgba(80, 232, 192, 0.03);
+            border-top: 1px solid rgba(80, 232, 192, 0.06);
+        }
+
+        .order-total span:first-child {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--color--olivegreen, #8e9c98);
+        }
+
+        .order-total span:last-child {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color--mossroot, #50e8c0);
+        }
+
+        /* Shipping info row */
+        .order-shipping {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid rgba(80, 232, 192, 0.05);
+        }
+
+        .order-shipping svg {
+            width: 14px;
+            height: 14px;
+            color: var(--color-text-muted, #506460);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .order-shipping-text {
+            font-size: 0.75rem;
+            font-weight: 350;
+            color: var(--color-text-muted, #506460);
+            line-height: 1.5;
+        }
+
+        /* ── Loading skeleton ── */
+        .order-skeleton {
+            padding: 1.25rem;
+        }
+
+        .skeleton-line {
+            height: 14px;
+            background: rgba(80, 232, 192, 0.04);
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        .skeleton-line:nth-child(1) { width: 60%; }
+        .skeleton-line:nth-child(2) { width: 80%; }
+        .skeleton-line:nth-child(3) { width: 45%; }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ── Actions ── */
+        .confirmation-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn-continue {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 10px 20px;
+            border-radius: 99em;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 350;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-continue.primary {
+            background: var(--color--mossroot, #50e8c0);
+            color: var(--color--snowwhite, #12181a);
+        }
+
+        .btn-continue.primary:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+
+        .btn-continue.secondary {
+            background: transparent;
+            color: var(--color--olivegreen, #8e9c98);
+            border: 1px solid rgba(80, 232, 192, 0.1);
+        }
+
+        .btn-continue.secondary:hover {
+            border-color: rgba(80, 232, 192, 0.2);
+            color: var(--color--seedgreen, #bccac4);
+        }
+
+        .btn-continue svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ── Account Creation Card ── */
+        .signup-card {
+            margin-top: 1rem;
+            background: var(--color--seedgreen-card, #1e2628);
+            border: 1px solid rgba(80, 232, 192, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .signup-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .signup-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .signup-card-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(80, 232, 192, 0.08);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .signup-card-icon svg {
+            width: 18px;
+            height: 18px;
+            color: var(--color--mossroot, #50e8c0);
+        }
+
+        .signup-card-header h2 {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color--seedgreen, #bccac4);
+            margin: 0;
+        }
+
+        .signup-card-header p {
+            font-size: 0.8125rem;
+            font-weight: 350;
+            color: var(--color--olivegreen, #8e9c98);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Email display (pre-filled, read-only feel) */
+        .signup-email-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 0.875rem;
+            background: rgba(18, 24, 26, 0.5);
+            border: 1px solid rgba(80, 232, 192, 0.05);
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+        }
+
+        .signup-email-display svg {
+            width: 14px;
+            height: 14px;
+            color: var(--color-text-muted, #506460);
+            flex-shrink: 0;
+        }
+
+        .signup-email-display span {
+            font-size: 0.875rem;
+            font-weight: 350;
+            color: var(--color--seedgreen, #bccac4);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .signup-email-display .check-badge {
+            margin-left: auto;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--color--mossroot, #50e8c0);
+            background: rgba(80, 232, 192, 0.08);
+            padding: 2px 8px;
+            border-radius: 99em;
+            white-space: nowrap;
+        }
+
+        /* Password field */
+        .signup-field {
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+
+        .signup-input {
+            width: 100%;
+            padding: 0.625rem 2.5rem 0.625rem 0.875rem;
+            background: rgba(18, 24, 26, 0.5);
+            border: 1px solid rgba(80, 232, 192, 0.08);
+            border-radius: 10px;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 350;
+            color: var(--color--seedgreen, #bccac4);
+            outline: none;
+            transition: border-color 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .signup-input::placeholder {
+            color: var(--color-text-muted, #506460);
+        }
+
+        .signup-input:focus {
+            border-color: rgba(80, 232, 192, 0.25);
+        }
+
+        .signup-input.error {
+            border-color: var(--color-error, #c45c4b);
+        }
+
+        .signup-toggle-pw {
+            position: absolute;
+            right: 0.625rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 4px;
+            cursor: pointer;
+            color: var(--color-text-muted, #506460);
+            transition: color 0.2s ease;
+        }
+
+        .signup-toggle-pw:hover {
+            color: var(--color--olivegreen, #8e9c98);
+        }
+
+        .signup-toggle-pw svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .signup-error {
+            font-size: 0.75rem;
+            color: var(--color-error, #c45c4b);
+            margin-top: 0.25rem;
+            min-height: 1rem;
+        }
+
+        /* Password strength */
+        .pw-strength {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 0.75rem;
+        }
+
+        .pw-strength-bar {
+            height: 3px;
+            flex: 1;
+            background: rgba(80, 232, 192, 0.06);
+            border-radius: 2px;
+            transition: background 0.2s ease;
+        }
+
+        .pw-strength-bar.active.weak { background: var(--color-error, #c45c4b); }
+        .pw-strength-bar.active.fair { background: var(--color-warning, #d4a84b); }
+        .pw-strength-bar.active.good { background: var(--color--mossroot, #50e8c0); }
+        .pw-strength-bar.active.strong { background: var(--color--mossroot, #50e8c0); }
+
+        /* Perks list */
+        .signup-perks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .perk {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 350;
+            color: var(--color--olivegreen, #8e9c98);
+        }
+
+        .perk svg {
+            width: 12px;
+            height: 12px;
+            color: var(--color--mossroot, #50e8c0);
+            flex-shrink: 0;
+        }
+
+        /* Create account button */
+        .signup-submit {
+            width: 100%;
+            padding: 0.75rem 1.25rem;
+            background: var(--color--mossroot, #50e8c0);
+            color: var(--color--snowwhite, #12181a);
+            border: none;
+            border-radius: 99em;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .signup-submit:hover:not(:disabled) {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+
+        .signup-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .signup-submit .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(18, 24, 26, 0.3);
+            border-top-color: var(--color--snowwhite, #12181a);
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .signup-skip {
+            display: block;
+            margin-top: 0.75rem;
+            font-size: 0.8125rem;
+            font-weight: 350;
+            color: var(--color-text-muted, #506460);
+            text-align: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: var(--font-sans);
+            transition: color 0.2s ease;
+            width: 100%;
+        }
+
+        .signup-skip:hover {
+            color: var(--color--olivegreen, #8e9c98);
+        }
+
+        /* ── Account Created State ── */
+        .signup-success {
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+
+        .signup-success-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
+            background: rgba(80, 232, 192, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: scaleIn 0.5s ease-out;
+            animation: scaleIn 0.3s ease-out;
         }
-        .success-icon svg {
-            width: 48px;
-            height: 48px;
-            color: white;
-            stroke-width: 3;
-        }
+
         @keyframes scaleIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
-        .success-container h1 {
-            font-family: var(--font-serif);
-            font-size: var(--text-3xl);
-            color: var(--color-text);
-            margin-bottom: 1rem;
+
+        .signup-success-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color--mossroot, #50e8c0);
         }
-        .success-container p {
-            color: var(--color-text-muted);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        .order-details {
-            background: var(--color-bg-secondary);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-xl);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            text-align: left;
-        }
-        .order-details h3 {
-            font-size: var(--text-base);
+
+        .signup-success h3 {
+            font-family: var(--font-sans);
+            font-size: 1rem;
             font-weight: 500;
-            color: var(--color-text);
-            margin-bottom: 1rem;
+            color: var(--color--seedgreen, #bccac4);
+            margin: 0 0 0.375rem;
         }
-        .order-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            color: var(--color-text-muted);
-            font-size: var(--text-sm);
+
+        .signup-success p {
+            font-size: 0.8125rem;
+            font-weight: 350;
+            color: var(--color--olivegreen, #8e9c98);
+            margin: 0 0 1.25rem;
+            line-height: 1.5;
         }
-        .order-row strong {
-            color: var(--color-text);
-        }
-        .success-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        .btn {
+
+        .signup-success .btn-continue {
             display: inline-flex;
+        }
+
+        /* ── Already Logged In State ── */
+        .already-linked {
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.5rem;
-            border-radius: var(--radius-full);
-            font-weight: 500;
+            gap: 0.625rem;
+            padding: 0.75rem 1rem;
+            margin-top: 1rem;
+            background: rgba(80, 232, 192, 0.04);
+            border: 1px solid rgba(80, 232, 192, 0.08);
+            border-radius: 14px;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
+
+        .already-linked.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .already-linked svg {
+            width: 18px;
+            height: 18px;
+            color: var(--color--mossroot, #50e8c0);
+            flex-shrink: 0;
+        }
+
+        .already-linked span {
+            font-size: 0.8125rem;
+            font-weight: 350;
+            color: var(--color--olivegreen, #8e9c98);
+        }
+
+        .already-linked a {
+            color: var(--color--mossroot, #50e8c0);
             text-decoration: none;
-            transition: var(--transition-base);
-            cursor: pointer;
-            border: none;
-            font-size: var(--text-base);
+            font-weight: 500;
         }
-        .btn-primary {
-            background: var(--color-primary);
-            color: white;
+
+        .already-linked a:hover {
+            opacity: 0.6;
         }
-        .btn-primary:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-1px);
-        }
-        .btn-secondary {
-            background: transparent;
-            color: var(--color-primary);
-            border: 1px solid var(--color-border);
-        }
-        .btn-secondary:hover {
-            background: var(--color-bg-secondary);
+
+        /* ── Responsive ── */
+        @media (max-width: 480px) {
+            .success-page {
+                padding: 1.5rem 0.75rem;
+                align-items: flex-start;
+                padding-top: 4rem;
+            }
+
+            .confirmation-card {
+                padding: 2rem 1.25rem;
+            }
+
+            .signup-card {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .confirmation-actions {
+                flex-direction: column;
+            }
+
+            .btn-continue {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="success-page">
         <div class="success-container">
-            <div class="success-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                    <polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-            </div>
 
-            <h1>Order Confirmed!</h1>
-            <p>Thank you for your purchase. Your order has been successfully processed and you'll receive a confirmation email shortly.</p>
-
-            <div class="order-details" id="orderDetails">
-                <h3>Order Information</h3>
-                <div class="order-row">
-                    <span>Session ID:</span>
-                    <strong id="sessionId">Loading...</strong>
-                </div>
-                <div class="order-row">
-                    <span>Date:</span>
-                    <strong id="orderDate"></strong>
-                </div>
-            </div>
-
-            <div class="success-actions">
-                <a href="/index.html" class="btn btn-primary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                        <polyline points="9 22 9 12 15 12 15 22"/>
+            <!-- Confirmation Card -->
+            <div class="confirmation-card">
+                <div class="check-ring">
+                    <svg viewBox="0 0 72 72">
+                        <circle class="circle" cx="36" cy="36" r="32"/>
+                        <polyline class="check" points="22,38 32,48 50,26"/>
                     </svg>
-                    <span>Return Home</span>
-                </a>
-                <a href="/contact.html" class="btn btn-secondary">
-                    <span>Contact Support</span>
-                </a>
+                </div>
+
+                <h1>Order Confirmed</h1>
+                <p class="subtitle">Thank you for your purchase. You'll receive a confirmation email at <strong id="customerEmail">your email</strong> shortly.</p>
+
+                <!-- Order Summary (populated via JS) -->
+                <div class="order-summary" id="orderSummary">
+                    <div class="order-skeleton">
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-line"></div>
+                    </div>
+                </div>
+
+                <div class="confirmation-actions">
+                    <a href="/index.html" class="btn-continue primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                        Continue Shopping
+                    </a>
+                    <a href="/contact.html" class="btn-continue secondary">
+                        Need Help?
+                    </a>
+                </div>
             </div>
+
+            <!-- Account Creation (shown for guests, hidden for logged-in users) -->
+            <div class="signup-card" id="signupCard" style="display: none;">
+                <div class="signup-card-header">
+                    <div class="signup-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Save your info for next time</h2>
+                        <p>Track orders, faster checkout, and early access to new products.</p>
+                    </div>
+                </div>
+
+                <form id="signupForm" autocomplete="on">
+                    <!-- Email (pre-filled, read-only) -->
+                    <div class="signup-email-display">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <span id="signupEmailDisplay">loading...</span>
+                        <span class="check-badge">from your order</span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="signup-field">
+                        <input
+                            class="signup-input"
+                            type="password"
+                            id="signupPassword"
+                            name="new-password"
+                            placeholder="Choose a password"
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                        />
+                        <button type="button" class="signup-toggle-pw" id="togglePw" aria-label="Show password">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Password strength -->
+                    <div class="pw-strength" id="pwStrength">
+                        <div class="pw-strength-bar"></div>
+                        <div class="pw-strength-bar"></div>
+                        <div class="pw-strength-bar"></div>
+                        <div class="pw-strength-bar"></div>
+                    </div>
+
+                    <div class="signup-error" id="signupError"></div>
+
+                    <!-- Perks -->
+                    <div class="signup-perks">
+                        <span class="perk">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Order history
+                        </span>
+                        <span class="perk">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Faster checkout
+                        </span>
+                        <span class="perk">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Early access
+                        </span>
+                    </div>
+
+                    <button type="submit" class="signup-submit" id="signupSubmit">
+                        <span>Create Account</span>
+                    </button>
+
+                    <button type="button" class="signup-skip" id="signupSkip">No thanks, maybe later</button>
+                </form>
+
+                <!-- Success state (replaces form) -->
+                <div class="signup-success" id="signupSuccess" style="display: none;">
+                    <div class="signup-success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <h3>Account created</h3>
+                    <p>Your order is linked. Sign in anytime to track orders and check out faster.</p>
+                    <a href="/account/dashboard.html" class="btn-continue primary" style="font-size: 0.8125rem; padding: 8px 16px;">
+                        View Account
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Already Logged In (shown instead of signup for auth'd users) -->
+            <div class="already-linked" id="alreadyLinked" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span>Order linked to your account. <a href="/account/dashboard.html">View orders</a></span>
+            </div>
+
         </div>
     </div>
 
     <script>
-        // Extract session ID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const sessionId = urlParams.get('session_id');
-
-        if (sessionId) {
-            document.getElementById('sessionId').textContent = sessionId;
-        } else {
-            document.getElementById('sessionId').textContent = 'N/A';
+    (async function() {
+        // ── Helpers ──
+        function esc(str) {
+            const d = document.createElement('div');
+            d.textContent = str || '';
+            return d.innerHTML;
         }
 
-        // Set order date
-        document.getElementById('orderDate').textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
+        // ── State ──
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get('session_id');
+        let customerEmail = '';
+        let customerName = '';
 
-        // Clear cart from localStorage
+        // Clear cart
         localStorage.removeItem('noredfarms-cart');
+
+        // ── 1. Fetch session details from Stripe ──
+        if (sessionId) {
+            try {
+                const resp = await fetch(`/.netlify/functions/get-checkout-session?session_id=${encodeURIComponent(sessionId)}`);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    customerEmail = data.customer_email || '';
+                    customerName = data.customer_name || '';
+                    renderOrderSummary(data);
+                } else {
+                    renderOrderFallback();
+                }
+            } catch (e) {
+                renderOrderFallback();
+            }
+        } else {
+            renderOrderFallback();
+        }
+
+        // Update email display
+        const emailEl = document.getElementById('customerEmail');
+        if (customerEmail) {
+            emailEl.textContent = customerEmail;
+        } else {
+            emailEl.textContent = 'your email';
+        }
+
+        // ── 2. Check auth state & show appropriate card ──
+        try {
+            const user = await getUser();
+            if (user) {
+                // Already logged in — show "linked" message
+                const linked = document.getElementById('alreadyLinked');
+                linked.style.display = '';
+                setTimeout(() => linked.classList.add('visible'), 100);
+            } else if (customerEmail) {
+                // Guest with email — show signup card
+                showSignupCard();
+            }
+        } catch (e) {
+            // Supabase not loaded or error — show signup card if we have email
+            if (customerEmail) showSignupCard();
+        }
+
+        // ── Render functions ──
+
+        function renderOrderSummary(data) {
+            const el = document.getElementById('orderSummary');
+            const items = data.items || [];
+            const date = new Date(data.metadata?.orderDate || Date.now());
+            const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+            const shipping = data.shipping;
+            let shippingLine = '';
+            if (shipping && shipping.address) {
+                const addr = shipping.address;
+                const parts = [shipping.name, addr.line1, addr.city, addr.state, addr.postal_code].filter(Boolean);
+                if (parts.length > 1) {
+                    shippingLine = `
+                        <div class="order-shipping">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                            </svg>
+                            <span class="order-shipping-text">Shipping to ${esc(parts.join(', '))}</span>
+                        </div>`;
+                }
+            }
+
+            el.innerHTML = `
+                <div class="order-summary-header">
+                    <span>Your Order</span>
+                    <span class="order-date">${dateStr}</span>
+                </div>
+                <ul class="order-items">
+                    ${items.map(item => `
+                        <li class="order-item">
+                            <span>
+                                <span class="order-item-name">${esc(item.name)}</span>
+                                ${item.quantity > 1 ? `<span class="order-item-qty">&times; ${item.quantity}</span>` : ''}
+                            </span>
+                            <span class="order-item-price">$${(item.amount / 100).toFixed(2)}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+                ${shippingLine}
+                <div class="order-total">
+                    <span>Total Paid</span>
+                    <span>$${(data.amount_total / 100).toFixed(2)}</span>
+                </div>
+            `;
+        }
+
+        function renderOrderFallback() {
+            const el = document.getElementById('orderSummary');
+            const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            el.innerHTML = `
+                <div class="order-summary-header">
+                    <span>Your Order</span>
+                    <span class="order-date">${dateStr}</span>
+                </div>
+                <div style="padding: 1.25rem; text-align: center;">
+                    <p style="font-size: 0.8125rem; color: var(--color--olivegreen); margin: 0;">
+                        A confirmation email with your order details has been sent.
+                    </p>
+                </div>
+            `;
+        }
+
+        function showSignupCard() {
+            const card = document.getElementById('signupCard');
+            card.style.display = '';
+
+            // Animate in after a short delay
+            setTimeout(() => card.classList.add('visible'), 100);
+
+            // Pre-fill email
+            if (customerEmail) {
+                document.getElementById('signupEmailDisplay').textContent = customerEmail;
+            }
+
+            // Password visibility toggle
+            const toggleBtn = document.getElementById('togglePw');
+            const pwInput = document.getElementById('signupPassword');
+            toggleBtn.addEventListener('click', () => {
+                const isPassword = pwInput.type === 'password';
+                pwInput.type = isPassword ? 'text' : 'password';
+                toggleBtn.innerHTML = isPassword
+                    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
+                    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+            });
+
+            // Password strength indicator
+            pwInput.addEventListener('input', () => {
+                const val = pwInput.value;
+                let strength = 0;
+                if (val.length >= 6) strength++;
+                if (val.length >= 8) strength++;
+                if (/[A-Z]/.test(val) && /[0-9]/.test(val)) strength++;
+                if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+                const bars = document.querySelectorAll('.pw-strength-bar');
+                const classes = ['weak', 'fair', 'good', 'strong'];
+                bars.forEach((bar, i) => {
+                    bar.classList.remove('active', 'weak', 'fair', 'good', 'strong');
+                    if (i < strength) {
+                        bar.classList.add('active', classes[Math.min(strength - 1, 3)]);
+                    }
+                });
+            });
+
+            // Skip button
+            document.getElementById('signupSkip').addEventListener('click', () => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(8px)';
+                card.style.transition = 'all 0.3s ease';
+                setTimeout(() => card.style.display = 'none', 300);
+            });
+
+            // Form submit
+            document.getElementById('signupForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                await handleSignup();
+            });
+        }
+
+        async function handleSignup() {
+            const password = document.getElementById('signupPassword').value;
+            const errorEl = document.getElementById('signupError');
+            const submitBtn = document.getElementById('signupSubmit');
+
+            // Validate
+            if (password.length < 6) {
+                errorEl.textContent = 'Password must be at least 6 characters';
+                document.getElementById('signupPassword').classList.add('error');
+                return;
+            }
+
+            errorEl.textContent = '';
+            document.getElementById('signupPassword').classList.remove('error');
+
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="spinner"></div><span>Creating...</span>';
+
+            try {
+                // Sign up with Supabase
+                const { data, error } = await signUp(customerEmail, password, customerName);
+
+                if (error) {
+                    // If account already exists, suggest login
+                    if (error.message?.includes('already registered') || error.message?.includes('already been registered')) {
+                        errorEl.textContent = 'An account with this email already exists. Sign in from the menu.';
+                    } else {
+                        errorEl.textContent = error.message || 'Could not create account. Try again.';
+                    }
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Create Account</span>';
+                    return;
+                }
+
+                // Claim the order for the new user
+                if (data?.user && sessionId) {
+                    try {
+                        await fetch('/.netlify/functions/claim-order', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                stripeSessionId: sessionId,
+                                userId: data.user.id
+                            })
+                        });
+                    } catch (e) {
+                        // Non-critical — order can be linked manually
+                        console.warn('Could not auto-link order:', e);
+                    }
+                }
+
+                // Show success state
+                document.getElementById('signupForm').style.display = 'none';
+                document.getElementById('signupSuccess').style.display = '';
+
+            } catch (e) {
+                errorEl.textContent = 'Something went wrong. Please try again.';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Create Account</span>';
+            }
+        }
+    })();
     </script>
 </body>
 </html>
