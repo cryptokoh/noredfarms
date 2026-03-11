@@ -1283,6 +1283,9 @@
             background: linear-gradient(135deg, #12181a 0%, #1e4640 30%, #28584e 60%, #12181a 100%);
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .lab-visual::before {
@@ -1292,6 +1295,15 @@
             background:
                 radial-gradient(circle at 20% 50%, rgba(80, 232, 192, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 80% 30%, rgba(80, 232, 192, 0.04) 0%, transparent 40%);
+        }
+
+        .lab-visual-img {
+            max-height: 140px;
+            max-width: 80%;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            opacity: 0.85;
         }
 
         .lab-visual-text {
@@ -1728,7 +1740,7 @@
                 <p>Precision-extracted compounds. Full alkaloid profiles. Third-party verified.</p>
             </div>
             <div class="products-header-right">
-                <a href="blog.html" class="products-shopall">Shop All &rarr;</a>
+                <a href="marketplace.html" class="products-shopall">Shop All &rarr;</a>
                 <div class="carousel-arrows">
                     <button class="carousel-arrow" id="carouselPrev" aria-label="Previous product" disabled>
                         <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -2017,6 +2029,7 @@
             <p class="lab-body reveal reveal-d2">Because quality is not just a claim. Our extraction lab operates under GMP standards with full traceability from source material to finished product.</p>
             <a href="lab-2d.html" class="btn-text-link reveal reveal-d3" style="color: #50e8c0; text-decoration: underline; text-underline-offset: 3px;">Enter the Lab</a>
             <div class="lab-visual reveal">
+                <img src="images/logo.jpg" alt="Nored Farms logo" class="lab-visual-img" loading="lazy">
                 <span class="lab-visual-text">Nored Labs -- Est. 2010</span>
             </div>
         </div>

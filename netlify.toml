@@ -22,6 +22,12 @@
   to = "/image-kanban.html"
   status = 200
 
+# Clean URL for marketplace
+[[redirects]]
+  from = "/marketplace"
+  to = "/marketplace.html"
+  status = 200
+
 # No catch-all redirect - static site serves files directly
 
 # Headers for security and performance
@@ -37,8 +43,8 @@
   for = "/api/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
-    Access-Control-Allow-Headers = "Content-Type"
+    Access-Control-Allow-Methods = "GET, POST, PATCH, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, x-api-key"
 
 # Cache static assets (short cache since filenames aren't fingerprinted)
 [[headers]]
@@ -84,9 +90,42 @@
   to = "/.netlify/functions/send-notification"
   status = 200
 
+# Content API endpoints (FlowB EC)
+[[redirects]]
+  from = "/api/content-products"
+  to = "/.netlify/functions/content-products"
+  status = 200
+
+[[redirects]]
+  from = "/api/content-articles"
+  to = "/.netlify/functions/content-articles"
+  status = 200
+
+[[redirects]]
+  from = "/api/content-media"
+  to = "/.netlify/functions/content-media"
+  status = 200
+
+[[redirects]]
+  from = "/api/content-categories"
+  to = "/.netlify/functions/content-categories"
+  status = 200
+
+[[redirects]]
+  from = "/api/content-seo"
+  to = "/.netlify/functions/content-seo"
+  status = 200
+
+[[redirects]]
+  from = "/api/content-webhook"
+  to = "/.netlify/functions/content-webhook"
+  status = 200
+
 # Environment variables (set these in Netlify UI)
 # STRIPE_SECRET_KEY = sk_test_...
 # STRIPE_PUBLISHABLE_KEY = pk_test_...
 # STRIPE_WEBHOOK_SECRET = whsec_...
 # SUPABASE_URL = https://YOUR_PROJECT.supabase.co
 # SUPABASE_SERVICE_ROLE_KEY = eyJ...
+# CONTENT_API_KEY = <generated secret for FlowB EC API access>
+# FLOWB_WEBHOOK_URL = https://flowb.fly.dev/api/v1/biz/inbound-webhook
