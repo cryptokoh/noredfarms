@@ -74,9 +74,10 @@
 
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
         .product-card-item {
+            position: relative;
             background: var(--color--snowwhite); border: 1px solid rgba(80, 232, 192, 0.06);
             border-radius: var(--radius-2xl); padding: 2rem; display: flex; flex-direction: column;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .product-card-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32); }
         .product-card-item h3 { font-family: var(--font-sans); font-size: var(--text-lg); font-weight: 500; color: var(--color--seedgreen); margin-bottom: 0.5rem; }
@@ -85,6 +86,26 @@
         .item-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
         .item-price { font-family: var(--font-sans); font-size: var(--text-2xl); font-weight: 500; color: var(--color--seedgreen); }
         .product-card-img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 1rem; }
+
+        /* Highlight targeted product */
+        .product-card-item.highlighted {
+            border-color: rgba(80, 232, 192, 0.3);
+            box-shadow: 0 0 30px rgba(80, 232, 192, 0.08);
+        }
+        .product-card-item.highlighted::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            border: 2px solid rgba(80, 232, 192, 0.2);
+            pointer-events: none;
+            animation: highlight-fade 2s ease-out forwards;
+        }
+        @keyframes highlight-fade {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
     </style>
     <link rel="stylesheet" href="../chat-widget.css">
     <link rel="stylesheet" href="../shipping-estimator.css">
@@ -112,7 +133,7 @@
 
     <main class="product-page">
         <div class="product-container">
-            <a href="../index.html#products" class="back-link">
+            <a href="../marketplace.html" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 Back to Products
             </a>
@@ -130,7 +151,7 @@
             </p>
 
             <div class="product-grid">
-                <div class="product-card-item" data-favoriteable data-fav-type="product" data-product-id="purple-dragon-fruit" data-price="20" data-category="Live Plants">
+                <div class="product-card-item" id="purple-dragon-fruit" data-favoriteable data-fav-type="product" data-product-id="purple-dragon-fruit" data-price="20" data-category="Live Plants">
                     <img src="../images/products/purple-dragon-fruit.jpg" alt="Purple Dragon Fruit plant" class="product-card-img" loading="lazy">
                     <h3>Purple Dragon Fruit</h3>
                     <p class="item-desc">Rooted purple dragon fruit plant ready for transplanting. A stunning tropical cactus that produces vibrant magenta fruit with sweet, antioxidant-rich flesh.</p>
@@ -140,7 +161,7 @@
                         <button class="add-to-cart-btn btn-order">Add to Cart</button>
                     </div>
                 </div>
-                <div class="product-card-item" data-favoriteable data-fav-type="product" data-product-id="bob-gordon-elderberry" data-price="20" data-category="Live Plants">
+                <div class="product-card-item" id="bob-gordon-elderberry" data-favoriteable data-fav-type="product" data-product-id="bob-gordon-elderberry" data-price="20" data-category="Live Plants">
                     <img src="../images/products/bob-gordon-elderberry.jpg" alt="Bob Gordon Elderberry plant" class="product-card-img" loading="lazy">
                     <h3>Bob Gordon Elderberry</h3>
                     <p class="item-desc">The premier elderberry cultivar for fruit production. Bob Gordon consistently outperforms other varieties in berry size, yield, and antioxidant content.</p>
@@ -150,7 +171,7 @@
                         <button class="add-to-cart-btn btn-order">Add to Cart</button>
                     </div>
                 </div>
-                <div class="product-card-item" data-favoriteable data-fav-type="product" data-product-id="prickly-pear-2pad" data-price="20" data-category="Live Plants">
+                <div class="product-card-item" id="prickly-pear-2pad" data-favoriteable data-fav-type="product" data-product-id="prickly-pear-2pad" data-price="20" data-category="Live Plants">
                     <img src="../images/products/prickly-pear.jpg" alt="Central Texas Prickly Pear" class="product-card-img" loading="lazy">
                     <h3>Central Texas Prickly Pear</h3>
                     <p class="item-desc">High fruiting variety native to central Texas. Produces abundant tunas (fruit) and nopales (pads) prized for culinary use. Extremely drought-tolerant once established.</p>
@@ -160,7 +181,7 @@
                         <button class="add-to-cart-btn btn-order">Add to Cart</button>
                     </div>
                 </div>
-                <div class="product-card-item" data-favoriteable data-fav-type="product" data-product-id="davis-mountain-yucca" data-price="25" data-category="Live Plants">
+                <div class="product-card-item" id="davis-mountain-yucca" data-favoriteable data-fav-type="product" data-product-id="davis-mountain-yucca" data-price="25" data-category="Live Plants">
                     <img src="../images/products/davis-mountain-yucca.jpg" alt="Davis Mountain Yucca plant" class="product-card-img" loading="lazy">
                     <h3>Davis Mountain Yucca</h3>
                     <p class="item-desc">Soapweed yucca native to the Davis Mountains of West Texas. The roots produce natural saponins used as soap and surfactant by indigenous peoples for centuries.</p>
@@ -339,6 +360,18 @@
         </div>
     </div>
 
+    <script>
+    (function() {
+        if (!window.location.hash) return;
+        var id = window.location.hash.substring(1);
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add('highlighted');
+        setTimeout(function() {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+    })();
+    </script>
     <script src="../script.js"></script>
     <script src="../age-verification.js"></script>
     <script src="../chat-widget.js"></script>

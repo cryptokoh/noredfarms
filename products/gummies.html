@@ -74,9 +74,10 @@
 
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
         .product-card-item {
+            position: relative;
             background: var(--color--snowwhite); border: 1px solid rgba(80, 232, 192, 0.06);
             border-radius: var(--radius-2xl); padding: 2rem; display: flex; flex-direction: column;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .product-card-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32); }
         .product-card-item h3 { font-family: var(--font-sans); font-size: var(--text-lg); font-weight: 500; color: var(--color--seedgreen); margin-bottom: 0.5rem; }
@@ -85,6 +86,26 @@
         .item-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
         .item-price { font-family: var(--font-sans); font-size: var(--text-2xl); font-weight: 500; color: var(--color--seedgreen); }
         .product-card-img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 1rem; }
+
+        /* Highlight targeted product */
+        .product-card-item.highlighted {
+            border-color: rgba(80, 232, 192, 0.3);
+            box-shadow: 0 0 30px rgba(80, 232, 192, 0.08);
+        }
+        .product-card-item.highlighted::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            border: 2px solid rgba(80, 232, 192, 0.2);
+            pointer-events: none;
+            animation: highlight-fade 2s ease-out forwards;
+        }
+        @keyframes highlight-fade {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
     </style>
     <link rel="stylesheet" href="../chat-widget.css">
     <link rel="stylesheet" href="../shipping-estimator.css">
@@ -111,7 +132,7 @@
 
     <main class="product-page">
         <div class="product-container">
-            <a href="../index.html#products" class="back-link">
+            <a href="../marketplace.html" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 Back to Products
             </a>
@@ -129,7 +150,7 @@
             </p>
 
             <div class="product-grid">
-                <div class="product-card-item" data-favoriteable data-fav-type="product" data-product-id="kanna-gummies-500" data-price="40" data-category="Gummies">
+                <div class="product-card-item" id="kanna-gummies-500" data-favoriteable data-fav-type="product" data-product-id="kanna-gummies-500" data-price="40" data-category="Gummies">
                     <img src="../images/products/kanna-gummies-500mg.jpg" alt="500mg Kanna Gummies" class="product-card-img" loading="lazy">
                     <h3>500mg Kanna Gummies</h3>
                     <p class="item-desc">Sceletium tortuosum extract gummies with standardized mesembrine content. Naturally flavored with a smooth, consistent dose in every piece.</p>
@@ -139,7 +160,7 @@
                         <button class="add-to-cart-btn btn-order">Add to Cart</button>
                     </div>
                 </div>
-                <div class="product-card-item" data-favoriteable data-fav-type="product" data-product-id="blue-lotus-gummies-2500" data-price="40" data-category="Gummies">
+                <div class="product-card-item" id="blue-lotus-gummies-2500" data-favoriteable data-fav-type="product" data-product-id="blue-lotus-gummies-2500" data-price="40" data-category="Gummies">
                     <img src="../images/products/blue-lotus-gummies-2500mg.jpg" alt="2500mg Blue Lotus Gummies" class="product-card-img" loading="lazy">
                     <h3>2500mg Blue Lotus Gummies</h3>
                     <p class="item-desc">Full spectrum Nymphaea caerulea gummies. A convenient and tasty way to enjoy blue lotus with precise dosing and consistent potency.</p>
@@ -316,6 +337,18 @@
         </div>
     </div>
 
+    <script>
+    (function() {
+        if (!window.location.hash) return;
+        var id = window.location.hash.substring(1);
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add('highlighted');
+        setTimeout(function() {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+    })();
+    </script>
     <script src="../script.js"></script>
     <script src="../age-verification.js"></script>
     <script src="../chat-widget.js"></script>
