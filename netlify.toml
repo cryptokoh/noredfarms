@@ -57,11 +57,11 @@
   [headers.values]
     Cache-Control = "public, max-age=3600, must-revalidate"
 
-# Long cache for images/fonts (rarely change)
+# Cache images (revalidate to pick up new versions)
 [[headers]]
   for = "/images/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [[headers]]
   for = "/*.woff2"
