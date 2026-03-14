@@ -391,9 +391,6 @@
             margin-right: 4px;
         }
         .nav-logo .nav-logo-img + .dot { display: none; }
-        /* Hide text when logo present */
-        .nav-logo:has(.nav-logo-img) { font-size: 0; }
-        .nav-logo:has(.nav-logo-img) .nav-logo-img { font-size: initial; }
 
         @media (max-width: 1024px) {
             .hero-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -753,130 +750,183 @@
         }
 
 
-        /* --- ARTICLES SECTION --- */
-        .articles-section {
+        /* --- SUSTAINABILITY SECTION --- */
+        .sustainability-section {
             background: var(--color--foamwhite);
             padding: 80px 24px;
             position: relative;
         }
 
-        .articles-inner {
+        .sustainability-inner {
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .articles-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            gap: 16px;
+        .sustainability-header {
+            margin-bottom: 48px;
         }
 
-        .articles-header-text h2 {
-            font-family: var(--font-sans);
-            font-size: clamp(26px, 3.5vw, 36px);
-            font-weight: 350;
-            letter-spacing: -0.6px;
-            color: var(--color--seedgreen);
-            line-height: 1.15;
-            margin-bottom: 8px;
-        }
-
-        .articles-header-text p {
-            font-size: 15px;
-            font-weight: 350;
-            color: var(--color--olivegreen);
-        }
-
-        .articles-viewall {
-            font-size: 14px;
-            font-weight: 400;
-            color: #50e8c0;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: opacity 0.2s ease;
-        }
-
-        .articles-viewall:hover { opacity: 0.6; }
-
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .article-card {
-            background: var(--color--snowwhite);
-            border-radius: 16px;
-            overflow: hidden;
-            text-decoration: none;
-            border: 1px solid rgba(80, 232, 192, 0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .article-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .article-card-photo {
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .article-card-photo.a1 { background: linear-gradient(135deg, #1e3a30, #2a5a4a); }
-        .article-card-photo.a2 { background: linear-gradient(135deg, #1e4a2d, #3a6e3a); }
-        .article-card-photo.a3 { background: linear-gradient(135deg, #1a2a3a, #2a5a6a); }
-        .article-card-photo.a4 { background: linear-gradient(135deg, #2a1e3a, #4a2a5a); }
-        .article-card-photo.a5 { background: linear-gradient(135deg, #3a2a1e, #5a4a2a); }
-        .article-card-photo.a6 { background: linear-gradient(135deg, #1e2a3a, #2a4a5a); }
-
-        .article-card-photo svg {
-            width: 56px;
-            height: 56px;
-            opacity: 0.3;
-        }
-
-        .article-card-photo span {
-            font-size: 40px;
-            opacity: 0.3;
-        }
-
-        .article-card-body {
-            padding: 20px;
-        }
-
-        .article-card-tag {
-            font-size: 11px;
+        .sustainability-label {
+            font-size: 13px;
             font-weight: 500;
             color: #50e8c0;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .article-card-title {
+        .sustainability-label::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #50e8c0;
+            flex-shrink: 0;
+        }
+
+        .sustainability-header h2 {
+            font-family: var(--font-sans);
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 350;
+            letter-spacing: -0.8px;
+            color: var(--color--seedgreen);
+            line-height: 1.1;
+            margin-bottom: 12px;
+            max-width: 600px;
+        }
+
+        .sustainability-header p {
+            font-size: 16px;
+            font-weight: 350;
+            color: var(--color--olivegreen);
+            line-height: 1.65;
+            max-width: 600px;
+        }
+
+        .sustainability-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .sustainability-block {
+            background: var(--color--snowwhite);
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid rgba(80, 232, 192, 0.05);
+        }
+
+        .sustainability-block-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(80, 232, 192, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+
+        .sustainability-block h3 {
             font-family: var(--font-sans);
             font-size: 16px;
-            font-weight: 400;
+            font-weight: 500;
             color: var(--color--seedgreen);
-            line-height: 1.4;
             margin-bottom: 10px;
         }
 
-        .article-card-meta {
-            font-size: 12px;
+        .sustainability-block p {
+            font-size: 14px;
             font-weight: 350;
             color: var(--color--olivegreen);
+            line-height: 1.65;
+            margin-bottom: 0;
+        }
+
+        .sustainability-block p + p {
+            margin-top: 10px;
+        }
+
+        .sustainability-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+
+        .sustainability-block ul li {
+            font-size: 14px;
+            font-weight: 350;
+            color: var(--color--olivegreen);
+            line-height: 1.55;
+            padding: 5px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .sustainability-block ul li::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--color--mossroot);
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        .sustainability-block--wide {
+            grid-column: 1 / -1;
+        }
+
+        .sustainability-callout {
+            margin-top: 12px;
+            padding: 14px 18px;
+            background: rgba(80, 232, 192, 0.04);
+            border-radius: 10px;
+            border-left: 3px solid rgba(80, 232, 192, 0.2);
+        }
+
+        .sustainability-callout p {
+            font-size: 13px;
+            color: var(--color--seedgreen);
+            margin-bottom: 0;
+        }
+
+        .sustainability-callout a {
+            color: #50e8c0;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s ease;
+        }
+
+        .sustainability-callout a:hover {
+            opacity: 0.6;
+        }
+
+        .sustainability-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #50e8c0;
+            padding: 6px 12px;
+            border-radius: 99em;
+            background: rgba(80, 232, 192, 0.08);
+            border: 1px solid rgba(80, 232, 192, 0.12);
         }
 
         @media (max-width: 768px) {
-            .articles-section { padding: 56px 16px; }
-            .articles-header { flex-direction: column; align-items: flex-start; }
-            .articles-grid { grid-template-columns: 1fr; gap: 16px; }
+            .sustainability-section { padding: 56px 16px; }
+            .sustainability-grid { grid-template-columns: 1fr; }
+            .sustainability-block { padding: 24px 20px; }
         }
 
 
@@ -913,8 +963,8 @@
 
         .classes-columns {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
         }
 
         .classes-column-label {
@@ -990,7 +1040,7 @@
 
         @media (max-width: 768px) {
             .classes-section { padding: 56px 16px; }
-            .classes-columns { grid-template-columns: 1fr; gap: 24px; }
+            .classes-columns { grid-template-columns: 1fr; gap: 20px; }
         }
 
 
@@ -1598,7 +1648,7 @@
         }
 
         /* Ensure section content renders above trippy ::before backgrounds */
-        .hero-inner, .tech-inner, .articles-inner, .classes-inner, .cta-inner, .lab-inner, .about-inner, .interstitial-inner {
+        .hero-inner, .tech-inner, .sustainability-inner, .classes-inner, .cta-inner, .lab-inner, .about-inner, .interstitial-inner {
             position: relative;
             z-index: 1;
         }
@@ -1685,6 +1735,68 @@
             transition: transform 0.2s ease;
         }
         .product-card:hover .product-card-img { transform: scale(1.03); }
+
+        /* --- GET IN TOUCH SECTION --- */
+        .get-in-touch-section {
+            padding: 80px 24px;
+            background: var(--color--foamwhite);
+            border-top: 1px solid rgba(80, 232, 192, 0.05);
+        }
+        .get-in-touch-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .get-in-touch-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(80, 232, 192, 0.07);
+            color: #50e8c0;
+            padding: 0.375rem 1rem;
+            border-radius: 99em;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+        .get-in-touch-inner h2 {
+            font-family: var(--font-sans);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 500;
+            color: var(--color--seedgreen);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .get-in-touch-inner p {
+            font-size: 16px;
+            color: var(--color--olivegreen);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .get-in-touch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 28px;
+            background: #50e8c0;
+            color: #12181a;
+            border-radius: 99em;
+            text-decoration: none;
+            font-weight: 350;
+            font-size: 15px;
+            font-family: var(--font-sans);
+            transition: all 0.2s ease;
+        }
+        .get-in-touch-btn:hover {
+            background: #3cc4a0;
+            transform: translateY(-1px);
+        }
+        .get-in-touch-btn svg { width: 18px; height: 18px; }
     </style>
     <link rel="stylesheet" href="chat-widget.css">
     <link rel="stylesheet" href="shipping-estimator.css">
@@ -1697,7 +1809,7 @@
 </head>
 <body>
     <nav class="nav" id="nav">
-        <a href="index.html" class="nav-logo"><img src="images/logo.svg" alt="Nored Farms" class="nav-logo-img" width="160" height="28">Nored Farms<span class="dot"></span></a>
+        <a href="index.html" class="nav-logo"><img src="images/logo.svg" alt="Nored Farms" class="nav-logo-img">Nored Farms<span class="dot"></span></a>
         <div class="nav-links" id="navLinks">
             <a href="index.html#products">Products</a>
             <a href="blog.html">Articles</a>
@@ -1727,7 +1839,7 @@
                 </div>
                 <div class="hero-quicknav">
                     <a href="#products">Products</a>
-                    <a href="#articles">Articles</a>
+                    <a href="#sustainability">Sustainability</a>
                     <a href="#classes">Classes</a>
                     <a href="#about">About Us</a>
                 </div>
@@ -1766,7 +1878,7 @@
                     <div class="embla__slide">
                         <a href="products/gummies.html" class="product-card">
                             <span class="product-card-badge">Popular</span>
-                            <div class="product-card-visual"><img src="images/gummies-product.jpg" alt="Botanical extract gummies" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-visual"><img src="images/products/kanna-gummies-500mg.jpg" alt="Botanical extract gummies" class="product-card-img" loading="lazy"></div>
                             <div class="product-card-bottom">
                                 <div>
                                     <div class="product-card-code">GM-01</div>
@@ -1780,7 +1892,7 @@
                     <div class="embla__slide">
                         <a href="products/tinctures.html" class="product-card">
                             <span class="product-card-badge">New</span>
-                            <div class="product-card-visual"><img src="images/tinctures-product.jpg" alt="Full spectrum botanical tinctures" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-visual"><img src="images/products/blue-lotus-tincture-5000mg.jpg" alt="Full spectrum botanical tinctures" class="product-card-img" loading="lazy"></div>
                             <div class="product-card-bottom">
                                 <div>
                                     <div class="product-card-code">TN-01</div>
@@ -1794,7 +1906,7 @@
                     <div class="embla__slide">
                         <a href="products/extracts.html" class="product-card">
                             <span class="product-card-badge">Lab Tested</span>
-                            <div class="product-card-visual"><img src="images/extracts-product.jpg" alt="Premium botanical extracts" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-visual"><img src="images/products/blue-lotus-resin-1g.jpg" alt="Premium botanical extracts" class="product-card-img" loading="lazy"></div>
                             <div class="product-card-bottom">
                                 <div>
                                     <div class="product-card-code">EX-01</div>
@@ -1808,7 +1920,7 @@
                     <div class="embla__slide">
                         <a href="products/dried-botanicals.html" class="product-card">
                             <span class="product-card-badge">New</span>
-                            <div class="product-card-visual"><img src="images/dried-botanicals-product.jpg" alt="Dried botanical specimens" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-visual"><img src="images/products/dried-blue-lotus-1oz.jpg" alt="Dried botanical specimens" class="product-card-img" loading="lazy"></div>
                             <div class="product-card-bottom">
                                 <div>
                                     <div class="product-card-code">DB-01</div>
@@ -1822,7 +1934,7 @@
                     <div class="embla__slide">
                         <a href="products/live-plants.html" class="product-card">
                             <span class="product-card-badge">Seasonal</span>
-                            <div class="product-card-visual"><img src="images/live-plants-product.jpg" alt="Live botanical plants" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-visual"><img src="images/products/purple-dragon-fruit.jpg" alt="Live botanical plants" class="product-card-img" loading="lazy"></div>
                             <div class="product-card-bottom">
                                 <div>
                                     <div class="product-card-code">LP-01</div>
@@ -1836,7 +1948,7 @@
                     <div class="embla__slide">
                         <a href="products/seeds.html" class="product-card">
                             <span class="product-card-badge">Heirloom</span>
-                            <div class="product-card-visual"><img src="images/seeds-product.jpg" alt="Heirloom botanical seeds" class="product-card-img" loading="lazy"></div>
+                            <div class="product-card-visual"><img src="images/products/sugarcane-seeds.jpg" alt="Heirloom botanical seeds" class="product-card-img" loading="lazy"></div>
                             <div class="product-card-bottom">
                                 <div>
                                     <div class="product-card-code">SD-01</div>
@@ -1867,75 +1979,6 @@
     </section>
 
 
-    <!-- ========== SECTION 4: ARTICLES ========== -->
-    <section class="articles-section" id="articles">
-        <div class="articles-inner">
-            <div class="articles-header reveal">
-                <div class="articles-header-text">
-                    <h2>Research from our lab</h2>
-                    <p>Deep dives into the science behind every botanical we offer.</p>
-                </div>
-                <a href="blog.html" class="articles-viewall">View All 50+ Articles &rarr;</a>
-            </div>
-            <div class="articles-grid">
-                <a href="articles/adaptogens-science.html" class="article-card reveal">
-                    <div class="article-card-photo a1"><span>&#9878;</span></div>
-                    <div class="article-card-body">
-                        <div class="article-card-tag">Alkaloid Science</div>
-                        <div class="article-card-title">Adaptogens: The Science of Stress Response</div>
-                        <div class="article-card-meta">8 min read</div>
-                    </div>
-                </a>
-                <a href="articles/kavalactones-explained.html" class="article-card reveal reveal-d1">
-                    <div class="article-card-photo a2"><span>&#127807;</span></div>
-                    <div class="article-card-body">
-                        <div class="article-card-tag">Kava Science</div>
-                        <div class="article-card-title">Kavalactones Explained: The Science Behind Kava</div>
-                        <div class="article-card-meta">12 min read</div>
-                    </div>
-                </a>
-                <a href="articles/extraction-methods.html" class="article-card reveal reveal-d2">
-                    <div class="article-card-photo a3"><span>&#128300;</span></div>
-                    <div class="article-card-body">
-                        <div class="article-card-tag">Extraction Methods</div>
-                        <div class="article-card-title">Extraction Methods Compared: Water vs Ethanol</div>
-                        <div class="article-card-meta">10 min read</div>
-                    </div>
-                </a>
-                <a href="articles/blue-lotus-ancient-egypt.html" class="article-card reveal">
-                    <div class="article-card-photo a4">
-                        <svg viewBox="0 0 56 56" fill="currentColor"><path d="M28 8c-2 6-8 12-8 20a8 8 0 0016 0c0-8-6-14-8-20z" opacity="0.9"/><ellipse cx="28" cy="44" rx="12" ry="3" opacity="0.3"/><path d="M20 28c-4-2-8 0-10 4" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.5"/><path d="M36 28c4-2 8 0 10 4" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.5"/></svg>
-                    </div>
-                    <div class="article-card-body">
-                        <div class="article-card-tag">Blue Lotus History</div>
-                        <div class="article-card-title">Blue Lotus in Ancient Egypt: Sacred Flower of the Nile</div>
-                        <div class="article-card-meta">9 min read</div>
-                    </div>
-                </a>
-                <a href="articles/elderberry-cultivation-guide.html" class="article-card reveal reveal-d1">
-                    <div class="article-card-photo a5">
-                        <svg viewBox="0 0 56 56" fill="currentColor"><circle cx="22" cy="16" r="4"/><circle cx="34" cy="16" r="4"/><circle cx="28" cy="12" r="4"/><circle cx="18" cy="22" r="3"/><circle cx="38" cy="22" r="3"/><line x1="28" y1="24" x2="28" y2="46" stroke="currentColor" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="34" x2="20" y2="28" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><line x1="28" y1="34" x2="36" y2="28" stroke="currentColor" stroke-width="1.5" opacity="0.4"/></svg>
-                    </div>
-                    <div class="article-card-body">
-                        <div class="article-card-tag">Cultivation</div>
-                        <div class="article-card-title">Elderberry: Cultivation, Processing, and Use Guide</div>
-                        <div class="article-card-meta">20 min read</div>
-                    </div>
-                </a>
-                <a href="articles/how-to-read-coa.html" class="article-card reveal reveal-d2">
-                    <div class="article-card-photo a6">
-                        <svg viewBox="0 0 56 56" fill="currentColor"><rect x="14" y="8" width="28" height="36" rx="3" opacity="0.7"/><line x1="20" y1="18" x2="36" y2="18" stroke="var(--color--snowwhite)" stroke-width="2" opacity="0.5"/><line x1="20" y1="24" x2="36" y2="24" stroke="var(--color--snowwhite)" stroke-width="2" opacity="0.5"/><line x1="20" y1="30" x2="30" y2="30" stroke="var(--color--snowwhite)" stroke-width="2" opacity="0.5"/><circle cx="33" cy="36" r="6" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6"/><path d="M37 40l4 4" stroke="currentColor" stroke-width="1.5" opacity="0.6"/></svg>
-                    </div>
-                    <div class="article-card-body">
-                        <div class="article-card-tag">Guides</div>
-                        <div class="article-card-title">How to Read a Certificate of Analysis (COA)</div>
-                        <div class="article-card-meta">5 min read</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
 
     <!-- ========== SECTION 5: CLASSES ========== -->
     <section class="classes-section" id="classes">
@@ -1943,40 +1986,27 @@
             <h2 class="classes-heading reveal">Learn from the source</h2>
             <p class="classes-subtitle reveal reveal-d1">Hands-on education in cultivation, extraction, and botanical science.</p>
             <div class="classes-columns">
-                <div class="reveal reveal-d1">
-                    <div class="classes-column-label">Growing Classes</div>
-                    <a href="classroom/growing.html" class="class-card">
-                        <div class="class-card-icon">&#127793;</div>
-                        <div class="class-card-text">
-                            <h3>Cultivation Techniques</h3>
-                            <p>Soil prep, propagation, and harvest timing for medicinal botanicals.</p>
-                        </div>
-                    </a>
-                    <a href="classroom/infrastructure.html" class="class-card">
-                        <div class="class-card-icon">&#9881;</div>
-                        <div class="class-card-text">
-                            <h3>Infrastructure</h3>
-                            <p>Greenhouse builds, irrigation, and climate control systems.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="reveal reveal-d2">
-                    <div class="classes-column-label">Extraction Classes</div>
-                    <a href="classroom/extraction.html" class="class-card">
-                        <div class="class-card-icon">&#9883;</div>
-                        <div class="class-card-text">
-                            <h3>Extraction Methods</h3>
-                            <p>Cold-process, ethanol, and CO2 extraction techniques.</p>
-                        </div>
-                    </a>
-                    <a href="classroom/effects.html" class="class-card">
-                        <div class="class-card-icon">&#128300;</div>
-                        <div class="class-card-text">
-                            <h3>Effects & Alkaloids</h3>
-                            <p>Alkaloid profiles, bioavailability, and compound interactions.</p>
-                        </div>
-                    </a>
-                </div>
+                <a href="classroom/beginner.html" class="class-card reveal reveal-d1" style="flex-direction: column; text-align: center; align-items: center; padding: 28px 20px;">
+                    <div class="class-card-icon" style="margin-bottom: 12px;">&#127793;</div>
+                    <div class="class-card-text">
+                        <div class="classes-column-label" style="margin-bottom: 8px;">Beginner</div>
+                        <p>Introductory classes for new growers. Cultivation basics, soil science, and medicinal plant identification.</p>
+                    </div>
+                </a>
+                <a href="classroom/advanced.html" class="class-card reveal reveal-d2" style="flex-direction: column; text-align: center; align-items: center; padding: 28px 20px;">
+                    <div class="class-card-icon" style="margin-bottom: 12px;">&#128296;</div>
+                    <div class="class-card-text">
+                        <div class="classes-column-label" style="margin-bottom: 8px;">Advanced</div>
+                        <p>Infrastructure design, extraction methods, alkaloid chemistry, and specialized growing techniques.</p>
+                    </div>
+                </a>
+                <a href="classroom/expert.html" class="class-card reveal reveal-d3" style="flex-direction: column; text-align: center; align-items: center; padding: 28px 20px;">
+                    <div class="class-card-icon" style="margin-bottom: 12px;">&#9878;</div>
+                    <div class="class-card-text">
+                        <div class="classes-column-label" style="margin-bottom: 8px;">Expert</div>
+                        <p>Professional-level extraction, industrial operations, lab research, and manufacturing compliance.</p>
+                    </div>
+                </a>
             </div>
             <div class="classes-footer reveal reveal-d3">
                 <a href="classes.html">Browse All Classes &rarr;</a>
@@ -2044,8 +2074,8 @@
                             <p>Make high-quality botanical extracts accessible, transparent, and backed by real science.</p>
                         </div>
                         <div class="about-card">
-                            <h4>Sustainability</h4>
-                            <p>Single-origin sourcing, minimal waste extraction, and regenerative farming practices.</p>
+                            <h4>Product Quality</h4>
+                            <p>All ingredients in our finished products are cGMP certified and organic.</p>
                         </div>
                     </div>
                     <a href="about-us.html" class="about-link">Read Our Full Story &rarr;</a>
@@ -2054,6 +2084,61 @@
                     <div class="about-photo">
                         <img src="images/farm-herb-garden.jpg" alt="Nored Farms raised herb garden with brick edging" class="about-photo-img" loading="lazy">
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== SUSTAINABILITY ========== -->
+    <section class="sustainability-section" id="sustainability">
+        <div class="sustainability-inner">
+            <div class="sustainability-header reveal">
+                <div class="sustainability-label">Our Practices</div>
+                <h2>Sustainability from seed to shelf.</h2>
+                <p>Every step of our process is designed to give back to the land. Here is how we do it.</p>
+            </div>
+
+            <div class="sustainability-grid">
+                <div class="sustainability-block reveal">
+                    <div class="sustainability-block-icon">&#127793;</div>
+                    <h3>Composting and Soil Building</h3>
+                    <p>We compost extra biomass from the farm and grow specific crops dedicated to composting material. We harvest brush for composting and make our own nutrients that we feed back to the plants -- instead of relying on synthetic inputs.</p>
+                </div>
+
+                <div class="sustainability-block reveal reveal-d1">
+                    <div class="sustainability-block-icon">&#127807;</div>
+                    <h3>Regenerative Agriculture</h3>
+                    <p>We plant cover crops and nitrogen-fixing plants to replenish soil nutrients naturally. We make biochar inspired by indigenous Amazonian terra preta methods, and combine it with local topsoil improved with:</p>
+                    <ul>
+                        <li>Decomposed livestock manure</li>
+                        <li>Composted mulch</li>
+                        <li>Beneficial microbes collected locally</li>
+                    </ul>
+                </div>
+
+                <div class="sustainability-block sustainability-block--wide reveal reveal-d2">
+                    <div class="sustainability-block-icon">&#9883;</div>
+                    <h3>Extraction Sustainability</h3>
+                    <p>We create some of our own extraction solvents from plants we grow on the farm. Our goal is to expand until we only use solvents we produce ourselves, ensuring purity with no extra additives.</p>
+                    <p>Any purchased solvents are recollected and reused hundreds of times, losing only a small amount each cycle. Solvents are purified inline every run to ensure proper extraction efficiency.</p>
+                    <p>Leftover biomass from extractions is composted and used as soil amendments. We are also developing plans to convert spent biomass into usable solvent.</p>
+                </div>
+
+                <div class="sustainability-block reveal">
+                    <div class="sustainability-block-icon">&#128230;</div>
+                    <h3>Sustainable Packaging</h3>
+                    <p>We are developing sustainable packaging made from hemp, bamboo, mycelium, and other natural materials.</p>
+                    <div class="sustainability-callout">
+                        <p>Interested in collaborating on sustainable packaging? <a href="contact.html">Get in touch with us</a>.</p>
+                    </div>
+                </div>
+
+                <div class="sustainability-block reveal reveal-d1">
+                    <div class="sustainability-block-icon">&#10003;</div>
+                    <h3>Product Quality</h3>
+                    <p>All ingredients in our finished products are cGMP certified and organic. Every batch is third-party lab tested with full certificates of analysis available.</p>
+                    <div class="sustainability-badge">cGMP Certified &middot; Organic Ingredients</div>
                 </div>
             </div>
         </div>
@@ -2093,6 +2178,22 @@
         </div>
     </section>
 
+
+    <!-- ========== GET IN TOUCH ========== -->
+    <section class="get-in-touch-section" id="get-in-touch">
+        <div class="get-in-touch-inner reveal">
+            <div class="get-in-touch-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Get in Touch
+            </div>
+            <h2>Questions, collaborations, or wholesale?</h2>
+            <p>Whether you are curious about our extraction process, interested in bulk pricing, or want to explore a partnership -- we are here and happy to talk.</p>
+            <a href="contact.html" class="get-in-touch-btn">
+                Send Us a Message
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
 
     <!-- ========== SECTION 10: FINAL CTA ========== -->
     <section class="cta-section trippy-bg-runes trippy-bg-dark">
@@ -2139,12 +2240,12 @@
                     </ul>
                 </div>
                 <div class="seed-footer-col">
-                    <h4>Learn</h4>
+                    <h4>Classes</h4>
                     <ul>
-                        <li><a href="blog.html">Education</a></li>
-                        <li><a href="classes.html">Classes</a></li>
-                        <li><a href="classroom.html">Classroom</a></li>
-                        <li><a href="research.html">Research Library</a></li>
+                        <li><a href="classes.html">All Classes</a></li>
+                        <li><a href="classroom/beginner.html">Beginner</a></li>
+                        <li><a href="classroom/advanced.html">Advanced</a></li>
+                        <li><a href="classroom/expert.html">Expert</a></li>
                     </ul>
                 </div>
                 <div class="seed-footer-col">
@@ -2187,11 +2288,17 @@
             <div class="seed-footer-social">
                 <span style="font-size: 13px; color: var(--color--olivegreen); margin-right: 8px;">Follow us</span>
                 <div class="social-follow">
-                    <a href="https://instagram.com/noredfarms" target="_blank" rel="noopener" aria-label="Follow on Instagram">
+                    <a href="https://www.instagram.com/nored_farms?igsh=eDczZ2xjd2I1aW5s&amp;utm_source=qr" target="_blank" rel="noopener" aria-label="Follow on Instagram">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                     </a>
-                    <a href="https://tiktok.com/@noredfarms" target="_blank" rel="noopener" aria-label="Follow on TikTok">
+                    <a href="https://www.tiktok.com/@nored.farms?_r=1&amp;_t=ZP-94c0mvL61jr" target="_blank" rel="noopener" aria-label="Follow on TikTok">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@noredfarms?si=S-ehnWcvxps5NlJE" target="_blank" rel="noopener" aria-label="Follow on YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://pin.it/38PSeEWPa" target="_blank" rel="noopener" aria-label="Follow on Pinterest">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.18-5.01 1.18-5.01s-.3-.6-.3-1.49c0-1.4.81-2.44 1.82-2.44.86 0 1.27.64 1.27 1.41 0 .86-.55 2.15-.83 3.34-.24 1 .49 1.81 1.46 1.81 1.75 0 3.1-1.85 3.1-4.51 0-2.36-1.69-4.01-4.11-4.01-2.8 0-4.44 2.1-4.44 4.27 0 .85.33 1.75.73 2.24.08.1.09.18.07.28-.07.31-.24.99-.28 1.13-.04.18-.15.22-.34.13-1.28-.6-2.08-2.47-2.08-3.98 0-3.24 2.35-6.21 6.79-6.21 3.56 0 6.33 2.54 6.33 5.93 0 3.54-2.23 6.39-5.33 6.39-1.04 0-2.02-.54-2.36-1.18l-.64 2.44c-.23.89-.86 2.01-1.28 2.69A10 10 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
                     </a>
                 </div>
             </div>
