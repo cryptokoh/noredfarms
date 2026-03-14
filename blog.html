@@ -87,44 +87,48 @@
                     </svg>
                     All Articles
                 </button>
-                <button class="category-tab" data-category="kava">
+                <button class="category-tab" data-category="plants">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 22V8M12 8C12 8 8 4 4 4c0 4 4 8 8 8zm0 0c0 0 4-4 8-4-4 0-8 4-8 4z"/>
                     </svg>
-                    Kava
+                    Plants
                 </button>
-                <button class="category-tab" data-category="blue-lotus">
+                <button class="category-tab" data-category="garden-design">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 2a7 7 0 0 0 0 10 7 7 0 0 0 0-10z"/>
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M3 9h18M9 3v18"/>
                     </svg>
-                    Blue Lotus
+                    Garden Design
                 </button>
-                <button class="category-tab" data-category="guides">
+                <button class="category-tab" data-category="compounds">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        <circle cx="8" cy="12" r="3"/>
+                        <circle cx="16" cy="8" r="3"/>
+                        <circle cx="16" cy="16" r="3"/>
+                        <line x1="11" y1="12" x2="13" y2="9"/>
+                        <line x1="11" y1="12" x2="13" y2="15"/>
                     </svg>
-                    Guides
+                    Compounds
                 </button>
-                <button class="category-tab" data-category="science">
+                <button class="category-tab" data-category="extraction">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 3h6v2H9zM10 5v6l-3 8h10l-3-8V5"/>
                         <circle cx="12" cy="16" r="1"/>
                     </svg>
+                    Extraction
+                </button>
+                <button class="category-tab" data-category="studies">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                    Studies
+                </button>
+                <button class="category-tab" data-category="science">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
                     Science
-                </button>
-                <button class="category-tab" data-category="texas-native">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2v8m-4-4l4 4 4-4M7 14c0 3 2 6 5 8 3-2 5-5 5-8"/>
-                    </svg>
-                    Texas Natives
-                </button>
-                <button class="category-tab" data-category="cannabis">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2v20M12 6c-3-1-6 1-7 4 2 0 5-1 7-2m0-2c3-1 6 1 7 4-2 0-5-1-7-2m0 6c-4-1-7 2-8 5 3 0 6-1 8-3m0-2c4-1 7 2 8 5-3 0-6-1-8-3"/>
-                    </svg>
-                    Cannabis
                 </button>
             </div>
         </div>
@@ -195,12 +199,18 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Latest Articles</h2>
-                <p class="section-subtitle">Stay informed with our latest research and educational content</p>
+                <p class="section-subtitle">130+ articles across cultivation, compounds, extraction, and botanical science</p>
             </div>
 
             <div class="blog-grid" id="blogGrid">
+                <!-- Articles rendered dynamically by blog-script.js -->
+            </div>
 
-                <!-- Kava Articles -->
+            <!-- Article count indicator -->
+            <div class="blog-article-count" id="articleCount" style="text-align:center;padding:1rem 0;color:var(--color-text-muted);font-size:0.875rem;font-weight:350;"></div>
+
+            <!-- LEGACY STATIC CARDS REMOVED - All 130+ articles now rendered from JS data array -->
+            <div style="display:none" id="blogGridLegacy">
                 <article class="blog-card" data-category="kava">
                     <div class="blog-card-image">
                         <div class="card-illustration kava-illustration">
@@ -1483,12 +1493,12 @@
                         <a href="articles/high-thc-cannabis-research-guide.html" class="blog-card-link">Read More →</a>
                     </div>
                 </article>
-            </div>
+            </div><!-- /blogGridLegacy (hidden) -->
 
             <!-- Load More Button -->
-            <div class="blog-load-more">
+            <div class="blog-load-more" id="loadMoreWrap" style="display:none">
                 <button class="btn btn-secondary" id="loadMoreBtn">
-                    <span>Load More Articles</span>
+                    <span>Show More Articles</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
                     </svg>
@@ -1555,12 +1565,12 @@
                     </ul>
                 </div>
                 <div class="seed-footer-col">
-                    <h4>Learn</h4>
+                    <h4>Classes</h4>
                     <ul>
-                        <li><a href="blog.html">Education</a></li>
-                        <li><a href="classes.html">Classes</a></li>
-                        <li><a href="classroom.html">Classroom</a></li>
-                        <li><a href="research.html">Research Library</a></li>
+                        <li><a href="classes.html">All Classes</a></li>
+                        <li><a href="classroom/beginner.html">Beginner</a></li>
+                        <li><a href="classroom/advanced.html">Advanced</a></li>
+                        <li><a href="classroom/expert.html">Expert</a></li>
                     </ul>
                 </div>
                 <div class="seed-footer-col">
@@ -1608,6 +1618,12 @@
                     </a>
                     <a href="https://tiktok.com/@noredfarms" target="_blank" rel="noopener" aria-label="Follow on TikTok">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@noredfarms?si=S-ehnWcvxps5NlJE" target="_blank" rel="noopener" aria-label="Follow on YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://pin.it/38PSeEWPa" target="_blank" rel="noopener" aria-label="Follow on Pinterest">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.18-5.01 1.18-5.01s-.3-.6-.3-1.49c0-1.4.81-2.44 1.82-2.44.86 0 1.27.64 1.27 1.41 0 .86-.55 2.15-.83 3.34-.24 1 .49 1.81 1.46 1.81 1.75 0 3.1-1.85 3.1-4.51 0-2.36-1.69-4.01-4.11-4.01-2.8 0-4.44 2.1-4.44 4.27 0 .85.33 1.75.73 2.24.08.1.09.18.07.28-.07.31-.24.99-.28 1.13-.04.18-.15.22-.34.13-1.28-.6-2.08-2.47-2.08-3.98 0-3.24 2.35-6.21 6.79-6.21 3.56 0 6.33 2.54 6.33 5.93 0 3.54-2.23 6.39-5.33 6.39-1.04 0-2.02-.54-2.36-1.18l-.64 2.44c-.23.89-.86 2.01-1.28 2.69A10 10 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
                     </a>
                 </div>
             </div>

@@ -7,8 +7,9 @@
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-050E36TGR9");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extraction Methods: CO2 vs Ethanol vs Water | Nored Farms</title>
-    <meta name="description" content="Comparing different extraction techniques and their impact on alkaloid profiles. Understanding how extraction methods affect botanical product quality.">
+    <title>Extraction Methods: The Complete Guide to Botanical Extraction | Nored Farms</title>
+    <meta name="description" content="Comprehensive guide to botanical extraction methods including CO2, ethanol, water, ultrasonic, microwave, enzymatic, cold press, and steam distillation techniques.">
+    <meta name="keywords" content="botanical extraction, CO2 extraction, ethanol extraction, water extraction, ultrasonic extraction, steam distillation, cold press, enzymatic extraction, plant extraction methods">
     <link rel="canonical" href="https://noredfarms.netlify.app/articles/extraction-methods.html">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,14 +33,14 @@
         .article-content li { margin-bottom: 0.5rem; }
         .info-box { background: var(--color-surface); border-left: 4px solid var(--color-primary); padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
         .info-box h4 { margin: 0 0 0.5rem; color: var(--color-primary); font-weight: 500; }
-        .method-card { background: var(--color-surface); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; }
-        .method-card h4 { color: var(--color-primary); margin: 0 0 0.5rem; }
-        .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
-        .pros h5, .cons h5 { font-size: 0.875rem; margin: 0 0 0.5rem; }
-        .pros h5 { color: #16a34a; }
-        .cons h5 { color: #dc2626; }
-        .pros ul, .cons ul { margin: 0; padding-left: 1.25rem; font-size: 0.875rem; }
-        @media (max-width: 600px) { .pros-cons { grid-template-columns: 1fr; } }
+        .method-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .method-card { background: var(--color-surface); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(80,232,192,0.05); transition: transform 0.2s ease, border-color 0.2s ease; text-decoration: none; color: inherit; display: block; }
+        .method-card:hover { transform: translateY(-2px); border-color: rgba(80,232,192,0.12); }
+        .method-card h3 { color: var(--color-primary); margin: 0 0 0.75rem; font-size: 1.125rem; font-weight: 500; }
+        .method-card p { font-size: 0.9375rem; line-height: 1.6; margin: 0 0 1rem; color: var(--color-text-secondary); }
+        .method-card .card-meta { display: flex; gap: 1rem; font-size: 0.8125rem; color: var(--color-text-muted); }
+        .method-card .read-link { color: var(--color-primary); font-size: 0.875rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.25rem; }
+        @media (max-width: 600px) { .method-grid { grid-template-columns: 1fr; } }
         .article-footer { max-width: 800px; margin: 3rem auto; padding: 2rem 1.5rem; border-top: 1px solid var(--color-border); }
         .back-to-blog { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-primary); text-decoration: none; font-weight: 500; }
         .back-to-blog:hover { text-decoration: underline; }
@@ -51,7 +52,7 @@
     <link rel="stylesheet" href="../visual-enhancements.css">
 </head>
 <body>
-        
+
     <nav class="nav" id="nav">
         <a href="../index.html" class="nav-logo"><img src="../images/logo.svg" alt="Nored Farms" style="height:24px;width:auto;vertical-align:middle;margin-right:4px;">Nored Farms<span class="dot"></span></a>
         <div class="nav-links" id="navLinks">
@@ -71,160 +72,151 @@
         <article>
             <header class="article-header">
                 <div class="article-meta-header">
-                    <span class="article-category-tag">Science</span>
-                    <span class="article-date">December 10, 2024</span>
-                    <span class="article-read-time">15 min read</span>
+                    <span class="article-category-tag">Extraction Methods</span>
+                    <span class="article-date">March 14, 2026</span>
+                    <span class="article-read-time">Series &mdash; 9 articles</span>
                 </div>
-                <h1 class="article-title">Extraction Methods: CO2 vs Ethanol vs Water</h1>
-                <p class="article-excerpt">Comparing different extraction techniques and their impact on alkaloid profiles. The science behind how botanical extracts are made.</p>
+                <h1 class="article-title">The Complete Guide to Botanical Extraction Methods</h1>
+                <p class="article-excerpt">A comprehensive series exploring every major technique for extracting bioactive compounds from plants &mdash; from ancient water infusions to cutting-edge supercritical CO2 systems. Each method shapes the chemistry, potency, and character of the final product.</p>
             </header>
 
             <div class="article-content">
                 <h2>Why Extraction Methods Matter</h2>
-                <p>When you purchase a botanical extract, the extraction method determines what compounds end up in the final product. Different solvents and techniques pull out different molecules, meaning two extracts from the same plant can have very different profiles.</p>
+                <p>When you purchase a botanical extract, the extraction method determines what compounds end up in the final product. Different solvents and techniques pull out different molecules, meaning two extracts from the same plant can have very different chemical profiles, potencies, and applications.</p>
 
-                <p>Understanding extraction methods helps you make informed decisions about which products might work best for your needs. It also helps you evaluate vendor claims and quality.</p>
-
-                <h2>The Three Main Approaches</h2>
-                <p>While numerous extraction techniques exist, three dominate the botanical industry: supercritical CO2 extraction, ethanol extraction, and water extraction. Each has distinct advantages and limitations.</p>
-
-                <div class="method-card">
-                    <h4>Supercritical CO2 Extraction</h4>
-                    <p>This method uses carbon dioxide under high pressure and specific temperatures where it becomes "supercritical" - a state between liquid and gas. In this form, CO2 becomes an excellent solvent that can selectively extract compounds.</p>
-                    <div class="pros-cons">
-                        <div class="pros">
-                            <h5>Advantages</h5>
-                            <ul>
-                                <li>No solvent residue in final product</li>
-                                <li>Highly selective extraction</li>
-                                <li>Preserves delicate compounds</li>
-                                <li>Produces clean, pure extracts</li>
-                                <li>Environmentally friendly</li>
-                            </ul>
-                        </div>
-                        <div class="cons">
-                            <h5>Limitations</h5>
-                            <ul>
-                                <li>Expensive equipment required</li>
-                                <li>Higher production costs</li>
-                                <li>May not extract all compound types</li>
-                                <li>Requires technical expertise</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="method-card">
-                    <h4>Ethanol Extraction</h4>
-                    <p>Ethanol (food-grade alcohol) is one of the oldest and most common extraction solvents. It can dissolve a wide range of compounds including alkaloids, terpenes, and flavonoids.</p>
-                    <div class="pros-cons">
-                        <div class="pros">
-                            <h5>Advantages</h5>
-                            <ul>
-                                <li>Broad spectrum extraction</li>
-                                <li>Food-safe solvent</li>
-                                <li>Cost-effective</li>
-                                <li>Well-understood technique</li>
-                                <li>Good for alkaloids</li>
-                            </ul>
-                        </div>
-                        <div class="cons">
-                            <h5>Limitations</h5>
-                            <ul>
-                                <li>Requires solvent removal step</li>
-                                <li>May extract unwanted compounds</li>
-                                <li>Can damage heat-sensitive molecules</li>
-                                <li>Potential for residual alcohol</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="method-card">
-                    <h4>Water Extraction</h4>
-                    <p>The oldest extraction method - simply using water to dissolve water-soluble compounds. This is how traditional teas and decoctions are made, and modern water extraction builds on these principles.</p>
-                    <div class="pros-cons">
-                        <div class="pros">
-                            <h5>Advantages</h5>
-                            <ul>
-                                <li>No solvent concerns</li>
-                                <li>Traditional method</li>
-                                <li>Very cost-effective</li>
-                                <li>Safe and simple</li>
-                                <li>Selects for water-soluble compounds</li>
-                            </ul>
-                        </div>
-                        <div class="cons">
-                            <h5>Limitations</h5>
-                            <ul>
-                                <li>Only extracts water-soluble compounds</li>
-                                <li>Lower concentration extracts</li>
-                                <li>May require heat (can degrade compounds)</li>
-                                <li>Less selective</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <h2>How Method Affects Alkaloid Profile</h2>
-                <p>The choice of extraction method significantly impacts which alkaloids appear in the final product:</p>
-
-                <h3>Polarity Matters</h3>
-                <p>Different alkaloids have different polarities. Water extracts polar (water-loving) compounds well, while ethanol can extract both polar and non-polar compounds. CO2 excels at non-polar and semi-polar compounds.</p>
-
-                <h3>Temperature Sensitivity</h3>
-                <p>Some alkaloids degrade at high temperatures. CO2 extraction typically operates at lower temperatures than hot water extraction, preserving more delicate compounds.</p>
-
-                <h3>Selectivity</h3>
-                <p>CO2 extraction can be precisely tuned by adjusting pressure and temperature, allowing selective extraction of specific compounds. Ethanol is less selective but more comprehensive.</p>
+                <p>Understanding extraction methods helps you make informed decisions about which products suit your needs, evaluate vendor claims, and appreciate the science behind the botanicals you use. This series covers nine distinct extraction techniques, from the simplest traditional methods to the most advanced industrial processes.</p>
 
                 <div class="info-box">
-                    <h4>Full Spectrum vs. Isolates</h4>
-                    <p>Some extraction methods aim to capture the full range of compounds (full spectrum), while others target specific molecules (isolates). Full spectrum extracts may benefit from the "entourage effect" where compounds work synergistically, while isolates offer precise dosing of specific compounds.</p>
+                    <h4>How to Use This Series</h4>
+                    <p>Each article below covers a single extraction method in depth: how it works, what equipment is involved, which plants and compounds it targets, what finished products it creates, and the practical advantages and limitations. Start with the methods most relevant to the products you use, or read the full series for a complete education.</p>
                 </div>
 
-                <h2>Matching Method to Botanical</h2>
-                <p>Different botanicals benefit from different extraction methods:</p>
+                <h2>Solvent-Based Extraction</h2>
+                <p>These methods use a liquid solvent &mdash; CO2, ethanol, or water &mdash; to dissolve and carry target compounds out of plant material. The solvent determines which molecules are extracted based on their polarity and solubility.</p>
 
-                <h3>Kanna</h3>
-                <p>The main alkaloids (mesembrine, 7-hydroxymesembrine) have moderate polarity. Both ethanol and water extraction work well, though ethanol typically produces higher concentrations. CO2 can also be effective for specific alkaloid targeting.</p>
+                <div class="method-grid">
+                    <a href="extraction-co2-supercritical.html" class="method-card">
+                        <h3>Supercritical CO2 Extraction</h3>
+                        <p>Carbon dioxide under precise pressure and temperature becomes a tunable solvent that produces clean, solvent-free extracts. The gold standard for high-purity botanical oils and isolates.</p>
+                        <div class="card-meta">
+                            <span>12 min read</span>
+                            <span>Advanced</span>
+                        </div>
+                        <span class="read-link">Read article &rarr;</span>
+                    </a>
+                    <a href="extraction-ethanol.html" class="method-card">
+                        <h3>Ethanol Extraction</h3>
+                        <p>Food-grade alcohol dissolves a broad spectrum of compounds including alkaloids, terpenes, and flavonoids. The workhorse method behind most tinctures and concentrated herbal extracts.</p>
+                        <div class="card-meta">
+                            <span>12 min read</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <span class="read-link">Read article &rarr;</span>
+                    </a>
+                    <a href="extraction-water.html" class="method-card">
+                        <h3>Water Extraction</h3>
+                        <p>The oldest extraction method known to humanity. Infusions, decoctions, and cold brews use water to dissolve polar compounds &mdash; the foundation of every traditional tea and herbal preparation.</p>
+                        <div class="card-meta">
+                            <span>11 min read</span>
+                            <span>Beginner</span>
+                        </div>
+                        <span class="read-link">Read article &rarr;</span>
+                    </a>
+                </div>
 
-                <h3>Kava</h3>
-                <p>Kavalactones are relatively non-polar, making ethanol an excellent solvent. Traditional water extraction works because kavalactones can be suspended (emulsified) rather than truly dissolved. CO2 extraction produces very pure kavalactone extracts.</p>
+                <h2>Energy-Assisted Extraction</h2>
+                <p>These modern techniques use physical energy &mdash; ultrasound, microwaves, or enzymes &mdash; to break open plant cells and accelerate the release of bioactive compounds, often combined with a solvent.</p>
 
-                <h3>Blue Lotus</h3>
-                <p>The aporphine alkaloids respond well to both ethanol and water extraction. Traditional wine-based preparations (alcohol extraction) have been used for millennia. Modern extracts often use ethanol for concentration.</p>
+                <div class="method-grid">
+                    <a href="extraction-ultrasonic.html" class="method-card">
+                        <h3>Ultrasonic-Assisted Extraction</h3>
+                        <p>High-frequency sound waves create microscopic cavitation bubbles that rupture plant cell walls, dramatically increasing extraction speed and yield while using lower temperatures.</p>
+                        <div class="card-meta">
+                            <span>10 min read</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <span class="read-link">Read article &rarr;</span>
+                    </a>
+                    <a href="extraction-microwave.html" class="method-card">
+                        <h3>Microwave-Assisted Extraction</h3>
+                        <p>Microwave energy heats solvents from the inside out, enabling rapid extraction in minutes rather than hours. An emerging technique that balances speed with compound preservation.</p>
+                        <div class="card-meta">
+                            <span>10 min read</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <span class="read-link">Read article &rarr;</span>
+                    </a>
+                    <a href="extraction-enzymatic.html" class="method-card">
+                        <h3>Enzymatic Extraction</h3>
+                        <p>Biological enzymes gently dissolve plant cell walls under mild conditions, releasing compounds that resist conventional extraction &mdash; ideal for polysaccharides, proteins, and heat-sensitive molecules.</p>
+                        <div class="card-meta">
+                            <span>10 min read</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <span class="read-link">Read article &rarr;</span>
+                    </a>
+                    <a href="extraction-pressurized-hot-water.html" class="method-card">
+                        <h3>Pressurized Hot Water Extraction</h3>
+                        <p>Subcritical water under pressure behaves like an organic solvent, dissolving compounds that ordinary water cannot reach. A green chemistry approach with no chemical solvents required.</p>
+                        <div class="card-meta">
+                            <span>10 min read</span>
+                            <span>Advanced</span>
+                        </div>
+                        <span class="read-link">Read article &rarr;</span>
+                    </a>
+                </div>
 
-                <h2>Quality Indicators</h2>
-                <p>When evaluating extracted products, consider:</p>
+                <h2>Mechanical &amp; Thermal Extraction</h2>
+                <p>These methods rely on physical force or heat rather than chemical solvents. Cold pressing uses mechanical pressure; steam distillation uses heat and vapor to carry volatile compounds.</p>
+
+                <div class="method-grid">
+                    <a href="extraction-cold-press.html" class="method-card">
+                        <h3>Cold Press Extraction</h3>
+                        <p>Pure mechanical force expels oils from seeds and plant material without heat or solvents. The method of choice for carrier oils, seed oils, and cold-pressed essential oils.</p>
+                        <div class="card-meta">
+                            <span>10 min read</span>
+                            <span>Beginner</span>
+                        </div>
+                        <span class="read-link">Read article &rarr;</span>
+                    </a>
+                    <a href="extraction-steam-distillation.html" class="method-card">
+                        <h3>Steam Distillation</h3>
+                        <p>Steam carries volatile aromatic compounds out of plant material, then condenses into essential oils and hydrosols. The cornerstone of the essential oil and aromatherapy industries.</p>
+                        <div class="card-meta">
+                            <span>11 min read</span>
+                            <span>Beginner</span>
+                        </div>
+                        <span class="read-link">Read article &rarr;</span>
+                    </a>
+                </div>
+
+                <h2>Choosing the Right Method</h2>
+                <p>No single extraction method is universally superior. The best choice depends on the plant material, the target compounds, the intended product form, and practical constraints like cost and scale. Here are the key decision factors:</p>
 
                 <ul>
-                    <li><strong>Solvent Disclosure:</strong> Quality vendors state their extraction method</li>
-                    <li><strong>Residual Solvent Testing:</strong> For ethanol extracts, lab tests should show minimal residue</li>
-                    <li><strong>Alkaloid Content:</strong> COAs should show concentrations of key compounds</li>
-                    <li><strong>Full Spectrum vs. Isolated:</strong> Know what type of extract you're getting</li>
-                    <li><strong>Color and Consistency:</strong> Should match expected characteristics for the method</li>
+                    <li><strong>Target compound polarity:</strong> Water extracts polar molecules, CO2 and cold press target non-polar compounds, ethanol covers a broad range.</li>
+                    <li><strong>Heat sensitivity:</strong> For delicate compounds, cold press, enzymatic, and low-temperature CO2 methods preserve integrity. Steam distillation and microwave methods involve heat that can degrade some molecules.</li>
+                    <li><strong>Scale and cost:</strong> Water and ethanol extraction are accessible at any scale. CO2 requires significant capital investment. Ultrasonic and microwave methods fall in the middle.</li>
+                    <li><strong>Product form:</strong> Essential oils require steam distillation. Tinctures need ethanol. Full-spectrum oils often use CO2. Teas and decoctions are water extracts by definition.</li>
+                    <li><strong>Regulatory requirements:</strong> Solvent-free methods (CO2, water, cold press, steam) avoid residual solvent testing requirements.</li>
                 </ul>
-
-                <h2>The Future of Extraction</h2>
-                <p>Extraction technology continues to evolve. Emerging methods include:</p>
-
-                <ul>
-                    <li><strong>Ultrasonic-Assisted Extraction:</strong> Uses sound waves to improve efficiency</li>
-                    <li><strong>Microwave-Assisted Extraction:</strong> Faster extraction with controlled heating</li>
-                    <li><strong>Enzymatic Extraction:</strong> Uses enzymes to break down plant material</li>
-                    <li><strong>Pressurized Hot Water:</strong> Enhanced water extraction under pressure</li>
-                </ul>
-
-                <h2>Conclusion</h2>
-                <p>The extraction method is fundamental to any botanical extract's quality and character. Understanding the differences between CO2, ethanol, and water extraction helps you make informed choices about which products suit your needs.</p>
-
-                <p>No single method is universally "best" - each has appropriate applications. The key is matching the method to the botanical and the desired outcome, then ensuring quality control through proper testing.</p>
 
                 <div class="info-box">
                     <h4>Our Extraction Philosophy</h4>
-                    <p>At Nored Farms, we select extraction methods based on what works best for each botanical. We disclose our methods and provide lab testing for all products, so you always know exactly what you're getting.</p>
+                    <p>At Nored Farms, we select extraction methods based on what works best for each botanical and each target compound profile. We disclose our methods, provide lab testing for all products, and prioritize techniques that preserve the full spectrum of beneficial compounds. Every article in this series reflects the same evidence-based approach we apply to our own production.</p>
                 </div>
+            </div>
+
+            <div class="info-box" style="border-left-color: var(--color-primary); margin-top: 2rem;">
+                <h4>Plants Commonly Extracted</h4>
+                <p style="margin-bottom: 0.75rem;">Read our cultivation guides for the key botanicals processed with these methods:</p>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="margin-bottom: 0.5rem;"><a href="kava-cultivation-guide.html" style="color: var(--color-primary); text-decoration: none; font-weight: 500;">Kava &rarr;</a> <span style="color: var(--color-text-muted); font-size: 0.875rem;">&mdash; CO2 supercritical extraction for kavalactone concentration</span></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="egyptian-blue-lotus-cultivation-guide.html" style="color: var(--color-primary); text-decoration: none; font-weight: 500;">Blue Lotus &rarr;</a> <span style="color: var(--color-text-muted); font-size: 0.875rem;">&mdash; Ethanol and water extraction for aporphine alkaloids</span></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="kanna-cultivation-guide.html" style="color: var(--color-primary); text-decoration: none; font-weight: 500;">Kanna &rarr;</a> <span style="color: var(--color-text-muted); font-size: 0.875rem;">&mdash; Ethanol extraction following traditional fermentation</span></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="turmeric-cultivation-guide.html" style="color: var(--color-primary); text-decoration: none; font-weight: 500;">Turmeric &rarr;</a> <span style="color: var(--color-text-muted); font-size: 0.875rem;">&mdash; CO2 and ethanol extraction for curcuminoid isolation</span></li>
+                    <li><a href="lavender-cultivation-guide.html" style="color: var(--color-primary); text-decoration: none; font-weight: 500;">Lavender &rarr;</a> <span style="color: var(--color-text-muted); font-size: 0.875rem;">&mdash; Steam distillation for essential oil production</span></li>
+                </ul>
             </div>
 
             <footer class="article-footer">
@@ -236,7 +228,7 @@
         </article>
     </main>
 
-    
+
     <footer class="seed-footer">
         <div class="seed-footer-inner">
             <div class="seed-footer-top">
@@ -263,12 +255,12 @@
                     </ul>
                 </div>
                 <div class="seed-footer-col">
-                    <h4>Learn</h4>
+                    <h4>Classes</h4>
                     <ul>
-                        <li><a href="../blog.html">Education</a></li>
-                        <li><a href="../classes.html">Classes</a></li>
-                        <li><a href="../classroom.html">Classroom</a></li>
-                        <li><a href="../research.html">Research Library</a></li>
+                        <li><a href="../classes.html">All Classes</a></li>
+                        <li><a href="../classroom/beginner.html">Beginner</a></li>
+                        <li><a href="../classroom/advanced.html">Advanced</a></li>
+                        <li><a href="../classroom/expert.html">Expert</a></li>
                     </ul>
                 </div>
                 <div class="seed-footer-col">
@@ -316,6 +308,12 @@
                     </a>
                     <a href="https://tiktok.com/@noredfarms" target="_blank" rel="noopener" aria-label="Follow on TikTok">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@noredfarms?si=S-ehnWcvxps5NlJE" target="_blank" rel="noopener" aria-label="Follow on YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://pin.it/38PSeEWPa" target="_blank" rel="noopener" aria-label="Follow on Pinterest">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.18-5.01 1.18-5.01s-.3-.6-.3-1.49c0-1.4.81-2.44 1.82-2.44.86 0 1.27.64 1.27 1.41 0 .86-.55 2.15-.83 3.34-.24 1 .49 1.81 1.46 1.81 1.75 0 3.1-1.85 3.1-4.51 0-2.36-1.69-4.01-4.11-4.01-2.8 0-4.44 2.1-4.44 4.27 0 .85.33 1.75.73 2.24.08.1.09.18.07.28-.07.31-.24.99-.28 1.13-.04.18-.15.22-.34.13-1.28-.6-2.08-2.47-2.08-3.98 0-3.24 2.35-6.21 6.79-6.21 3.56 0 6.33 2.54 6.33 5.93 0 3.54-2.23 6.39-5.33 6.39-1.04 0-2.02-.54-2.36-1.18l-.64 2.44c-.23.89-.86 2.01-1.28 2.69A10 10 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
                     </a>
                 </div>
             </div>

@@ -47,8 +47,9 @@
             margin-bottom: 1.5rem;
         }
         .contact-hero h1 {
-            font-family: var(--font-serif);
+            font-family: var(--font-sans);
             font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 500;
             line-height: 1.15;
             color: var(--color-text);
             margin-bottom: 1rem;
@@ -68,11 +69,16 @@
             padding: 0 1.5rem;
         }
         .contact-info-card {
-            background: var(--color-bg);
+            background: var(--color-surface);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-xl);
             padding: 2rem;
             text-align: center;
+            transition: var(--transition-base);
+        }
+        .contact-info-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--color-border-dark);
         }
         .contact-info-icon {
             width: 48px;
@@ -98,7 +104,7 @@
             text-decoration: none;
             font-size: var(--text-sm);
         }
-        .contact-info-link:hover { text-decoration: underline; }
+        .contact-info-link:hover { opacity: 0.6; }
         .contact-location-text {
             color: var(--color-primary);
             font-weight: 500;
@@ -111,14 +117,15 @@
             padding: 0 1.5rem;
         }
         .contact-form-wrapper {
-            background: var(--color-surface-alt, var(--color-bg-secondary));
+            background: var(--color-surface);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-2xl);
             padding: 2.5rem;
         }
         .contact-form-wrapper h2 {
-            font-family: var(--font-serif);
+            font-family: var(--font-sans);
             font-size: var(--text-2xl);
+            font-weight: 500;
             color: var(--color-text);
             margin-bottom: 0.5rem;
             text-align: center;
@@ -141,12 +148,16 @@
         .form-input, .form-select, .form-textarea {
             padding: 0.75rem 1rem;
             background: var(--color-bg);
-            border: 1px solid var(--color-border);
+            border: 1px solid var(--color-border-dark);
             border-radius: var(--radius-lg);
             font-size: var(--text-base);
             color: var(--color-text);
             font-family: var(--font-sans);
+            font-weight: 350;
             transition: var(--transition-fast);
+        }
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: var(--color-text-muted);
         }
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
@@ -154,7 +165,14 @@
             box-shadow: 0 0 0 3px var(--color-primary-subtle);
         }
         .form-textarea { resize: vertical; min-height: 140px; }
-        .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238e9c98' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
         .form-submit {
             display: inline-flex;
             align-items: center;
@@ -162,10 +180,10 @@
             gap: 0.5rem;
             padding: 0.875rem 2rem;
             background: var(--color-primary);
-            color: white;
+            color: var(--color-text-inverse);
             border: none;
-            border-radius: var(--radius-full);
-            font-weight: 500;
+            border-radius: 99em;
+            font-weight: 350;
             font-size: var(--text-base);
             font-family: var(--font-sans);
             cursor: pointer;
@@ -173,6 +191,11 @@
             margin-top: 0.5rem;
         }
         .form-submit:hover { background: var(--color-primary-dark); transform: translateY(-1px); }
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
         .form-submit svg { width: 18px; height: 18px; }
 
         .form-success {
@@ -188,17 +211,40 @@
             color: var(--color-primary);
         }
         .form-success h3 {
-            font-family: var(--font-serif);
+            font-family: var(--font-sans);
             font-size: var(--text-xl);
+            font-weight: 500;
             color: var(--color-text);
             margin-bottom: 0.5rem;
         }
         .form-success p {
             color: var(--color-text-muted);
             font-size: var(--text-sm);
+            line-height: 1.6;
         }
+        .form-success .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-top: 1.5rem;
+        }
+        .form-success .back-link:hover { opacity: 0.6; }
 
-        /* Seed footer styles inherited from styles.css */
+        .form-error {
+            display: none;
+            background: rgba(196, 92, 75, 0.1);
+            border: 1px solid rgba(196, 92, 75, 0.2);
+            color: var(--color-error);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            text-align: center;
+        }
+        .form-error.visible { display: block; }
     </style>
     <link rel="stylesheet" href="chat-widget.css">
     <link rel="stylesheet" href="shipping-estimator.css">
@@ -221,7 +267,126 @@
             <span></span><span></span><span></span>
         </button>
     </nav>
+
+    <main class="contact-page">
+        <!-- Hero -->
+        <div class="contact-hero">
+            <div class="contact-hero-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Contact
+            </div>
+            <h1>Let's connect</h1>
+            <p>Questions about our botanicals, wholesale partnerships, or just want to say hello -- we'd love to hear from you.</p>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="contact-cards">
+            <div class="contact-info-card">
+                <svg class="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <h3>Email Us</h3>
+                <p>General questions, product info, or support.</p>
+                <a href="mailto:info@noredfarms.com" class="contact-info-link">info@noredfarms.com</a>
+            </div>
+            <div class="contact-info-card">
+                <svg class="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+                <h3>Wholesale</h3>
+                <p>Bulk pricing and partnership opportunities.</p>
+                <a href="wholesale/index.html" class="contact-info-link">Apply for Wholesale</a>
+            </div>
+            <div class="contact-info-card">
+                <svg class="contact-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <h3>Location</h3>
+                <p>Grown and extracted on-site in Texas.</p>
+                <span class="contact-location-text">Texas Hill Country</span>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-section">
+            <div class="contact-form-wrapper">
+                <h2>Send us a message</h2>
+                <p>Fill out the form below and we will get back to you within 1-2 business days.</p>
+
+                <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <!-- Netlify hidden fields -->
+                    <input type="hidden" name="form-name" value="contact">
+                    <p class="form-group" style="display:none">
+                        <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                    </p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" id="firstName" name="first-name" class="form-input" placeholder="Jane" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" id="lastName" name="last-name" class="form-input" placeholder="Doe">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmail" class="form-label">Email Address</label>
+                        <input type="email" id="contactEmail" name="email" class="form-input" placeholder="jane@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <select id="subject" name="subject" class="form-select" required>
+                            <option value="" disabled selected>Choose a topic</option>
+                            <option value="general">General Question</option>
+                            <option value="product">Product Inquiry</option>
+                            <option value="wholesale">Wholesale / Bulk Order</option>
+                            <option value="classes">Classes &amp; Courses</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="collaboration">Collaboration / Partnership</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us what's on your mind..." required></textarea>
+                    </div>
+
+                    <div class="form-error" id="formError">
+                        Something went wrong. Please try again or email us directly at info@noredfarms.com.
+                    </div>
+
+                    <button type="submit" class="form-submit" id="formSubmitBtn">
+                        Send Message
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="form-success" id="formSuccess">
+                    <svg class="form-success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <h3>Message sent</h3>
+                    <p>Thank you for reaching out. We have received your message and will get back to you within 1-2 business days. A confirmation has been sent to your email.</p>
+                    <a href="index.html" class="back-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
+
     <footer class="seed-footer">
         <div class="seed-footer-inner">
             <div class="seed-footer-top">
@@ -248,12 +413,12 @@
                     </ul>
                 </div>
                 <div class="seed-footer-col">
-                    <h4>Learn</h4>
+                    <h4>Classes</h4>
                     <ul>
-                        <li><a href="blog.html">Education</a></li>
-                        <li><a href="classes.html">Classes</a></li>
-                        <li><a href="classroom.html">Classroom</a></li>
-                        <li><a href="research.html">Research Library</a></li>
+                        <li><a href="classes.html">All Classes</a></li>
+                        <li><a href="classroom/beginner.html">Beginner</a></li>
+                        <li><a href="classroom/advanced.html">Advanced</a></li>
+                        <li><a href="classroom/expert.html">Expert</a></li>
                     </ul>
                 </div>
                 <div class="seed-footer-col">
@@ -293,7 +458,7 @@
             <div class="seed-footer-disclaimer">
                 *These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use. Must be 21+ to purchase. Not for sale where prohibited by law. Nored Farms products are manufactured in a GMP-compliant facility and tested by independent third-party laboratories.
             </div>
-                        <div class="seed-footer-social">
+            <div class="seed-footer-social">
                 <span style="font-size: 13px; color: var(--color--olivegreen); margin-right: 8px;">Follow us</span>
                 <div class="social-follow">
                     <a href="https://instagram.com/noredfarms" target="_blank" rel="noopener" aria-label="Follow on Instagram">
@@ -301,6 +466,12 @@
                     </a>
                     <a href="https://tiktok.com/@noredfarms" target="_blank" rel="noopener" aria-label="Follow on TikTok">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@noredfarms?si=S-ehnWcvxps5NlJE" target="_blank" rel="noopener" aria-label="Follow on YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://pin.it/38PSeEWPa" target="_blank" rel="noopener" aria-label="Follow on Pinterest">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.18-5.01 1.18-5.01s-.3-.6-.3-1.49c0-1.4.81-2.44 1.82-2.44.86 0 1.27.64 1.27 1.41 0 .86-.55 2.15-.83 3.34-.24 1 .49 1.81 1.46 1.81 1.75 0 3.1-1.85 3.1-4.51 0-2.36-1.69-4.01-4.11-4.01-2.8 0-4.44 2.1-4.44 4.27 0 .85.33 1.75.73 2.24.08.1.09.18.07.28-.07.31-.24.99-.28 1.13-.04.18-.15.22-.34.13-1.28-.6-2.08-2.47-2.08-3.98 0-3.24 2.35-6.21 6.79-6.21 3.56 0 6.33 2.54 6.33 5.93 0 3.54-2.23 6.39-5.33 6.39-1.04 0-2.02-.54-2.36-1.18l-.64 2.44c-.23.89-.86 2.01-1.28 2.69A10 10 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
                     </a>
                 </div>
             </div>
@@ -313,24 +484,66 @@
 
     <script src="script.js"></script>
     <script>
-        // Contact form handler (placeholder - connect to webhook later)
-        const contactForm = document.getElementById('contactForm');
-        const formSuccess = document.getElementById('formSuccess');
+        // Contact form handler with Netlify Forms + Resend confirmation
+        var contactForm = document.getElementById('contactForm');
+        var formSuccess = document.getElementById('formSuccess');
+        var formError = document.getElementById('formError');
+        var formSubmitBtn = document.getElementById('formSubmitBtn');
 
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                // Collect form data
-                const formData = new FormData(contactForm);
-                const data = Object.fromEntries(formData);
+                // Disable button and show loading state
+                formSubmitBtn.disabled = true;
+                formSubmitBtn.textContent = 'Sending...';
+                formError.classList.remove('visible');
 
-                // TODO: Replace with actual webhook endpoint
-                console.log('Contact form submission:', data);
+                var formData = new FormData(contactForm);
 
-                // Show success state
-                contactForm.style.display = 'none';
-                formSuccess.classList.add('visible');
+                // Submit to Netlify Forms
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Form submission failed');
+                    }
+
+                    // Trigger confirmation email via serverless function (fire-and-forget)
+                    var emailData = {
+                        email: formData.get('email'),
+                        firstName: formData.get('first-name'),
+                        subject: formData.get('subject')
+                    };
+
+                    fetch('/api/send-contact-confirmation', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(emailData)
+                    }).catch(function() {
+                        // Silently fail -- form was already submitted to Netlify
+                    });
+
+                    // Show success state
+                    contactForm.style.display = 'none';
+                    formSuccess.classList.add('visible');
+
+                    // Track in GA
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'form_submit', {
+                            event_category: 'contact',
+                            event_label: formData.get('subject')
+                        });
+                    }
+                })
+                .catch(function() {
+                    formError.classList.add('visible');
+                    formSubmitBtn.disabled = false;
+                    formSubmitBtn.innerHTML = 'Send Message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+                });
             });
         }
     </script>

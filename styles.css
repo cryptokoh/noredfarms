@@ -533,6 +533,12 @@ ul, ol {
     transition: all 0.3s ease;
 }
 
+.nav-logo img {
+    height: 20px;
+    width: auto;
+    flex-shrink: 0;
+}
+
 .nav-logo .dot {
     display: inline-block;
     width: 7px;
@@ -6136,4 +6142,175 @@ ul, ol {
 
 [data-theme="light"] .nav-dropdown-footer {
     border-top-color: rgba(26, 36, 34, 0.06);
+}
+
+/* ============================================
+   Fix 2: Mobile menu tab labels — prevent truncation
+   Reduce font-size and padding so all 5 tabs fit
+   ============================================ */
+@media (max-width: 480px) {
+    .fs-tab {
+        padding: 7px 6px;
+        font-size: 0.75rem;
+        letter-spacing: -0.01em;
+    }
+}
+@media (max-width: 360px) {
+    .fs-tab {
+        padding: 6px 4px;
+        font-size: 0.6875rem;
+    }
+    .fs-menu-logo {
+        width: 10px;
+        height: 10px;
+        margin-right: 0.25rem;
+        margin-left: 0.25rem;
+    }
+}
+
+/* ============================================
+   Fix 4: Content boxes for text readability
+   over background patterns / sacred geometry.
+   Text sits on solid dark surface, patterns
+   remain visible between and behind boxes.
+   ============================================ */
+.content-box {
+    background: rgba(18, 24, 26, 0.92);
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(80, 232, 192, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.content-box p,
+.content-box ul,
+.content-box li {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 640px) {
+    .content-box {
+        padding: 1.25rem 1.5rem;
+        border-radius: 12px;
+    }
+}
+
+/* Auto-apply content-box styling to key text sections
+   that sit over trippy backgrounds */
+.tech-inner,
+.lab-inner,
+.cta-inner {
+    background: rgba(18, 24, 26, 0.88);
+    padding: 3rem 3.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(80, 232, 192, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.interstitial-inner {
+    background: rgba(18, 24, 26, 0.88);
+    padding: 2.5rem 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(80, 232, 192, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.about-inner {
+    background: rgba(18, 24, 26, 0.85);
+    padding: 3rem 3.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(80, 232, 192, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.proof-inner {
+    background: rgba(18, 24, 26, 0.85);
+    padding: 2.5rem 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(80, 232, 192, 0.05);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+@media (max-width: 768px) {
+    .tech-inner,
+    .lab-inner,
+    .cta-inner,
+    .about-inner {
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+    }
+    .interstitial-inner,
+    .proof-inner {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+    }
+}
+
+/* ============================================
+   Fix 5: Larger, more intricate background patterns
+   Scale up pattern sizes and increase opacity slightly.
+   ============================================ */
+
+/* Override pattern sizes — make them bigger */
+section:nth-of-type(4n+1)::before {
+    background-size: 1100px 1100px;
+    opacity: 0.18;
+}
+
+section:nth-of-type(4n+2)::before {
+    background-size: 1000px 1000px;
+    opacity: 0.18;
+}
+
+section:nth-of-type(4n+3)::before {
+    background-size: 900px 900px;
+    opacity: 0.18;
+}
+
+section:nth-of-type(4n+4)::before {
+    background-size: 1050px 1050px;
+    opacity: 0.18;
+}
+
+main::before {
+    background-size: 1200px 1200px;
+    opacity: 0.18;
+}
+
+footer::before,
+.seed-footer::before {
+    background-size: 900px 900px;
+    opacity: 0.16;
+}
+
+/* Add a secondary layered pattern for more intricacy */
+section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.06;
+    background-repeat: repeat;
+    background-size: 500px 500px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' fill='none' stroke='%2350e8c0' stroke-width='0.8'%3E%3Ccircle cx='250' cy='250' r='200' opacity='0.4'/%3E%3Ccircle cx='250' cy='250' r='150' opacity='0.35'/%3E%3Ccircle cx='250' cy='250' r='100' opacity='0.3'/%3E%3Ccircle cx='250' cy='250' r='50' opacity='0.25'/%3E%3Cpath d='M250 50L250 450M50 250L450 250' opacity='0.15'/%3E%3Cpath d='M108 108L392 392M392 108L108 392' opacity='0.1'/%3E%3Cpath d='M250 50L450 250L250 450L50 250Z' opacity='0.12'/%3E%3Cpath d='M150 50L350 50L450 150L450 350L350 450L150 450L50 350L50 150Z' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* Keep direct children above both pattern layers */
+section > * {
+    position: relative;
+    z-index: 1;
 }

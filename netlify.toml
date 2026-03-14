@@ -90,6 +90,12 @@
   to = "/.netlify/functions/send-notification"
   status = 200
 
+# Contact form confirmation email
+[[redirects]]
+  from = "/api/send-contact-confirmation"
+  to = "/.netlify/functions/send-contact-confirmation"
+  status = 200
+
 # Content API endpoints (FlowB EC)
 [[redirects]]
   from = "/api/content-products"
@@ -129,3 +135,4 @@
 # SUPABASE_SERVICE_ROLE_KEY = eyJ...
 # CONTENT_API_KEY = <generated secret for FlowB EC API access>
 # FLOWB_WEBHOOK_URL = https://flowb.fly.dev/api/v1/biz/inbound-webhook
+# RESEND_API_KEY = re_... (for contact form confirmation emails)

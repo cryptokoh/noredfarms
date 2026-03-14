@@ -270,38 +270,39 @@ function initDesktopDropdowns(nav) {
         'articles': {
             col1Title: 'Categories',
             col1Links: [
-                { text: 'Garden / Farm Design', href: 'blog.html', icon: '&#127793;' },
-                { text: 'Plant Articles', href: 'blog.html', icon: '&#127807;' },
-                { text: 'Extract Methods', href: 'articles/extraction-methods.html', icon: '&#9878;' },
-                { text: 'Compounds', href: 'articles/blue-lotus-compounds.html', icon: '&#128300;' },
-                { text: 'Studies', href: 'research.html', icon: '&#128200;' }
+                { text: 'Plants (80+)', href: 'blog.html?category=plants', icon: '&#127807;' },
+                { text: 'Garden Design', href: 'blog.html?category=garden-design', icon: '&#127793;' },
+                { text: 'Compounds (18)', href: 'blog.html?category=compounds', icon: '&#128300;' },
+                { text: 'Extraction (10)', href: 'blog.html?category=extraction', icon: '&#9878;' },
+                { text: 'Studies', href: 'blog.html?category=studies', icon: '&#128200;' },
+                { text: 'Science', href: 'blog.html?category=science', icon: '&#128218;' }
             ],
             col2Title: 'Featured Articles',
             col2Links: [
-                { text: 'Adaptogens: The Science', href: 'articles/adaptogens-science.html', meta: '8 min' },
-                { text: 'Kavalactones Explained', href: 'articles/kavalactones-explained.html', meta: '6 min' },
-                { text: 'Extraction Methods Compared', href: 'articles/extraction-methods.html', meta: '10 min' },
-                { text: 'Blue Lotus Compounds', href: 'articles/blue-lotus-compounds.html', meta: '12 min' }
+                { text: 'Adaptogens: The Science', href: 'articles/adaptogens-science.html', meta: '12 min' },
+                { text: 'Extraction Methods Compared', href: 'articles/extraction-methods.html', meta: '15 min' },
+                { text: 'Nootropics Overview', href: 'articles/nootropics-overview-guide.html', meta: '20 min' },
+                { text: 'Kavalactones Explained', href: 'articles/kavalactones-explained.html', meta: '10 min' },
+                { text: 'Blue Lotus Compounds', href: 'articles/blue-lotus-compounds.html', meta: '8 min' }
             ],
-            footerText: 'All 50+ Articles',
+            footerText: 'All 130+ Articles',
             footerHref: 'blog.html'
         },
         'classes': {
-            col1Title: 'Growing Classes',
+            col1Title: 'Class Tiers',
             col1Links: [
-                { text: 'Cultivation Techniques', href: 'classroom/growing.html', icon: '&#127793;' },
-                { text: 'Infrastructure & Equipment', href: 'classroom/infrastructure.html', icon: '&#128296;' },
-                { text: 'Browse All Classes', href: 'classes.html', icon: '&#128218;' }
+                { text: 'Beginner Classes', href: 'classroom/beginner.html', icon: '&#127793;' },
+                { text: 'Advanced Classes', href: 'classroom/advanced.html', icon: '&#128296;' },
+                { text: 'Expert Classes', href: 'classroom/expert.html', icon: '&#9878;' }
             ],
-            col2Title: 'Extraction Classes',
+            col2Title: 'Quick Links',
             col2Links: [
-                { text: 'Extraction Methods', href: 'classroom/extraction.html' },
-                { text: 'Effects & Alkaloids', href: 'classroom/effects.html' },
+                { text: 'Browse All Classes', href: 'classes.html' },
                 { text: 'Classroom Portal', href: 'classroom.html' },
                 { text: 'Course Login', href: 'courses/login.html' }
             ],
-            footerText: null,
-            footerHref: null
+            footerText: 'All Classes',
+            footerHref: 'classes.html'
         },
         'company': {
             col1Title: 'About Us',
@@ -446,7 +447,7 @@ function initFullscreenMenu(hamburger) {
         '<div class="fs-menu-logo"></div>' +
         '<button class="fs-tab active" data-tab="products">Shop</button>' +
         '<button class="fs-tab" data-tab="articles">Articles</button>' +
-        '<button class="fs-tab" data-tab="classes">Learn</button>' +
+        '<button class="fs-tab" data-tab="classes">Classes</button>' +
         '<button class="fs-tab" data-tab="company">About</button>' +
         '<button class="fs-tab" data-tab="login">Login</button>' +
         '<button class="fs-menu-close" id="menuClose" aria-label="Close">&times;</button>' +
@@ -506,29 +507,29 @@ function initFullscreenMenu(hamburger) {
         '<div class="fs-panel" data-panel="articles">' +
         '<div class="panel-group-header" style="padding-top:0.25rem">Categories</div>' +
         '<div class="category-grid">' +
-        '<a href="' + p + 'blog.html" class="category-pill-link"><span class="category-pill-icon">&#127793;</span><span>Garden / Farm Design</span></a>' +
-        '<a href="' + p + 'blog.html" class="category-pill-link"><span class="category-pill-icon">&#127807;</span><span>Plant Articles</span></a>' +
-        '<a href="' + p + 'articles/extraction-methods.html" class="category-pill-link"><span class="category-pill-icon">&#9878;</span><span>Extract Methods</span></a>' +
-        '<a href="' + p + 'articles/blue-lotus-compounds.html" class="category-pill-link"><span class="category-pill-icon">&#128300;</span><span>Compounds</span></a>' +
-        '<a href="' + p + 'research.html" class="category-pill-link"><span class="category-pill-icon">&#128200;</span><span>Studies</span></a>' +
+        '<a href="' + p + 'blog.html?category=plants" class="category-pill-link"><span class="category-pill-icon">&#127807;</span><span>Plants (80+)</span></a>' +
+        '<a href="' + p + 'blog.html?category=garden-design" class="category-pill-link"><span class="category-pill-icon">&#127793;</span><span>Garden Design</span></a>' +
+        '<a href="' + p + 'blog.html?category=compounds" class="category-pill-link"><span class="category-pill-icon">&#128300;</span><span>Compounds (18)</span></a>' +
+        '<a href="' + p + 'blog.html?category=extraction" class="category-pill-link"><span class="category-pill-icon">&#9878;</span><span>Extraction (10)</span></a>' +
+        '<a href="' + p + 'blog.html?category=studies" class="category-pill-link"><span class="category-pill-icon">&#128200;</span><span>Studies</span></a>' +
+        '<a href="' + p + 'blog.html?category=science" class="category-pill-link"><span class="category-pill-icon">&#128218;</span><span>Science</span></a>' +
         '</div>' +
         '<div class="panel-group-header">Featured Articles</div>' +
-        '<a href="' + p + 'articles/adaptogens-science.html" class="panel-item"><div class="article-thumb article-thumb-1"></div><div class="panel-item-content"><div class="panel-item-title">Adaptogens: The Science</div><div class="panel-item-meta">8 min read</div></div></a>' +
-        '<a href="' + p + 'articles/kavalactones-explained.html" class="panel-item"><div class="article-thumb article-thumb-2"></div><div class="panel-item-content"><div class="panel-item-title">Kavalactones Explained</div><div class="panel-item-meta">6 min read</div></div></a>' +
-        '<a href="' + p + 'articles/extraction-methods.html" class="panel-item"><div class="article-thumb article-thumb-3"></div><div class="panel-item-content"><div class="panel-item-title">Extraction Methods Compared</div><div class="panel-item-meta">10 min read</div></div></a>' +
-        '<a href="' + p + 'articles/blue-lotus-compounds.html" class="panel-item"><div class="article-thumb article-thumb-4"></div><div class="panel-item-content"><div class="panel-item-title">Blue Lotus Compounds & Research</div><div class="panel-item-meta">12 min read</div></div></a>' +
-        '<a href="' + p + 'blog.html" class="all-articles-link">All Articles &rarr;</a>' +
+        '<a href="' + p + 'articles/adaptogens-science.html" class="panel-item"><div class="article-thumb article-thumb-1"></div><div class="panel-item-content"><div class="panel-item-title">Adaptogens: The Science</div><div class="panel-item-meta">12 min read</div></div></a>' +
+        '<a href="' + p + 'articles/extraction-methods.html" class="panel-item"><div class="article-thumb article-thumb-3"></div><div class="panel-item-content"><div class="panel-item-title">Extraction Methods Compared</div><div class="panel-item-meta">15 min read</div></div></a>' +
+        '<a href="' + p + 'articles/kavalactones-explained.html" class="panel-item"><div class="article-thumb article-thumb-2"></div><div class="panel-item-content"><div class="panel-item-title">Kavalactones Explained</div><div class="panel-item-meta">10 min read</div></div></a>' +
+        '<a href="' + p + 'articles/nootropics-overview-guide.html" class="panel-item"><div class="article-thumb article-thumb-4"></div><div class="panel-item-content"><div class="panel-item-title">Nootropics Overview</div><div class="panel-item-meta">20 min read</div></div></a>' +
+        '<a href="' + p + 'articles/blue-lotus-compounds.html" class="panel-item"><div class="article-thumb article-thumb-4"></div><div class="panel-item-content"><div class="panel-item-title">Blue Lotus Compounds</div><div class="panel-item-meta">8 min read</div></div></a>' +
+        '<a href="' + p + 'articles/greenhouse-gardening.html" class="panel-item"><div class="article-thumb article-thumb-1"></div><div class="panel-item-content"><div class="panel-item-title">Greenhouse Gardening</div><div class="panel-item-meta">18 min read</div></div></a>' +
+        '<a href="' + p + 'blog.html" class="all-articles-link">All 130+ Articles &rarr;</a>' +
         '</div>' +
 
         // ---- CLASSES panel ----
         '<div class="fs-panel" data-panel="classes">' +
-        '<div class="panel-group-header" style="padding-top:0.25rem">Growing Classes</div>' +
-        '<a href="' + p + 'classroom/growing.html" class="panel-item"><div class="panel-item-image img-sustainability">&#127793;</div><div class="panel-item-content"><div class="panel-item-title">Cultivation Techniques</div><div class="panel-item-desc">Soil preparation, planting, harvesting, and food forest design.</div></div></a>' +
-        '<a href="' + p + 'classroom/infrastructure.html" class="panel-item"><div class="panel-item-image img-scientists">&#128296;</div><div class="panel-item-content"><div class="panel-item-title">Infrastructure & Equipment</div><div class="panel-item-desc">Tools, irrigation, structures, and systems for sustainable growing.</div></div></a>' +
-
-        '<div class="panel-group-header">Extraction Classes</div>' +
-        '<a href="' + p + 'classroom/extraction.html" class="panel-item"><div class="panel-item-image img-approach">&#9878;</div><div class="panel-item-content"><div class="panel-item-title">Extraction Methods</div><div class="panel-item-desc">Water, ethanol, CO2, and cold-process extraction techniques.</div></div></a>' +
-        '<a href="' + p + 'classroom/effects.html" class="panel-item"><div class="panel-item-image img-labs">&#128300;</div><div class="panel-item-content"><div class="panel-item-title">Effects & Alkaloids</div><div class="panel-item-desc">How kavalactones, aporphines, and mesembrine work in the body.</div></div></a>' +
+        '<div class="panel-group-header" style="padding-top:0.25rem">Class Tiers</div>' +
+        '<a href="' + p + 'classroom/beginner.html" class="panel-item"><div class="panel-item-image img-sustainability">&#127793;</div><div class="panel-item-content"><div class="panel-item-title">Beginner</div><div class="panel-item-desc">Introductory classes for new growers and herbalists. Start here.</div></div></a>' +
+        '<a href="' + p + 'classroom/advanced.html" class="panel-item"><div class="panel-item-image img-scientists">&#128296;</div><div class="panel-item-content"><div class="panel-item-title">Advanced</div><div class="panel-item-desc">Deeper techniques, equipment design, and specialized knowledge.</div></div></a>' +
+        '<a href="' + p + 'classroom/expert.html" class="panel-item"><div class="panel-item-image img-approach">&#9878;</div><div class="panel-item-content"><div class="panel-item-title">Expert</div><div class="panel-item-desc">Professional-level extraction, formulation, and lab research.</div></div></a>' +
 
         '<div class="panel-group-header">Quick Links</div>' +
         '<ul class="ref-list">' +
@@ -570,7 +571,6 @@ function initFullscreenMenu(hamburger) {
         '<p class="wholesale-desc">Authorized retailers and distributors can access bulk pricing, lab reports, and wholesale ordering.</p>' +
         '</div>' +
 
-        '<a href="' + p + 'products/extracts.html" class="fs-menu-promo">Explore Our Extracts &rarr;</a>' +
         '</div>' + // /fs-menu-scroll
         '</div>'; // /fs-menu
 

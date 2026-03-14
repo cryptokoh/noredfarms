@@ -129,22 +129,54 @@
                 kava, and blue lotus - from ancient traditions to modern extraction science.
             </p>
             <div class="hero-quick-nav">
-                <a href="#learning-tracks" class="quick-nav-btn">
+                <a href="#tiers" class="quick-nav-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/>
+                    </svg>
+                    <span>Choose Your Tier</span>
+                </a>
+                <a href="#learning-tracks" class="quick-nav-btn quick-nav-btn-secondary">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                     </svg>
                     <span>Start Learning</span>
                 </a>
-                <a href="#labs" class="quick-nav-btn quick-nav-btn-secondary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
-                    </svg>
-                    <span>Interactive Labs</span>
-                </a>
             </div>
         </div>
     </header>
+
+
+    <!-- Class Tiers Section -->
+    <section class="classroom-tiers" id="tiers" style="padding: 3rem 0 1rem;">
+        <div class="container" style="max-width: 960px; margin: 0 auto; padding: 0 1.5rem;">
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <span class="section-label">Choose Your Level</span>
+                <h2 class="section-title">Three Tiers of Learning</h2>
+                <p class="section-subtitle">Classes organized by experience level. Start where you are, progress at your own pace.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;">
+                <a href="classroom/beginner.html" style="display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--color--seedgreen-card, #1e2628); border: 1px solid rgba(80,232,192,0.05); border-radius: 16px; padding: 2rem 1.5rem; text-decoration: none; color: inherit; transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;">
+                    <div style="width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(80,232,192,0.07); border-radius: 14px; margin-bottom: 1.25rem; font-size: 1.75rem;">&#127793;</div>
+                    <h3 style="font-size: 1.125rem; font-weight: 500; color: var(--color--seedgreen, #bccac4); margin-bottom: 0.5rem;">Beginner</h3>
+                    <p style="font-size: 0.8125rem; color: var(--color--olivegreen, #8e9c98); line-height: 1.6; margin-bottom: 0.75rem;">Home growing, basic soil science, and introductory herbal preparations.</p>
+                    <span style="font-size: 0.75rem; color: #50e8c0; font-weight: 500;">Browse Classes &rarr;</span>
+                </a>
+                <a href="classroom/advanced.html" style="display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--color--seedgreen-card, #1e2628); border: 1px solid rgba(80,232,192,0.05); border-radius: 16px; padding: 2rem 1.5rem; text-decoration: none; color: inherit; transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;">
+                    <div style="width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(80,232,192,0.07); border-radius: 14px; margin-bottom: 1.25rem; font-size: 1.75rem;">&#128296;</div>
+                    <h3 style="font-size: 1.125rem; font-weight: 500; color: var(--color--seedgreen, #bccac4); margin-bottom: 0.5rem;">Advanced</h3>
+                    <p style="font-size: 0.8125rem; color: var(--color--olivegreen, #8e9c98); line-height: 1.6; margin-bottom: 0.75rem;">Equipment design, extraction mastery, and regenerative agriculture.</p>
+                    <span style="font-size: 0.75rem; color: #50e8c0; font-weight: 500;">Browse Classes &rarr;</span>
+                </a>
+                <a href="classroom/expert.html" style="display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--color--seedgreen-card, #1e2628); border: 1px solid rgba(80,232,192,0.05); border-radius: 16px; padding: 2rem 1.5rem; text-decoration: none; color: inherit; transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;">
+                    <div style="width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(80,232,192,0.07); border-radius: 14px; margin-bottom: 1.25rem; font-size: 1.75rem;">&#9878;</div>
+                    <h3 style="font-size: 1.125rem; font-weight: 500; color: var(--color--seedgreen, #bccac4); margin-bottom: 0.5rem;">Expert</h3>
+                    <p style="font-size: 0.8125rem; color: var(--color--olivegreen, #8e9c98); line-height: 1.6; margin-bottom: 0.75rem;">Industrial extraction, lab setup, formulation, and scaled operations.</p>
+                    <span style="font-size: 0.75rem; color: #50e8c0; font-weight: 500;">Browse Classes &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Classroom Hubs Section -->
     <section class="classroom-hubs" id="classroom-hubs">
@@ -790,12 +822,12 @@
                     </ul>
                 </div>
                 <div class="seed-footer-col">
-                    <h4>Learn</h4>
+                    <h4>Classes</h4>
                     <ul>
-                        <li><a href="blog.html">Education</a></li>
-                        <li><a href="classes.html">Classes</a></li>
-                        <li><a href="classroom.html">Classroom</a></li>
-                        <li><a href="research.html">Research Library</a></li>
+                        <li><a href="classes.html">All Classes</a></li>
+                        <li><a href="classroom/beginner.html">Beginner</a></li>
+                        <li><a href="classroom/advanced.html">Advanced</a></li>
+                        <li><a href="classroom/expert.html">Expert</a></li>
                     </ul>
                 </div>
                 <div class="seed-footer-col">
@@ -843,6 +875,12 @@
                     </a>
                     <a href="https://tiktok.com/@noredfarms" target="_blank" rel="noopener" aria-label="Follow on TikTok">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@noredfarms?si=S-ehnWcvxps5NlJE" target="_blank" rel="noopener" aria-label="Follow on YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://pin.it/38PSeEWPa" target="_blank" rel="noopener" aria-label="Follow on Pinterest">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.18-5.01 1.18-5.01s-.3-.6-.3-1.49c0-1.4.81-2.44 1.82-2.44.86 0 1.27.64 1.27 1.41 0 .86-.55 2.15-.83 3.34-.24 1 .49 1.81 1.46 1.81 1.75 0 3.1-1.85 3.1-4.51 0-2.36-1.69-4.01-4.11-4.01-2.8 0-4.44 2.1-4.44 4.27 0 .85.33 1.75.73 2.24.08.1.09.18.07.28-.07.31-.24.99-.28 1.13-.04.18-.15.22-.34.13-1.28-.6-2.08-2.47-2.08-3.98 0-3.24 2.35-6.21 6.79-6.21 3.56 0 6.33 2.54 6.33 5.93 0 3.54-2.23 6.39-5.33 6.39-1.04 0-2.02-.54-2.36-1.18l-.64 2.44c-.23.89-.86 2.01-1.28 2.69A10 10 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
                     </a>
                 </div>
             </div>

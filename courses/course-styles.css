@@ -122,6 +122,11 @@
     opacity: 0.6;
 }
 
+/* Valid field indicator — subtle teal border when filled and valid */
+.form-field input:required:valid:not(:placeholder-shown) {
+    border-color: rgba(80, 232, 192, 0.3);
+}
+
 /* Auth Buttons */
 .auth-btn {
     width: 100%;
@@ -136,18 +141,37 @@
     font-size: var(--text-sm);
     font-weight: 500;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all 0.3s ease;
 }
 
 .auth-btn-primary {
-    background: var(--gradient-primary);
-    color: var(--color-text-inverse);
-    box-shadow: var(--shadow-md);
+    background: rgba(80, 232, 192, 0.08);
+    color: var(--color-text-muted);
+    border: 1.5px solid rgba(80, 232, 192, 0.1);
+    box-shadow: none;
 }
 
-.auth-btn-primary:hover:not(:disabled) {
+.auth-btn-primary:hover:not(:disabled):not(.auth-btn-ready) {
+    background: rgba(80, 232, 192, 0.12);
+}
+
+/* Lit-up state when all required fields are filled */
+.auth-btn-primary.auth-btn-ready {
+    background: #50e8c0;
+    color: #12181a;
+    border-color: #50e8c0;
+    box-shadow: 0 0 20px rgba(80, 232, 192, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.auth-btn-primary.auth-btn-ready:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 28px rgba(80, 232, 192, 0.35), 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: #5eedc8;
+}
+
+.auth-btn-primary.auth-btn-ready:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 0 14px rgba(80, 232, 192, 0.2), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .auth-btn-primary:disabled {
