@@ -58,7 +58,7 @@ function generateArticle(plant) {
 </head>
 <body>
     <nav class="nav" id="nav">
-        <a href="../index.html" class="nav-logo"><img src="../images/logo.svg" alt="Nored Farms" style="height:24px;width:auto;vertical-align:middle;margin-right:4px;">Nored Farms<span class="dot"></span></a>
+        <a href="../index.html" class="nav-logo"><img src="../images/logo-nf.svg" alt="Nored Farms" style="height:24px;width:auto;vertical-align:middle;margin-right:4px;">Nored Farms<span class="dot"></span></a>
         <div class="nav-links" id="navLinks"><a href="../index.html#products">Products</a><a href="../blog.html">Articles</a><a href="../classes.html">Classes</a><a href="../about-us.html">Company</a><a href="../courses/login.html">Login</a><a href="../contact.html" class="nav-cta">Get Started</a></div>
         <button class="hamburger" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
