@@ -1,11 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-  <!-- Nored Farms brand mark — simple botanical leaf -->
-  <!-- Leaf shape -->
-  <path d="M12 2C7 2 3 7 3 12c0 3 1.5 5.5 4 7.2C8 14 10 9 12 6c2 3 4 8 5 13.2 2.5-1.7 4-4.2 4-7.2 0-5-4-10-9-10z"
-        fill="#50e8c0" opacity="0.85"/>
-  <!-- Center vein -->
-  <path d="M12 6v14" stroke="#12181a" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
-  <!-- Side veins -->
-  <path d="M12 9L8.5 12M12 12L7 15.5M12 15L8 18" stroke="#12181a" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
-  <path d="M12 9L15.5 12M12 12L17 15.5M12 15L16 18" stroke="#12181a" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 24">
+  <text x="16" y="17" text-anchor="middle" font-family="Inter, -apple-system, sans-serif" font-weight="500" font-size="16" fill="#50e8c0" letter-spacing="-0.5">NF</text>
 </svg>
